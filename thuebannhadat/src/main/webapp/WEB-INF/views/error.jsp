@@ -1,33 +1,20 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Demo template</title>
 <script
-	src="${pageContext.request.contextPath}/resources/js/jquery-1.11.2.min.js"></script>
-<!-- Bootstrap -->
-<link
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/css/styles.css"
-	rel="stylesheet">
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
+		var text = "";
+		$('#search_ward').find('option').each(function() {
+			if ($(this).val() != 0) {
+				text += '"' + $(this).text() + '",';
+			}
+		});
+		console.log(text);
+	});
+</script>
 </head>
 <body>
-</body>
-</html>
+
+<select id="search_ward" name="w" class="js-example-basic-single select2-hidden-accessible" tabindex="-1" aria-hidden="true"><option value="0">Chọn phường/xã</option><option value="3753">Bảo Hòa</option><option value="3754">Gia Ray</option><option value="3755">Lang Minh</option><option value="3756">Suối Cao</option><option value="3757">Suối Cát</option><option value="3758">Xuân Bắc</option><option value="3759">Xuân Định</option><option value="3760">Xuân Hiệp</option><option value="3761">Xuân Hòa</option><option value="3762">Xuân Hưng</option><option value="3763">Xuân Phú</option><option value="3764">Xuân Tâm</option><option value="3765">Xuân Thành</option><option value="3766">Xuân Thọ</option><option value="3767">Xuân Trường</option></select>
