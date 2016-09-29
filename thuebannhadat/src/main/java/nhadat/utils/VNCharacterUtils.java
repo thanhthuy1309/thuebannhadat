@@ -34,6 +34,10 @@ public class VNCharacterUtils {
       'o', 'O', 'o', 'O', 'o', 'O', 'o', 'O', 'o', 'O', 'o', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U', 'u', 'U',
       'u', 'U', 'u','Y','Y','Y','Y','y','y','y','y' };
 
+  private static char[] SOURCE_CHARACTERS_1 = {
+    'á','à','ả','ã','ạ',
+    'ă','ắ','ằ','ẳ','ẵ','ặ'
+  };
   /**
    * Bo dau 1 ky tu
    * 
