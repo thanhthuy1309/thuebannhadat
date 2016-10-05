@@ -93,7 +93,7 @@
                             <ul>
                                 <li class="">
                                     <div>
-                                        <img src="${pageContext.request.contextPath}/resources/${pageContext.request.contextPath}/resources/images/120x120.jpg">
+                                        <img src="${pageContext.request.contextPath}/resources/images/120x120.jpg">
                                         <span>ĐẶNG THỊ THỦY TIÊN</span>
                                     </div>
                                 </li>
@@ -214,7 +214,7 @@
         <div class="wrap">
 
             <!-- BANNER BEGIN -->
-            <div class="banner cover" style="background-image:url(${pageContext.request.contextPath}/resources/${pageContext.request.contextPath}/resources/images/15.jpg)">
+            <div class="banner cover" style="background-image:url(${pageContext.request.contextPath}/resources/images/15.jpg)">
                 <div class="con">
                     <div class="tit-big">TIN TỨC</div>
                     <div class="breadcrumb">
@@ -243,7 +243,7 @@
                             <div class="nailthumb">
                                 <div class="nailthumb-figure-75">
                                     <a href="tintuc-detail.html" class="nailthumb-container">
-                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/${pageContext.request.contextPath}/resources/images/1.jpg">
+                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
                                     </a>
                                 </div>
                             </div>
@@ -259,7 +259,7 @@
                             <div class="nailthumb">
                                 <div class="nailthumb-figure-75">
                                     <a href="tintuc-detail.html" class="nailthumb-container">
-                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/${pageContext.request.contextPath}/resources/images/2.jpg">
+                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/images/2.jpg">
                                     </a>
                                 </div>
                             </div>
@@ -275,7 +275,7 @@
                             <div class="nailthumb">
                                 <div class="nailthumb-figure-75">
                                     <a href="tintuc-detail.html" class="nailthumb-container">
-                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/${pageContext.request.contextPath}/resources/images/3.jpg">
+                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/images/3.jpg">
                                     </a>
                                 </div>
                             </div>
@@ -291,7 +291,7 @@
                             <div class="nailthumb">
                                 <div class="nailthumb-figure-75">
                                     <a href="tintuc-detail.html" class="nailthumb-container">
-                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/${pageContext.request.contextPath}/resources/images/4.jpg">
+                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/images/4.jpg">
                                     </a>
                                 </div>
                             </div>
@@ -307,7 +307,7 @@
                             <div class="nailthumb">
                                 <div class="nailthumb-figure-75">
                                     <a href="tintuc-detail.html" class="nailthumb-container">
-                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/${pageContext.request.contextPath}/resources/images/5.jpg">
+                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/images/5.jpg">
                                     </a>
                                 </div>
                             </div>
@@ -341,7 +341,7 @@
                             <div class="nailthumb">
                                 <div class="nailthumb-figure-64">
                                     <a href="tintuc-detail.html" class="nailthumb-container">
-                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/${pageContext.request.contextPath}/resources/images/6.jpg">
+                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/images/6.jpg">
                                     </a>
                                     <div class="price">
                                         <div>10 TỶ</div>
@@ -376,7 +376,7 @@
                             <div class="nailthumb">
                                 <div class="nailthumb-figure-64">
                                     <a href="tintuc-detail.html" class="nailthumb-container">
-                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/${pageContext.request.contextPath}/resources/images/7.jpg">
+                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/images/7.jpg">
                                     </a>
                                     <div class="price">
                                         <div>10 TỶ</div>
@@ -411,7 +411,7 @@
                             <div class="nailthumb">
                                 <div class="nailthumb-figure-64">
                                     <a href="tintuc-detail.html" class="nailthumb-container">
-                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/${pageContext.request.contextPath}/resources/images/8.jpg">
+                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/images/8.jpg">
                                     </a>
                                     <div class="price">
                                         <div>10 TỶ</div>
@@ -446,7 +446,7 @@
                             <div class="nailthumb">
                                 <div class="nailthumb-figure-64">
                                     <a href="tintuc-detail.html" class="nailthumb-container">
-                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/${pageContext.request.contextPath}/resources/images/9.jpg">
+                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/images/9.jpg">
                                     </a>
                                     <div class="price">
                                         <div>10 TỶ</div>
@@ -481,7 +481,7 @@
                             <div class="nailthumb">
                                 <div class="nailthumb-figure-64">
                                     <a href="tintuc-detail.html" class="nailthumb-container">
-                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/${pageContext.request.contextPath}/resources/images/11.jpg">
+                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/images/11.jpg">
                                     </a>
                                     <div class="price">
                                         <div>10 TỶ</div>
@@ -516,7 +516,7 @@
                             <div class="nailthumb">
                                 <div class="nailthumb-figure-64">
                                     <a href="tintuc-detail.html" class="nailthumb-container">
-                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/${pageContext.request.contextPath}/resources/images/1.jpg">
+                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
                                     </a>
                                     <div class="price">
                                         <div>10 TỶ</div>
@@ -551,7 +551,7 @@
                             <div class="nailthumb">
                                 <div class="nailthumb-figure-64">
                                     <a href="tintuc-detail.html" class="nailthumb-container">
-                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/${pageContext.request.contextPath}/resources/images/2.jpg">
+                                        <img class="lazy" src="${pageContext.request.contextPath}/resources/images/2.jpg">
                                     </a>
                                     <div class="price">
                                         <div>10 TỶ</div>
@@ -609,16 +609,16 @@
                     </div>
                     <div class="advs cls-after">
                         <a href="JavaScript:void(0)" class="adv">
-                            <img src="${pageContext.request.contextPath}/resources/${pageContext.request.contextPath}/resources/images/17.jpg">
+                            <img src="${pageContext.request.contextPath}/resources/images/17.jpg">
                         </a>
                         <a href="JavaScript:void(0)" class="adv">
-                            <img src="${pageContext.request.contextPath}/resources/${pageContext.request.contextPath}/resources/images/18.jpg">
+                            <img src="${pageContext.request.contextPath}/resources/images/18.jpg">
                         </a>
                         <a href="JavaScript:void(0)" class="adv">
-                            <img src="${pageContext.request.contextPath}/resources/${pageContext.request.contextPath}/resources/images/19.jpg">
+                            <img src="${pageContext.request.contextPath}/resources/images/19.jpg">
                         </a>
                         <a href="JavaScript:void(0)" class="adv">
-                            <img src="${pageContext.request.contextPath}/resources/${pageContext.request.contextPath}/resources/images/20.jpg">
+                            <img src="${pageContext.request.contextPath}/resources/images/20.jpg">
                         </a>
                     </div>
                 </div>
@@ -633,7 +633,7 @@
                 <div class="con pdt pdb cls-after">
                     <!-- FOOTER LEFT BEGIN -->
                     <div>
-                        <div class="pdb"><a href="trangchu.html"><img src="${pageContext.request.contextPath}/resources/${pageContext.request.contextPath}/resources/images/logo.png"></a></div>
+                        <div class="pdb"><a href="trangchu.html"><img src="${pageContext.request.contextPath}/resources/images/logo.png"></a></div>
                         <div class="pdt pdb">Kết nối với cộng đồng Thuê-Bán Nhà Đất</div>
                         <ul class="social-icons cls-after pdb">
                             <li><a href="JavaScript:void(0)"><span class="fa fa-facebook"></span></a></li>
@@ -850,7 +850,7 @@
                                     <input class="txt txt-border validate[required]" data-prompt-position="topLeft:0,26" placeholder="Mã Xác Nhận" type="text">
                                 </div>
                                 <div class="captcha">
-                                    <img src="${pageContext.request.contextPath}/resources/${pageContext.request.contextPath}/resources/images/captcha.png"/>
+                                    <img src="${pageContext.request.contextPath}/resources/images/captcha.png"/>
                                     <span class="fa fa-refresh"></span>
                                 </div>
                             </div> 
