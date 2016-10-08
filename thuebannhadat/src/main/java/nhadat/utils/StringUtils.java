@@ -74,7 +74,7 @@ public class StringUtils {
    */
   public static String replaceTitleSpecial(String title) {
     String removeString = VNCharacterUtils.removeAccent(title);
-    return (removeString.toLowerCase().replaceAll("[^a-zA-Z0-9\\s+]", "").replaceAll(" ", "-"));
+    return (removeString.toLowerCase().replaceAll("đ", "d").replaceAll("[^a-zA-Z0-9\\s+]", "").replaceAll(" ", "-"));
   }
 
   /**
@@ -104,17 +104,15 @@ public class StringUtils {
   public static String nameImage(String name) {
 
     StringBuilder result = new StringBuilder();
-    Date dNow = new Date();
-    SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd-hh:mm:ss");
-    result.append(ft.format(dNow));
-    result.append("-");
-
-    result.append(MD5Utils.encrypt(name));
-    result.append("-");
 
     UUID uuid = UUID.randomUUID();
     String randomUUIDString = uuid.toString();
     result.append(randomUUIDString);
+    result.append("-");
+
+    Date dNow = new Date();
+    SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd-hh:mm:ss");
+    result.append(ft.format(dNow));
 
     return result.toString();
   }
