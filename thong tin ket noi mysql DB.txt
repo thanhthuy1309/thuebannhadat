@@ -1,4 +1,4 @@
-hostname : 52.221.223.101
+hostname : 54.169.250.182
 port : 3306
 user : root
 pass : root
