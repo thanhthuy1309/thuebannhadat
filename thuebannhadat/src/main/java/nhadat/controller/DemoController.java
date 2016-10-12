@@ -222,4 +222,8 @@ public class DemoController {
 		return "trangchu";
 	}
 
+	 @RequestMapping(value = "/index", method = RequestMethod.GET)
+	  public String trangindex() {
+	    return "index";
+	  }
 }
