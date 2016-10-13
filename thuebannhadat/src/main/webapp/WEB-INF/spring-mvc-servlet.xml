@@ -13,7 +13,7 @@
       http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
 
 	<context:annotation-config></context:annotation-config>
-	<context:component-scan base-package="nhadat.*" />
+	<context:component-scan base-package="realestate.*" />
 	<mvc:annotation-driven></mvc:annotation-driven>
 	<context:property-placeholder location="classpath:application.properties" />
 

@@ -25,7 +25,7 @@
 
 		<property name="mappingLocations">
 			<list>
-				<value>classpath:nhadat/sqlxml/**.hbm.xml</value>
+				<value>classpath:realestate/sqlxml/**.hbm.xml</value>
 			</list>
 		</property>
 
