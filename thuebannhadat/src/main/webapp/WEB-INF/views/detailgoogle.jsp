@@ -31,8 +31,10 @@
 <body>
 	<input type="hidden" id="url"
 		value="${pageContext.request.contextPath}">
-		<a href="${pageContext.request.contextPath}/google/signin">Google</a>
-		<br/>
-		<a href="${pageContext.request.contextPath}/facebook/signin">FaceBook</a>
+		<ul>
+          <li>${id}</li>
+          <li>${name}</li>
+          <li>${email}</li>
+        </ul>
 </body>
 </html>
