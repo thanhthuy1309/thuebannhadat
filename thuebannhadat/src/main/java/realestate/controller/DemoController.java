@@ -222,4 +222,13 @@ public class DemoController {
 		return "trangchu";
 	}
 
+	 @RequestMapping(value = "/index", method = RequestMethod.GET)
+	  public String trangindex() {
+	    return "index";
+	  }
+	 
+	 @RequestMapping(value = "/facebook", method = RequestMethod.GET)
+	  public String trangFaceBook() {
+	    return "facebookConnect";
+	  }
 }

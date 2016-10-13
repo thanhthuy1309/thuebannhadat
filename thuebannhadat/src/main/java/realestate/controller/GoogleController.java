@@ -1,0 +1,85 @@
+package realestate.controller;
+
+import java.io.IOException;
+import java.util.Random;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONObject;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.github.scribejava.apis.GoogleApi20;
+import com.github.scribejava.core.builder.ServiceBuilder;
+import com.github.scribejava.core.model.OAuthRequest;
+import com.github.scribejava.core.model.Response;
+import com.github.scribejava.core.model.Token;
+import com.github.scribejava.core.model.Verb;
+import com.github.scribejava.core.model.Verifier;
+import com.github.scribejava.core.oauth.OAuthService;
+
+@Controller
+@RequestMapping(value = "/google")
+public class GoogleController {
+
+  private static final String API_KEY = "328338891021-gbve64t0s6agm7avid0vj4omb7i85286.apps.googleusercontent.com";
+  private static final String API_SECRET = "W60sDp2j-m2ywaZrXA_cwSgJ";
+
+  private static final String HOST = "http://localhost:8080/thuebannhadat";
+  private static final String CALLBACK_URL = "/google/callback";
+  private static final Token EMPTY_TOKEN = null;
+
+  private static final String USER_PROFILE_API = "https://www.googleapis.com/oauth2/v1/userinfo";
+  private static final String QUERY = "?fields=id,name,email";
+
+  @RequestMapping(value = "/signin", method = RequestMethod.GET)
+  public void signin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    String secretState = "secret" + new Random().nextInt(999_999);
+    request.getSession().setAttribute("SECRET_STATE", secretState);
+
+    OAuthService service = new ServiceBuilder().provider(GoogleApi20.class).apiKey(API_KEY).apiSecret(API_SECRET)
+        .callback(HOST + CALLBACK_URL).scope("profile email").state(secretState).connectTimeout(10).build();
+
+    String redirectURL = service.getAuthorizationUrl(EMPTY_TOKEN);
+
+    response.sendRedirect(redirectURL);
+  }
+
+  @RequestMapping(value = "/callback", method = RequestMethod.GET)
+  public String callback(@RequestParam(value = "code", required = false) String code,
+      @RequestParam(value = "state", required = false) String state, HttpServletRequest request,
+      HttpServletResponse response, Model model) {
+
+    OAuthService service = new ServiceBuilder().provider(GoogleApi20.class).apiKey(API_KEY).apiSecret(API_SECRET)
+        .callback(HOST + CALLBACK_URL).build();
+
+    String requestUrl = USER_PROFILE_API + QUERY;
+
+    final Verifier verifier = new Verifier(code);
+    final Token accessToken = service.getAccessToken(EMPTY_TOKEN, verifier);
+
+    final OAuthRequest oauthRequest = new OAuthRequest(Verb.GET, requestUrl, service);
+    service.signRequest(accessToken, oauthRequest);
+
+    final Response resourceResponse = oauthRequest.send();
+
+    final JSONObject obj = new JSONObject(resourceResponse.getBody());
+
+    String googleid = obj.getString("id");
+    String name = obj.getString("name");
+    String email = obj.getString("email");
+
+    model.addAttribute("id", googleid);
+    model.addAttribute("name", name);
+    model.addAttribute("email", email);
+
+    request.getSession().setAttribute("GOOGLE_ACCESS_TOKEN", accessToken);
+
+    return "detailgoogle";
+  }
+}
