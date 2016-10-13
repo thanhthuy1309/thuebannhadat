@@ -3,7 +3,7 @@
     "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<query name="UserDao.getNguoiDungExistByDienThoai">
+	<query name="UserDao.getUserByPhone">
 	<![CDATA[
         SELECT n
         FROM NguoiDung n
@@ -11,7 +11,7 @@
         ]]>
 	</query>
 	
-	<query name="UserDao.getNguoiDungByEmail">
+	<query name="UserDao.getUserByEmail">
 	<![CDATA[
         SELECT n
         FROM NguoiDung n
@@ -19,7 +19,7 @@
         ]]>
 	</query>
 	
-	<query name="UserDao.checkLoginByDienThoai">
+	<query name="UserDao.checkLoginByPhone">
 	<![CDATA[
         SELECT n
         FROM NguoiDung n
