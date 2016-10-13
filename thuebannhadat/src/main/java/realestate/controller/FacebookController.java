@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.scribejava.apis.FacebookApi;
 import com.github.scribejava.core.builder.ServiceBuilder;
+import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Response;
-import com.github.scribejava.core.model.Token;
 import com.github.scribejava.core.model.Verb;
-import com.github.scribejava.core.model.Verifier;
+import com.github.scribejava.core.oauth.OAuth20Service;
 import com.github.scribejava.core.oauth.OAuthService;
 
 @Controller
@@ -31,57 +31,44 @@ public class FacebookController {
 
   private static final String HOST = "http://localhost:8080/thuebannhadat";
   private static final String CALLBACK_URL = "/facebook/callback";
-  private static final Token EMPTY_TOKEN = null;
 
-  //API End point
-  private static final String USER_PROFILE_API = "https://graph.facebook.com/v2.5/me";
+  // API End point
+  private static final String USER_PROFILE_API = "https://graph.facebook.com/v2.8/me";
   private static final String QUERY = "?fields=id,name,first_name,last_name,gender,birthday,email";
 
-  @RequestMapping(value ="/signin", method = RequestMethod.GET)
+  @RequestMapping(value = "/signin", method = RequestMethod.GET)
   public void signin(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
     String secretState = "secret" + new Random().nextInt(999_999);
     request.getSession().setAttribute("SECRET_STATE", secretState);
 
-    OAuthService service = new ServiceBuilder()
-      .provider(FacebookApi.class)
-      .apiKey(API_KEY)
-      .apiSecret(API_SECRET)
-      .callback(HOST + CALLBACK_URL)
-      .scope("public_profile user_birthday email")
-      .state(secretState)
-      .grantType("code")
-      .connectTimeout(10)
-      .build();
+    OAuthService service = new ServiceBuilder().apiKey(API_KEY).apiSecret(API_SECRET).callback(HOST + CALLBACK_URL)
+        .scope("public_profile user_birthday email").state(secretState).connectTimeout(10)
+        .build(FacebookApi.instance());
 
-    String redirectURL = service.getAuthorizationUrl(EMPTY_TOKEN);
+    String redirectURL = ((OAuth20Service) service).getAuthorizationUrl();
 
     response.sendRedirect(redirectURL);
   }
 
-  @RequestMapping(value ="/callback", method = RequestMethod.GET)
+  @RequestMapping(value = "/callback", method = RequestMethod.GET)
   public String callback(@RequestParam(value = "code", required = false) String code,
-      @RequestParam(value = "state", required = false) String state,
-      HttpServletRequest request, HttpServletResponse response, Model model) {
+      @RequestParam(value = "state", required = false) String state, HttpServletRequest request,
+      HttpServletResponse response, Model model) throws IOException {
 
-    OAuthService service = new ServiceBuilder()
-      .provider(FacebookApi.class)
-      .apiKey(API_KEY)
-      .apiSecret(API_SECRET)
-      .callback(HOST + CALLBACK_URL)
-      .build();
+    OAuthService service = new ServiceBuilder().apiKey(API_KEY).apiSecret(API_SECRET).callback(HOST + CALLBACK_URL)
+        .build(FacebookApi.instance());
 
     final String requestUrl = USER_PROFILE_API + QUERY;
 
-    final Verifier verifier = new Verifier(code);
-    final Token accessToken = service.getAccessToken(EMPTY_TOKEN, verifier);
+    OAuth2AccessToken accessToken = ((OAuth20Service) service).getAccessToken(code);
 
     final OAuthRequest oauthRequest = new OAuthRequest(Verb.GET, requestUrl, service);
-    service.signRequest(accessToken, oauthRequest);
+    ((OAuth20Service) service).signRequest(accessToken, oauthRequest);
 
     final Response resourceResponse = oauthRequest.send();
 
-    final JSONObject obj = new JSONObject(resourceResponse.getBody());
+    JSONObject obj = new JSONObject(resourceResponse.getBody());
 
     String facdebookId = obj.getString("id");
     String name = obj.getString("name");
