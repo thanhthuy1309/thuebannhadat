@@ -26,8 +26,8 @@ import com.github.scribejava.core.oauth.OAuthService;
 @RequestMapping(value = "/facebook")
 public class FacebookController {
 
-  private static final String YOUR_API_KEY = "1746218202296248";
-  private static final String YOUR_API_SECRET = "a2ed17e49edc064dc88450098f722616";
+  private static final String API_KEY = "1746218202296248";
+  private static final String API_SECRET = "a2ed17e49edc064dc88450098f722616";
 
   private static final String HOST = "http://localhost:8080/thuebannhadat";
   private static final String CALLBACK_URL = "/facebook/callback";
@@ -45,8 +45,8 @@ public class FacebookController {
 
     OAuthService service = new ServiceBuilder()
       .provider(FacebookApi.class)
-      .apiKey(YOUR_API_KEY)
-      .apiSecret(YOUR_API_SECRET)
+      .apiKey(API_KEY)
+      .apiSecret(API_SECRET)
       .callback(HOST + CALLBACK_URL)
       .scope("public_profile user_birthday email")
       .state(secretState)
@@ -66,8 +66,8 @@ public class FacebookController {
 
     OAuthService service = new ServiceBuilder()
       .provider(FacebookApi.class)
-      .apiKey(YOUR_API_KEY)
-      .apiSecret(YOUR_API_SECRET)
+      .apiKey(API_KEY)
+      .apiSecret(API_SECRET)
       .callback(HOST + CALLBACK_URL)
       .build();
 
