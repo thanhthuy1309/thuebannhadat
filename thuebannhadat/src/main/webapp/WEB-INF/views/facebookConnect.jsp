@@ -40,7 +40,7 @@
 
 		window.fbAsyncInit = function() {
 			FB.init({
-				appId : '1746218202296248',
+				appId : '1049348641852619',
 				xfbml : true,
 				version : 'v2.8'
 			});
@@ -77,10 +77,10 @@
 		// successful.  See statusChangeCallback() for when this call is made.
 		function testAPI() {
 			console.log('Welcome!  Fetching your information.... ');
-			FB.api('/me',function(response) {
-				console.log('Successful login for: '+ response.name);
-				document.getElementById('status').innerHTML = 'Thanks for logging in, '
-						+ response.name + '!';
+			FB.api('/me',{ locale: 'en_US', fields: 'name, email' },function(response) {
+				var name = response.name;
+				var email = response.email;
+				
 			});
 		}
 	</script>

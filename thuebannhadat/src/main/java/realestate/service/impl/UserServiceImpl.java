@@ -17,6 +17,7 @@ import realestate.dto.RegisterDto;
 import realestate.dto.LoginDto;
 import realestate.dto.ActivationDto;
 import realestate.dto.PasswordDto;
+import realestate.dto.RegisterSocialDto;
 import realestate.entity.NguoiDung;
 import realestate.service.UserService;
 import realestate.utils.DateUtils;
@@ -256,6 +257,31 @@ public class UserServiceImpl implements UserService {
       } catch (Exception e) {
         LOGGER.error("#capNhatMatKhau: " + e);
         return false;
+      }
+    }
+    return false;
+  }
+
+  @Override
+  public boolean registerSocial(RegisterSocialDto registerSocialDto) {
+    if (registerSocialDto != null) {
+      try {
+        NguoiDung nguoiDung = new NguoiDung();
+
+        nguoiDung.setDienThoai(registerSocialDto.getDienThoai());
+        nguoiDung.setHoTen(registerSocialDto.getHoTen());
+        nguoiDung.setEmail(registerSocialDto.getEmail());
+        nguoiDung.setTrangThai(ValidStatusEnum.FAILED.getValue());
+        nguoiDung.setSoCodeKichHoat(0);
+        nguoiDung.setSoCodeMatKhau(0);
+
+        nguoiDung.setIdPhanQuyen(ValueConstants.CONST_ROLE_USER);
+        nguoiDung.setViTien(new BigDecimal(0));
+        nguoiDung.setNgayTao(DateUtils.now());
+
+        return userDao.addUser(nguoiDung);
+      } catch (Exception e) {
+        LOGGER.error("#dangkyNguoiDung: " + e);
       }
     }
     return false;

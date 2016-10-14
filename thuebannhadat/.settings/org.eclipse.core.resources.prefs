@@ -1,7 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
-encoding//src/main/java/nhadat/utils/DateUtils.java=UTF-8
-encoding//src/main/java/nhadat/utils/VNCharacterUtils.java=UTF-8
 encoding//src/main/resources/messages.properties=UTF-8
 encoding//src/main/webapp/WEB-INF/views/error.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/facebookConnect.jsp=UTF-8
 encoding//src/main/webapp/resources/js/chooseTicket.js=UTF-8

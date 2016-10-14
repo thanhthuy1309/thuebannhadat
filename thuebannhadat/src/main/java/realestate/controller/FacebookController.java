@@ -7,11 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import realestate.dto.RegisterSocialDto;
+import realestate.service.UserService;
 
 import com.github.scribejava.apis.FacebookApi;
 import com.github.scribejava.core.builder.ServiceBuilder;
@@ -25,6 +29,9 @@ import com.github.scribejava.core.oauth.OAuthService;
 @Controller
 @RequestMapping(value = "/facebook")
 public class FacebookController {
+
+  @Autowired
+  private UserService userService;
 
   private static final String API_KEY = "1746218202296248";
   private static final String API_SECRET = "a2ed17e49edc064dc88450098f722616";
@@ -52,9 +59,9 @@ public class FacebookController {
   }
 
   @RequestMapping(value = "/callback", method = RequestMethod.GET)
-  public String callback(@RequestParam(value = "code", required = false) String code,
-      @RequestParam(value = "state", required = false) String state, HttpServletRequest request,
-      HttpServletResponse response, Model model) throws IOException {
+  public String callback(@RequestParam(value = "code", required = false)
+  String code, @RequestParam(value = "state", required = false)
+  String state, HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
 
     OAuthService service = new ServiceBuilder().apiKey(API_KEY).apiSecret(API_SECRET).callback(HOST + CALLBACK_URL)
         .build(FacebookApi.instance());
@@ -74,13 +81,14 @@ public class FacebookController {
     String name = obj.getString("name");
     String email = obj.getString("email");
 
-    model.addAttribute("id", facdebookId);
-    model.addAttribute("name", name);
-    model.addAttribute("email", email);
-
     request.getSession().setAttribute("FACEBOOK_ACCESS_TOKEN", accessToken);
-
-    return "detailgoogle";
+    if (userService.getUserByEmail(email) != null) {
+      return "redirect:/trangchu";
+    } else {
+      model.addAttribute("registerSocialDto", new RegisterSocialDto(email, name));
+      return "dangky-social";
+    }
+    
   }
 
 }

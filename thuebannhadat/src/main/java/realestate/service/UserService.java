@@ -8,10 +8,11 @@
  */
 package realestate.service;
 
-import realestate.dto.RegisterDto;
-import realestate.dto.LoginDto;
 import realestate.dto.ActivationDto;
+import realestate.dto.LoginDto;
 import realestate.dto.PasswordDto;
+import realestate.dto.RegisterDto;
+import realestate.dto.RegisterSocialDto;
 import realestate.entity.NguoiDung;
 
 /**
@@ -101,4 +102,12 @@ public interface UserService {
    * @return true, if successful
    */
   public boolean updateIfForgotPassword(LoginDto loginDto);
+
+  /**
+   * dang ky nguoi dung chua kich hoat tai khoan
+   * 
+   * @param registerSocialDto
+   * @return true, if successful
+   */
+  public boolean registerSocial(RegisterSocialDto registerSocialDto);
 }
