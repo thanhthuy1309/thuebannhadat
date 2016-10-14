@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import realestate.dto.RegisterSocialDto;
+import realestate.entity.NguoiDung;
 import realestate.service.UserService;
 
 import com.github.scribejava.apis.FacebookApi;
@@ -30,65 +32,78 @@ import com.github.scribejava.core.oauth.OAuthService;
 @RequestMapping(value = "/facebook")
 public class FacebookController {
 
-  @Autowired
-  private UserService userService;
+	@Autowired
+	private UserService userService;
 
-  private static final String API_KEY = "1746218202296248";
-  private static final String API_SECRET = "a2ed17e49edc064dc88450098f722616";
+	private static final String API_KEY = "1746218202296248";
+	private static final String API_SECRET = "a2ed17e49edc064dc88450098f722616";
 
-  private static final String HOST = "http://localhost:8080/thuebannhadat";
-  private static final String CALLBACK_URL = "/facebook/callback";
+	// private static final String API_KEY = "1049348641852619";
+	// private static final String API_SECRET =
+	// "c56c126cc9b43e84a0eccc53049b6bef";
 
-  // API End point
-  private static final String USER_PROFILE_API = "https://graph.facebook.com/v2.8/me";
-  private static final String QUERY = "?fields=id,name,first_name,last_name,gender,birthday,email";
+	private static final String HOST = "http://localhost:8080/thuebannhadat";
+	private static final String CALLBACK_URL = "/facebook/callback";
 
-  @RequestMapping(value = "/signin", method = RequestMethod.GET)
-  public void signin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	// API End point
+	private static final String USER_PROFILE_API = "https://graph.facebook.com/v2.8/me";
+	private static final String QUERY = "?fields=id,name,first_name,last_name,gender,birthday,email";
 
-    String secretState = "secret" + new Random().nextInt(999_999);
-    request.getSession().setAttribute("SECRET_STATE", secretState);
+	@RequestMapping(value = "/signin", method = RequestMethod.GET)
+	public void signin(HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
 
-    OAuthService service = new ServiceBuilder().apiKey(API_KEY).apiSecret(API_SECRET).callback(HOST + CALLBACK_URL)
-        .scope("public_profile user_birthday email").state(secretState).connectTimeout(10)
-        .build(FacebookApi.instance());
+		String secretState = "secret" + new Random().nextInt(999_999);
+		request.getSession().setAttribute("SECRET_STATE", secretState);
 
-    String redirectURL = ((OAuth20Service) service).getAuthorizationUrl();
+		OAuthService service = new ServiceBuilder().apiKey(API_KEY)
+				.apiSecret(API_SECRET).callback(HOST + CALLBACK_URL)
+				.scope("public_profile user_birthday email").state(secretState)
+				.connectTimeout(10).build(FacebookApi.instance());
 
-    response.sendRedirect(redirectURL);
-  }
+		String redirectURL = ((OAuth20Service) service).getAuthorizationUrl();
 
-  @RequestMapping(value = "/callback", method = RequestMethod.GET)
-  public String callback(@RequestParam(value = "code", required = false)
-  String code, @RequestParam(value = "state", required = false)
-  String state, HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
+		response.sendRedirect(redirectURL);
+	}
 
-    OAuthService service = new ServiceBuilder().apiKey(API_KEY).apiSecret(API_SECRET).callback(HOST + CALLBACK_URL)
-        .build(FacebookApi.instance());
+	@RequestMapping(value = "/callback", method = RequestMethod.GET)
+	public String callback(@RequestParam(value = "code") String code,
+			@RequestParam(value = "state") String state,
+			HttpServletRequest request, HttpServletResponse response,
+			Model model, HttpSession session) throws IOException {
+		if (code != null) {
+			OAuthService service = new ServiceBuilder().apiKey(API_KEY)
+					.apiSecret(API_SECRET).callback(HOST + CALLBACK_URL)
+					.build(FacebookApi.instance());
 
-    final String requestUrl = USER_PROFILE_API + QUERY;
+			final String requestUrl = USER_PROFILE_API + QUERY;
 
-    OAuth2AccessToken accessToken = ((OAuth20Service) service).getAccessToken(code);
+			OAuth2AccessToken accessToken = ((OAuth20Service) service)
+					.getAccessToken(code);
 
-    final OAuthRequest oauthRequest = new OAuthRequest(Verb.GET, requestUrl, service);
-    ((OAuth20Service) service).signRequest(accessToken, oauthRequest);
+			final OAuthRequest oauthRequest = new OAuthRequest(Verb.GET,
+					requestUrl, service);
+			((OAuth20Service) service).signRequest(accessToken, oauthRequest);
 
-    final Response resourceResponse = oauthRequest.send();
+			final Response resourceResponse = oauthRequest.send();
 
-    JSONObject obj = new JSONObject(resourceResponse.getBody());
+			JSONObject obj = new JSONObject(resourceResponse.getBody());
 
-    String facdebookId = obj.getString("id");
-    String name = obj.getString("name");
-    String email = obj.getString("email");
+			String facdebookId = obj.getString("id");
+			String name = obj.getString("name");
+			String email = obj.getString("email");
 
-    request.getSession().setAttribute("FACEBOOK_ACCESS_TOKEN", accessToken);
-    if (userService.getUserByEmail(email) != null) {
-      return "redirect:/trangchu";
-    } else {
-      model.addAttribute("registerSocialDto", new RegisterSocialDto(email, name));
-      return "dangky-social";
-    }
-    
-  }
+			request.getSession().setAttribute("FACEBOOK_ACCESS_TOKEN", accessToken);
+			NguoiDung nguoiDung = userService.getUserByEmail(email);
+			
+			if (nguoiDung == null) {
+				model.addAttribute("registerSocialDto", new RegisterSocialDto(email, name));
+				return "dangky-social";
+			} else {
+				session.setAttribute("nguoiDung", nguoiDung);
+			}
+		}
+		return "redirect:/trangchu";
+	}
 
 }

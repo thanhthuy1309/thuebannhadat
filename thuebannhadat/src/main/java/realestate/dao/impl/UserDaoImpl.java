@@ -109,6 +109,7 @@ public class UserDaoImpl implements UserDao {
 
     // Set parameter
     query.setString("email", email);
+    query.setInteger("trangThai", 1);
 
     NguoiDung nguoiDung = (NguoiDung) query.uniqueResult();
 

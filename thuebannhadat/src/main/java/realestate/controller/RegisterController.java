@@ -13,10 +13,12 @@ public class RegisterController {
   @Autowired
   private UserService userService;
 
-  @RequestMapping(value = "/registerSocial", method = RequestMethod.POST)
-  public String registerSocial(@ModelAttribute("registerSocialDto") RegisterSocialDto registerSocialDto) {
-    
-    
-    return "redirect:/trangchu";
-  }
+	@RequestMapping(value = "/registerSocial", method = RequestMethod.POST)
+	public String registerSocial(
+			@ModelAttribute("registerSocialDto") RegisterSocialDto registerSocialDto) {
+
+		userService.registerSocial(registerSocialDto);
+
+		return "redirect:/trangchu";
+	}
 }

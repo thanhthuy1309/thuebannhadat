@@ -107,7 +107,7 @@ public interface UserService {
    * dang ky nguoi dung chua kich hoat tai khoan
    * 
    * @param registerSocialDto
-   * @return true, if successful
+   * @return nguoidung
    */
-  public boolean registerSocial(RegisterSocialDto registerSocialDto);
+  public NguoiDung registerSocial(RegisterSocialDto registerSocialDto);
 }

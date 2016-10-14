@@ -10,24 +10,24 @@ package realestate.service.impl;
 
 import java.math.BigDecimal;
 
-import realestate.common.ValidStatusEnum;
-import realestate.constants.ValueConstants;
-import realestate.dao.UserDao;
-import realestate.dto.RegisterDto;
-import realestate.dto.LoginDto;
-import realestate.dto.ActivationDto;
-import realestate.dto.PasswordDto;
-import realestate.dto.RegisterSocialDto;
-import realestate.entity.NguoiDung;
-import realestate.service.UserService;
-import realestate.utils.DateUtils;
-import realestate.utils.MD5Utils;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import realestate.common.ValidStatusEnum;
+import realestate.constants.ValueConstants;
+import realestate.dao.UserDao;
+import realestate.dto.ActivationDto;
+import realestate.dto.LoginDto;
+import realestate.dto.PasswordDto;
+import realestate.dto.RegisterDto;
+import realestate.dto.RegisterSocialDto;
+import realestate.entity.NguoiDung;
+import realestate.service.UserService;
+import realestate.utils.DateUtils;
+import realestate.utils.MD5Utils;
 
 /**
  * @author : DUNGPT
@@ -263,28 +263,28 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public boolean registerSocial(RegisterSocialDto registerSocialDto) {
-    if (registerSocialDto != null) {
-      try {
-        NguoiDung nguoiDung = new NguoiDung();
+	public NguoiDung registerSocial(RegisterSocialDto registerSocialDto) {
+		NguoiDung nguoiDung = new NguoiDung();
+		if (registerSocialDto != null) {
+			try {
 
-        nguoiDung.setDienThoai(registerSocialDto.getDienThoai());
-        nguoiDung.setHoTen(registerSocialDto.getHoTen());
-        nguoiDung.setEmail(registerSocialDto.getEmail());
-        nguoiDung.setTrangThai(ValidStatusEnum.FAILED.getValue());
-        nguoiDung.setSoCodeKichHoat(0);
-        nguoiDung.setSoCodeMatKhau(0);
+				nguoiDung.setDienThoai(registerSocialDto.getDienThoai());
+				nguoiDung.setHoTen(registerSocialDto.getHoTen());
+				nguoiDung.setEmail(registerSocialDto.getEmail());
+				nguoiDung.setTrangThai(ValidStatusEnum.FAILED.getValue());
+				nguoiDung.setSoCodeKichHoat(0);
+				nguoiDung.setSoCodeMatKhau(0);
 
-        nguoiDung.setIdPhanQuyen(ValueConstants.CONST_ROLE_USER);
-        nguoiDung.setViTien(new BigDecimal(0));
-        nguoiDung.setNgayTao(DateUtils.now());
+				nguoiDung.setIdPhanQuyen(ValueConstants.CONST_ROLE_USER);
+				nguoiDung.setViTien(new BigDecimal(0));
+				nguoiDung.setNgayTao(DateUtils.now());
 
-        return userDao.addUser(nguoiDung);
-      } catch (Exception e) {
-        LOGGER.error("#dangkyNguoiDung: " + e);
-      }
-    }
-    return false;
-  }
+				userDao.addUser(nguoiDung);
+			} catch (Exception e) {
+				LOGGER.error("#dangkyNguoiDung: " + e);
+			}
+		}
+		return nguoiDung;
+	}
 
 }

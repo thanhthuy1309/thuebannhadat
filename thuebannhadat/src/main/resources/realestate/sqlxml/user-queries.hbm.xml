@@ -10,15 +10,16 @@
         WHERE n.dienThoai = :dienThoai
         ]]>
 	</query>
-	
+
 	<query name="UserDao.getUserByEmail">
 	<![CDATA[
         SELECT n
         FROM NguoiDung n
         WHERE n.email = :email
+        	AND n.trangThai = :trangThai
         ]]>
 	</query>
-	
+
 	<query name="UserDao.checkLoginByPhone">
 	<![CDATA[
         SELECT n
@@ -27,5 +28,5 @@
              AND n.matKhau = :matKhau
         ]]>
 	</query>
-	
+
 </hibernate-mapping>
