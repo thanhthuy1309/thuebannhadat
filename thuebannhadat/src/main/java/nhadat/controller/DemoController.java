@@ -226,4 +226,9 @@ public class DemoController {
 	  public String trangindex() {
 	    return "index";
 	  }
+	 
+	 @RequestMapping(value = "/facebook", method = RequestMethod.GET)
+	  public String trangFaceBook() {
+	    return "facebookConnect";
+	  }
 }
