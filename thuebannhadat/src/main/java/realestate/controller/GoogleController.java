@@ -50,34 +50,36 @@ public class GoogleController {
   }
 
   @RequestMapping(value = "/callback", method = RequestMethod.GET)
-  public String callback(@RequestParam(value = "code", required = false) String code,
-      @RequestParam(value = "state", required = false) String state, HttpServletRequest request,
+  public String callback(@RequestParam(value = "code") String code,
+      @RequestParam(value = "state") String state, HttpServletRequest request,
       HttpServletResponse response, Model model) throws IOException {
+    if (code != null) {
+      OAuthService service = new ServiceBuilder().apiKey(API_KEY).apiSecret(API_SECRET).callback(HOST + CALLBACK_URL)
+          .build(GoogleApi20.instance());
 
-    OAuthService service = new ServiceBuilder().apiKey(API_KEY).apiSecret(API_SECRET).callback(HOST + CALLBACK_URL)
-        .build(GoogleApi20.instance());
+      String requestUrl = USER_PROFILE_API + QUERY;
 
-    String requestUrl = USER_PROFILE_API + QUERY;
+      OAuth2AccessToken accessToken = ((OAuth20Service) service).getAccessToken(code);
 
-    OAuth2AccessToken accessToken = ((OAuth20Service) service).getAccessToken(code);
+      final OAuthRequest oauthRequest = new OAuthRequest(Verb.GET, requestUrl, service);
+      ((OAuth20Service) service).signRequest(accessToken, oauthRequest);
 
-    final OAuthRequest oauthRequest = new OAuthRequest(Verb.GET, requestUrl, service);
-    ((OAuth20Service) service).signRequest(accessToken, oauthRequest);
+      final Response resourceResponse = oauthRequest.send();
 
-    final Response resourceResponse = oauthRequest.send();
+      final JSONObject obj = new JSONObject(resourceResponse.getBody());
 
-    final JSONObject obj = new JSONObject(resourceResponse.getBody());
+      String googleid = obj.getString("id");
+      String name = obj.getString("name");
+      String email = obj.getString("email");
 
-    String googleid = obj.getString("id");
-    String name = obj.getString("name");
-    String email = obj.getString("email");
+      model.addAttribute("id", googleid);
+      model.addAttribute("name", name);
+      model.addAttribute("email", email);
 
-    model.addAttribute("id", googleid);
-    model.addAttribute("name", name);
-    model.addAttribute("email", email);
+      request.getSession().setAttribute("GOOGLE_ACCESS_TOKEN", accessToken);
 
-    request.getSession().setAttribute("GOOGLE_ACCESS_TOKEN", accessToken);
-
-    return "detailgoogle";
+      return "detailgoogle";
+    }
+    return "redirect:/index";
   }
 }
