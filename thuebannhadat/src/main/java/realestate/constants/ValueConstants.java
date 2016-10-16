@@ -53,13 +53,9 @@ public class ValueConstants {
 
   /** Constant key parameters for sending email */
   public static final Integer CONST_HOUR_VALID_LINK_RESET_PASSWORD = 1;
-
   public static final String CONST_FROM_MAIL = CONFIG_PROPS.getProperty("mail.username");
-
   public static final String CONST_SUBJECT = CONFIG_PROPS.getProperty("mail.subject");
-
   public static final String CONST_CONTENT = CONFIG_PROPS.getProperty("mail.content");
-
   public static final String CONST_LINK_ACTIVE = CONFIG_PROPS.getProperty("mail.link.active");
 
   public static final String ALPHABET = "qwertyuiopasdfghjklzxcvbnm0123456789";
@@ -69,4 +65,14 @@ public class ValueConstants {
 
   /** The Constant CONST_ROLE_USER */
   public static final int CONST_ROLE_USER = 2;
+
+  /** Constant key parameters for facebook */
+  public static final String CONST_CALLBACK_URL = "/facebook/callback";
+  public static final String CONST_API_KEY = CONFIG_PROPS.getProperty("facebook.app.id");
+  public static final String CONST_API_SECRET = CONFIG_PROPS.getProperty("facebook.app.secret");
+  
+  /** Constant key parameters for sending sms */
+  public static final String CONST_SMS_URL = CONFIG_PROPS.getProperty("sms.url");
+  public static final String CONST_SMS_API_KEY = CONFIG_PROPS.getProperty("sms.api_key");
+  public static final String CONST_SMS_SECRET_KEY = CONFIG_PROPS.getProperty("sms.secret_key");
 }

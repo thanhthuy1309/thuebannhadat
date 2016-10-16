@@ -11,6 +11,8 @@
  */
 package realestate.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * @author : TA
@@ -25,5 +27,6 @@ public interface MailService {
    * @param email the email
    * @return true, if successful
    */
-  public boolean sendMailActiveUser(String customerId, String toEmail);
+  public boolean sendMailActiveUser(String customerName, String customerId, String toEmail, String password,
+      String token, HttpServletRequest request);
 }

@@ -14,6 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -115,5 +117,16 @@ public class StringUtils {
     result.append(ft.format(dNow));
 
     return result.toString();
+  }
+
+  /**
+   * get url context path
+   * 
+   * @param request
+   * @return string
+   */
+  public static String getURLWithContextPath(HttpServletRequest request) {
+    return request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+        + request.getContextPath();
   }
 }

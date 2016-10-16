@@ -11,16 +11,23 @@
  */
 package realestate.service.impl;
 
-import realestate.constants.ValueConstants;
-import realestate.service.MailService;
-import realestate.utils.RSAUtils;
-import realestate.utils.Utils;
+import java.text.MessageFormat;
+
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+
+import realestate.constants.ValueConstants;
+import realestate.service.MailService;
+import realestate.utils.FileUtils;
+import realestate.utils.MD5Utils;
+import realestate.utils.StringUtils;
+import realestate.utils.Utils;
 
 /**
  * @author : TA
@@ -39,36 +46,52 @@ public class MailServiceImpl implements MailService {
     return mailSender;
   }
 
+  /**
+   * Send mail active user.
+   *
+   * @param customerName
+   * @param customerId
+   * @param toEmail
+   * @param request
+   * @param password
+   * @return true, if successful
+   */
   @Override
-  public boolean sendMailActiveUser(String customerId, String toEmail) {
+  public boolean sendMailActiveUser(String customerName, String customerId, String toEmail, String password,
+      String token, HttpServletRequest request) {
 
     boolean isSent = false;
 
     if (!Utils.isEmptyString(customerId)) {
 
       try {
+        StringBuilder url = new StringBuilder();
+        url.append(StringUtils.getURLWithContextPath(request));
+        url.append(ValueConstants.CONST_LINK_ACTIVE);
+        url.append("customerId");
+        url.append("=");
+        url.append(customerId);
+        url.append("&");
+        url.append("token");
+        url.append("=");
+        url.append(token);
+        url.append("&");
+        url.append("toEmail");
+        url.append("=");
+        url.append(MD5Utils.encrypt(toEmail));
+
         StringBuilder body = new StringBuilder();
-        body.append(ValueConstants.CONST_CONTENT);
-        body.append("\n");
-        body.append(ValueConstants.CONST_KEY_SERVER_PATH);
-        body.append(ValueConstants.CONST_LINK_ACTIVE);
-        body.append("customerId");
-        body.append("=");
-        body.append(RSAUtils.encrypt(customerId));
-        body.append("&");
-        body.append("toEmail");
-        body.append("=");
-        body.append(RSAUtils.encrypt(toEmail));
-  
+        body.append(MessageFormat.format(FileUtils.getProperties().getProperty("mail.content"), customerName, toEmail,
+            password, url.toString()));
+
         isSent = this.sendMail(ValueConstants.CONST_FROM_MAIL, toEmail, ValueConstants.CONST_SUBJECT, body.toString());
 
-      } catch(Exception e) {
+      } catch (Exception e) {
         LOGGER.error("#sendMailActiveCustomer" + e);
       }
     }
     return isSent;
   }
-
 
   /**
    * Process send mail.
@@ -82,20 +105,23 @@ public class MailServiceImpl implements MailService {
   private boolean sendMail(String fromEmail, String toEmail, String subject, String content) {
 
     try {
-      // Set content for email
-      SimpleMailMessage message = new SimpleMailMessage();
-      message.setFrom(fromEmail);
-      message.setTo(toEmail);
+
+      MimeMessage message = mailSender.createMimeMessage();
       message.setSubject(subject);
-      message.setText(content);
-      message.setReplyTo(fromEmail);
+      MimeMessageHelper helper;
+      helper = new MimeMessageHelper(message, true);
+      helper.setFrom(fromEmail);
+      helper.setTo(toEmail);
+      helper.setText(content, true);
 
       // Send email
       mailSender.send(message);
+
       return true;
     } catch (Exception e) {
       LOGGER.error("Exception : ", e);
       return false;
     }
   }
+
 }
