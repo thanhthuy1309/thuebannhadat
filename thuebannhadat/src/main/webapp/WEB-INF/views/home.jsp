@@ -42,8 +42,6 @@
 	src="${pageContext.request.contextPath}/resources/lib/jquery.validationEngine-vi.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/facebook.js"></script>
 
 <!--[if IE]>
             <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
@@ -57,6 +55,7 @@
 <body class="">
 
 	<jsp:include page="header.jsp"></jsp:include>
+
 	<div class="wrap">
 
 		<!-- SLIDER BEGIN -->
@@ -820,7 +819,7 @@
 			</div>
 			<!-- LEFT END -->
 			<!-- RIGHT BEGIN -->
-			<jsp:include page="quangcao.jsp"></jsp:include>
+			<jsp:include page="commercial.jsp"></jsp:include>
 			<!-- RIGHT END -->
 		</div>
 		<!-- CONTENT END -->

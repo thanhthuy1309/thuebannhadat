@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +16,6 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/lib/select/select.min.css" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/lib/datepicker/datetimepicker.min.css" />
-<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/lib/redactor/redactor2.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/lib/crop/cropper.css">
@@ -33,13 +29,9 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed"
 	rel="stylesheet">
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/lib/datepicker/moment.min.js"></script>
-<script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/lib/plugin.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/lib/datepicker/datetimepicker.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/lib/owl-carousel/owl.carousel.js"></script>
 <script type="text/javascript"
@@ -71,231 +63,230 @@
 
 </head>
 <body class="">
+
 	<jsp:include page="header.jsp"></jsp:include>
 
 	<div class="wrap">
 		<!-- BANNER BEGIN -->
-		<!-- <div class="banner cover" style="background-image:url(${pageContext.request.contextPath}/resources/images/16.jpg)">
-                <div class="con">
-                    <div class="tit-big">ĐĂNG TIN</div>
-                    <div class="breadcrumb">
-                        <ul>
-                            <li><a href="trangchu.html">Trang Chủ</a></li>
-                            <li><span>Tài Khoản</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div> -->
+		<div class="banner cover" style="background-image: url(images/16.jpg)">
+			<div class="con">
+				<div class="tit-big">ĐĂNG TIN</div>
+				<div class="breadcrumb">
+					<ul>
+						<li><a href="trangchu.html">Trang Chủ</a></li>
+						<li><span>Tài Khoản</span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
 		<!-- BANNER END -->
 		<!-- CONTENT BEGIN -->
-		<div class="con cls-after"></div>
-		<!-- CONTENT END -->
+		<div class="con cls-after">
 
-		<div class="notify-box open" data-step="1" id="step1">
-			<div>
-				<h2>XÁC NHẬN SỐ ĐIỆN THOẠI</h2>
-				<div>
-					<form:form name="phoneFrm" method="post" modelAttribute="registerSocialDto" id="phoneFrm" class="frm" action="/registerSocial">
-						<div class="ctrl pdb mes red">Bạn vui lòng nhập số điện
-							thoại tại đây để hoàn tất việc đăng ký của bạn.</div>
-							<input type="hidden" name="hoTen" value="${registerSocialDto.hoTen}">
-						<div class="ctrl pdb">
-							<input class="txt txt-border validate[required]" name="dienThoai"
-								data-prompt-position="topLeft:0,26" placeholder="Số điện thoại"
-								type="text">
-						</div>
-						<div class="ctrl pdb">
-							<input class="txt txt-border" readonly="readonly" name="email" value="${registerSocialDto.email}"
-								data-prompt-position="topLeft:0,26" placeholder="Email của bạn"
-								type="text">
-						</div>
-						<div class="ctrls pdt cls-after">
-							<div>
-								<button class="block-btn yellow-btn" type="button">LẤY
-									LẠI MÃ</button>
+			<!-- LEFT BEGIN -->
+			<div class="con-right pda">
+				<div class="acc-info">
+					<div class="nailthumb">
+						<div class="nailthumb-figure-75">
+							<div class="nailthumb-container">
+								<img class="lazy" src="images/1.jpg">
 							</div>
-							<div>
-								<button class="block-btn yellow-btn" type="button"
-									onclick="GotoStep(2)">XÁC NHẬN</button>
+							<div class="change-av">
+								<div class="upload">
+									<button class="yellow-btn" data-target="#modal"
+										data-toggle="modal">Tải Hình</button>
+								</div>
+								<div class="edit-acc"></div>
 							</div>
 						</div>
-					</form:form>
-					<script type="text/javascript">
-						$('#phoneFrm').validationEngine()
-					</script>
+					</div>
+					<h2 class="">${nguoiDung.hoTen }</h2>
+					<ul>
+						<li><a href="trangchu.html"><span class="fa fa-home"></span>
+								Trang Chủ</a></li>
+						<li class=""><a href="dangtin.html"><span
+								class="fa fa-edit"></span> Đăng Tin</a></li>
+						<li><a href="quanly.html"><span class="fa fa-newspaper-o"></span>
+								Quản Lý Tin</a></li>
+						<li class="active"><a href="taikhoan.html"><span
+								class="fa fa-user"></span> Thông tin tài khoản</a></li>
+						<li><a href="lichsu.html"><span class="fa fa-history"></span>
+								Lịch sử giao dịch</a></li>
+						<li><a href="thongbao.html"><span class="fa fa-bell-o"></span>
+								Thông báo mới <i class="numof">5</i></a></li>
+						<li><a href="naptien.html"><span class="fa fa-money"></span>
+								Nạp tiền</a></li>
+						<li><a href="#"><span class="fa fa-sign-out"></span>
+								Thoát</a></li>
+					</ul>
 				</div>
 			</div>
-		</div>
+			<!-- LEFT END -->
 
-		<div class="notify-box" class="" data-step="2" id="step2">
-			<div>
-				<h2>NHẬP MÃ XÁC NHẬN</h2>
-				<div>
-					<form name="codeFrm" id="codeFrm" class="frm">
-						<div class="ctrl pdb mes red">Bạn vui lòng nhập mã xác nhận
-							được gửi đến số diện thoại mà bạn dùng để đăng ký</div>
-						<div class="ctrl pdb">
-							<input class="txt txt-border validate[required]"
-								data-prompt-position="topLeft:0,26" placeholder="Mã xác nhận"
-								type="text">
-						</div>
-						<div class="ctrls pdt cls-after">
-							<div>
-								<button class="block-btn yellow-btn" type="button">LẤY
-									LẠI MÃ</button>
+			<!-- RIGHT BEGIN -->
+			<div class="con-left pda">
+				<!-- CREATE 1 BEGIN -->
+
+				<div data-step="2-1" id="step2-1" class="open">
+					<div class="tit">
+						<p>THÔNG TIN TÀI KHOẢN</p>
+					</div>
+					<form id="myFrm" name="myFrm" class="custom-form">
+						<div class="box gray">
+							<div class="h4-yellow">
+								<span>Thông tin cá nhân</span>
 							</div>
-							<div>
-								<button class="block-btn yellow-btn" type="button"
-									onclick="GotoStep('3');login()">NHẬP MÃ</button>
+							<div class="form pdt ">
+								<table class="table contact-tb gray">
+									<tr>
+										<td width="180">Họ và Tên (<span class="red">*</span>)
+										</td>
+										<td><input type="text" class="txt validate[required]" value="${nguoiDung.hoTen }">
+										</td>
+									</tr>
+									<tr>
+										<td>Số điện thoại (<span class="red">*</span>)
+										</td>
+										<td><input type="text" class="txt validate[required]" value="${nguoiDung.dienThoai }">
+										</td>
+									</tr>
+									<tr>
+										<td>Email (<span class="red">*</span>)
+										</td>
+										<td><input type="text" class="txt validate[required]" value="${nguoiDung.email }">
+										</td>
+									</tr>
+									<tr>
+										<td>Ngày sinh (<span class="red">*</span>)
+										</td>
+										<td><input type="text" class="txt validate[required]" value="${nguoiDung.hoTen }">
+										</td>
+									</tr>
+									<tr>
+										<td>Giới tính</td>
+										<td>
+											<div class="rdbs">
+												<label class="rad"><input type="radio" name="sex"
+													checked=""> <span>nam</span></label> <label class="rad"><input
+													type="radio" name="sex"> <span>nữ</span></label>
+											</div>
+										</td>
+									</tr>
+								</table>
 							</div>
 						</div>
+						<div class="box gray">
+							<div class="h4-yellow">
+								<span>Thông tin tài khoản</span>
+							</div>
+							<div class="form pdt">
+								<table class="table contact-tb gray">
+									<tr>
+										<td width="180">Email (<span class="red">*</span>)
+										</td>
+										<td><input type="text" class="txt validate[required]" value="${nguoiDung.gioiTinh }">
+										</td>
+									</tr>
+									<tr>
+										<td>Thay Đổi Mật Khẩu (<span class="red">*</span>)
+										</td>
+										<td><input type="text" class="txt validate[required]"
+											placeholder="mật khẩu cũ"></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><input type="text" class="txt validate[required]"
+											placeholder="mật khẩu mới"></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><input type="text" class="txt validate[required]"
+											placeholder="lặp lại mật khẩu mới"></td>
+									</tr>
+									<tr>
+								</table>
+								<div class="row text-right">
+									<a class="yellow-btn hvr-bounce-to-bottom">GỬI THÔNG TIN</a>
+								</div>
+							</div>
 					</form>
-					<script type="text/javascript">
-						$('#codeFrm').validationEngine()
-					</script>
 				</div>
-			</div>
-		</div>
 
-		<div class="notify-box" class="" data-step="3" id="step3">
-			<div>
-				<h2>
-					CHÚC MỪNG BẠN<br />ĐĂNG KÝ THÀNH CÔNG
-				</h2>
-				<div>
-					<form name="phoneFrm" id="phoneFrm" class="frm">
-						<div class="ctrl pdb mes">
-							<div class="text-center">
-								<span class="fa fa-check-circle"
-									style="color: #ffdd00; font-size: 60px; padding: 20px"></span>
+				<table class="tb-service">
+					<tr>
+						<th class="b-g">
+							<div class="h4-yellow">
+								<span>Thông tin tài khoản</span>
 							</div>
-							Chúc mừng bạn đã đăng ký thành công.<br /> Vui lòng đăng nhập để
-							tiếp tục đăng tin. Xin cảm ơn.
-						</div>
-					</form>
-				</div>
-				<div class="dfoot foot-btns">
-					<div>
-						<div class="text-left">
-							<a href="taikhoan.html">Tài Khoản Của Tôi</a>
-						</div>
-					</div>
-					<div>
-						<div class="text-right">&nbsp;</div>
-					</div>
-				</div>
+						</th>
+						<th class="b-p fx2">THÔNG THƯỜNG</th>
+						<th class="b-b fx2">VÀNG</th>
+						<th class="b-bb fx2">BẠCH KIM</th>
+					</tr>
+					<tr>
+						<th class="b-g">THÔNG TIN DỊCH VỤ</th>
+						<th class="b-g text-center"><span class="fx4">MIỄN PHÍ</span>
+						</th>
+						<th class="b-g text-center"><span class="fx4">500.000</span><br />
+							<span class="fx3">VND/THÁNG</span></th>
+						<th class="b-g text-center"><span class="fx4">750.000</span><br />
+							<span class="fx3">VND/THÁNG</span></th>
+					</tr>
+					<tr>
+						<td>Đăng ký không giới hạn</td>
+						<td>1 tin/1 ngày</td>
+						<td>Không giới hạn</td>
+						<td>Không giới hạn</td>
+					</tr>
+					<tr>
+						<td>Duyệt tin</td>
+						<td>Không ưu tiên</td>
+						<td>Hiển thị ngay</td>
+						<td>Hiển thị ngay</td>
+					</tr>
+					<tr>
+						<td>Đăng ký không giới hạn</td>
+						<td>1 tin/1 ngày</td>
+						<td>Không giới hạn</td>
+						<td>Không giới hạn</td>
+					</tr>
+					<tr>
+						<td>Đăng ký không giới hạn</td>
+						<td>1 tin/1 ngày</td>
+						<td>Không giới hạn</td>
+						<td>Không giới hạn</td>
+					</tr>
+					<tr>
+						<td>Đăng ký không giới hạn</td>
+						<td>1 tin/1 ngày</td>
+						<td>Không giới hạn</td>
+						<td>Không giới hạn</td>
+					</tr>
+					<tr>
+						<td>Đăng ký không giới hạn</td>
+						<td>1 tin/1 ngày</td>
+						<td>Không giới hạn</td>
+						<td>Không giới hạn</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><a class="yellow-btn hvr-bounce-to-bottom">MIỄN PHÍ</a>
+						</td>
+						<td><a class="green-btn hvr-bounce-to-bottom">NÂNG CẤP</a>
+						</td>
+						<td><a class="green-btn hvr-bounce-to-bottom">NÂNG CẤP</a>
+						</td>
+					</tr>
+				</table>
 			</div>
+			<!-- CREATE 1 END -->
 		</div>
+		<!-- RIGHT END -->
+	</div>
+	<!-- CONTENT END -->
 
-		<!-- FOOTER BEGIN -->
-		<footer>
-			<div class="con pdt pdb cls-after">
-				<!-- FOOTER LEFT BEGIN -->
-				<div>
-					<div class="pdb">
-						<a href="trangchu.html"><img
-							src="${pageContext.request.contextPath}/resources/images/logo.png"></a>
-					</div>
-					<div class="pdt pdb">Kết nối với cộng đồng Thuê-Bán Nhà Đất</div>
-					<ul class="social-icons cls-after pdb">
-						<li><a href="JavaScript:void(0)"><span
-								class="fa fa-facebook"></span></a></li>
-						<li><a href="JavaScript:void(0)"><span
-								class="fa fa-google"></span></a></li>
-						<li><a href="JavaScript:void(0)"><span
-								class="fa fa-youtube"></span></a></li>
-						<li><a href="JavaScript:void(0)"><span
-								class="fa fa-twitter"></span></a></li>
-					</ul>
-					<div class="pdt pdb foot-inf">
-						Liên hệ với Thuê-Bán Nhà Đất<br /> <span
-							class="fa fa-location-arrow"></span> 178 - 180 Nguyen Cu Trinh
-						St, 1St Dist, HCMC<br /> <span class="fa fa-envelope-o"></span>
-						(84.8) - 3836.8989 - 3836.8899 - 3836.9144<br /> <span
-							class="fa fa-"> </span> Fax: (84.8) - 3836.8399<br /> <span
-							class="fa fa-phone"></span> (84.8) - 3836.8989
-					</div>
-					<div class="pdt pdb">
-						<a href="lienhe.html" class="bbtn">Liên hệ</a>
-					</div>
-				</div>
-				<!-- FOOTER LEFT END -->
-				<!-- FOOTER RIGHT BEGIN -->
-				<div>
-					<div class="f-tit">Nhà Đất Bán</div>
-					<ul class="f-list pdb">
-						<li><a href="JavaScript:void(0)"><span>100</span>Nhà đất
-								Hồ Chí Minh</a></li>
-						<li><a href="JavaScript:void(0)"><span>100</span>Nhà đất
-								Hà Nội</a></li>
-						<li><a href="JavaScript:void(0)"><span>100</span>Nhà đất
-								Đà Nẵng</a></li>
-						<li><a href="JavaScript:void(0)"><span>100</span>Nhà đất
-								Hải Phòng</a></li>
-						<li><a href="JavaScript:void(0)"><span>100</span>Nhà đất
-								Bình Dương</a></li>
-						<li><a href="JavaScript:void(0)"><span>100</span>Nhà đất
-								Đồng Nai</a></li>
-						<li><a href="JavaScript:void(0)"><span>100</span>Nhà đất
-								Cần Thơ</a></li>
-					</ul>
-					<div class="f-tit">Nhà Đất Cho Thuê</div>
-					<ul class="f-list">
-						<li><a href="JavaScript:void(0)"><span>100</span>Nhà đất
-								Hồ Chí Minh</a></li>
-						<li><a href="JavaScript:void(0)"><span>100</span>Nhà đất
-								Hà Nội</a></li>
-						<li><a href="JavaScript:void(0)"><span>100</span>Nhà đất
-								Hải Phòng</a></li>
-						<li><a href="JavaScript:void(0)"><span>100</span>Nhà đất
-								Bình Dương</a></li>
-						<li><a href="JavaScript:void(0)"><span>100</span>Nhà đất
-								Đồng Nai</a></li>
-					</ul>
-				</div>
-				<!-- FOOTER LEFT END -->
-				<!-- FOOTER RIGHT BEGIN -->
-				<div>
-					<div class="f-tit">Tag Tìm Kiếm</div>
-					<div class="f-tag pdb">
-						<a href="JavaScript:void(0)">NHÀ BÁN</a> <a
-							href="JavaScript:void(0)">CHO THUÊ</a> <a
-							href="JavaScript:void(0)">CHUNG CƯ</a> <a
-							href="JavaScript:void(0)">THUÊ XƯỞNG</a> <a
-							href="JavaScript:void(0)">BÁN BIỆT THỰ</a> <a
-							href="JavaScript:void(0)">CHUNG CƯ CAO CẤP</a> <a
-							href="JavaScript:void(0)">ĐẤT NỀN</a>
-					</div>
-					<div class="f-tit">Website Liên Kết</div>
-					<ul class="f-list pdb">
-						<li><a href="JavaScript:void(0)">http://www.phongthuy.com</a></li>
-						<li><a href="JavaScript:void(0)">http://www.batdongsan.com</a></li>
-						<li><a href="JavaScript:void(0)">http://www.chovaynhadat.com</a></li>
-					</ul>
-					<div class="f-tit">Đăng Ký Nhận Tin Nhắn Mới</div>
-					<div class="newleter">
-						<input type="text" placeholder="Email của bạn">
-						<button>
-							<span class="fa fa-send"></span>
-						</button>
-					</div>
-				</div>
-				<!-- FOOTER RIGHT END -->
-			</div>
-		</footer>
-		<!-- FOOTER END -->
-
-		<div class="after-foot">
-			<div class="con cls-after">
-				<ul>
-					<li><a href="trangchu.html">Trang Chủ</a></li>
-					<li><a href="gioithieu.html">Giới Thiệu</a></li>
-					<li><a href="JavaScript:void(0)">Điều Khoản Bảo Mật</a></li>
-					<li><a href="lienhe.html">Liên Hệ</a></li>
-				</ul>
-				<p>&copy; 2014 All rights reserved.</p>
-			</div>
-		</div>
+	<jsp:include page="footer.jsp"></jsp:include>
+	
 	</div>
 	<!-- POPUP BEGIN -->
 	<div id="login-dialog" class="dialog">
@@ -480,22 +471,6 @@
 								data-prompt-position="topLeft:0,26" placeholder="Địa Chỉ"
 								type="text">
 						</div>
-						<!--
-                            <div class="ctrl pdb cls-after">
-                                <label class="rad"><input type="radio" checked name="rad1"><span>Cá Nhân</span></label>
-                                <label class="rad"><input type="radio" name="rad1"><span>Doanh Nghiệp</span></label>
-                            </div>
-                            <div class="ctrls pdb cls-after">
-                                <div>
-                                    <input class="txt txt-border validate[required]" data-prompt-position="topLeft:0,26" placeholder="Mã Xác Nhận" type="text">
-                                </div>
-                                <div class="captcha">
-                                    <img src="${pageContext.request.contextPath}/resources/images/captcha.png"/>
-                                    <span class="fa fa-refresh"></span>
-                                </div>
-                            </div> 
-                            <div class="ctrl pdb">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
-                            -->
 						<div class="ctrl pdb">
 							<button class="block-btn yellow-btn hvr-bounce-to-bottom"
 								type="button" onclick="dialog('pin-dialog')">ĐĂNG KÝ</button>
@@ -574,7 +549,8 @@
 						</div>
 						<div class="ctrls pdt cls-after">
 							<div>
-								<button class="block-btn yellow-btn" type="button" onclick="returnHome('${pageContext.request.contextPath}')" >HỦY</button>
+								<button class="block-btn yellow-btn" type="button">LẤY
+									LẠI MÃ</button>
 							</div>
 							<div>
 								<button class="block-btn yellow-btn" type="button"
@@ -625,9 +601,8 @@
 				<div
 					style="padding: 30px; background: #f0f0f0; width: 540px; height: 380px">
 					<div class="crop-image" style="width: 480px; height: 320px">
-						<img id="image"
-							src="${pageContext.request.contextPath}/resources/images/picture.jpg"
-							alt="Picture" style="width: 100%">
+						<img id="image" src="images/picture.jpg" alt="Picture"
+							style="width: 100%">
 					</div>
 				</div>
 				<div class="pda text-right">
@@ -639,3 +614,5 @@
 			</div>
 		</div>
 	</div>
+</body>
+</html>

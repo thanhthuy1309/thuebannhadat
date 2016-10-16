@@ -8,11 +8,11 @@ package realestate.service;
 public interface SmsService {
 
   /**
-   * send code bookticket
+   * send code register
    * 
    * @param phone
    * @param code
    * @return true, if successful
    */
-  public boolean sendSmsCode(String phone, String code);
+  public boolean sendSmsCodeRegister(String phone, String code);
 }

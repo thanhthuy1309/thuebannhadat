@@ -152,11 +152,6 @@ public class DemoController {
     return "quanly";
   }
 
-  @RequestMapping(value = "/taikhoan", method = RequestMethod.GET)
-  public String trangtaikhoan() {
-    return "taikhoan";
-  }
-
   @RequestMapping(value = "/thechap", method = RequestMethod.GET)
   public String trangthechap() {
     return "thechap";
@@ -219,7 +214,7 @@ public class DemoController {
 
   @RequestMapping(value = "/trangchu", method = RequestMethod.GET)
   public String trangtrangchu() {
-    return "trangchu";
+    return "home";
   }
 
   @RequestMapping(value = "/index", method = RequestMethod.GET)

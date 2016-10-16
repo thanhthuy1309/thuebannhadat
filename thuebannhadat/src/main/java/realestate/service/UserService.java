@@ -110,4 +110,12 @@ public interface UserService {
    * @return nguoidung
    */
   public NguoiDung registerSocial(RegisterSocialDto registerSocialDto);
+
+  /**
+   * lay nguoi dung theo idNguoiDung
+   * 
+   * @param idNguoiDung
+   * @return nguoidung
+   */
+  public NguoiDung getUserByID(Integer idNguoiDung);
 }

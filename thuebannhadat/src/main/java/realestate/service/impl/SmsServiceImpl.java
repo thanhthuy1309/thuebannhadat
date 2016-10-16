@@ -31,7 +31,7 @@ public class SmsServiceImpl implements SmsService {
    * @return true, if successful
    */
   @Override
-  public boolean sendSmsCode(String phone, String code) {
+  public boolean sendSmsCodeRegister(String phone, String code) {
     boolean isSent = false;
 
     URL obj;

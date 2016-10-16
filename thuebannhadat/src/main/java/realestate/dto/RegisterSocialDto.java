@@ -11,6 +11,15 @@ public class RegisterSocialDto {
   /** Init dienThoai **/
   private String hoTen;
 
+  /** Init soCodeKichHoat **/
+  private Integer soCodeKichHoat;
+
+  /** Init maCodeKichHoat **/
+  private String maCodeKichHoat;
+
+  /** Init idNguoiDung **/
+  private Integer idNguoiDung;
+
   /**
    * @return the email
    */
@@ -56,9 +65,55 @@ public class RegisterSocialDto {
     this.hoTen = hoTen;
   }
 
+  /**
+   * @return the soCodeKichHoat
+   */
+  public Integer getSoCodeKichHoat() {
+    return soCodeKichHoat;
+  }
+
+  /**
+   * @param soCodeKichHoat
+   *          the soCodeKichHoat to set
+   */
+  public void setSoCodeKichHoat(Integer soCodeKichHoat) {
+    this.soCodeKichHoat = soCodeKichHoat;
+  }
+
+  /**
+   * @return the maCodeKichHoat
+   */
+  public String getMaCodeKichHoat() {
+    return maCodeKichHoat;
+  }
+
+  /**
+   * @param maCodeKichHoat
+   *          the maCodeKichHoat to set
+   */
+  public void setMaCodeKichHoat(String maCodeKichHoat) {
+    this.maCodeKichHoat = maCodeKichHoat;
+  }
+
+  /**
+   * @return the idNguoiDung
+   */
+  public Integer getIdNguoiDung() {
+    return idNguoiDung;
+  }
+
+  /**
+   * @param idNguoiDung the idNguoiDung to set
+   */
+  public void setIdNguoiDung(Integer idNguoiDung) {
+    this.idNguoiDung = idNguoiDung;
+  }
+
   public RegisterSocialDto(String email, String hoTen) {
     this.email = email;
     this.hoTen = hoTen;
   }
 
+  public RegisterSocialDto() {
+  }
 }

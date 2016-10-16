@@ -93,7 +93,10 @@ public class UserServiceImpl implements UserService {
         nguoiDung.setMaCodeKichHoat(dangKyDto.getActivationCode());
         nguoiDung.setNgayTao(DateUtils.now());
 
-        return userDao.addUser(nguoiDung);
+        NguoiDung nd = userDao.addUser(nguoiDung);
+        if(nd != null) {
+          return true;
+        }
       } catch (Exception e) {
         LOGGER.error("#dangkyNguoiDung: " + e);
         return false;
@@ -272,8 +275,8 @@ public class UserServiceImpl implements UserService {
 				nguoiDung.setHoTen(registerSocialDto.getHoTen());
 				nguoiDung.setEmail(registerSocialDto.getEmail());
 				nguoiDung.setTrangThai(ValidStatusEnum.FAILED.getValue());
-				nguoiDung.setSoCodeKichHoat(0);
-				nguoiDung.setSoCodeMatKhau(0);
+				nguoiDung.setSoCodeKichHoat(registerSocialDto.getSoCodeKichHoat());
+				nguoiDung.setMaCodeKichHoat(registerSocialDto.getMaCodeKichHoat());
 
 				nguoiDung.setIdPhanQuyen(ValueConstants.CONST_ROLE_USER);
 				nguoiDung.setViTien(new BigDecimal(0));
@@ -286,5 +289,17 @@ public class UserServiceImpl implements UserService {
 		}
 		return nguoiDung;
 	}
+
+  /**
+   * lay nguoi dung theo idNguoiDung
+   * 
+   * @param idNguoiDung
+   * @return nguoidung
+   */
+  @Transactional
+  @Override
+  public NguoiDung getUserByID(Integer idNguoiDung) {
+    return userDao.getUserByID(idNguoiDung);
+  }
 
 }

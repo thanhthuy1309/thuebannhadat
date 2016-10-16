@@ -80,7 +80,7 @@ public class FacebookController {
 
       JSONObject obj = new JSONObject(resourceResponse.getBody());
 
-      String facdebookId = obj.getString("id");
+//      String facdebookId = obj.getString("id");
       String name = obj.getString("name");
       String email = obj.getString("email");
 
@@ -89,7 +89,7 @@ public class FacebookController {
 
       if (nguoiDung == null) {
         model.addAttribute("registerSocialDto", new RegisterSocialDto(email, name));
-        return "dangky-social";
+        return "register_social_step_1";
       } else {
         session.setAttribute("nguoiDung", nguoiDung);
       }

@@ -21,9 +21,9 @@ public interface UserDao {
    * Them nguoi dung
    *
    * @param NguoiDung
-   * @return true, if successful
+   * @return nguoiDung
    */
-  public boolean addUser(NguoiDung user);
+  public NguoiDung addUser(NguoiDung user);
 
   /**
    * Lay thong tin nguoi dung dua vao key dienThoai
@@ -60,4 +60,12 @@ public interface UserDao {
    * @return NguoiDung
    */
   public NguoiDung checkLoginByPhone(String phoneNumber, String password);
+
+  /**
+   * lay nguoi dung theo idNguoiDung
+   * 
+   * @param idNguoiDung
+   * @return nguoidung
+   */
+  public NguoiDung getUserByID(Integer idNguoiDung);
 }

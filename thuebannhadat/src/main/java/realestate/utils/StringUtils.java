@@ -16,6 +16,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -129,4 +130,9 @@ public class StringUtils {
     return request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
         + request.getContextPath();
   }
+
+  public static String randomKey(int lenght) {
+    return RandomStringUtils.randomAlphanumeric(lenght);
+  }
+
 }

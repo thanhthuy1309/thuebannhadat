@@ -37,19 +37,18 @@ public class UserDaoImpl implements UserDao {
    * Them nguoi dung moi
    * 
    * @param NguoiDung
-   * @return true, if successful
+   * @return nguoiDung
    */
-  public boolean addUser(NguoiDung nguoiDung) {
+  public NguoiDung addUser(NguoiDung nguoiDung) {
     Session session = this.sessionFactory.getCurrentSession();
 
     try {
       // create nguoiDung
-      session.persist(nguoiDung);
+      session.save(nguoiDung);
     } catch (Exception e) {
       LOGGER.error("#addUser: " + e);
-      return false;
     }
-    return true;
+    return nguoiDung;
   }
 
   /**
@@ -144,5 +143,17 @@ public class UserDaoImpl implements UserDao {
     }
 
     return null;
+  }
+
+  /**
+   * lay nguoi dung theo idNguoiDung
+   * 
+   * @param idNguoiDung
+   * @return nguoidung
+   */
+  @Override
+  public NguoiDung getUserByID(Integer idNguoiDung) {
+    Session session = this.sessionFactory.getCurrentSession();
+    return (NguoiDung) session.get(NguoiDung.class, idNguoiDung);
   }
 }

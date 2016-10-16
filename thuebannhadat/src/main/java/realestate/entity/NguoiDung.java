@@ -51,7 +51,7 @@ public class NguoiDung implements Serializable {
   private String email;
 
   /** Init dienThoai **/
-  @Column(name = "dienthoai", length = 15, nullable = false, unique = true)
+  @Column(name = "dienthoai", length = 15, unique = true)
   private String dienThoai;
 
   /** Init userName **/

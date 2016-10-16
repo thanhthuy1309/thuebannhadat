@@ -1,3 +1,5 @@
-function returnHome(url) {
-	window.location.href = url + "/trangchu";
+function submitform(formName, actionName) {
+	var form = document.forms[formName];
+	form.action = actionName;
+	form.submit();
 }
