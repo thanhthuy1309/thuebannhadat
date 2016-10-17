@@ -88,8 +88,9 @@ public class FacebookController {
       NguoiDung nguoiDung = userService.getUserByEmail(email);
 
       if (nguoiDung == null) {
-        model.addAttribute("registerSocialDto", new RegisterSocialDto(email, name));
-        return "register_social_step_1";
+    	session.setAttribute("name", name);
+    	session.setAttribute("email", email);
+        return "redirect:/register_social_step_1";
       } else {
         session.setAttribute("nguoiDung", nguoiDung);
       }

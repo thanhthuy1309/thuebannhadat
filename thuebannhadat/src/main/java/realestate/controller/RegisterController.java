@@ -18,111 +18,138 @@ import realestate.service.UserService;
 import realestate.utils.StringUtils;
 
 @Controller
-@RequestMapping(value = "/register")
 public class RegisterController {
 
-  @Autowired
-  private UserService userService;
+	@Autowired
+	private UserService userService;
 
-  @Autowired
-  private SmsService smsService;
+	@Autowired
+	private SmsService smsService;
 
-  /** Init messages. */
-  private ResourceBundle messages = ResourceBundle.getBundle("messages");
+	/** Init messages. */
+	private ResourceBundle messages = ResourceBundle.getBundle("messages");
 
-  /* START: register_social_step_1 */
+	/* START: register_social_step_1 */
+	/**
+	 * 
+	 * @param session
+	 * @param model
+	 * @return register_social_step_1
+	 */
+	@RequestMapping(value = "/register_social_step_1", method = RequestMethod.GET)
+	public String registerSocialStep_1(HttpSession session, Model model) {
+		String email = (String) session.getAttribute("email");
+		String name = (String) session.getAttribute("name");
 
-  /**
-   * khi bam nut huy o dang ky buoc 1
-   * 
-   * @param registerSocialDto
-   * @param session
-   * @return trang chu
-   */
-  @RequestMapping(value = "/registerStep1Cancel", method = RequestMethod.POST)
-  public String registerStep1Cancel(@ModelAttribute("registerSocialDto")
-  RegisterSocialDto registerSocialDto, HttpSession session) {
+		if (!email.equals("") && !name.equals("")) {
+			model.addAttribute("registerSocialDto", new RegisterSocialDto(
+					email, name));
+			return "register_social_step_1";
+		}
+		return "redirect:/trangchu";
+	}
 
-    registerSocialDto.setDienThoai(null);
-    NguoiDung nguoiDung = userService.registerSocial(registerSocialDto);
-    session.setAttribute("nguoiDung", nguoiDung);
+	/**
+	 * khi bam nut huy o dang ky buoc 1
+	 * 
+	 * @param registerSocialDto
+	 * @param session
+	 * @return trang chu
+	 */
+	@RequestMapping(value = "/registerStep1Cancel", method = RequestMethod.POST)
+	public String registerStep1Cancel(
+			@ModelAttribute("registerSocialDto") RegisterSocialDto registerSocialDto,
+			HttpSession session) {
 
-    return "redirect:/trangchu";
-  }
+		registerSocialDto.setDienThoai(null);
+		NguoiDung nguoiDung = userService.registerSocial(registerSocialDto);
+		session.setAttribute("nguoiDung", nguoiDung);
 
-  /**
-   * khi bam nut chap nhan o dang ky buoc 1
-   * 
-   * @param registerSocialDto
-   * @param session
-   * @param model
-   * @return dang ky theo ma xa hoi buoc 2
-   */
-  @RequestMapping(value = "/registerStep1Approve", method = RequestMethod.POST)
-  public String registerStep1Approve(@ModelAttribute("registerSocialDto")
-  RegisterSocialDto registerSocialDto, HttpSession session, Model model) {
+		return "redirect:/trangchu";
+	}
 
-    String maCodeKichHoat = StringUtils.randomKey(5);
-    // gui ma code den sdt
-    boolean isSend = smsService.sendSmsCodeRegister(registerSocialDto.getDienThoai(), maCodeKichHoat);
+	/**
+	 * khi bam nut chap nhan o dang ky buoc 1
+	 * 
+	 * @param registerSocialDto
+	 * @param session
+	 * @param model
+	 * @return dang ky theo ma xa hoi buoc 2
+	 */
+	@RequestMapping(value = "/registerStep1Approve", method = RequestMethod.POST)
+	public String registerStep1Approve(
+			@ModelAttribute("registerSocialDto") RegisterSocialDto registerSocialDto,
+			HttpSession session, Model model) {
 
-    if (isSend) {
-      registerSocialDto.setSoCodeKichHoat(1);
-      registerSocialDto.setMaCodeKichHoat(maCodeKichHoat);
+		String maCodeKichHoat = StringUtils.randomKey(5);
+		// gui ma code den sdt
+//		boolean isSend = smsService.sendSmsCodeRegister(
+//				registerSocialDto.getDienThoai(), maCodeKichHoat);
+		boolean isSend = true;
 
-      NguoiDung nguoiDung = userService.registerSocial(registerSocialDto);
+		if (isSend) {
+			registerSocialDto.setSoCodeKichHoat(1);
+			registerSocialDto.setMaCodeKichHoat(maCodeKichHoat);
 
-      registerSocialDto.setIdNguoiDung(nguoiDung.getIdNguoiDung());
-      model.addAttribute("registerSocialDto", nguoiDung.getIdNguoiDung());
+			NguoiDung nguoiDung = userService.registerSocial(registerSocialDto);
 
-      return "register_social_step_2";
-    } else {
-      model.addAttribute("error", messages.getString("MSG.ERROR_PHONE"));
-      model.addAttribute("registerSocialDto", registerSocialDto);
+			registerSocialDto.setIdNguoiDung(nguoiDung.getIdNguoiDung());
+			model.addAttribute("idNguoiDung", nguoiDung.getIdNguoiDung());
 
-      return "register_social_step_1";
-    }
-  }
+			return "register_social_step_2";
+		} else {
+			model.addAttribute("error", messages.getString("MSG.ERROR_PHONE"));
+			model.addAttribute("registerSocialDto", registerSocialDto);
 
-  /* END: register_social_step_1 */
+			return "register_social_step_1";
+		}
+	}
 
-  /* START: register_social_step_2 */
-  
-  /**
-   * khi bam nut lay lai mat khau
-   * 
-   * @param registerSocialDto
-   * @param session
-   * @return
-   */
-  @RequestMapping(value = "/getCodeAgain", method = RequestMethod.POST)
-  public String getCodeAgain(@ModelAttribute("registerSocialDto")
-  RegisterSocialDto registerSocialDto, HttpSession session, Model model) {
+	/* END: register_social_step_1 */
 
-    model.addAttribute("registerSocialDto", new RegisterSocialDto(registerSocialDto.getEmail(), registerSocialDto.getHoTen()));
-    return "register_social_step_1";
-  }
+	/* START: register_social_step_2 */
 
-  /**
-   * khi bam nut gu ma code
-   * 
-   * @param registerSocialDto
-   * @param session
-   * @return
-   */
-  @RequestMapping(value = "/submitCode", method = RequestMethod.POST)
-  public String submitCode(@ModelAttribute("registerSocialDto")
-  RegisterSocialDto registerSocialDto, HttpSession session, Model model) {
+	/**
+	 * khi bam nut lay lai mat khau
+	 * 
+	 * @param registerSocialDto
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value = "/getCodeAgain", method = RequestMethod.POST)
+	public String getCodeAgain(
+			@ModelAttribute("registerSocialDto") RegisterSocialDto registerSocialDto,
+			HttpSession session, Model model) {
 
-    NguoiDung nguoiDung = userService.getUserByID(registerSocialDto.getIdNguoiDung());
-    if (nguoiDung.getMaCodeKichHoat().equals(registerSocialDto.getMaCodeKichHoat())) {
-      session.setAttribute("nguoiDung", nguoiDung);
-      return "register_social_step_3";
-    }
-    model.addAttribute("registerSocialDto", new RegisterSocialDto(registerSocialDto.getEmail(), registerSocialDto.getHoTen()));
-    return "register_social_step_1";
+		model.addAttribute("registerSocialDto", new RegisterSocialDto(
+				registerSocialDto.getEmail(), registerSocialDto.getHoTen()));
+		return "register_social_step_1";
+	}
 
-  }
-  /* END: register_social_step_2 */
+	/**
+	 * khi bam nut gu ma code
+	 * 
+	 * @param registerSocialDto
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value = "/submitCode", method = RequestMethod.POST)
+	public String submitCode(
+			@ModelAttribute("registerSocialDto") RegisterSocialDto registerSocialDto,
+			HttpSession session, Model model) {
+
+		NguoiDung nguoiDung = userService.getUserByID(registerSocialDto
+				.getIdNguoiDung());
+		if (nguoiDung.getMaCodeKichHoat().equals(
+				registerSocialDto.getMaCodeKichHoat())) {
+			session.setAttribute("nguoiDung", nguoiDung);
+			return "register_social_step_3";
+		}
+		model.addAttribute("registerSocialDto", new RegisterSocialDto(
+				registerSocialDto.getEmail(), registerSocialDto.getHoTen()));
+		return "register_social_step_1";
+
+	}
+	/* END: register_social_step_2 */
 
 }

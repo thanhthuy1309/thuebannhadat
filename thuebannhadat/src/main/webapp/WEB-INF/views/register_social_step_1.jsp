@@ -105,7 +105,7 @@
 						</div>
 						<div class="ctrls pdt cls-after">
 							<div>
-								<button class="block-btn yellow-btn" type="button" onclick="registerStep1Cancel();">HỦY</button>
+								<button class="block-btn yellow-btn" type="button" onclick="registerStep1Cancel('${pageContext.request.contextPath}');">HỦY</button>
 							</div>
 							<div>
 								<button class="block-btn yellow-btn" type="button"

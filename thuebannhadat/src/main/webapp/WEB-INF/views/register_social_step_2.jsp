@@ -90,6 +90,7 @@
 						<div class="ctrl pdb mes red">Bạn vui lòng nhập mã xác nhận
 							được gửi đến số diện thoại mà bạn dùng để đăng ký</div>
 						<div class="ctrl pdb">
+							<input type="hidden" name="idNguoiDung" value="${idNguoiDung }">
 							<input class="txt txt-border validate[required]" name="maCodeKichHoat"
 								data-prompt-position="topLeft:0,26" placeholder="Mã xác nhận"
 								type="text">

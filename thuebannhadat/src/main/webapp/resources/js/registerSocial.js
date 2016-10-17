@@ -4,14 +4,14 @@
  * Khi bam button huy o man hinh dang ky step 1
  */
 function registerStep1Cancel() {
-	submitform("phoneFrm", "register/registerStep1Cancel");
+	submitform("phoneFrm", "registerStep1Cancel");
 }
 
 /**
  * Khi bam button xac nhan o man hinh dang ky step 1
  */
 function registerStep1Approve() {
-	submitform("phoneFrm", "register/registerStep1Approve");
+	submitform("phoneFrm", "registerStep1Approve");
 }
 
 /* END: Man hinh dang ky step 1: register_social_step1 */

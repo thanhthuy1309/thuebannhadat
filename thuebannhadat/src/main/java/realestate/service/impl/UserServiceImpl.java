@@ -266,6 +266,7 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
+  @Transactional
 	public NguoiDung registerSocial(RegisterSocialDto registerSocialDto) {
 		NguoiDung nguoiDung = new NguoiDung();
 		if (registerSocialDto != null) {
