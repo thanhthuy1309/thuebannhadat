@@ -20,6 +20,9 @@ public class RegisterSocialDto {
   /** Init idNguoiDung **/
   private Integer idNguoiDung;
 
+  /** Init trangThai **/
+  private Integer trangThai;
+
   /**
    * @return the email
    */
@@ -107,6 +110,20 @@ public class RegisterSocialDto {
    */
   public void setIdNguoiDung(Integer idNguoiDung) {
     this.idNguoiDung = idNguoiDung;
+  }
+
+  /**
+   * @return the trangThai
+   */
+  public Integer getTrangThai() {
+    return trangThai;
+  }
+
+  /**
+   * @param trangThai the trangThai to set
+   */
+  public void setTrangThai(Integer trangThai) {
+    this.trangThai = trangThai;
   }
 
   public RegisterSocialDto(String email, String hoTen) {

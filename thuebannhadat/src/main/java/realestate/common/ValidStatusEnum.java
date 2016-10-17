@@ -15,7 +15,7 @@ package realestate.common;
  */
 public enum ValidStatusEnum {
 
-  FAILED(0), SUCCESSFUL(1);
+  FAILED(0), SUCCESSFUL(1), NOACTICEPHONE(2);
 
   /** Init value. */
   private int value;

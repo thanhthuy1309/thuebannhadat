@@ -8,6 +8,7 @@
  */
 package realestate.dao.impl;
 
+import realestate.common.ValidStatusEnum;
 import realestate.dao.UserDao;
 import realestate.entity.NguoiDung;
 
@@ -81,17 +82,23 @@ public class UserDaoImpl implements UserDao {
    * @param nguoiDung
    * @return true, if successful
    */
-  public boolean updateUser(NguoiDung nguoiDung) {
+  public boolean updateUser(NguoiDung nd) {
     Session session = this.sessionFactory.getCurrentSession();
 
-    try {
-      // update nguoiDung
-      session.merge(nguoiDung);
-    } catch (Exception e) {
-      LOGGER.error("#updateUser: " + e);
-      return false;
+    NguoiDung nguoiDung = (NguoiDung) session.get(NguoiDung.class, nd.getIdNguoiDung());
+    if (nguoiDung != null) {
+      try {
+        nguoiDung.setMaCodeKichHoat(null);
+        nguoiDung.setTrangThai(ValidStatusEnum.SUCCESSFUL.getValue());
+        nguoiDung.setSoCodeKichHoat(nd.getSoCodeKichHoat());
+        // update nguoiDung
+        session.merge(nguoiDung);
+        return true;
+      } catch (Exception e) {
+        LOGGER.error("#updateUser: " + e);
+      }
     }
-    return true;
+    return false;
   }
 
   /**

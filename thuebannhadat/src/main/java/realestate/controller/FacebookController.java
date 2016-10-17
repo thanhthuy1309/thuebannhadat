@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import realestate.constants.ValueConstants;
-import realestate.dto.RegisterSocialDto;
 import realestate.entity.NguoiDung;
 import realestate.service.UserService;
 import realestate.utils.StringUtils;
@@ -90,12 +89,12 @@ public class FacebookController {
       if (nguoiDung == null) {
     	session.setAttribute("name", name);
     	session.setAttribute("email", email);
-        return "redirect:/register_social_step_1";
+        return "redirect:/dang-ky-xa-hoi-buoc-1";
       } else {
         session.setAttribute("nguoiDung", nguoiDung);
       }
     }
-    return "redirect:/trangchu";
+    return "redirect:/trang-chu";
   }
 
 }
