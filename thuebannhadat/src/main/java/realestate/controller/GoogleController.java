@@ -5,8 +5,10 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +24,15 @@ import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 import com.github.scribejava.core.oauth.OAuthService;
 
+import realestate.entity.NguoiDung;
+import realestate.service.UserService;
+
 @Controller
 @RequestMapping(value = "/google")
 public class GoogleController {
+
+  @Autowired
+  private UserService userService;
 
   private static final String API_KEY = "328338891021-gbve64t0s6agm7avid0vj4omb7i85286.apps.googleusercontent.com";
   private static final String API_SECRET = "W60sDp2j-m2ywaZrXA_cwSgJ";
@@ -50,9 +58,8 @@ public class GoogleController {
   }
 
   @RequestMapping(value = "/callback", method = RequestMethod.GET)
-  public String callback(@RequestParam(value = "code") String code,
-      @RequestParam(value = "state") String state, HttpServletRequest request,
-      HttpServletResponse response, Model model) throws IOException {
+  public String callback(@RequestParam(value = "code") String code, @RequestParam(value = "state") String state,
+      HttpServletRequest request, HttpServletResponse response, Model model, HttpSession session) throws IOException {
     if (code != null) {
       OAuthService service = new ServiceBuilder().apiKey(API_KEY).apiSecret(API_SECRET).callback(HOST + CALLBACK_URL)
           .build(GoogleApi20.instance());
@@ -72,13 +79,19 @@ public class GoogleController {
       String name = obj.getString("name");
       String email = obj.getString("email");
 
-      model.addAttribute("id", googleid);
-      model.addAttribute("name", name);
-      model.addAttribute("email", email);
+      NguoiDung nguoiDung = userService.getUserByEmail(email);
+
+      if (nguoiDung == null) {
+        session.setAttribute("name", name);
+        session.setAttribute("email", email);
+        return "redirect:/register_social_step_1";
+      } else {
+        session.setAttribute("nguoiDung", nguoiDung);
+      }
 
       request.getSession().setAttribute("GOOGLE_ACCESS_TOKEN", accessToken);
 
-      return "detailgoogle";
+      return "redirect:/register_social_step_1";
     }
     return "redirect:/index";
   }

@@ -38,7 +38,7 @@
 									</button></a>
 							</div>
 							<div>
-								<a href="dangky-social.html"><button
+								<a href="${pageContext.request.contextPath}/google/signin"><button
 										class="block-btn red-btn" type="button">
 										<span class="fa fa-google"></span> GOOGLE+
 									</button></a>
