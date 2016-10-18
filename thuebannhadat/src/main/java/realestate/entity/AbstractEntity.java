@@ -14,8 +14,6 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
-import org.hibernate.annotations.Type;
-
 /**
  * @author : DungPT
  * @PG_ID : FooterLinkBan
@@ -30,8 +28,7 @@ public class AbstractEntity implements Serializable {
    * Trang thai tin. 0: chua kich thoat 1: kich hoat
    */
   @Column(name = "trangthai", length = 1, nullable = false, columnDefinition = "TINYINT(1) UNSIGNED DEFAULT 0")
-  @Type(type = "org.hibernate.type.NumericBooleanType")
-  private boolean trangThai;
+  private Integer trangThai;
 
   /** Init ngayTao **/
   @Column(name = "ngaytao")
@@ -46,4 +43,49 @@ public class AbstractEntity implements Serializable {
 
   @Column(name = "nguoicapnhat", length = 250)
   private String nguoiCapNhat;
+
+  public Integer getTrangThai() {
+    return trangThai;
+  }
+
+  public void setTrangThai(Integer trangThai) {
+    this.trangThai = trangThai;
+  }
+
+  public Date getNgayTao() {
+    return ngayTao;
+  }
+
+  public void setNgayTao(Date ngayTao) {
+    this.ngayTao = ngayTao;
+  }
+
+  public Date getNgayCapNhat() {
+    return ngayCapNhat;
+  }
+
+  public void setNgayCapNhat(Date ngayCapNhat) {
+    this.ngayCapNhat = ngayCapNhat;
+  }
+
+  public String getNguoiTao() {
+    return nguoiTao;
+  }
+
+  public void setNguoiTao(String nguoiTao) {
+    this.nguoiTao = nguoiTao;
+  }
+
+  public String getNguoiCapNhat() {
+    return nguoiCapNhat;
+  }
+
+  public void setNguoiCapNhat(String nguoiCapNhat) {
+    this.nguoiCapNhat = nguoiCapNhat;
+  }
+
+  public static long getSerialversionuid() {
+    return serialVersionUID;
+  }
+
 }
