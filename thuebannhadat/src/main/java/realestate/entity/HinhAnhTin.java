@@ -8,8 +8,6 @@
  */
 package realestate.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,6 +15,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Where;
 
 /**
  * @author : DungPT
@@ -26,7 +25,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "tbl_hinhanhtin")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class HinhAnhTin implements Serializable {
+@Where(clause = "trangthai = 1")
+public class HinhAnhTin extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
@@ -35,10 +35,6 @@ public class HinhAnhTin implements Serializable {
   @Id
   @Column(name = "id_hinhanhtin", length = 250, nullable = false)
   private String idHinhAnhTin;
-
-  /** Init trangThai **/
-  @Column(name = "trangthai", length = 1, nullable = false)
-  private Integer trangThai;
 
   /** Init idMauTin **/
   @Column(name = "id_mautin", nullable = false, length = 250)
@@ -51,14 +47,6 @@ public class HinhAnhTin implements Serializable {
   /** Init thuTu **/
   @Column(name = "thutu", length = 2, nullable = false)
   private Integer thuTu;
-
-  public Integer getTrangThai() {
-    return trangThai;
-  }
-
-  public void setTrangThai(Integer trangThai) {
-    this.trangThai = trangThai;
-  }
 
   public String getIdMauTin() {
     return idMauTin;

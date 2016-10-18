@@ -8,8 +8,6 @@
  */
 package realestate.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,6 +20,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Where;
 
 import realestate.entity.PK.Duong_PK;
 
@@ -34,7 +33,8 @@ import realestate.entity.PK.Duong_PK;
 @Table(name = "tbl_duong")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @IdClass(Duong_PK.class)
-public class Duong implements Serializable {
+@Where(clause = "trangthai = 1")
+public class Duong extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
@@ -57,16 +57,11 @@ public class Duong implements Serializable {
   @Column(name = "ten_duong", length = 250, nullable = false)
   private String tenDuong;
 
-  /** Init trangThai **/
-  @Column(name = "trangthai", length = 1, nullable = false)
-  private Integer trangThai;
-
   /** Init quanHuyen **/
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumns({
-    @JoinColumn(name = "id_thanhpho", referencedColumnName="id_thanhpho", insertable = false, updatable = false),
-    @JoinColumn(name = "id_quanhuyen", referencedColumnName="id_quanhuyen", insertable = false, updatable = false)
-  })
+      @JoinColumn(name = "id_thanhpho", referencedColumnName = "id_thanhpho", insertable = false, updatable = false),
+      @JoinColumn(name = "id_quanhuyen", referencedColumnName = "id_quanhuyen", insertable = false, updatable = false) })
   private QuanHuyen quanHuyen;
 
   public String getTenDuong() {
@@ -75,14 +70,6 @@ public class Duong implements Serializable {
 
   public void setTenDuong(String tenDuong) {
     this.tenDuong = tenDuong;
-  }
-
-  public Integer getTrangThai() {
-    return trangThai;
-  }
-
-  public void setTrangThai(Integer trangThai) {
-    this.trangThai = trangThai;
   }
 
   public QuanHuyen getQuanHuyen() {
@@ -117,4 +104,7 @@ public class Duong implements Serializable {
     this.idThanhPho = idThanhPho;
   }
 
+  public static long getSerialversionuid() {
+    return serialVersionUID;
+  }
 }

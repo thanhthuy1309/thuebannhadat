@@ -8,8 +8,6 @@
  */
 package realestate.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +17,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Where;
 
 /**
  * @author : DungPT
@@ -28,7 +27,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "tbl_donvigia")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class DonViGia implements Serializable {
+@Where(clause = "trangthai = 1")
+public class DonViGia extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
@@ -42,10 +42,6 @@ public class DonViGia implements Serializable {
   /** Init tenDonViGia **/
   @Column(name = "ten_donvigia", length = 50)
   private String tenDonViGia;
-
-  /** Init status **/
-  @Column(name = "trangthai", length = 1, nullable = false)
-  private Integer trangThai;
 
   public Integer getIdDonViGia() {
     return idDonViGia;
@@ -63,11 +59,7 @@ public class DonViGia implements Serializable {
     this.tenDonViGia = tenDonViGia;
   }
 
-  public Integer getTrangThai() {
-    return trangThai;
-  }
-
-  public void setTrangThai(Integer trangThai) {
-    this.trangThai = trangThai;
+  public static long getSerialversionuid() {
+    return serialVersionUID;
   }
 }

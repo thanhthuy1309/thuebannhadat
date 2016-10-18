@@ -8,7 +8,6 @@
  */
 package realestate.entity;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -21,6 +20,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Where;
 
 /**
  * @author : DungPT
@@ -30,7 +30,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "tbl_loaihinhdat")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class LoaiHinhDat implements Serializable {
+@Where(clause = "trangthai = 1")
+public class LoaiHinhDat extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
@@ -44,10 +45,6 @@ public class LoaiHinhDat implements Serializable {
   @Column(name = "ten_loaihinhdat", length = 250, nullable = false)
   private String tenLoaiHinhDat;
 
-  /** Init trangThai **/
-  @Column(name = "trangthai", length = 1, nullable = false)
-  private Integer trangThai;
-
   /** Init listLoaiNhaDat **/
   @OneToMany(mappedBy = "loaiHinhDat", cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = LoaiNhaDat.class)
   private List<LoaiNhaDat> listLoaiNhaDat;
@@ -58,14 +55,6 @@ public class LoaiHinhDat implements Serializable {
 
   public void setTenLoaiHinhDat(String tenLoaiHinhDat) {
     this.tenLoaiHinhDat = tenLoaiHinhDat;
-  }
-
-  public Integer getTrangThai() {
-    return trangThai;
-  }
-
-  public void setTrangThai(Integer trangThai) {
-    this.trangThai = trangThai;
   }
 
   public List<LoaiNhaDat> getListLoaiNhaDat() {

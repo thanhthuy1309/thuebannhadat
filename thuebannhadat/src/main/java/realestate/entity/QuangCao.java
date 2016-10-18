@@ -8,8 +8,6 @@
  */
 package realestate.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +17,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Where;
 
 /**
  * @author : DungPT
@@ -28,7 +27,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "tbl_quangcao")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class QuangCao implements Serializable {
+@Where(clause = "trangthai = 1")
+public class QuangCao extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
@@ -42,10 +42,6 @@ public class QuangCao implements Serializable {
   /** Init urlWeb **/
   @Column(name = "urlweb", length = 250, nullable = false)
   private String urlWeb;
-
-  /** Init trangThai **/
-  @Column(name = "trangthai", length = 1, nullable = false)
-  private Integer trangThai;
 
   /** Init urlHinhAnh **/
   @Column(name = "urlhinhanh", length = 1000, nullable = false)
@@ -69,14 +65,6 @@ public class QuangCao implements Serializable {
 
   public void setUrlWeb(String urlWeb) {
     this.urlWeb = urlWeb;
-  }
-
-  public Integer getTrangThai() {
-    return trangThai;
-  }
-
-  public void setTrangThai(Integer trangThai) {
-    this.trangThai = trangThai;
   }
 
   public String getUrlHinhAnh() {

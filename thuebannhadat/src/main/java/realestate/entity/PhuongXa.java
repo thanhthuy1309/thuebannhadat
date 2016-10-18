@@ -22,6 +22,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Where;
 
 import realestate.entity.PK.PhuongXa_PK;
 
@@ -34,6 +35,7 @@ import realestate.entity.PK.PhuongXa_PK;
 @Table(name = "tbl_phuongxa")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @IdClass(PhuongXa_PK.class)
+@Where(clause = "trangthai = 1")
 public class PhuongXa implements Serializable {
 
   /** Init serialVersionUID is 1L **/

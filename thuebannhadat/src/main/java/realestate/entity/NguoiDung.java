@@ -8,7 +8,6 @@
  */
 package realestate.entity;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -26,6 +25,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Where;
 
 /**
  * @author : DungPT
@@ -35,7 +35,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "tbl_nguoidung")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class NguoiDung implements Serializable {
+@Where(clause = "trangthai = 1")
+public class NguoiDung extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
@@ -61,10 +62,6 @@ public class NguoiDung implements Serializable {
   /** Init password **/
   @Column(name = "matkhau", length = 250)
   private String matKhau;
-
-  /** Init status **/
-  @Column(name = "trangthai", length = 1, nullable = false)
-  private Integer trangThai;
 
   @Column(name = "id_phanquyen", nullable = false)
   private Integer idPhanQuyen;
@@ -100,11 +97,7 @@ public class NguoiDung implements Serializable {
   /** Init maCodeKichHoat **/
   @Column(name = "macode_kichhoat", length = 5)
   private String maCodeKichHoat;
-  
-  @Column(name = "ngaytao")
-  @Temporal(TemporalType.TIMESTAMP)
-  private Date ngayTao;
-  
+
   /** Su dung khi quen mat khau **/
   @Column(name = "macode_matkhau", length = 5)
   private String maCodeMatKhau;
@@ -147,14 +140,6 @@ public class NguoiDung implements Serializable {
 
   public void setMatKhau(String matKhau) {
     this.matKhau = matKhau;
-  }
-
-  public Integer getTrangThai() {
-    return trangThai;
-  }
-
-  public void setTrangThai(Integer trangThai) {
-    this.trangThai = trangThai;
   }
 
   public Integer getIdPhanQuyen() {
@@ -223,14 +208,6 @@ public class NguoiDung implements Serializable {
 
   public static long getSerialversionuid() {
     return serialVersionUID;
-  }
-
-  public Date getNgayTao() {
-    return ngayTao;
-  }
-
-  public void setNgayTao(Date ngayTao) {
-    this.ngayTao = ngayTao;
   }
 
   public Integer getSoCodeKichHoat() {

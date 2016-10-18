@@ -8,8 +8,6 @@
  */
 package realestate.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,6 +19,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Where;
 
 import realestate.entity.PK.MenuCon_PK;
 
@@ -33,7 +32,8 @@ import realestate.entity.PK.MenuCon_PK;
 @Table(name = "tbl_menucon")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @IdClass(MenuCon_PK.class)
-public class MenuCon implements Serializable {
+@Where(clause = "trangthai = 1")
+public class MenuCon extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
@@ -52,13 +52,9 @@ public class MenuCon implements Serializable {
   @Column(name = "ten_menuchinh", length = 250, nullable = false)
   private String tenMenuCon;
 
-  /** Init trangThai **/
-  @Column(name = "trangthai", length = 1, nullable = false)
-  private Integer trangThai;
-
   /** Init thuTu **/
-  @Column(name = "thutu", length = 2, nullable = false, unique = true)
-  private Integer thuTu;
+  @Column(name = "thutu", length = 2, nullable = false, columnDefinition = "TINYINT(2) UNSIGNED")
+  private Short thuTu;
 
   /** Init url **/
   @Column(name = "url", length = 250, nullable = false)
@@ -83,22 +79,6 @@ public class MenuCon implements Serializable {
 
   public void setTenMenuCon(String tenMenuCon) {
     this.tenMenuCon = tenMenuCon;
-  }
-
-  public Integer getTrangThai() {
-    return trangThai;
-  }
-
-  public void setTrangThai(Integer trangThai) {
-    this.trangThai = trangThai;
-  }
-
-  public Integer getThuTu() {
-    return thuTu;
-  }
-
-  public void setThuTu(Integer thuTu) {
-    this.thuTu = thuTu;
   }
 
   public String getUrl() {

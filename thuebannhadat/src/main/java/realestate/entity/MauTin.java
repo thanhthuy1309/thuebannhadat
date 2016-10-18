@@ -8,19 +8,16 @@
  */
 package realestate.entity;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Where;
 
 /**
  * @author : DungPT
@@ -30,7 +27,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "tbl_mautin")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class MauTin implements Serializable {
+@Where(clause = "trangthai = 1")
+public class MauTin extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
@@ -65,10 +63,6 @@ public class MauTin implements Serializable {
 
   @Column(name = "id_duong", length = 250)
   private String idDuong;
-
-  /** Init trangThai **/
-  @Column(name = "trangthai", length = 1, nullable = false)
-  private String trangThai;
 
   /** Init diaChi **/
   @Column(name = "diachi", length = 250, nullable = false)
@@ -149,11 +143,6 @@ public class MauTin implements Serializable {
   @Column(name = "motatin", length = 5000, nullable = false)
   private String moTaTin;
 
-  /** Init ngayDangTin **/
-  @Temporal(TemporalType.DATE)
-  @Column(name = "ngaydangtin")
-  private Date ngayDangTin;
-
   public String getIdMauTin() {
     return idMauTin;
   }
@@ -216,14 +205,6 @@ public class MauTin implements Serializable {
 
   public void setIdDuong(String idDuong) {
     this.idDuong = idDuong;
-  }
-
-  public String getTrangThai() {
-    return trangThai;
-  }
-
-  public void setTrangThai(String trangThai) {
-    this.trangThai = trangThai;
   }
 
   public String getDiaChi() {

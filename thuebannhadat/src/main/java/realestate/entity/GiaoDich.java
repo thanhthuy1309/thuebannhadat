@@ -8,9 +8,7 @@
  */
 package realestate.entity;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,11 +16,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Where;
 
 /**
  * @author : DungPT
@@ -32,7 +29,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "tbl_giaodich")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class GiaoDich implements Serializable {
+public class GiaoDich extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
@@ -41,6 +38,7 @@ public class GiaoDich implements Serializable {
   @Id
   @Column(name = "id_giaodich", nullable = false)
   @GeneratedValue(strategy = GenerationType.AUTO)
+  @Where(clause = "trangthai = 1")
   private Integer idGiaoDich;
 
   /** Init idLoaiGiaoDich **/
@@ -54,15 +52,6 @@ public class GiaoDich implements Serializable {
   /** Init tienNap **/
   @Column(name = "tien_nap")
   private BigDecimal tienNap;
-
-  /** Init thoiGian **/
-  @Column(name = "thoigian", nullable = false)
-  @Temporal(TemporalType.TIMESTAMP)
-  private Date thoiGian;
-
-  /** Init trangThai **/
-  @Column(name = "trangthai", length = 1, nullable = false)
-  private Integer trangThai;
 
   public Integer getIdGiaoDich() {
     return idGiaoDich;
@@ -94,22 +83,6 @@ public class GiaoDich implements Serializable {
 
   public void setTienNap(BigDecimal tienNap) {
     this.tienNap = tienNap;
-  }
-
-  public Date getThoiGian() {
-    return thoiGian;
-  }
-
-  public void setThoiGian(Date thoiGian) {
-    this.thoiGian = thoiGian;
-  }
-
-  public Integer getTrangThai() {
-    return trangThai;
-  }
-
-  public void setTrangThai(Integer trangThai) {
-    this.trangThai = trangThai;
   }
 
   public static long getSerialversionuid() {

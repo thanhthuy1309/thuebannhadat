@@ -8,7 +8,6 @@
  */
 package realestate.entity;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
@@ -20,6 +19,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Where;
 
 /**
  * @author : DungPT
@@ -29,7 +29,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "tbl_giatin")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class GiaTin implements Serializable {
+@Where(clause = "trangthai = 1")
+public class GiaTin extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
@@ -44,24 +45,12 @@ public class GiaTin implements Serializable {
   @Column(name = "giatin", nullable = false, unique = true)
   private BigDecimal giaTin;
 
-  /** Init trangThai **/
-  @Column(name = "trangthai", length = 1, nullable = false)
-  private Integer trangThai;
-
   public Integer getIdGiaTin() {
     return idGiaTin;
   }
 
   public void setIdGiaTin(Integer idGiaTin) {
     this.idGiaTin = idGiaTin;
-  }
-
-  public Integer getTrangThai() {
-    return trangThai;
-  }
-
-  public void setTrangThai(Integer trangThai) {
-    this.trangThai = trangThai;
   }
 
   public BigDecimal getGiaTin() {

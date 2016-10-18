@@ -23,6 +23,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Where;
 
 /**
  * @author : DungPT
@@ -32,6 +33,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "tbl_thanhpho")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Where(clause = "trangthai = 1")
 public class ThanhPho implements Serializable {
 
   /** Init serialVersionUID is 1L **/
