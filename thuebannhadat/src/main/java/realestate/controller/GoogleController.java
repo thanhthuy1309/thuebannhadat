@@ -91,7 +91,7 @@ public class GoogleController {
 
       request.getSession().setAttribute("GOOGLE_ACCESS_TOKEN", accessToken);
 
-      return "redirect:/register_social_step_1";
+      return "redirect:/dang-ky-xa-hoi-buoc-1";
     }
     return "redirect:/index";
   }

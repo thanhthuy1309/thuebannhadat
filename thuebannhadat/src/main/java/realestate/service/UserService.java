@@ -8,7 +8,6 @@
  */
 package realestate.service;
 
-import realestate.dto.ActivationDto;
 import realestate.dto.LoginDto;
 import realestate.dto.PasswordDto;
 import realestate.dto.RegisterDto;
@@ -52,9 +51,9 @@ public interface UserService {
    * kich hoat tai khoan
    * 
    * @param activationDto
-   * @return true, if successful
+   * @return true, if nguoiDung
    */
-  public boolean activateUser(ActivationDto activationDto);
+  public boolean activateUser(NguoiDung nguoiDung);
 
   /**
    * dang nhap bang so dien thoai

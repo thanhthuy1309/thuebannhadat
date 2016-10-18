@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 import realestate.common.ValidStatusEnum;
 import realestate.constants.ValueConstants;
 import realestate.dao.UserDao;
-import realestate.dto.ActivationDto;
 import realestate.dto.LoginDto;
 import realestate.dto.PasswordDto;
 import realestate.dto.RegisterDto;
@@ -113,23 +112,12 @@ public class UserServiceImpl implements UserService {
    */
   @Override
   @Transactional
-  public boolean activateUser(ActivationDto kichHoatDto) {
-    if (kichHoatDto != null) {
+  public boolean activateUser(NguoiDung nguoiDung) {
+    if (nguoiDung != null) {
       try {
-        NguoiDung nd = userDao.getUserByPhone(kichHoatDto.getPhoneNumber());
-        if (nd != null) {
-          if (nd.getMaCodeKichHoat().equals(kichHoatDto.getActivationCode())) {
-            // set trang thai dc kich hoat la 1
-            nd.setTrangThai(ValidStatusEnum.SUCCESSFUL.getValue());
-            // reset lai ma kich hoat
-            nd.setMaCodeKichHoat("");
-            return userDao.updateUser(nd);
-          }
-        }
-        return false;
+        return userDao.updateUser(nguoiDung);
       } catch (Exception e) {
         LOGGER.error("#kichhoatNguoiDung: " + e);
-        return false;
       }
     }
     return false;
@@ -275,7 +263,7 @@ public class UserServiceImpl implements UserService {
 				nguoiDung.setDienThoai(registerSocialDto.getDienThoai());
 				nguoiDung.setHoTen(registerSocialDto.getHoTen());
 				nguoiDung.setEmail(registerSocialDto.getEmail());
-				nguoiDung.setTrangThai(ValidStatusEnum.FAILED.getValue());
+				nguoiDung.setTrangThai(registerSocialDto.getTrangThai());
 				nguoiDung.setSoCodeKichHoat(registerSocialDto.getSoCodeKichHoat());
 				nguoiDung.setMaCodeKichHoat(registerSocialDto.getMaCodeKichHoat());
 

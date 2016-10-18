@@ -4,14 +4,14 @@
  * Khi bam button huy o man hinh dang ky step 1
  */
 function registerStep1Cancel() {
-	submitform("phoneFrm", "registerStep1Cancel");
+	submitform("phoneFrm", "huy-dang-ky");
 }
 
 /**
  * Khi bam button xac nhan o man hinh dang ky step 1
  */
 function registerStep1Approve() {
-	submitform("phoneFrm", "registerStep1Approve");
+	submitform("phoneFrm", "xac-nhan");
 }
 
 /* END: Man hinh dang ky step 1: register_social_step1 */
@@ -22,13 +22,13 @@ function registerStep1Approve() {
  * khi bam button lay lai ma
  */
 function getCodeAgain() {
-	submitform("codeFrm", "getCodeAgain");
+	submitform("codeFrm", "lay-lai-ma");
 }
 
 /**
  * khi bam button gui ma code
  */
 function submitCode() {
-	submitform("codeFrm", "submitCode");
+	submitform("codeFrm", "gui-ma");
 }
 /* END: Man hinh dang ky step 1: register_social_step2 */
