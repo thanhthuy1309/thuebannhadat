@@ -1,21 +1,21 @@
-package realestate.dao;
+package realestate.service;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * @author : DUNGPT
- * @PG_ID : AbstractDao
- * @createDate : 20.10.2016
+ * @PG_ID : AbstractService
+ * @createDate : 21.10.2016
  */
 
-public interface AbstractDao<T, PK extends Serializable> {
+public interface AbstractService<T, PK extends Serializable> {
 
   public T findByPK(PK id);
 
   public List<T> findAll();
 
-  public List<T> findAllByStatus(Integer status);
+  public List<T> findAllByStatusOff();
 
   public T saveOrUpdate(T entity);
 

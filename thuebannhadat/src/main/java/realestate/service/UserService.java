@@ -16,10 +16,10 @@ import realestate.entity.NguoiDung;
 
 /**
  * @author : DUNGPT
- * @PG_ID  : UserService.
+ * @PG_ID : UserService.
  * @createDate : 09.01.2016
  */
-public interface UserService {
+public interface UserService extends AbstractService<NguoiDung, Integer> {
 
   /**
    * Lay thong tin nguoi dung dua vao key dienThoai
@@ -38,7 +38,7 @@ public interface UserService {
    * @return NguoiDung
    */
   public NguoiDung getUserByEmail(String email);
-  
+
   /**
    * dang ky nguoi dung chua kich hoat tai khoan
    * 
@@ -63,7 +63,6 @@ public interface UserService {
    * @return NguoiDung
    */
   public NguoiDung loginByPhone(LoginDto loginDto);
-
 
   /**
    * truong hop nguoi dung da dang ky roi nhung tai khoan chua dc kich hoat.
@@ -110,11 +109,4 @@ public interface UserService {
    */
   public NguoiDung registerSocial(RegisterSocialDto registerSocialDto);
 
-  /**
-   * lay nguoi dung theo idNguoiDung
-   * 
-   * @param idNguoiDung
-   * @return nguoidung
-   */
-  public NguoiDung getUserByID(Integer idNguoiDung);
 }

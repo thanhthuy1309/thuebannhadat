@@ -141,7 +141,7 @@ public class RegisterController {
   public String submitCode(@ModelAttribute("registerSocialDto")
   RegisterSocialDto registerSocialDto, HttpSession session, Model model) {
 
-    NguoiDung nguoiDung = userService.getUserByID(registerSocialDto.getIdNguoiDung());
+    NguoiDung nguoiDung = userService.findByPK(registerSocialDto.getIdNguoiDung());
 
     if (nguoiDung.getMaCodeKichHoat().equals(registerSocialDto.getMaCodeKichHoat())) {
 

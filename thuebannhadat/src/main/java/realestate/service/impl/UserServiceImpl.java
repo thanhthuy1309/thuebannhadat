@@ -12,12 +12,14 @@ import java.math.BigDecimal;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import realestate.common.ValidStatusEnum;
 import realestate.constants.ValueConstants;
+import realestate.dao.AbstractDao;
 import realestate.dao.UserDao;
 import realestate.dto.LoginDto;
 import realestate.dto.PasswordDto;
@@ -34,13 +36,22 @@ import realestate.utils.MD5Utils;
  * @createDate : 09.01.2016
  */
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> implements UserService {
 
   /** Init LOGGER. */
   private static final Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
 
-  @Autowired
   private UserDao userDao;
+
+  public UserServiceImpl() {
+
+  }
+
+  @Autowired
+  public UserServiceImpl(@Qualifier("userDaoImpl") AbstractDao<NguoiDung, Integer> abstractDao) {
+    super(abstractDao);
+    this.userDao = (UserDao) abstractDao;
+  }
 
   /**
    * Lay thong tin nguoi dung dua vao key dienThoai
@@ -49,8 +60,8 @@ public class UserServiceImpl implements UserService {
    * 
    * @return NguoiDung
    */
-  @Override
   @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+  @Override
   public NguoiDung getUserByPhone(String dienThoai) {
     return userDao.getUserByPhone(dienThoai);
   }
@@ -62,8 +73,8 @@ public class UserServiceImpl implements UserService {
    * 
    * @return NguoiDung
    */
-  @Override
   @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+  @Override
   public NguoiDung getUserByEmail(String email) {
     return userDao.getUserByEmail(email);
   }
@@ -74,8 +85,8 @@ public class UserServiceImpl implements UserService {
    * @param dangKyDto
    * @return true, if successful
    */
-  @Override
   @Transactional
+  @Override
   public boolean registerUser(RegisterDto dangKyDto) {
     if (dangKyDto != null) {
       try {
@@ -93,7 +104,7 @@ public class UserServiceImpl implements UserService {
         nguoiDung.setNgayTao(DateUtils.now());
 
         NguoiDung nd = userDao.addUser(nguoiDung);
-        if(nd != null) {
+        if (nd != null) {
           return true;
         }
       } catch (Exception e) {
@@ -110,8 +121,8 @@ public class UserServiceImpl implements UserService {
    * @param kichHoatDto
    * @return true, if successful
    */
-  @Override
   @Transactional
+  @Override
   public boolean activateUser(NguoiDung nguoiDung) {
     if (nguoiDung != null) {
       try {
@@ -130,13 +141,12 @@ public class UserServiceImpl implements UserService {
    * 
    * @return NguoiDung
    */
-  @Override
   @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+  @Override
   public NguoiDung loginByPhone(LoginDto dangNhapDto) {
     if (dangNhapDto != null) {
       try {
-        return userDao.checkLoginByPhone(dangNhapDto.getPhoneNumber(),
-            MD5Utils.encrypt(dangNhapDto.getPassword()));
+        return userDao.checkLoginByPhone(dangNhapDto.getPhoneNumber(), MD5Utils.encrypt(dangNhapDto.getPassword()));
       } catch (Exception e) {
         LOGGER.error("#dangNhapByDienThoai: " + e);
         return null;
@@ -154,8 +164,8 @@ public class UserServiceImpl implements UserService {
    * 
    * @return true, if successful
    */
-  @Override
   @Transactional
+  @Override
   public boolean getActivationCode(String maCode, NguoiDung nd) {
     if (nd != null) {
       try {
@@ -180,8 +190,8 @@ public class UserServiceImpl implements UserService {
    * 
    * @return true, if successful
    */
-  @Override
   @Transactional
+  @Override
   public boolean getActivationCodeIfForgotPassword(String maCode, NguoiDung nd) {
     if (nd != null) {
       try {
@@ -199,8 +209,8 @@ public class UserServiceImpl implements UserService {
   }
 
   /**
-   * check ma code mat khau co dung khong
-   * Neu dung thi chuyen sang man hinh nhap mat khau moi
+   * check ma code mat khau co dung khong Neu dung thi chuyen sang man hinh nhap
+   * mat khau moi
    * 
    * @param matKhauDto
    * @return true, if successful
@@ -239,10 +249,10 @@ public class UserServiceImpl implements UserService {
       try {
         NguoiDung nd = userDao.getUserByPhone(dangNhapDto.getPhoneNumber());
         if (nd != null) {
-            nd.setMatKhau(MD5Utils.encrypt(dangNhapDto.getPassword()));
-            // reset lai ma mat khau
-            nd.setMaCodeMatKhau("");
-            return userDao.updateUser(nd);
+          nd.setMatKhau(MD5Utils.encrypt(dangNhapDto.getPassword()));
+          // reset lai ma mat khau
+          nd.setMaCodeMatKhau("");
+          return userDao.updateUser(nd);
         }
         return false;
       } catch (Exception e) {
@@ -255,40 +265,27 @@ public class UserServiceImpl implements UserService {
 
   @Override
   @Transactional
-	public NguoiDung registerSocial(RegisterSocialDto registerSocialDto) {
-		NguoiDung nguoiDung = new NguoiDung();
-		if (registerSocialDto != null) {
-			try {
+  public NguoiDung registerSocial(RegisterSocialDto registerSocialDto) {
+    NguoiDung nguoiDung = new NguoiDung();
+    if (registerSocialDto != null) {
+      try {
 
-				nguoiDung.setDienThoai(registerSocialDto.getDienThoai());
-				nguoiDung.setHoTen(registerSocialDto.getHoTen());
-				nguoiDung.setEmail(registerSocialDto.getEmail());
-				nguoiDung.setTrangThai(registerSocialDto.getTrangThai());
-				nguoiDung.setSoCodeKichHoat(registerSocialDto.getSoCodeKichHoat());
-				nguoiDung.setMaCodeKichHoat(registerSocialDto.getMaCodeKichHoat());
+        nguoiDung.setDienThoai(registerSocialDto.getDienThoai());
+        nguoiDung.setHoTen(registerSocialDto.getHoTen());
+        nguoiDung.setEmail(registerSocialDto.getEmail());
+        nguoiDung.setTrangThai(registerSocialDto.getTrangThai());
+        nguoiDung.setSoCodeKichHoat(registerSocialDto.getSoCodeKichHoat());
+        nguoiDung.setMaCodeKichHoat(registerSocialDto.getMaCodeKichHoat());
 
-				nguoiDung.setIdPhanQuyen(ValueConstants.CONST_ROLE_USER);
-				nguoiDung.setViTien(new BigDecimal(0));
-				nguoiDung.setNgayTao(DateUtils.now());
+        nguoiDung.setIdPhanQuyen(ValueConstants.CONST_ROLE_USER);
+        nguoiDung.setViTien(new BigDecimal(0));
+        nguoiDung.setNgayTao(DateUtils.now());
 
-				userDao.addUser(nguoiDung);
-			} catch (Exception e) {
-				LOGGER.error("#dangkyNguoiDung: " + e);
-			}
-		}
-		return nguoiDung;
-	}
-
-  /**
-   * lay nguoi dung theo idNguoiDung
-   * 
-   * @param idNguoiDung
-   * @return nguoidung
-   */
-  @Transactional
-  @Override
-  public NguoiDung getUserByID(Integer idNguoiDung) {
-    return userDao.getUserByID(idNguoiDung);
+        userDao.addUser(nguoiDung);
+      } catch (Exception e) {
+        LOGGER.error("#dangkyNguoiDung: " + e);
+      }
+    }
+    return nguoiDung;
   }
-
 }
