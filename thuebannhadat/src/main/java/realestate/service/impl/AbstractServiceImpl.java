@@ -11,11 +11,14 @@ package realestate.service.impl;
 import java.io.Serializable;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import realestate.dao.AbstractDao;
+import realestate.dao.impl.AbstractDaoImpl;
 import realestate.service.AbstractService;
 
 /**
@@ -25,6 +28,9 @@ import realestate.service.AbstractService;
  */
 @Service
 public class AbstractServiceImpl<T, PK extends Serializable> implements AbstractService<T, PK> {
+
+  /** Init logger. */
+  private Logger logger = LoggerFactory.getLogger(AbstractServiceImpl.class);
 
   private AbstractDao<T, PK> abstractDao;
 

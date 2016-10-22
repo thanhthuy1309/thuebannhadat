@@ -8,9 +8,10 @@
  */
 package realestate.dao.impl;
 
-import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import realestate.common.ValidStatusEnum;
@@ -25,8 +26,8 @@ import realestate.entity.NguoiDung;
 @Repository
 public class UserDaoImpl extends AbstractDaoImpl<NguoiDung, Integer> implements UserDao {
 
-  /** Init LOGGER. */
-  private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class);
+  /** Init logger. */
+  private Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
 
   /**
    * Them nguoi dung moi
@@ -41,7 +42,7 @@ public class UserDaoImpl extends AbstractDaoImpl<NguoiDung, Integer> implements 
       // create nguoiDung
       session.save(nguoiDung);
     } catch (Exception e) {
-      LOGGER.error("#addUser: " + e);
+      logger.error("#addUser: " + e);
     }
     return nguoiDung;
   }
@@ -89,7 +90,7 @@ public class UserDaoImpl extends AbstractDaoImpl<NguoiDung, Integer> implements 
         session.merge(nguoiDung);
         return true;
       } catch (Exception e) {
-        LOGGER.error("#updateUser: " + e);
+        logger.error("#updateUser: " + e);
       }
     }
     return false;
