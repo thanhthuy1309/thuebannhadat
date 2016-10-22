@@ -46,6 +46,8 @@
 	src="${pageContext.request.contextPath}/resources/lib/swipebox/jquery.swipebox-1.3.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+<!-- Place this tag in your head or just before your close body tag. -->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 <!--[if IE]>
             <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
@@ -552,17 +554,29 @@
 					versions of Lorem Ipsum.</div>
 				<p>Chia sẻ thông tin:</p>
 				<div class="social2">
-					<a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F192.168.1.106%3A8080%2Fthuebannhadat%2Fchitiet&amp;src=sdkpreparse"><span class="fa fa-facebook"></span> Facebook</a> <a
-						href="#"><span class="fa fa-google"></span> Google</a> <a href="#"><span
-						class="fa fa-skype"></span> Skype</a> <a href="#"><span
-						class="fa fa-youtube"></span> Youtube</a>
+					<a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F192.168.1.106%3A8080%2Fthuebannhadat%2Fchi-tiet&amp;src=sdkpreparse">
+						<span class="fa fa-facebook"></span> Facebook
+					</a> 
+					 <!-- Place this tag where you want the share button to render. -->
+ 					
+					<a href="https://plus.google.com/share?url=http%3A%2F%2F192.168.1.106%3A8080%2Fthuebannhadat%2Fchi-tiet&amp" 
+						onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+						<span class="fa fa-google"></span> Google
+					</a>
+					
+					<a href="#">
+						<span class="fa fa-skype"></span> Skype
+					</a> 
+					<a href="#">
+						<span class="fa fa-youtube"></span> Youtube
+					</a>
 				</div>
 				<div class="fb-share-button"
-					data-href="http://192.168.1.106:8080/thuebannhadat/chitiet"
+					data-href="http://192.168.1.106:8080/thuebannhadat/chi-tiet"
 					data-layout="button_count" data-size="small"
 					data-mobile-iframe="true">
 					<a class="fb-xfbml-parse-ignore" target="_blank"
-						href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F192.168.1.106%3A8080%2Fthuebannhadat%2Fchitiet&amp;src=sdkpreparse">Chia
+						href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F192.168.1.106%3A8080%2Fthuebannhadat%2Fchi-tiet&amp;src=sdkpreparse">Chia
 						sẻ</a>
 				</div>
 

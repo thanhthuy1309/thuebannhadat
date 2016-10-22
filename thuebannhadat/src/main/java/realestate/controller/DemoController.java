@@ -27,9 +27,9 @@ public class DemoController {
     return "ban-list";
   }
 
-  @RequestMapping(value = "/chitiet", method = RequestMethod.GET)
+  @RequestMapping(value = "/chi-tiet", method = RequestMethod.GET)
   public String trangChiTiet() {
-    return "chitiet";
+    return "chi-tiet";
   }
 
   @RequestMapping(value = "/dangky-social", method = RequestMethod.GET)
