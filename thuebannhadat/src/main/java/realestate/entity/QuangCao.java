@@ -35,7 +35,7 @@ public class QuangCao extends AbstractEntity {
 
   /** Init idQuangCao **/
   @Id
-  @Column(name = "id_quangcao", nullable = false)
+  @Column(name = "id_quangcao", nullable = false, columnDefinition = "INT(11) UNSIGNED")
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer idQuangCao;
 

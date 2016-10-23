@@ -37,7 +37,7 @@ public class SearchGiaTin extends AbstractEntity {
 
   /** Init idSearchGiaTin **/
   @Id
-  @Column(name = "id_searchgiatin", nullable = false)
+  @Column(name = "id_searchgiatin", nullable = false, columnDefinition = "INT(11) UNSIGNED")
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer idSearchGiaTin;
 

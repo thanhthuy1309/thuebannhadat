@@ -29,6 +29,7 @@ import org.hibernate.annotations.Where;
 @Entity
 @Table(name = "tbl_giaodich")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Where(clause = "trangthai = 1")
 public class GiaoDich extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
@@ -36,9 +37,8 @@ public class GiaoDich extends AbstractEntity {
 
   /** Init idGiaoDich **/
   @Id
-  @Column(name = "id_giaodich", nullable = false)
+  @Column(name = "id_giaodich", nullable = false, columnDefinition = "INT(11) UNSIGNED")
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @Where(clause = "trangthai = 1")
   private Integer idGiaoDich;
 
   /** Init idLoaiGiaoDich **/
@@ -46,11 +46,11 @@ public class GiaoDich extends AbstractEntity {
   private Integer idLoaiGiaoDich;
 
   /** Init tienGiaoDich **/
-  @Column(name = "tien_giaodich")
+  @Column(name = "tien_giaodich", columnDefinition = "DECIMAL(19,2) DEFAULT '0.00'")
   private BigDecimal tienGiaoDich;
 
   /** Init tienNap **/
-  @Column(name = "tien_nap")
+  @Column(name = "tien_nap", columnDefinition = "DECIMAL(19,2) DEFAULT '0.00'")
   private BigDecimal tienNap;
 
   public Integer getIdGiaoDich() {

@@ -38,7 +38,7 @@ public class LoaiTin extends AbstractEntity {
 
   /** Init idLoaiTin **/
   @Id
-  @Column(name = "id_loaitin", nullable = false)
+  @Column(name = "id_loaitin", nullable = false, columnDefinition = "INT(11) UNSIGNED")
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer idLoaiTin;
 

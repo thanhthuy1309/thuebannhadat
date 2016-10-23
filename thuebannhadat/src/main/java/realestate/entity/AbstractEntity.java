@@ -31,17 +31,17 @@ public class AbstractEntity implements Serializable {
   private Integer trangThai;
 
   /** Init ngayTao **/
-  @Column(name = "ngaytao")
+  @Column(name = "ngaytao", columnDefinition = "TIMESTAMP  DEFAULT 0")
   private Date ngayTao;
 
   /** Init ngaycapnhat **/
-  @Column(name = "ngaycapnhat")
+  @Column(name = "ngaycapnhat", columnDefinition = "TIMESTAMP  DEFAULT 0")
   private Date ngayCapNhat;
 
-  @Column(name = "nguoitao", length = 250)
+  @Column(name = "nguoitao", length = 250, columnDefinition = "VARCHAR(250) DEFAULT ''")
   private String nguoiTao;
 
-  @Column(name = "nguoicapnhat", length = 250)
+  @Column(name = "nguoicapnhat", length = 250, columnDefinition = "VARCHAR(250) DEFAULT ''")
   private String nguoiCapNhat;
 
   public Integer getTrangThai() {

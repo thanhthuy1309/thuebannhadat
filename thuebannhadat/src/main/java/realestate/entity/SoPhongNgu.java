@@ -35,7 +35,7 @@ public class SoPhongNgu extends AbstractEntity {
 
   /** Init idSoPhongNgu **/
   @Id
-  @Column(name = "id_sophongngu", nullable = false)
+  @Column(name = "id_sophongngu", nullable = false, columnDefinition = "INT(11) UNSIGNED")
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer idSoPhongNgu;
 

@@ -37,7 +37,7 @@ public class GiaTin extends AbstractEntity {
 
   /** Init idGiaTin **/
   @Id
-  @Column(name = "id_giatin", nullable = false)
+  @Column(name = "id_giatin", nullable = false, columnDefinition = "INT(11) UNSIGNED")
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer idGiaTin;
 

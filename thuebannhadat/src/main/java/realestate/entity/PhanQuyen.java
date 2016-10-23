@@ -36,7 +36,7 @@ public class PhanQuyen extends AbstractEntity {
   /** Init phanQuyenId **/
   /* co 2 quyen 1 : admin, 2 : user */
   @Id
-  @Column(name = "id_phanquyen", nullable = false)
+  @Column(name = "id_phanquyen", nullable = false, columnDefinition = "INT(11) UNSIGNED")
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer idPhanQuyen;
 

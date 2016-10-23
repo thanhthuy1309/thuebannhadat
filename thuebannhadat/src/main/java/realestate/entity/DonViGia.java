@@ -35,12 +35,12 @@ public class DonViGia extends AbstractEntity {
 
   /** Init idDonViGia **/
   @Id
-  @Column(name = "id_donvigia", nullable = false)
+  @Column(name = "id_donvigia", nullable = false, columnDefinition = "INT(11) UNSIGNED")
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer idDonViGia;
 
   /** Init tenDonViGia **/
-  @Column(name = "ten_donvigia", length = 50)
+  @Column(name = "ten_donvigia", length = 50, columnDefinition = "VARCHAR(50) DEFAULT ''")
   private String tenDonViGia;
 
   public Integer getIdDonViGia() {

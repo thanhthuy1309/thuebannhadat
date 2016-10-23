@@ -43,12 +43,12 @@ public class NguoiDung extends AbstractEntity {
 
   /** Init idNguoiDung **/
   @Id
-  @Column(name = "id_nguoidung", nullable = false)
+  @Column(name = "id_nguoidung", nullable = false, columnDefinition = "INT(11) UNSIGNED")
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer idNguoiDung;
 
   /** Init email **/
-  @Column(name = "email", length = 50)
+  @Column(name = "email", length = 50, columnDefinition = "VARCHAR(50) DEFAULT ''")
   private String email;
 
   /** Init dienThoai **/
@@ -56,11 +56,11 @@ public class NguoiDung extends AbstractEntity {
   private String dienThoai;
 
   /** Init userName **/
-  @Column(name = "hoten", length = 500)
+  @Column(name = "hoten", length = 500, columnDefinition = "VARCHAR(500) DEFAULT ''")
   private String hoTen;
 
   /** Init password **/
-  @Column(name = "matkhau", length = 250)
+  @Column(name = "matkhau", length = 250, columnDefinition = "VARCHAR(250) DEFAULT ''")
   private String matKhau;
 
   @Column(name = "id_phanquyen", nullable = false)
@@ -87,7 +87,7 @@ public class NguoiDung extends AbstractEntity {
   private PhanQuyen phanQuyen;
 
   /** Init diaChi **/
-  @Column(name = "diachi", length = 250)
+  @Column(name = "diachi", length = 250, columnDefinition = "VARCHAR(250) DEFAULT ''")
   private String diaChi;
   
   /** Init viTien **/
@@ -95,11 +95,11 @@ public class NguoiDung extends AbstractEntity {
   private BigDecimal viTien;
 
   /** Init maCodeKichHoat **/
-  @Column(name = "macode_kichhoat", length = 5)
+  @Column(name = "macode_kichhoat", length = 5, columnDefinition = "VARCHAR(5) DEFAULT ''")
   private String maCodeKichHoat;
 
   /** Su dung khi quen mat khau **/
-  @Column(name = "macode_matkhau", length = 5)
+  @Column(name = "macode_matkhau", length = 5, columnDefinition = "VARCHAR(5) DEFAULT ''")
   private String maCodeMatKhau;
 
   public Integer getIdNguoiDung() {

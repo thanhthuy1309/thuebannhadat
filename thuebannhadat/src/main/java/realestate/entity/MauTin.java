@@ -58,10 +58,10 @@ public class MauTin extends AbstractEntity {
   @Column(name = "id_quanhuyen", nullable = false, length = 250)
   private String idQuanHuyen;
 
-  @Column(name = "id_phuongxa",length = 250)
+  @Column(name = "id_phuongxa",length = 250, columnDefinition = "VARCHAR(250) DEFAULT ''")
   private String idPhuongXa;
 
-  @Column(name = "id_duong", length = 250)
+  @Column(name = "id_duong", length = 250, columnDefinition = "VARCHAR(250) DEFAULT ''")
   private String idDuong;
 
   /** Init diaChi **/
@@ -69,7 +69,7 @@ public class MauTin extends AbstractEntity {
   private String diaChi;
 
   /** Init linkYoutube **/
-  @Column(name = "link_youtube", length = 250)
+  @Column(name = "link_youtube", length = 250, columnDefinition = "VARCHAR(250) DEFAULT ''")
   private String linkYoutube;
 
   /** Init dienTich **/
@@ -85,7 +85,7 @@ public class MauTin extends AbstractEntity {
   private Integer idDonViGia;
 
   /** Init tongGiaTien **/
-  @Column(name = "tong_giatien", length = 250)
+  @Column(name = "tong_giatien", length = 250, columnDefinition = "VARCHAR(250) DEFAULT 0")
   private String tongGiaTienDat;
 
   /** Init matTien **/
@@ -97,23 +97,23 @@ public class MauTin extends AbstractEntity {
   private Float loGioi;
 
   /** Init idHuongNha **/
-  @Column(name = "id_huongnha", length = 250)
+  @Column(name = "id_huongnha", length = 250, columnDefinition = "VARCHAR(250) DEFAULT ''")
   private String idHuongNha;
 
   /** Init idHuongBanCong **/
-  @Column(name = "id_huongbancong", length = 250)
+  @Column(name = "id_huongbancong", length = 250, columnDefinition = "VARCHAR(250) DEFAULT ''")
   private String idHuongBanCong;
 
   /** Init idSoTang **/
-  @Column(name = "id_sotang")
+  @Column(name = "id_sotang", columnDefinition = "INT(11) DEFAULT 0")
   private Integer idSoTang;
 
   /** Init idSoPhongNgu **/
-  @Column(name = "id_sophongngu")
+  @Column(name = "id_sophongngu", columnDefinition = "INT(11) DEFAULT 0")
   private Integer idSoPhongNgu;
 
   /** Init idSoToilet **/
-  @Column(name = "id_sotoilet")
+  @Column(name = "id_sotoilet", columnDefinition = "INT(11) DEFAULT 0")
   private Integer idSoToilet;
 
   /** Init idLoaiTin **/

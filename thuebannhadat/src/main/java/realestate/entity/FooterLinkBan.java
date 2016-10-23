@@ -35,7 +35,7 @@ public class FooterLinkBan extends AbstractEntity {
 
   /** Init idFooterLinkBan **/
   @Id
-  @Column(name = "id_footerlinkban", nullable = false)
+  @Column(name = "id_footerlinkban", nullable = false, columnDefinition = "INT(11) UNSIGNED")
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer idFooterLinkBan;
 

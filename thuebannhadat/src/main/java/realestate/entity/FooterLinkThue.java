@@ -35,7 +35,7 @@ public class FooterLinkThue extends AbstractEntity {
 
   /** Init idFooterLinkThue **/
   @Id
-  @Column(name = "id_footerlinkthue", nullable = false)
+  @Column(name = "id_footerlinkthue", nullable = false, columnDefinition = "INT(11) UNSIGNED")
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer idFooterLinkThue;
 
