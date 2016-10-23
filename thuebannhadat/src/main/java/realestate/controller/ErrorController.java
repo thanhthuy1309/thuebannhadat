@@ -46,6 +46,9 @@ public class ErrorController {
   @RequestMapping(value = "/404")
   public ModelAndView notFound() {
     LOGGER.info("aaa");
+    LOGGER.error("aaa");
+    LOGGER.warn("aaa");
+    LOGGER.debug("aaa");
     ModelAndView model = new ModelAndView(TILE_ERROR);
     model.addObject("message", "Đường dẫn không tồn tại");
     return model;
