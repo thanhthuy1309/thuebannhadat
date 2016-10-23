@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//LOGGER" "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<appender name="realestatelog" class="org.apache.log4j.rolling.RollingFileAppender">
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+			<param name="FileNamePattern" value="/logs/realestate.%d{dd-MM-yyyy}.log" />
+		</rollingPolicy>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%d{dd-MM-yyyy HH:mm:ss}]: [%-5l] : %msg%n" />
+		</layout>
+	</appender>
+
+	<appender name="systemlog" class="org.apache.log4j.rolling.RollingFileAppender">
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+			<param name="FileNamePattern" value="/logs/systemlog.%d{dd-MM-yyyy}.log" />
+		</rollingPolicy>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%d{dd-MM-yyyy HH:mm:ss}]: [%-5l] : %msg%n" />
+		</layout>
+	</appender>
+
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%-5l] %d{dd-MM-yyyy HH:mm:ss} [%t] %c{10} - %msg%n" />
+		</layout>
+	</appender>
+
+	<!-- 3rdparty Loggers -->
+
+	<logger name="realestate">
+		<level value="DEBUG" />
+		<appender-ref ref="realestatelog" />
+	</logger>
+
+	<logger name="log4j.logger.javax.faces">
+		<level value="DEBUG" />
+		<appender-ref ref="systemlog" />
+	</logger>
+
+	<logger name="log4j.logger.com.sun.faces">
+		<level value="DEBUG" />
+		<appender-ref ref="systemlog" />
+	</logger>
+
+	<logger name="org.springframework.security">
+		<level value="warn" />
+		<appender-ref ref="systemlog" />
+	</logger>
+	<logger name="org.apache.commons">
+		<level value="warn" />
+		<appender-ref ref="systemlog" />
+	</logger>
+	<logger name="org.springframework">
+		<level value="warn" />
+		<appender-ref ref="systemlog" />
+	</logger>
+	<logger name="org.springframework.beans.factory.support">
+		<level value="warn" />
+		<appender-ref ref="systemlog" />
+	</logger>
+
+	<logger name="org.hibernate.SQL">
+		<level value="DEBUG" />
+		<appender-ref ref="systemlog" />
+	</logger>
+
+	<!-- Root Logger -->
+	<root>
+		<priority value="info" />
+		<appender-ref ref="console" />
+	</root>
+
+</log4j:configuration>

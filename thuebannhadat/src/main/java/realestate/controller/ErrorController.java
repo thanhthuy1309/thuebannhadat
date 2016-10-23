@@ -36,7 +36,7 @@ public class ErrorController {
   /** Init messages. */
   private ResourceBundle messages = ResourceBundle.getBundle("messages");
 
-  private static final Logger logger = Logger.getLogger(ErrorController.class);
+  private static final Logger LOGGER = Logger.getLogger(ErrorController.class);
 
   /**
    * Page Not Found.
@@ -45,7 +45,7 @@ public class ErrorController {
    */
   @RequestMapping(value = "/404")
   public ModelAndView notFound() {
-    logger.info("aaa");
+    LOGGER.info("aaa");
     ModelAndView model = new ModelAndView(TILE_ERROR);
     model.addObject("message", "Đường dẫn không tồn tại");
     return model;
