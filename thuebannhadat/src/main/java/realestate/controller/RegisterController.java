@@ -90,6 +90,7 @@ public class RegisterController {
     if (isSend) {
       registerSocialDto.setSoCodeKichHoat(0);
       registerSocialDto.setMaCodeKichHoat(maCodeKichHoat);
+      registerSocialDto.setTrangThai(ValidStatusEnum.NOACTICEPHONE.getValue());
 
       NguoiDung nguoiDung = userService.registerSocial(registerSocialDto);
 
@@ -119,10 +120,14 @@ public class RegisterController {
   @RequestMapping(value = "/lay-lai-ma", method = RequestMethod.POST)
   public String getCodeAgain(@ModelAttribute("registerSocialDto")
   RegisterSocialDto registerSocialDto, HttpSession session, Model model) {
+	  String email = (String) session.getAttribute("email");
+    String name = (String) session.getAttribute("name");
 
-    model.addAttribute("registerSocialDto",
-        new RegisterSocialDto(registerSocialDto.getEmail(), registerSocialDto.getHoTen()));
-    return "dang-ky-xa-hoi-buoc-1";
+    if (!email.equals("") && !name.equals("")) {
+      model.addAttribute("registerSocialDto", new RegisterSocialDto(email, name));
+      return "dang-ky-xa-hoi-buoc-1";
+    }
+    return "redirect:/trang-chu";    
   }
 
   /**
@@ -136,12 +141,13 @@ public class RegisterController {
   public String submitCode(@ModelAttribute("registerSocialDto")
   RegisterSocialDto registerSocialDto, HttpSession session, Model model) {
 
-    NguoiDung nguoiDung = userService.getUserByID(registerSocialDto.getIdNguoiDung());
+    NguoiDung nguoiDung = userService.findByPK(registerSocialDto.getIdNguoiDung());
 
     if (nguoiDung.getMaCodeKichHoat().equals(registerSocialDto.getMaCodeKichHoat())) {
 
       Integer soCodeKichHoat = nguoiDung.getSoCodeKichHoat();
       nguoiDung.setSoCodeKichHoat(soCodeKichHoat + 1);
+      nguoiDung.setTrangThai(ValidStatusEnum.SUCCESSFUL.getValue());
       
       userService.activateUser(nguoiDung);
 

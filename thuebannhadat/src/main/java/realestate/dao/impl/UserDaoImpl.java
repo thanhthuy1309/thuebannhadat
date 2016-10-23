@@ -8,16 +8,15 @@
  */
 package realestate.dao.impl;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+
 import realestate.common.ValidStatusEnum;
 import realestate.dao.UserDao;
 import realestate.entity.NguoiDung;
-
-import org.apache.log4j.Logger;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 /**
  * @author : DUNGPT
@@ -25,14 +24,10 @@ import org.springframework.stereotype.Repository;
  * @createDate : 09.01.2016
  */
 @Repository
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl extends AbstractDaoImpl<NguoiDung, Integer> implements UserDao {
 
-  /** Init LOGGER. */
-  private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class);
-
-  /** Init sessionFactory */
-  @Autowired
-  private SessionFactory sessionFactory;
+  /** Init logger. */
+  private Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
 
   /**
    * Them nguoi dung moi
@@ -41,13 +36,13 @@ public class UserDaoImpl implements UserDao {
    * @return nguoiDung
    */
   public NguoiDung addUser(NguoiDung nguoiDung) {
-    Session session = this.sessionFactory.getCurrentSession();
+    Session session = getSession();
 
     try {
       // create nguoiDung
       session.save(nguoiDung);
     } catch (Exception e) {
-      LOGGER.error("#addUser: " + e);
+      logger.error("#addUser: " + e);
     }
     return nguoiDung;
   }
@@ -60,7 +55,7 @@ public class UserDaoImpl implements UserDao {
    * @return NguoiDung
    */
   public NguoiDung getUserByPhone(String phoneNumber) {
-    Session session = this.sessionFactory.getCurrentSession();
+    Session session = getSession();
     // Query get get NguoiDung
     Query query = session.getNamedQuery("UserDao.getUserByPhone");
 
@@ -83,7 +78,7 @@ public class UserDaoImpl implements UserDao {
    * @return true, if successful
    */
   public boolean updateUser(NguoiDung nd) {
-    Session session = this.sessionFactory.getCurrentSession();
+    Session session = getSession();
 
     NguoiDung nguoiDung = (NguoiDung) session.get(NguoiDung.class, nd.getIdNguoiDung());
     if (nguoiDung != null) {
@@ -95,7 +90,7 @@ public class UserDaoImpl implements UserDao {
         session.merge(nguoiDung);
         return true;
       } catch (Exception e) {
-        LOGGER.error("#updateUser: " + e);
+        logger.error("#updateUser: " + e);
       }
     }
     return false;
@@ -109,7 +104,7 @@ public class UserDaoImpl implements UserDao {
    * @return NguoiDung
    */
   public NguoiDung getUserByEmail(String email) {
-    Session session = this.sessionFactory.getCurrentSession();
+    Session session = getSession();
     // Query get get NguoiDung
     Query query = session.getNamedQuery("UserDao.getUserByEmail");
 
@@ -135,7 +130,7 @@ public class UserDaoImpl implements UserDao {
    * @return NguoiDung
    */
   public NguoiDung checkLoginByPhone(String phoneNumber, String password) {
-    Session session = this.sessionFactory.getCurrentSession();
+    Session session = getSession();
     // Query get get NguoiDung
     Query query = session.getNamedQuery("UserDao.checkLoginByPhone");
 
@@ -160,7 +155,7 @@ public class UserDaoImpl implements UserDao {
    */
   @Override
   public NguoiDung getUserByID(Integer idNguoiDung) {
-    Session session = this.sessionFactory.getCurrentSession();
+    Session session = getSession();
     return (NguoiDung) session.get(NguoiDung.class, idNguoiDung);
   }
 }
