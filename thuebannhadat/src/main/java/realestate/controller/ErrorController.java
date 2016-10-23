@@ -13,6 +13,7 @@ package realestate.controller;
 
 import java.util.ResourceBundle;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,6 +36,8 @@ public class ErrorController {
   /** Init messages. */
   private ResourceBundle messages = ResourceBundle.getBundle("messages");
 
+  private static final Logger logger = Logger.getLogger(ErrorController.class);
+
   /**
    * Page Not Found.
    * 
@@ -42,7 +45,7 @@ public class ErrorController {
    */
   @RequestMapping(value = "/404")
   public ModelAndView notFound() {
-
+    logger.info("aaa");
     ModelAndView model = new ModelAndView(TILE_ERROR);
     model.addObject("message", "Đường dẫn không tồn tại");
     return model;

@@ -21,7 +21,7 @@ import org.apache.log4j.Logger;
  */
 public class FileUtils {
 
-  protected static final Logger LOGGER = Logger.getLogger(FileUtils.class);
+  private static final Logger LOGGER = Logger.getLogger(FileUtils.class);
 
   /**
    * Gets the properties.

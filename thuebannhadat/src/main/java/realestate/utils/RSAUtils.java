@@ -33,7 +33,7 @@ import realestate.constants.ValueConstants;
 public class RSAUtils {
 
   /** The Constant LOGGER. */
-  public static final Logger LOGGER = Logger.getLogger(RSAUtils.class);
+  private static final Logger LOGGER = Logger.getLogger(RSAUtils.class);
 
   /**
    * Encrypt the plain text using public key.

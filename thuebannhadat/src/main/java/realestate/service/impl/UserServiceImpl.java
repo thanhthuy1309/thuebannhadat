@@ -10,8 +10,7 @@ package realestate.service.impl;
 
 import java.math.BigDecimal;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -39,8 +38,7 @@ import realestate.utils.MD5Utils;
 @Service
 public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> implements UserService {
 
-  /** Init logger. */
-  private Logger logger = LoggerFactory.getLogger(AbstractServiceImpl.class);
+  private static final Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
 
   private UserDao userDao;
 
@@ -109,7 +107,7 @@ public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> imp
           return true;
         }
       } catch (Exception e) {
-        logger.error("#dangkyNguoiDung: " + e);
+        LOGGER.error("#dangkyNguoiDung: " + e);
         return false;
       }
     }
@@ -129,7 +127,7 @@ public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> imp
       try {
         return userDao.updateUser(nguoiDung);
       } catch (Exception e) {
-        logger.error("#kichhoatNguoiDung: " + e);
+        LOGGER.error("#kichhoatNguoiDung: " + e);
       }
     }
     return false;
@@ -149,7 +147,7 @@ public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> imp
       try {
         return userDao.checkLoginByPhone(dangNhapDto.getPhoneNumber(), MD5Utils.encrypt(dangNhapDto.getPassword()));
       } catch (Exception e) {
-        logger.error("#dangNhapByDienThoai: " + e);
+        LOGGER.error("#dangNhapByDienThoai: " + e);
         return null;
       }
     }
@@ -176,7 +174,7 @@ public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> imp
         nd.setSoCodeKichHoat(nd.getSoCodeKichHoat() + 1);
         return userDao.updateUser(nd);
       } catch (Exception e) {
-        logger.error("#layCodeKichHoat: " + e);
+        LOGGER.error("#layCodeKichHoat: " + e);
         return false;
       }
     }
@@ -202,7 +200,7 @@ public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> imp
         nd.setSoCodeMatKhau(nd.getSoCodeMatKhau() + 1);
         return userDao.updateUser(nd);
       } catch (Exception e) {
-        logger.error("#layCodeQuenMatKhau: " + e);
+        LOGGER.error("#layCodeQuenMatKhau: " + e);
         return false;
       }
     }
@@ -230,7 +228,7 @@ public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> imp
         }
         return false;
       } catch (Exception e) {
-        logger.error("#checkMaCodeMatKhau: " + e);
+        LOGGER.error("#checkMaCodeMatKhau: " + e);
         return false;
       }
     }
@@ -257,7 +255,7 @@ public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> imp
         }
         return false;
       } catch (Exception e) {
-        logger.error("#capNhatMatKhau: " + e);
+        LOGGER.error("#capNhatMatKhau: " + e);
         return false;
       }
     }
@@ -284,7 +282,7 @@ public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> imp
 
         userDao.addUser(nguoiDung);
       } catch (Exception e) {
-        logger.error("#dangkyNguoiDung: " + e);
+        LOGGER.error("#dangkyNguoiDung: " + e);
       }
     }
     return nguoiDung;

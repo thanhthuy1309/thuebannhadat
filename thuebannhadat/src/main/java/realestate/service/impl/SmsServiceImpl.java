@@ -9,6 +9,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.MessageFormat;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import realestate.constants.ValueConstants;
@@ -22,6 +23,8 @@ import realestate.utils.FileUtils;
  */
 @Service
 public class SmsServiceImpl implements SmsService {
+
+  private static final Logger LOGGER = Logger.getLogger(SmsServiceImpl.class);
 
   /**
    * send code bookticket
@@ -63,7 +66,8 @@ public class SmsServiceImpl implements SmsService {
       System.out.println("\nSending 'GET' request to URL : " + ValueConstants.CONST_SMS_URL);
       System.out.println("Response Code : " + responseCode);
 
-      // Đã gọi URL thành công, tuy nhiên bạn phải tự kiểm tra CodeResult xem tin nhắn có gửi thành
+      // Đã gọi URL thành công, tuy nhiên bạn phải tự kiểm tra CodeResult xem
+      // tin nhắn có gửi thành
       // công không, vì có thể tài khoản bạn không đủ tiền thì sẽ thất bại
       if (responseCode == 200)
         isSent = true;
@@ -91,4 +95,3 @@ public class SmsServiceImpl implements SmsService {
   }
 
 }
-

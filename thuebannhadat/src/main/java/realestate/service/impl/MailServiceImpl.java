@@ -31,13 +31,13 @@ import realestate.utils.Utils;
 
 /**
  * @author : TA
- * @PG_ID  : MailServiceImpl.java
+ * @PG_ID : MailServiceImpl.java
  * @createDate : 08.08.2016
  */
 @Service
 public class MailServiceImpl implements MailService {
 
-  protected static final Logger LOGGER = Logger.getLogger(MailServiceImpl.class);
+  private static final Logger LOGGER = Logger.getLogger(MailServiceImpl.class);
 
   @Autowired
   private JavaMailSender mailSender;
@@ -96,10 +96,14 @@ public class MailServiceImpl implements MailService {
   /**
    * Process send mail.
    *
-   * @param fromEmail the from email
-   * @param toEmail the to email
-   * @param subject the subject
-   * @param content the content
+   * @param fromEmail
+   *          the from email
+   * @param toEmail
+   *          the to email
+   * @param subject
+   *          the subject
+   * @param content
+   *          the content
    * @return true, if successful
    */
   private boolean sendMail(String fromEmail, String toEmail, String subject, String content) {

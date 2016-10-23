@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
 public class DateUtils {
 
   /** The Constant LOGGER. */
-  public static final Logger LOGGER = Logger.getLogger(DateUtils.class);
+  private static final Logger LOGGER = Logger.getLogger(DateUtils.class);
 
   /**
    * Get now time.

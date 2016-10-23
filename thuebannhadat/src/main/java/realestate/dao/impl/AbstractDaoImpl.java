@@ -5,14 +5,13 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.proxy.HibernateProxy;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -29,7 +28,7 @@ import realestate.dao.AbstractDao;
 public abstract class AbstractDaoImpl<T, PK extends Serializable> implements AbstractDao<T, PK> {
 
   /** Init logger. */
-  private Logger logger = LoggerFactory.getLogger(AbstractDaoImpl.class);
+  private Logger LOGGER = Logger.getLogger(UserDaoImpl.class);
 
   protected Class<? extends T> clazz;
 

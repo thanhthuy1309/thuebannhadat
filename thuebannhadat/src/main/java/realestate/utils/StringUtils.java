@@ -17,6 +17,7 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.log4j.Logger;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -29,6 +30,8 @@ import realestate.constants.ValueConstants;
  * @createDate : 05.08.2016
  */
 public class StringUtils {
+
+  private static final Logger LOGGER = Logger.getLogger(StringUtils.class);
 
   /**
    * Convert object to json string

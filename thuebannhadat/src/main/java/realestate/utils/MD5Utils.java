@@ -23,7 +23,7 @@ import realestate.constants.ValueConstants;
 public class MD5Utils {
 
   /** The Constant LOGGER. */
-  public static final Logger LOGGER = Logger.getLogger(MD5Utils.class);
+  private static final Logger LOGGER = Logger.getLogger(MD5Utils.class);
 
   /**
    * Use MD5 to encrypt a string

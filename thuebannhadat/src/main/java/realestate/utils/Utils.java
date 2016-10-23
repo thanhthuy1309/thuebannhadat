@@ -10,12 +10,16 @@ package realestate.utils;
 
 import java.util.Random;
 
+import org.apache.log4j.Logger;
+
 /**
  * @author : DUNGPT
  * @PG_ID : Utils
  * @createDate : 08.08.2016
  */
 public class Utils {
+
+  private static final Logger LOGGER = Logger.getLogger(Utils.class);
 
   public static boolean isEmptyString(String str) {
     boolean isEmpty = true;
