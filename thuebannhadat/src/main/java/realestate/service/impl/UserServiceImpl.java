@@ -93,14 +93,14 @@ public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> imp
 
         nguoiDung.setDienThoai(dangKyDto.getActivationCode());
         nguoiDung.setMatKhau(MD5Utils.encrypt(dangKyDto.getPassword()));
-        nguoiDung.setTrangThai(ValidStatusEnum.FAILED.getValue());
+        nguoiDung.setStatus(ValidStatusEnum.FAILED.getValue());
         nguoiDung.setSoCodeKichHoat(0);
         nguoiDung.setSoCodeMatKhau(0);
 
         nguoiDung.setIdPhanQuyen(ValueConstants.CONST_ROLE_USER);
         nguoiDung.setViTien(new BigDecimal(0));
         nguoiDung.setMaCodeKichHoat(dangKyDto.getActivationCode());
-        nguoiDung.setNgayTao(DateUtils.now());
+        nguoiDung.setCreateDate(DateUtils.now());
 
         NguoiDung nd = userDao.addUser(nguoiDung);
         if (nd != null) {
@@ -272,13 +272,13 @@ public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> imp
         nguoiDung.setDienThoai(registerSocialDto.getDienThoai());
         nguoiDung.setHoTen(registerSocialDto.getHoTen());
         nguoiDung.setEmail(registerSocialDto.getEmail());
-        nguoiDung.setTrangThai(registerSocialDto.getTrangThai());
+        nguoiDung.setStatus(registerSocialDto.getTrangThai());
         nguoiDung.setSoCodeKichHoat(registerSocialDto.getSoCodeKichHoat());
         nguoiDung.setMaCodeKichHoat(registerSocialDto.getMaCodeKichHoat());
 
         nguoiDung.setIdPhanQuyen(ValueConstants.CONST_ROLE_USER);
         nguoiDung.setViTien(new BigDecimal(0));
-        nguoiDung.setNgayTao(DateUtils.now());
+        nguoiDung.setCreateDate(DateUtils.now());
 
         userDao.addUser(nguoiDung);
       } catch (Exception e) {

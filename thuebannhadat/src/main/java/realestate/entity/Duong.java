@@ -33,7 +33,7 @@ import realestate.entity.PK.Duong_PK;
 @Table(name = "tbl_duong")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @IdClass(Duong_PK.class)
-@Where(clause = "trangthai = 1")
+@Where(clause = "status = 1")
 public class Duong extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/

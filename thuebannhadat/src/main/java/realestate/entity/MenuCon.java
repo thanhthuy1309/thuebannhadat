@@ -32,7 +32,7 @@ import realestate.entity.PK.MenuCon_PK;
 @Table(name = "tbl_menucon")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @IdClass(MenuCon_PK.class)
-@Where(clause = "trangthai = 1")
+@Where(clause = "status = 1")
 public class MenuCon extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/

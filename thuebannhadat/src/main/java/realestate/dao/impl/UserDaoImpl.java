@@ -83,7 +83,7 @@ public class UserDaoImpl extends AbstractDaoImpl<NguoiDung, Integer> implements 
     if (nguoiDung != null) {
       try {
         nguoiDung.setMaCodeKichHoat(null);
-        nguoiDung.setTrangThai(ValidStatusEnum.SUCCESSFUL.getValue());
+        nguoiDung.setStatus(ValidStatusEnum.SUCCESSFUL.getValue());
         nguoiDung.setSoCodeKichHoat(nd.getSoCodeKichHoat());
         // update nguoiDung
         session.merge(nguoiDung);

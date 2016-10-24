@@ -27,7 +27,7 @@ import org.hibernate.annotations.Where;
 @Entity
 @Table(name = "tbl_donvigia")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Where(clause = "trangthai = 1")
+@Where(clause = "status = 1")
 public class DonViGia extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
@@ -40,7 +40,7 @@ public class DonViGia extends AbstractEntity {
   private Integer idDonViGia;
 
   /** Init tenDonViGia **/
-  @Column(name = "ten_donvigia", length = 50, columnDefinition = "VARCHAR(50) DEFAULT ''")
+  @Column(name = "ten_donvigia", length = 50, nullable = false)
   private String tenDonViGia;
 
   public Integer getIdDonViGia() {

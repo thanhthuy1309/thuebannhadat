@@ -29,7 +29,7 @@ import org.hibernate.annotations.Where;
 @Entity
 @Table(name = "tbl_giatin")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Where(clause = "trangthai = 1")
+@Where(clause = "status = 1")
 public class GiaTin extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
@@ -42,7 +42,7 @@ public class GiaTin extends AbstractEntity {
   private Integer idGiaTin;
 
   /** Init giaTin **/
-  @Column(name = "giatin", nullable = false, unique = true)
+  @Column(name = "giatin", nullable = false)
   private BigDecimal giaTin;
 
   public Integer getIdGiaTin() {

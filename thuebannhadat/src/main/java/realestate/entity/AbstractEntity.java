@@ -16,7 +16,7 @@ import javax.persistence.MappedSuperclass;
 
 /**
  * @author : DungPT
- * @PG_ID : FooterLinkBan
+ * @PG_ID : AbstractEntity
  * @createDate : 17.10.2016
  */
 @MappedSuperclass
@@ -25,67 +25,66 @@ public class AbstractEntity implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /**
-   * Trang thai tin. 0: chua kich thoat 1: kich hoat
+   * Trang thai tin : 0 chua kich thoat. 1 kich hoat
    */
-  @Column(name = "trangthai", length = 1, nullable = false, columnDefinition = "TINYINT(1) UNSIGNED DEFAULT 0")
-  private Integer trangThai;
+  @Column(name = "status", length = 1, nullable = false, columnDefinition = "TINYINT(1) UNSIGNED DEFAULT 0")
+  private Integer status;
 
   /** Init ngayTao **/
-  @Column(name = "ngaytao", columnDefinition = "TIMESTAMP  DEFAULT 0")
-  private Date ngayTao;
+  @Column(name = "createdate", columnDefinition = "TIMESTAMP  DEFAULT 0")
+  private Date createDate;
 
   /** Init ngaycapnhat **/
-  @Column(name = "ngaycapnhat", columnDefinition = "TIMESTAMP  DEFAULT 0")
-  private Date ngayCapNhat;
+  @Column(name = "updatedate", columnDefinition = "TIMESTAMP  DEFAULT 0")
+  private Date updateDate;
 
-  @Column(name = "nguoitao", length = 250, columnDefinition = "VARCHAR(250) DEFAULT ''")
-  private String nguoiTao;
+  @Column(name = "createuser", length = 250, columnDefinition = "VARCHAR(250) DEFAULT ''")
+  private String createUser;
 
-  @Column(name = "nguoicapnhat", length = 250, columnDefinition = "VARCHAR(250) DEFAULT ''")
-  private String nguoiCapNhat;
+  @Column(name = "updateuser", length = 250, columnDefinition = "VARCHAR(250) DEFAULT ''")
+  private String updateUser;
 
-  public Integer getTrangThai() {
-    return trangThai;
+  public Integer getStatus() {
+    return status;
   }
 
-  public void setTrangThai(Integer trangThai) {
-    this.trangThai = trangThai;
+  public void setStatus(Integer status) {
+    this.status = status;
   }
 
-  public Date getNgayTao() {
-    return ngayTao;
+  public Date getCreateDate() {
+    return createDate;
   }
 
-  public void setNgayTao(Date ngayTao) {
-    this.ngayTao = ngayTao;
+  public void setCreateDate(Date createDate) {
+    this.createDate = createDate;
   }
 
-  public Date getNgayCapNhat() {
-    return ngayCapNhat;
+  public Date getUpdateDate() {
+    return updateDate;
   }
 
-  public void setNgayCapNhat(Date ngayCapNhat) {
-    this.ngayCapNhat = ngayCapNhat;
+  public void setUpdateDate(Date updateDate) {
+    this.updateDate = updateDate;
   }
 
-  public String getNguoiTao() {
-    return nguoiTao;
+  public String getCreateUser() {
+    return createUser;
   }
 
-  public void setNguoiTao(String nguoiTao) {
-    this.nguoiTao = nguoiTao;
+  public void setCreateUser(String createUser) {
+    this.createUser = createUser;
   }
 
-  public String getNguoiCapNhat() {
-    return nguoiCapNhat;
+  public String getUpdateUser() {
+    return updateUser;
   }
 
-  public void setNguoiCapNhat(String nguoiCapNhat) {
-    this.nguoiCapNhat = nguoiCapNhat;
+  public void setUpdateUser(String updateUser) {
+    this.updateUser = updateUser;
   }
 
   public static long getSerialversionuid() {
     return serialVersionUID;
   }
-
 }

@@ -17,6 +17,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
 import org.hibernate.annotations.Where;
 
 /**
@@ -27,7 +28,7 @@ import org.hibernate.annotations.Where;
 @Entity
 @Table(name = "tbl_mautin")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Where(clause = "trangthai = 1")
+@Where(clause = "status = 1")
 public class MauTin extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
@@ -128,15 +129,18 @@ public class MauTin extends AbstractEntity {
   private BigDecimal tongTienTin;
 
   /** Init hemxehoi **/
-  @Column(name = "hemxehoi")
+  @Column(name = "hemxehoi", columnDefinition = "TINYINT(1) UNSIGNED DEFAULT 0")
+  @Type(type = "org.hibernate.type.NumericBooleanType")
   private Boolean hemXeHoi;
 
   /** Init chinhchu **/
-  @Column(name = "chinhchu")
+  @Column(name = "chinhchu", columnDefinition = "TINYINT(1) UNSIGNED DEFAULT 0")
+  @Type(type = "org.hibernate.type.NumericBooleanType")
   private Boolean chinhChu;
 
   /** Init khuAnNinh **/
-  @Column(name = "khuanninh")
+  @Column(name = "khuanninh", columnDefinition = "TINYINT(1) UNSIGNED DEFAULT 0")
+  @Type(type = "org.hibernate.type.NumericBooleanType")
   private Boolean khuAnNinh;
 
   /** Init moTaTin **/

@@ -33,7 +33,7 @@ import org.hibernate.annotations.Where;
 @Entity
 @Table(name = "tbl_thanhpho")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Where(clause = "trangthai = 1")
+@Where(clause = "status = 1")
 public class ThanhPho implements Serializable {
 
   /** Init serialVersionUID is 1L **/
@@ -49,7 +49,7 @@ public class ThanhPho implements Serializable {
   private String tenThanhPho;
 
   /** Init trangThai **/
-  @Column(name = "trangthai", length = 1, nullable = false)
+  @Column(name = "trangthai", length = 1, nullable = false, columnDefinition = "TINYINT(1) UNSIGNED DEFAULT 0")
   private Integer trangThai;
 
   /** Init listQuanHuyen **/

@@ -27,7 +27,7 @@ import org.hibernate.annotations.Where;
 @Entity
 @Table(name = "tbl_phanquyen")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Where(clause = "trangthai = 1")
+@Where(clause = "status = 1")
 public class PhanQuyen extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/

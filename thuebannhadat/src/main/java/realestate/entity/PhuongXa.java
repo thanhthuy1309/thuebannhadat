@@ -35,7 +35,7 @@ import realestate.entity.PK.PhuongXa_PK;
 @Table(name = "tbl_phuongxa")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @IdClass(PhuongXa_PK.class)
-@Where(clause = "trangthai = 1")
+@Where(clause = "status = 1")
 public class PhuongXa implements Serializable {
 
   /** Init serialVersionUID is 1L **/
@@ -60,7 +60,7 @@ public class PhuongXa implements Serializable {
   private String tenPhuongXa;
 
   /** Init trangThai **/
-  @Column(name = "trangthai", length = 1, nullable = false)
+  @Column(name = "trangthai", length = 1, nullable = false, columnDefinition = "TINYINT(1) UNSIGNED DEFAULT 0")
   private Integer trangThai;
 
   /** Init quanHuyen **/

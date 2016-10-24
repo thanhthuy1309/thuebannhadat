@@ -25,7 +25,7 @@ import org.hibernate.annotations.Where;
 @Entity
 @Table(name = "tbl_hinhanhtin")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Where(clause = "trangthai = 1")
+@Where(clause = "status = 1")
 public class HinhAnhTin extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
@@ -44,9 +44,9 @@ public class HinhAnhTin extends AbstractEntity {
   @Column(name = "ten_hinhanhtin", nullable = false, length = 250)
   private String tenHinhAnh;
 
-  /** Init thuTu **/
-  @Column(name = "thutu", length = 2, nullable = false)
-  private Integer thuTu;
+  /** Init order **/
+  @Column(name = "order", length = 2, nullable = false, columnDefinition = "TINYINT(2) UNSIGNED")
+  private Integer order;
 
   public String getIdMauTin() {
     return idMauTin;
@@ -70,14 +70,6 @@ public class HinhAnhTin extends AbstractEntity {
 
   public void setTenHinhAnh(String tenHinhAnh) {
     this.tenHinhAnh = tenHinhAnh;
-  }
-
-  public Integer getThuTu() {
-    return thuTu;
-  }
-
-  public void setThuTu(Integer thuTu) {
-    this.thuTu = thuTu;
   }
 
   public static long getSerialversionuid() {

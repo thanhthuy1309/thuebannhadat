@@ -32,7 +32,7 @@ import realestate.entity.PK.LoaiNhaDat_PK;
 @Table(name = "tbl_loainhadat")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @IdClass(LoaiNhaDat_PK.class)
-@Where(clause = "trangthai = 1")
+@Where(clause = "status = 1")
 public class LoaiNhaDat extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/

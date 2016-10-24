@@ -147,7 +147,7 @@ public class RegisterController {
 
       Integer soCodeKichHoat = nguoiDung.getSoCodeKichHoat();
       nguoiDung.setSoCodeKichHoat(soCodeKichHoat + 1);
-      nguoiDung.setTrangThai(ValidStatusEnum.SUCCESSFUL.getValue());
+      nguoiDung.setStatus(ValidStatusEnum.SUCCESSFUL.getValue());
       
       userService.activateUser(nguoiDung);
 

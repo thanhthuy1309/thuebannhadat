@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Where;
+import org.hibernate.annotations.Type;
 
 /**
  * @author : DungPT
@@ -35,7 +35,6 @@ import org.hibernate.annotations.Where;
 @Entity
 @Table(name = "tbl_nguoidung")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Where(clause = "trangthai = 1")
 public class NguoiDung extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
@@ -74,7 +73,8 @@ public class NguoiDung extends AbstractEntity {
   @Column(name = "socode_matkhau")
   private Integer soCodeMatKhau;
 
-  @Column(name = "gioitinh")
+  @Column(name = "gioitinh", columnDefinition = "TINYINT(1) UNSIGNED DEFAULT 0")
+  @Type(type = "org.hibernate.type.NumericBooleanType")
   private Boolean gioiTinh;
 
   @Column(name = "ngaysinh")

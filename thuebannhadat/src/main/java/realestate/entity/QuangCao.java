@@ -27,7 +27,7 @@ import org.hibernate.annotations.Where;
 @Entity
 @Table(name = "tbl_quangcao")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Where(clause = "trangthai = 1")
+@Where(clause = "status = 1")
 public class QuangCao extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
@@ -48,7 +48,7 @@ public class QuangCao extends AbstractEntity {
   private String urlHinhAnh;
 
   /** Init tieude **/
-  @Column(name = "tieude", length = 250)
+  @Column(name = "tieude", length = 250, columnDefinition = "VARCHAR(250) DEFAULT ''")
   private String tieude;
 
   public Integer getIdQuangCao() {
