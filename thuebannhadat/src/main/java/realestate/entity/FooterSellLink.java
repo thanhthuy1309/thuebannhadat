@@ -25,53 +25,54 @@ import org.hibernate.annotations.Where;
  * @createDate : 09.09.2016
  */
 @Entity
-@Table(name = "tbl_footerlinkban")
+@Table(name = "tbl_footer_sell_link")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Where(clause = "status = 1")
-public class FooterLinkBan extends AbstractEntity {
+public class FooterSellLink extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
 
   /** Init idFooterLinkBan **/
   @Id
-  @Column(name = "id_footerlinkban", nullable = false, columnDefinition = "INT(11) UNSIGNED")
+  @Column(name = "footer_sell_link_id", nullable = false, columnDefinition = "INT(11) UNSIGNED")
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer idFooterLinkBan;
+  private Integer footerSellLinkId;
 
   /** Init urlFooterLinkBan **/
-  @Column(name = "url_footerlinkban", nullable = false, length = 250)
-  private String urlFooterLinkBan;
+  @Column(name = "footer_sell_link_url", nullable = false, length = 250)
+  private String footerSellLinkUrl;
 
   /** Init tenFooterLinkBan **/
-  @Column(name = "ten_footerlinkban", length = 250, nullable = false)
-  private String tenFooterLinkBan;
+  @Column(name = "footer_sell_link_name", length = 250, nullable = false)
+  private String footerSellLinkName;
 
-  public Integer getIdFooterLinkBan() {
-    return idFooterLinkBan;
+  public Integer getFooterSellLinkId() {
+    return footerSellLinkId;
   }
 
-  public void setIdFooterLinkBan(Integer idFooterLinkBan) {
-    this.idFooterLinkBan = idFooterLinkBan;
+  public void setFooterSellLinkId(Integer footerSellLinkId) {
+    this.footerSellLinkId = footerSellLinkId;
   }
 
-  public String getUrlFooterLinkBan() {
-    return urlFooterLinkBan;
+  public String getFooterSellLinkUrl() {
+    return footerSellLinkUrl;
   }
 
-  public void setUrlFooterLinkBan(String urlFooterLinkBan) {
-    this.urlFooterLinkBan = urlFooterLinkBan;
+  public void setFooterSellLinkUrl(String footerSellLinkUrl) {
+    this.footerSellLinkUrl = footerSellLinkUrl;
   }
 
-  public String getTenFooterLinkBan() {
-    return tenFooterLinkBan;
+  public String getFooterSellLinkName() {
+    return footerSellLinkName;
   }
 
-  public void setTenFooterLinkBan(String tenFooterLinkBan) {
-    this.tenFooterLinkBan = tenFooterLinkBan;
+  public void setFooterSellLinkName(String footerSellLinkName) {
+    this.footerSellLinkName = footerSellLinkName;
   }
 
   public static long getSerialversionuid() {
     return serialVersionUID;
   }
+
 }

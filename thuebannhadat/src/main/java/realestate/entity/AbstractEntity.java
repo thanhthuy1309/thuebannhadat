@@ -31,11 +31,11 @@ public class AbstractEntity implements Serializable {
   private Integer status;
 
   /** Init ngayTao **/
-  @Column(name = "createdate", columnDefinition = "TIMESTAMP  DEFAULT 0")
+  @Column(name = "createdate", columnDefinition = "TIMESTAMP DEFAULT 0")
   private Date createDate;
 
   /** Init ngaycapnhat **/
-  @Column(name = "updatedate", columnDefinition = "TIMESTAMP  DEFAULT 0")
+  @Column(name = "updatedate", columnDefinition = "TIMESTAMP DEFAULT 0")
   private Date updateDate;
 
   @Column(name = "createuser", length = 250, columnDefinition = "VARCHAR(250) DEFAULT ''")

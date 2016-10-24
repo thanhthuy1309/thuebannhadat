@@ -70,8 +70,8 @@ public class QuanHuyen implements Serializable {
   private List<PhuongXa> listPhuongXa;
 
   /** Init listDuong **/
-  @OneToMany(mappedBy = "quanHuyen", cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Duong.class)
-  private List<Duong> listDuong;
+  @OneToMany(mappedBy = "quanHuyen", cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Address.class)
+  private List<Address> listDuong;
 
   public String getTenQuanHuyen() {
     return tenQuanHuyen;
@@ -105,11 +105,11 @@ public class QuanHuyen implements Serializable {
     this.listPhuongXa = listPhuongXa;
   }
 
-  public List<Duong> getListDuong() {
+  public List<Address> getListDuong() {
     return listDuong;
   }
 
-  public void setListDuong(List<Duong> listDuong) {
+  public void setListDuong(List<Address> listDuong) {
     this.listDuong = listDuong;
   }
 
