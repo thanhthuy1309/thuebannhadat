@@ -8,8 +8,6 @@
  */
 package realestate.entity;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,7 +41,7 @@ public class SearchGiaTin extends AbstractEntity {
 
   /** Init loaiGiaTin **/
   @Column(name = "loaigiatin", nullable = false, unique = true)
-  private BigDecimal loaiGiaTin;
+  private Long loaiGiaTin;
 
   public Integer getIdSearchGiaTin() {
     return idSearchGiaTin;
@@ -51,14 +49,6 @@ public class SearchGiaTin extends AbstractEntity {
 
   public void setIdSearchGiaTin(Integer idSearchGiaTin) {
     this.idSearchGiaTin = idSearchGiaTin;
-  }
-
-  public BigDecimal getLoaiGiaTin() {
-    return loaiGiaTin;
-  }
-
-  public void setLoaiGiaTin(BigDecimal loaiGiaTin) {
-    this.loaiGiaTin = loaiGiaTin;
   }
 
 }

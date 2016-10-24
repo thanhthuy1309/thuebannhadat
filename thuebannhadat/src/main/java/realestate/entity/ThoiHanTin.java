@@ -43,11 +43,7 @@ public class ThoiHanTin extends AbstractEntity {
   @Column(name = "thoihan", length = 2, columnDefinition = "TINYINT(2) UNSIGNED")
   private Integer thoiHan;
 
-  public Integer getIdThoiHanTin() {
-    return idThoiHanTin;
-  }
-
-  public void setIdThoiHanTin(Integer idThoiHanTin) {
-    this.idThoiHanTin = idThoiHanTin;
-  }
+  /** Init dienTich **/
+  @Column(name = "discount", nullable = false)
+  private Float discount;
 }

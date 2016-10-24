@@ -8,8 +8,6 @@
  */
 package realestate.entity;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,52 +39,18 @@ public class GiaoDich extends AbstractEntity {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer idGiaoDich;
 
+  @Column(name = "id_nguoidung", nullable = false, columnDefinition = "INT(11) UNSIGNED")
+  private Integer idNguoiDung;
+
   /** Init idLoaiGiaoDich **/
   @Column(name = "id_loaigiaodich", nullable = false)
   private Integer idLoaiGiaoDich;
 
   /** Init tienGiaoDich **/
-  @Column(name = "tien_giaodich", columnDefinition = "DECIMAL(19,2) DEFAULT '0.00'")
-  private BigDecimal tienGiaoDich;
+  @Column(name = "tien_giaodich", columnDefinition = "INT(11) UNSIGNED DEFAULT 0")
+  private Integer tienGiaoDich;
 
   /** Init tienNap **/
-  @Column(name = "tien_nap", columnDefinition = "DECIMAL(19,2) DEFAULT '0.00'")
-  private BigDecimal tienNap;
-
-  public Integer getIdGiaoDich() {
-    return idGiaoDich;
-  }
-
-  public void setIdGiaoDich(Integer idGiaoDich) {
-    this.idGiaoDich = idGiaoDich;
-  }
-
-  public Integer getIdLoaiGiaoDich() {
-    return idLoaiGiaoDich;
-  }
-
-  public void setIdLoaiGiaoDich(Integer idLoaiGiaoDich) {
-    this.idLoaiGiaoDich = idLoaiGiaoDich;
-  }
-
-  public BigDecimal getTienGiaoDich() {
-    return tienGiaoDich;
-  }
-
-  public void setTienGiaoDich(BigDecimal tienGiaoDich) {
-    this.tienGiaoDich = tienGiaoDich;
-  }
-
-  public BigDecimal getTienNap() {
-    return tienNap;
-  }
-
-  public void setTienNap(BigDecimal tienNap) {
-    this.tienNap = tienNap;
-  }
-
-  public static long getSerialversionuid() {
-    return serialVersionUID;
-  }
-
+  @Column(name = "tien_nap", columnDefinition = "INT(11) UNSIGNED DEFAULT 0")
+  private Integer tienNap;
 }

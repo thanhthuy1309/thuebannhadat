@@ -34,7 +34,6 @@ public class PhanQuyen extends AbstractEntity {
   private static final long serialVersionUID = 1L;
 
   /** Init phanQuyenId **/
-  /* co 2 quyen 1 : admin, 2 : user */
   @Id
   @Column(name = "id_phanquyen", nullable = false, columnDefinition = "INT(11) UNSIGNED")
   @GeneratedValue(strategy = GenerationType.AUTO)

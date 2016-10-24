@@ -8,7 +8,6 @@
  */
 package realestate.entity;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -20,8 +19,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -66,19 +63,18 @@ public class NguoiDung extends AbstractEntity {
   private Integer idPhanQuyen;
 
   /** so lan lay ma code kich hoat toi da la 5 lan trong 1 ngay **/
-  @Column(name = "socode_kichhoat")
-  private Integer soCodeKichHoat;
+  @Column(name = "socode_kichhoat", length = 5, columnDefinition = "VARCHAR(5) DEFAULT ''")
+  private String soCodeKichHoat;
 
   /** so lan lay ma code quen mat khau toi da la 5 lan trong 1 ngay **/
-  @Column(name = "socode_matkhau")
-  private Integer soCodeMatKhau;
+  @Column(name = "socode_matkhau",length = 5, columnDefinition = "VARCHAR(5) DEFAULT ''")
+  private String soCodeMatKhau;
 
   @Column(name = "gioitinh", columnDefinition = "TINYINT(1) UNSIGNED DEFAULT 0")
   @Type(type = "org.hibernate.type.NumericBooleanType")
   private Boolean gioiTinh;
 
-  @Column(name = "ngaysinh")
-  @Temporal(TemporalType.DATE)
+  @Column(name = "ngaysinh", columnDefinition = "DATE DEFAULT 0")
   private Date ngaySinh;
 
   /** Init phanQuyen **/
@@ -91,8 +87,8 @@ public class NguoiDung extends AbstractEntity {
   private String diaChi;
   
   /** Init viTien **/
-  @Column(name = "vitien")
-  private BigDecimal viTien;
+  @Column(name = "vitien", columnDefinition = "INT(11) UNSIGNED DEFAULT 0")
+  private Integer viTien;
 
   /** Init maCodeKichHoat **/
   @Column(name = "macode_kichhoat", length = 5, columnDefinition = "VARCHAR(5) DEFAULT ''")
@@ -158,14 +154,6 @@ public class NguoiDung extends AbstractEntity {
     this.phanQuyen = phanQuyen;
   }
 
-  public BigDecimal getViTien() {
-    return viTien;
-  }
-
-  public void setViTien(BigDecimal viTien) {
-    this.viTien = viTien;
-  }
-
   public String getDiaChi() {
     return diaChi;
   }
@@ -209,21 +197,4 @@ public class NguoiDung extends AbstractEntity {
   public static long getSerialversionuid() {
     return serialVersionUID;
   }
-
-  public Integer getSoCodeKichHoat() {
-    return soCodeKichHoat;
-  }
-
-  public void setSoCodeKichHoat(Integer soCodeKichHoat) {
-    this.soCodeKichHoat = soCodeKichHoat;
-  }
-
-  public Integer getSoCodeMatKhau() {
-    return soCodeMatKhau;
-  }
-
-  public void setSoCodeMatKhau(Integer soCodeMatKhau) {
-    this.soCodeMatKhau = soCodeMatKhau;
-  }
-
 }

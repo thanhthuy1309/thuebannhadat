@@ -8,8 +8,6 @@
  */
 package realestate.entity;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -38,6 +36,9 @@ public class MauTin extends AbstractEntity {
   @Id
   @Column(name = "id_mautin", nullable = false, length = 250)
   private String idMauTin;
+
+  @Column(name = "id_nguoidung", nullable = false, columnDefinition = "INT(11) UNSIGNED")
+  private Integer idNguoiDung;
 
   /** Init tenMauTin **/
   @Column(name = "ten_mautin", length = 250, nullable = false)
@@ -79,7 +80,7 @@ public class MauTin extends AbstractEntity {
 
   /** Init giaDat **/
   @Column(name = "giadat", nullable = false)
-  private BigDecimal giaDat;
+  private Long giaDat;
 
   /** Init idDonViGia **/
   @Column(name = "id_donvigia", nullable = false)
@@ -126,7 +127,7 @@ public class MauTin extends AbstractEntity {
 
   /** Init tongTienTin **/
   @Column(name = "tongtientin", nullable = false)
-  private BigDecimal tongTienTin;
+  private Long tongTienTin;
 
   /** Init hemxehoi **/
   @Column(name = "hemxehoi", columnDefinition = "TINYINT(1) UNSIGNED DEFAULT 0")
@@ -144,7 +145,7 @@ public class MauTin extends AbstractEntity {
   private Boolean khuAnNinh;
 
   /** Init moTaTin **/
-  @Column(name = "motatin", length = 5000, nullable = false)
+  @Column(name = "motatin", nullable = false, columnDefinition="TEXT")
   private String moTaTin;
 
   public String getIdMauTin() {
@@ -235,14 +236,6 @@ public class MauTin extends AbstractEntity {
     this.dienTich = dienTich;
   }
 
-  public BigDecimal getGiaDat() {
-    return giaDat;
-  }
-
-  public void setGiaDat(BigDecimal giaDat) {
-    this.giaDat = giaDat;
-  }
-
   public Integer getIdDonViGia() {
     return idDonViGia;
   }
@@ -313,14 +306,6 @@ public class MauTin extends AbstractEntity {
 
   public void setIdThoiHanTin(Integer idThoiHanTin) {
     this.idThoiHanTin = idThoiHanTin;
-  }
-
-  public BigDecimal getTongTienTin() {
-    return tongTienTin;
-  }
-
-  public void setTongTienTin(BigDecimal tongTienTin) {
-    this.tongTienTin = tongTienTin;
   }
 
   public String getMoTaTin() {

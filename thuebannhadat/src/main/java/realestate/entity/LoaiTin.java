@@ -10,12 +10,9 @@ package realestate.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -46,43 +43,7 @@ public class LoaiTin extends AbstractEntity {
   @Column(name = "ten_loaitin", length = 250, nullable = false, unique = true)
   private String tenLoaiTin;
 
-  @Column(name = "id_giatin", nullable = false, length = 250)
-  private Integer idGiaTin;
-
   /** Init giaTin **/
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "id_giatin", insertable = false, updatable = false)
-  private GiaTin giaTin;
-
-  public Integer getIdLoaiTin() {
-    return idLoaiTin;
-  }
-
-  public void setIdLoaiTin(Integer idLoaiTin) {
-    this.idLoaiTin = idLoaiTin;
-  }
-
-  public String getTenLoaiTin() {
-    return tenLoaiTin;
-  }
-
-  public void setTenLoaiTin(String tenLoaiTin) {
-    this.tenLoaiTin = tenLoaiTin;
-  }
-
-  public Integer getIdGiaTin() {
-    return idGiaTin;
-  }
-
-  public void setIdGiaTin(Integer idGiaTin) {
-    this.idGiaTin = idGiaTin;
-  }
-
-  public GiaTin getGiaTin() {
-    return giaTin;
-  }
-
-  public void setGiaTin(GiaTin giaTin) {
-    this.giaTin = giaTin;
-  }
+  @Column(name = "giatin", nullable = false, columnDefinition = "INT(11) UNSIGNED")
+  private Integer giaTin;
 }

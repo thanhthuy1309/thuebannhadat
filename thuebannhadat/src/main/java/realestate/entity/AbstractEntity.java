@@ -52,22 +52,6 @@ public class AbstractEntity implements Serializable {
     this.status = status;
   }
 
-  public Date getCreateDate() {
-    return createDate;
-  }
-
-  public void setCreateDate(Date createDate) {
-    this.createDate = createDate;
-  }
-
-  public Date getUpdateDate() {
-    return updateDate;
-  }
-
-  public void setUpdateDate(Date updateDate) {
-    this.updateDate = updateDate;
-  }
-
   public String getCreateUser() {
     return createUser;
   }
@@ -86,5 +70,21 @@ public class AbstractEntity implements Serializable {
 
   public static long getSerialversionuid() {
     return serialVersionUID;
+  }
+
+  public Date getCreateDate() {
+    return createDate;
+  }
+
+  public void setCreateDate(Date createDate) {
+    this.createDate = createDate;
+  }
+
+  public Date getUpdateDate() {
+    return updateDate;
+  }
+
+  public void setUpdateDate(Date updateDate) {
+    this.updateDate = updateDate;
   }
 }
