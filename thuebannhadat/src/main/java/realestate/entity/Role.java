@@ -21,41 +21,45 @@ import org.hibernate.annotations.Where;
 
 /**
  * @author : DungPT
- * @PG_ID : SoPhongNgu
+ * @PG_ID : Role(PhanQuyen)
  * @createDate : 16.08.2016
  */
 @Entity
-@Table(name = "tbl_sophongngu")
+@Table(name = "tbl_role")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Where(clause = "status = 1")
-public class SoPhongNgu extends AbstractEntity {
+public class Role extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
 
-  /** Init idSoPhongNgu **/
+  /** Init phanQuyenId **/
   @Id
-  @Column(name = "id_sophongngu", nullable = false, columnDefinition = "INT(11) UNSIGNED")
+  @Column(name = "role_id", nullable = false, columnDefinition = "INT(11) UNSIGNED")
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer idSoPhongNgu;
+  private Integer roleId;
 
-  /** Init soPhongNgu **/
-  @Column(name = "sophongngu", length = 10, nullable = false, unique = true)
-  private String soPhongNgu;
+  /** Init tenPhanQuyen **/
+  @Column(name = "role_name", length = 250, nullable = false, unique = true)
+  private String roleName;
 
-  public Integer getIdSoPhongNgu() {
-    return idSoPhongNgu;
+  public Integer getRoleId() {
+    return roleId;
   }
 
-  public void setIdSoPhongNgu(Integer idSoPhongNgu) {
-    this.idSoPhongNgu = idSoPhongNgu;
+  public void setRoleId(Integer roleId) {
+    this.roleId = roleId;
   }
 
-  public String getSoPhongNgu() {
-    return soPhongNgu;
+  public String getRoleName() {
+    return roleName;
   }
 
-  public void setSoPhongNgu(String soPhongNgu) {
-    this.soPhongNgu = soPhongNgu;
+  public void setRoleName(String roleName) {
+    this.roleName = roleName;
+  }
+
+  public static long getSerialversionuid() {
+    return serialVersionUID;
   }
 }

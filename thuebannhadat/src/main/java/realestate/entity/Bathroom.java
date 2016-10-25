@@ -21,41 +21,45 @@ import org.hibernate.annotations.Where;
 
 /**
  * @author : DungPT
- * @PG_ID : SoTang
+ * @PG_ID : Bathroom(SoToilet)
  * @createDate : 16.08.2016
  */
 @Entity
-@Table(name = "tbl_sotang")
+@Table(name = "tbl_bathroom")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Where(clause = "status = 1")
-public class SoTang extends AbstractEntity {
+public class Bathroom extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
 
-  /** Init idSoTang **/
+  /** Init idSoToilet **/
   @Id
-  @Column(name = "id_sotang", nullable = false, columnDefinition = "INT(11) UNSIGNED")
+  @Column(name = "bathroom_id", nullable = false, columnDefinition = "INT(11) UNSIGNED")
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer idSoTang;
+  private Integer bathroomId;
 
-  /** Init soTang **/
-  @Column(name = "sotang", length = 10, nullable = false, unique = true)
-  private String soTang;
+  /** Init soToilet **/
+  @Column(name = "bathroom_amount", length = 10, nullable = false, unique = true)
+  private String bathroomAmount;
 
-  public Integer getIdSoTang() {
-    return idSoTang;
+  public Integer getBathroomId() {
+    return bathroomId;
   }
 
-  public void setIdSoTang(Integer idSoTang) {
-    this.idSoTang = idSoTang;
+  public void setBathroomId(Integer bathroomId) {
+    this.bathroomId = bathroomId;
   }
 
-  public String getSoTang() {
-    return soTang;
+  public String getBathroomAmount() {
+    return bathroomAmount;
   }
 
-  public void setSoTang(String soTang) {
-    this.soTang = soTang;
+  public void setBathroomAmount(String bathroomAmount) {
+    this.bathroomAmount = bathroomAmount;
+  }
+
+  public static long getSerialversionuid() {
+    return serialVersionUID;
   }
 }

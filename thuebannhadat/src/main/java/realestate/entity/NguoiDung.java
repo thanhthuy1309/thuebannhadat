@@ -80,7 +80,7 @@ public class NguoiDung extends AbstractEntity {
   /** Init phanQuyen **/
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "id_phanquyen", insertable = false, updatable = false)
-  private PhanQuyen phanQuyen;
+  private Role phanQuyen;
 
   /** Init diaChi **/
   @Column(name = "diachi", length = 250, columnDefinition = "VARCHAR(250) DEFAULT ''")
@@ -146,11 +146,11 @@ public class NguoiDung extends AbstractEntity {
     this.idPhanQuyen = idPhanQuyen;
   }
 
-  public PhanQuyen getPhanQuyen() {
+  public Role getPhanQuyen() {
     return phanQuyen;
   }
 
-  public void setPhanQuyen(PhanQuyen phanQuyen) {
+  public void setPhanQuyen(Role phanQuyen) {
     this.phanQuyen = phanQuyen;
   }
 

@@ -21,29 +21,45 @@ import org.hibernate.annotations.Where;
 
 /**
  * @author : DungPT
- * @PG_ID : ThoiHanTin
- * @createDate : 21.08.2016
+ * @PG_ID : Bedroom(SoPhongNgu)
+ * @createDate : 16.08.2016
  */
 @Entity
-@Table(name = "tbl_thoihantin")
+@Table(name = "tbl_bedroom")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Where(clause = "status = 1")
-public class ThoiHanTin extends AbstractEntity {
+public class Bedroom extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
 
-  /** Init idThoiHanTin **/
+  /** Init idSoPhongNgu **/
   @Id
-  @Column(name = "id_thoihantin", nullable = false, columnDefinition = "INT(11) UNSIGNED")
+  @Column(name = "bedroom_id", nullable = false, columnDefinition = "INT(11) UNSIGNED")
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer idThoiHanTin;
+  private Integer bedroomId;
 
-  /** Init thoiHan **/
-  @Column(name = "thoihan", length = 2, columnDefinition = "TINYINT(2) UNSIGNED")
-  private Integer thoiHan;
+  /** Init soPhongNgu **/
+  @Column(name = "bedroom_amount", length = 10, nullable = false, unique = true)
+  private String bedroomAmount;
 
-  /** Init dienTich **/
-  @Column(name = "discount", nullable = false)
-  private Float discount;
+  public Integer getBedroomId() {
+    return bedroomId;
+  }
+
+  public void setBedroomId(Integer bedroomId) {
+    this.bedroomId = bedroomId;
+  }
+
+  public String getBedroomAmount() {
+    return bedroomAmount;
+  }
+
+  public void setBedroomAmount(String bedroomAmount) {
+    this.bedroomAmount = bedroomAmount;
+  }
+
+  public static long getSerialversionuid() {
+    return serialVersionUID;
+  }
 }

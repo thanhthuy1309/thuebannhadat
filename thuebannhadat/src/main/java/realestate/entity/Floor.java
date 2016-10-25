@@ -10,6 +10,8 @@ package realestate.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -19,41 +21,46 @@ import org.hibernate.annotations.Where;
 
 /**
  * @author : DungPT
- * @PG_ID : HuongBanCong
+ * @PG_ID : Floor(SoTang)
  * @createDate : 16.08.2016
  */
 @Entity
-@Table(name = "tbl_huongbancong")
+@Table(name = "tbl_floor")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Where(clause = "status = 1")
-public class HuongBanCong extends AbstractEntity {
+public class Floor extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
 
-  /** Init idHuongBanCong **/
+  /** Init idSoTang **/
   @Id
-  @Column(name = "id_huongbancong", nullable = false, length = 250)
-  private String idHuongBanCong;
+  @Column(name = "floor_id", nullable = false, columnDefinition = "INT(11) UNSIGNED")
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Integer floorId;
 
-  /** Init tenHuongBanCong **/
-  @Column(name = "ten_huongbancong", length = 250, nullable = false, unique = true)
-  private String tenHuongBanCong;
+  /** Init soTang **/
+  @Column(name = "floor_amount", length = 10, nullable = false, unique = true)
+  private String floorAmount;
 
-  public String getTenHuongBanCong() {
-    return tenHuongBanCong;
+  public Integer getFloorId() {
+    return floorId;
   }
 
-  public void setTenHuongBanCong(String tenHuongBanCong) {
-    this.tenHuongBanCong = tenHuongBanCong;
+  public void setFloorId(Integer floorId) {
+    this.floorId = floorId;
   }
 
-  public String getIdHuongBanCong() {
-    return idHuongBanCong;
+  public String getFloorAmount() {
+    return floorAmount;
   }
 
-  public void setIdHuongBanCong(String idHuongBanCong) {
-    this.idHuongBanCong = idHuongBanCong;
+  public void setFloorAmount(String floorAmount) {
+    this.floorAmount = floorAmount;
+  }
+
+  public static long getSerialversionuid() {
+    return serialVersionUID;
   }
 
 }

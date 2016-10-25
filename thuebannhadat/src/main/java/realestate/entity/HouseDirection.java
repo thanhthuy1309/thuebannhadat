@@ -10,8 +10,6 @@ package realestate.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -21,41 +19,44 @@ import org.hibernate.annotations.Where;
 
 /**
  * @author : DungPT
- * @PG_ID : PhanQuyen
+ * @PG_ID : HouseDirection(HuongNha)
  * @createDate : 16.08.2016
  */
 @Entity
-@Table(name = "tbl_phanquyen")
+@Table(name = "tbl_house_direction")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Where(clause = "status = 1")
-public class PhanQuyen extends AbstractEntity {
+public class HouseDirection extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
 
-  /** Init phanQuyenId **/
+  /** Init idHuongNha **/
   @Id
-  @Column(name = "id_phanquyen", nullable = false, columnDefinition = "INT(11) UNSIGNED")
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer idPhanQuyen;
+  @Column(name = "house_direction_id", nullable = false, length = 250)
+  private String houseDirectionId;
 
-  /** Init tenPhanQuyen **/
-  @Column(name = "ten_phanquyen", length = 250, nullable = false, unique = true)
-  private String tenPhanQuyen;
+  /** Init tenHuongNha **/
+  @Column(name = "house_direction_name", length = 250, nullable = false, unique = true)
+  private String houseDirectionName;
 
-  public Integer getIdPhanQuyen() {
-    return idPhanQuyen;
+  public String getHouseDirectionId() {
+    return houseDirectionId;
   }
 
-  public void setIdPhanQuyen(Integer idPhanQuyen) {
-    this.idPhanQuyen = idPhanQuyen;
+  public void setHouseDirectionId(String houseDirectionId) {
+    this.houseDirectionId = houseDirectionId;
   }
 
-  public String getTenPhanQuyen() {
-    return tenPhanQuyen;
+  public String getHouseDirectionName() {
+    return houseDirectionName;
   }
 
-  public void setTenPhanQuyen(String tenPhanQuyen) {
-    this.tenPhanQuyen = tenPhanQuyen;
+  public void setHouseDirectionName(String houseDirectionName) {
+    this.houseDirectionName = houseDirectionName;
+  }
+
+  public static long getSerialversionuid() {
+    return serialVersionUID;
   }
 }

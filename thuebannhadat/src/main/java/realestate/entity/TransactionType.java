@@ -21,29 +21,45 @@ import org.hibernate.annotations.Where;
 
 /**
  * @author : DungPT
- * @PG_ID : LoaiTin
+ * @PG_ID : TransactionType(LoaiGiaoDich)
  * @createDate : 16.08.2016
  */
 @Entity
-@Table(name = "tbl_loaitin")
+@Table(name = "tbl_transaction_type")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Where(clause = "status = 1")
-public class LoaiTin extends AbstractEntity {
+public class TransactionType extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
 
-  /** Init idLoaiTin **/
+  /** Init idLoaiGiaoDich **/
   @Id
-  @Column(name = "id_loaitin", nullable = false, columnDefinition = "INT(11) UNSIGNED")
+  @Column(name = "transaction_type_id", nullable = false, columnDefinition = "INT(11) UNSIGNED")
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer idLoaiTin;
+  private Integer transactionTypeId;
 
-  /** Init tenLoaiTin **/
-  @Column(name = "ten_loaitin", length = 250, nullable = false, unique = true)
-  private String tenLoaiTin;
+  /** Init tenLoaiGiaoDich **/
+  @Column(name = "transaction_type_name", length = 250, nullable = false)
+  private String transactionTypeName;
 
-  /** Init giaTin **/
-  @Column(name = "giatin", nullable = false, columnDefinition = "INT(11) UNSIGNED")
-  private Integer giaTin;
+  public Integer getTransactionTypeId() {
+    return transactionTypeId;
+  }
+
+  public void setTransactionTypeId(Integer transactionTypeId) {
+    this.transactionTypeId = transactionTypeId;
+  }
+
+  public String getTransactionTypeName() {
+    return transactionTypeName;
+  }
+
+  public void setTransactionTypeName(String transactionTypeName) {
+    this.transactionTypeName = transactionTypeName;
+  }
+
+  public static long getSerialversionuid() {
+    return serialVersionUID;
+  }
 }

@@ -21,41 +21,57 @@ import org.hibernate.annotations.Where;
 
 /**
  * @author : DungPT
- * @PG_ID : SoToilet
+ * @PG_ID : PostType(LoaiTin)
  * @createDate : 16.08.2016
  */
 @Entity
-@Table(name = "tbl_sotoilet")
+@Table(name = "tbl_post_type")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Where(clause = "status = 1")
-public class SoToilet extends AbstractEntity {
+public class PostType extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
 
-  /** Init idSoToilet **/
+  /** Init idLoaiTin **/
   @Id
-  @Column(name = "id_sotoilet", nullable = false, columnDefinition = "INT(11) UNSIGNED")
+  @Column(name = "post_type_id", nullable = false, columnDefinition = "INT(11) UNSIGNED")
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer idSoToilet;
+  private Integer postTypeId;
 
-  /** Init soToilet **/
-  @Column(name = "sotoilet", length = 10, nullable = false, unique = true)
-  private String soToilet;
+  /** Init tenLoaiTin **/
+  @Column(name = "post_type_name", length = 250, nullable = false, unique = true)
+  private String postTypeName;
 
-  public Integer getIdSoToilet() {
-    return idSoToilet;
+  /** Init giaTin **/
+  @Column(name = "price", nullable = false, columnDefinition = "INT(11) UNSIGNED")
+  private Integer price;
+
+  public Integer getPostTypeId() {
+    return postTypeId;
   }
 
-  public void setIdSoToilet(Integer idSoToilet) {
-    this.idSoToilet = idSoToilet;
+  public void setPostTypeId(Integer postTypeId) {
+    this.postTypeId = postTypeId;
   }
 
-  public String getSoToilet() {
-    return soToilet;
+  public String getPostTypeName() {
+    return postTypeName;
   }
 
-  public void setSoToilet(String soToilet) {
-    this.soToilet = soToilet;
+  public void setPostTypeName(String postTypeName) {
+    this.postTypeName = postTypeName;
+  }
+
+  public Integer getPrice() {
+    return price;
+  }
+
+  public void setPrice(Integer price) {
+    this.price = price;
+  }
+
+  public static long getSerialversionuid() {
+    return serialVersionUID;
   }
 }

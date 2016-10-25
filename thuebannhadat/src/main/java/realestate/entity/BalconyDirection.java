@@ -19,41 +19,44 @@ import org.hibernate.annotations.Where;
 
 /**
  * @author : DungPT
- * @PG_ID : HuongNha
+ * @PG_ID : BalconyDirection(HuongBanCong)
  * @createDate : 16.08.2016
  */
 @Entity
-@Table(name = "tbl_huongnha")
+@Table(name = "tbl_balcony_direction")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Where(clause = "status = 1")
-public class HuongNha extends AbstractEntity {
+public class BalconyDirection extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
 
-  /** Init idHuongNha **/
+  /** Init idHuongBanCong **/
   @Id
-  @Column(name = "id_huongnha", nullable = false, length = 250)
-  private String idHuongNha;
+  @Column(name = "balcony_direction_id", nullable = false, length = 250)
+  private String balconyDirectionId;
 
-  /** Init tenHuongNha **/
-  @Column(name = "ten_huongnha", length = 250, nullable = false, unique = true)
-  private String tenHuongNha;
+  /** Init tenHuongBanCong **/
+  @Column(name = "balcony_direction_name", length = 250, nullable = false, unique = true)
+  private String balconyDirectionName;
 
-  public String getTenHuongNha() {
-    return tenHuongNha;
+  public String getBalconyDirectionId() {
+    return balconyDirectionId;
   }
 
-  public void setTenHuongNha(String tenHuongNha) {
-    this.tenHuongNha = tenHuongNha;
+  public void setBalconyDirectionId(String balconyDirectionId) {
+    this.balconyDirectionId = balconyDirectionId;
   }
 
-  public String getIdHuongNha() {
-    return idHuongNha;
+  public String getBalconyDirectionName() {
+    return balconyDirectionName;
   }
 
-  public void setIdHuongNha(String idHuongNha) {
-    this.idHuongNha = idHuongNha;
+  public void setBalconyDirectionName(String balconyDirectionName) {
+    this.balconyDirectionName = balconyDirectionName;
   }
 
+  public static long getSerialversionuid() {
+    return serialVersionUID;
+  }
 }
