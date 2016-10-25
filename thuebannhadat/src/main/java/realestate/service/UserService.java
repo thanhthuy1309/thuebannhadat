@@ -12,14 +12,14 @@ import realestate.dto.LoginDto;
 import realestate.dto.PasswordDto;
 import realestate.dto.RegisterDto;
 import realestate.dto.RegisterSocialDto;
-import realestate.entity.NguoiDung;
+import realestate.entity.User;
 
 /**
  * @author : DUNGPT
  * @PG_ID : UserService.
  * @createDate : 09.01.2016
  */
-public interface UserService extends AbstractService<NguoiDung, Integer> {
+public interface UserService extends AbstractService<User, Integer> {
 
   /**
    * Lay thong tin nguoi dung dua vao key dienThoai
@@ -28,7 +28,7 @@ public interface UserService extends AbstractService<NguoiDung, Integer> {
    * 
    * @return NguoiDung
    */
-  public NguoiDung getUserByPhone(String phoneNumber);
+  public User getUserByPhone(String phoneNumber);
 
   /**
    * Lay thong tin nguoi dung dua vao email
@@ -37,7 +37,7 @@ public interface UserService extends AbstractService<NguoiDung, Integer> {
    * 
    * @return NguoiDung
    */
-  public NguoiDung getUserByEmail(String email);
+  public User getUserByEmail(String email);
 
   /**
    * dang ky nguoi dung chua kich hoat tai khoan
@@ -53,7 +53,7 @@ public interface UserService extends AbstractService<NguoiDung, Integer> {
    * @param activationDto
    * @return true, if nguoiDung
    */
-  public boolean activateUser(NguoiDung nguoiDung);
+  public boolean activateUser(User nguoiDung);
 
   /**
    * dang nhap bang so dien thoai
@@ -62,7 +62,7 @@ public interface UserService extends AbstractService<NguoiDung, Integer> {
    * 
    * @return NguoiDung
    */
-  public NguoiDung loginByPhone(LoginDto loginDto);
+  public User loginByPhone(LoginDto loginDto);
 
   /**
    * truong hop nguoi dung da dang ky roi nhung tai khoan chua dc kich hoat.
@@ -73,7 +73,7 @@ public interface UserService extends AbstractService<NguoiDung, Integer> {
    * 
    * @return true, if successful
    */
-  public boolean getActivationCode(String activationCode, NguoiDung user);
+  public boolean getActivationCode(String activationCode, User user);
 
   /**
    * truong hop lay ma code khi quen mat khau
@@ -83,7 +83,7 @@ public interface UserService extends AbstractService<NguoiDung, Integer> {
    * 
    * @return true, if successful
    */
-  public boolean getActivationCodeIfForgotPassword(String maCode, NguoiDung nd);
+  public boolean getActivationCodeIfForgotPassword(String maCode, User nd);
 
   /**
    * check ma code mat khau co dung khong
@@ -107,6 +107,6 @@ public interface UserService extends AbstractService<NguoiDung, Integer> {
    * @param registerSocialDto
    * @return nguoidung
    */
-  public NguoiDung registerSocial(RegisterSocialDto registerSocialDto);
+  public User registerSocial(RegisterSocialDto registerSocialDto);
 
 }

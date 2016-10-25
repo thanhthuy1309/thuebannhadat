@@ -8,22 +8,22 @@
  */
 package realestate.dao;
 
-import realestate.entity.NguoiDung;
+import realestate.entity.User;
 
 /**
  * @author : DUNGPT
  * @PG_ID  : UserDao
  * @createDate : 09.01.2016
  */
-public interface UserDao extends AbstractDao<NguoiDung, Integer> {
+public interface UserDao extends AbstractDao<User, Integer> {
 
   /**
    * Them nguoi dung
    *
-   * @param NguoiDung
+   * @param User
    * @return nguoiDung
    */
-  public NguoiDung addUser(NguoiDung user);
+  public User addUser(User user);
 
   /**
    * Lay thong tin nguoi dung dua vao key dienThoai
@@ -32,7 +32,7 @@ public interface UserDao extends AbstractDao<NguoiDung, Integer> {
    * 
    * @return NguoiDung
    */
-  public NguoiDung getUserByPhone(String phoneNumber);
+  public User getUserByPhone(String phoneNumber);
 
   /**
    * Lay thong tin nguoi dung dua vao email
@@ -41,7 +41,7 @@ public interface UserDao extends AbstractDao<NguoiDung, Integer> {
    * 
    * @return NguoiDung
    */
-  public NguoiDung getUserByEmail(String email);
+  public User getUserByEmail(String email);
 
   /**
    * Cap nhat thong tin nguoi dung
@@ -49,7 +49,7 @@ public interface UserDao extends AbstractDao<NguoiDung, Integer> {
    * @param user
    * @return true, if successful
    */
-  public boolean updateUser(NguoiDung user);
+  public boolean updateUser(User user);
 
   /**
    * Check dang nhap nguoi dung bang dienthoai
@@ -59,7 +59,7 @@ public interface UserDao extends AbstractDao<NguoiDung, Integer> {
    * 
    * @return NguoiDung
    */
-  public NguoiDung checkLoginByPhone(String phoneNumber, String password);
+  public User checkLoginByPhone(String phoneNumber, String password);
 
   /**
    * lay nguoi dung theo idNguoiDung
@@ -67,5 +67,5 @@ public interface UserDao extends AbstractDao<NguoiDung, Integer> {
    * @param idNguoiDung
    * @return nguoidung
    */
-  public NguoiDung getUserByID(Integer idNguoiDung);
+  public User getUserByID(Integer idNguoiDung);
 }

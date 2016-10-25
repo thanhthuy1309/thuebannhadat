@@ -8,8 +8,6 @@
  */
 package realestate.service.impl;
 
-import java.math.BigDecimal;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,7 +23,7 @@ import realestate.dto.LoginDto;
 import realestate.dto.PasswordDto;
 import realestate.dto.RegisterDto;
 import realestate.dto.RegisterSocialDto;
-import realestate.entity.NguoiDung;
+import realestate.entity.User;
 import realestate.service.UserService;
 import realestate.utils.DateUtils;
 import realestate.utils.MD5Utils;
@@ -36,7 +34,7 @@ import realestate.utils.MD5Utils;
  * @createDate : 09.01.2016
  */
 @Service
-public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> implements UserService {
+public class UserServiceImpl extends AbstractServiceImpl<User, Integer> implements UserService {
 
   private static final Logger LOGGER = Logger.getLogger(UserServiceImpl.class);
 
@@ -47,34 +45,34 @@ public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> imp
   }
 
   @Autowired
-  public UserServiceImpl(@Qualifier("userDaoImpl") AbstractDao<NguoiDung, Integer> abstractDao) {
+  public UserServiceImpl(@Qualifier("userDaoImpl") AbstractDao<User, Integer> abstractDao) {
     super(abstractDao);
     this.userDao = (UserDao) abstractDao;
   }
 
   /**
-   * Lay thong tin nguoi dung dua vao key dienThoai
+   * Lay thong tin nguoi dung dua vao key UserPhone
    * 
-   * @param dienThoai
+   * @param UserPhone
    * 
    * @return NguoiDung
    */
   @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
   @Override
-  public NguoiDung getUserByPhone(String dienThoai) {
-    return userDao.getUserByPhone(dienThoai);
+  public User getUserByPhone(String UserPhone) {
+    return userDao.getUserByPhone(UserPhone);
   }
 
   /**
-   * Lay thong tin nguoi dung dua vao email
+   * Lay thong tin nguoi dung dua vao UserEmail
    * 
-   * @param email
+   * @param UserEmail
    * 
    * @return NguoiDung
    */
   @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
   @Override
-  public NguoiDung getUserByEmail(String email) {
+  public User getUserByEmail(String email) {
     return userDao.getUserByEmail(email);
   }
 
@@ -89,20 +87,17 @@ public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> imp
   public boolean registerUser(RegisterDto dangKyDto) {
     if (dangKyDto != null) {
       try {
-        NguoiDung nguoiDung = new NguoiDung();
+        User nguoiDung = new User();
 
-        nguoiDung.setDienThoai(dangKyDto.getActivationCode());
-        nguoiDung.setMatKhau(MD5Utils.encrypt(dangKyDto.getPassword()));
+        nguoiDung.setUserPhone(dangKyDto.getActivationCode());
+        nguoiDung.setUserPassword(MD5Utils.encrypt(dangKyDto.getPassword()));
         nguoiDung.setStatus(ValidStatusEnum.FAILED.getValue());
-        nguoiDung.setSoCodeKichHoat(0);
-        nguoiDung.setSoCodeMatKhau(0);
 
-        nguoiDung.setIdPhanQuyen(ValueConstants.CONST_ROLE_USER);
-        nguoiDung.setViTien(new BigDecimal(0));
-        nguoiDung.setMaCodeKichHoat(dangKyDto.getActivationCode());
+        nguoiDung.setRoleId(ValueConstants.CONST_ROLE_USER);
+        nguoiDung.setActivationCode(dangKyDto.getActivationCode());
         nguoiDung.setCreateDate(DateUtils.now());
 
-        NguoiDung nd = userDao.addUser(nguoiDung);
+        User nd = userDao.addUser(nguoiDung);
         if (nd != null) {
           return true;
         }
@@ -122,7 +117,7 @@ public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> imp
    */
   @Transactional
   @Override
-  public boolean activateUser(NguoiDung nguoiDung) {
+  public boolean activateUser(User nguoiDung) {
     if (nguoiDung != null) {
       try {
         return userDao.updateUser(nguoiDung);
@@ -142,12 +137,12 @@ public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> imp
    */
   @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
   @Override
-  public NguoiDung loginByPhone(LoginDto dangNhapDto) {
+  public User loginByPhone(LoginDto dangNhapDto) {
     if (dangNhapDto != null) {
       try {
         return userDao.checkLoginByPhone(dangNhapDto.getPhoneNumber(), MD5Utils.encrypt(dangNhapDto.getPassword()));
       } catch (Exception e) {
-        LOGGER.error("#dangNhapByDienThoai: " + e);
+        LOGGER.error("#dangNhapByUserPhone: " + e);
         return null;
       }
     }
@@ -165,13 +160,13 @@ public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> imp
    */
   @Transactional
   @Override
-  public boolean getActivationCode(String maCode, NguoiDung nd) {
+  public boolean getActivationCode(String maCode, User nd) {
     if (nd != null) {
       try {
-        nd.setMaCodeKichHoat(maCode);
+        nd.setActivationCode(maCode);
         // tang so lan lay ma code
         // chi duoc lay 5 lan trong 1 ngay
-        nd.setSoCodeKichHoat(nd.getSoCodeKichHoat() + 1);
+        nd.setActivationCodeTimes(nd.getActivationCodeTimes() + 1);
         return userDao.updateUser(nd);
       } catch (Exception e) {
         LOGGER.error("#layCodeKichHoat: " + e);
@@ -191,16 +186,16 @@ public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> imp
    */
   @Transactional
   @Override
-  public boolean getActivationCodeIfForgotPassword(String maCode, NguoiDung nd) {
+  public boolean getActivationCodeIfForgotPassword(String maCode, User nd) {
     if (nd != null) {
       try {
-        nd.setMaCodeMatKhau(maCode);
+        nd.setPasswordCode(maCode);
         // tang so lan lay ma code
         // chi duoc lay 5 lan trong 1 ngay
-        nd.setSoCodeMatKhau(nd.getSoCodeMatKhau() + 1);
+        nd.setPasswordCodeTimes(nd.getPasswordCodeTimes() + 1);
         return userDao.updateUser(nd);
       } catch (Exception e) {
-        LOGGER.error("#layCodeQuenMatKhau: " + e);
+        LOGGER.error("#layCodeQuenUserPassword: " + e);
         return false;
       }
     }
@@ -211,24 +206,24 @@ public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> imp
    * check ma code mat khau co dung khong Neu dung thi chuyen sang man hinh nhap
    * mat khau moi
    * 
-   * @param matKhauDto
+   * @param UserPasswordDto
    * @return true, if successful
    */
   @Override
   @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-  public boolean checkPassword(PasswordDto matKhauDto) {
-    if (matKhauDto != null) {
+  public boolean checkPassword(PasswordDto UserPasswordDto) {
+    if (UserPasswordDto != null) {
       try {
-        NguoiDung nd = userDao.getUserByPhone(matKhauDto.getPhoneNumber());
+        User nd = userDao.getUserByPhone(UserPasswordDto.getPhoneNumber());
         if (nd != null) {
-          if (nd.getMaCodeMatKhau().equals(matKhauDto.getPassword())) {
+          if (nd.getPasswordCode().equals(UserPasswordDto.getPassword())) {
             return true;
           }
           return false;
         }
         return false;
       } catch (Exception e) {
-        LOGGER.error("#checkMaCodeMatKhau: " + e);
+        LOGGER.error("#checkPasswordCode: " + e);
         return false;
       }
     }
@@ -246,16 +241,16 @@ public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> imp
   public boolean updateIfForgotPassword(LoginDto dangNhapDto) {
     if (dangNhapDto != null) {
       try {
-        NguoiDung nd = userDao.getUserByPhone(dangNhapDto.getPhoneNumber());
+        User nd = userDao.getUserByPhone(dangNhapDto.getPhoneNumber());
         if (nd != null) {
-          nd.setMatKhau(MD5Utils.encrypt(dangNhapDto.getPassword()));
+          nd.setUserPassword(MD5Utils.encrypt(dangNhapDto.getPassword()));
           // reset lai ma mat khau
-          nd.setMaCodeMatKhau("");
+          nd.setPasswordCode("");
           return userDao.updateUser(nd);
         }
         return false;
       } catch (Exception e) {
-        LOGGER.error("#capNhatMatKhau: " + e);
+        LOGGER.error("#capNhatUserPassword: " + e);
         return false;
       }
     }
@@ -264,20 +259,19 @@ public class UserServiceImpl extends AbstractServiceImpl<NguoiDung, Integer> imp
 
   @Override
   @Transactional
-  public NguoiDung registerSocial(RegisterSocialDto registerSocialDto) {
-    NguoiDung nguoiDung = new NguoiDung();
+  public User registerSocial(RegisterSocialDto registerSocialDto) {
+    User nguoiDung = new User();
     if (registerSocialDto != null) {
       try {
 
-        nguoiDung.setDienThoai(registerSocialDto.getDienThoai());
-        nguoiDung.setHoTen(registerSocialDto.getHoTen());
-        nguoiDung.setEmail(registerSocialDto.getEmail());
-        nguoiDung.setStatus(registerSocialDto.getTrangThai());
-        nguoiDung.setSoCodeKichHoat(registerSocialDto.getSoCodeKichHoat());
-        nguoiDung.setMaCodeKichHoat(registerSocialDto.getMaCodeKichHoat());
+        nguoiDung.setUserPhone(registerSocialDto.getUserPhone());
+        nguoiDung.setUserName(registerSocialDto.getUserName());
+        nguoiDung.setUserEmail(registerSocialDto.getUserEmail());
+        nguoiDung.setStatus(registerSocialDto.getStatus());
+        nguoiDung.setActivationCodeTimes(registerSocialDto.getActivationCodeTimes());
+        nguoiDung.setActivationCode(registerSocialDto.getActivationCode());
 
-        nguoiDung.setIdPhanQuyen(ValueConstants.CONST_ROLE_USER);
-        nguoiDung.setViTien(new BigDecimal(0));
+        nguoiDung.setRoleId(ValueConstants.CONST_ROLE_USER);
         nguoiDung.setCreateDate(DateUtils.now());
 
         userDao.addUser(nguoiDung);

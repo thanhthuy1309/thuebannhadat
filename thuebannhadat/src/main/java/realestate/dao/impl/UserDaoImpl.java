@@ -8,14 +8,14 @@
  */
 package realestate.dao.impl;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import realestate.common.ValidStatusEnum;
 import realestate.dao.UserDao;
-import realestate.entity.NguoiDung;
+import realestate.entity.User;
 
 /**
  * @author : DUNGPT
@@ -23,7 +23,7 @@ import realestate.entity.NguoiDung;
  * @createDate : 09.01.2016
  */
 @Repository
-public class UserDaoImpl extends AbstractDaoImpl<NguoiDung, Integer> implements UserDao {
+public class UserDaoImpl extends AbstractDaoImpl<User, Integer> implements UserDao {
 
   /** Init logger. */
   private Logger LOGGER = Logger.getLogger(UserDaoImpl.class);
@@ -31,10 +31,10 @@ public class UserDaoImpl extends AbstractDaoImpl<NguoiDung, Integer> implements 
   /**
    * Them nguoi dung moi
    * 
-   * @param NguoiDung
+   * @param User
    * @return nguoiDung
    */
-  public NguoiDung addUser(NguoiDung nguoiDung) {
+  public User addUser(User nguoiDung) {
     Session session = getSession();
 
     try {
@@ -53,7 +53,7 @@ public class UserDaoImpl extends AbstractDaoImpl<NguoiDung, Integer> implements 
    * 
    * @return NguoiDung
    */
-  public NguoiDung getUserByPhone(String phoneNumber) {
+  public User getUserByPhone(String phoneNumber) {
     Session session = getSession();
     // Query get get NguoiDung
     Query query = session.getNamedQuery("UserDao.getUserByPhone");
@@ -61,7 +61,7 @@ public class UserDaoImpl extends AbstractDaoImpl<NguoiDung, Integer> implements 
     // Set parameter
     query.setString("phoneNumber", phoneNumber);
 
-    NguoiDung nguoiDung = (NguoiDung) query.uniqueResult();
+    User nguoiDung = (User) query.uniqueResult();
 
     if (nguoiDung != null) {
       return nguoiDung;
@@ -76,15 +76,15 @@ public class UserDaoImpl extends AbstractDaoImpl<NguoiDung, Integer> implements 
    * @param nguoiDung
    * @return true, if successful
    */
-  public boolean updateUser(NguoiDung nd) {
+  public boolean updateUser(User nd) {
     Session session = getSession();
 
-    NguoiDung nguoiDung = (NguoiDung) session.get(NguoiDung.class, nd.getIdNguoiDung());
+    User nguoiDung = (User) session.get(User.class, nd.getUserId());
     if (nguoiDung != null) {
       try {
-        nguoiDung.setMaCodeKichHoat(null);
+        nguoiDung.setActivationCode(null);
         nguoiDung.setStatus(ValidStatusEnum.SUCCESSFUL.getValue());
-        nguoiDung.setSoCodeKichHoat(nd.getSoCodeKichHoat());
+        nguoiDung.setActivationCodeTimes(nd.getActivationCodeTimes());
         // update nguoiDung
         session.merge(nguoiDung);
         return true;
@@ -102,7 +102,7 @@ public class UserDaoImpl extends AbstractDaoImpl<NguoiDung, Integer> implements 
    * 
    * @return NguoiDung
    */
-  public NguoiDung getUserByEmail(String email) {
+  public User getUserByEmail(String email) {
     Session session = getSession();
     // Query get get NguoiDung
     Query query = session.getNamedQuery("UserDao.getUserByEmail");
@@ -111,7 +111,7 @@ public class UserDaoImpl extends AbstractDaoImpl<NguoiDung, Integer> implements 
     query.setString("email", email);
     query.setInteger("trangThai", 1);
 
-    NguoiDung nguoiDung = (NguoiDung) query.uniqueResult();
+    User nguoiDung = (User) query.uniqueResult();
 
     if (nguoiDung != null) {
       return nguoiDung;
@@ -128,7 +128,7 @@ public class UserDaoImpl extends AbstractDaoImpl<NguoiDung, Integer> implements 
    * 
    * @return NguoiDung
    */
-  public NguoiDung checkLoginByPhone(String phoneNumber, String password) {
+  public User checkLoginByPhone(String phoneNumber, String password) {
     Session session = getSession();
     // Query get get NguoiDung
     Query query = session.getNamedQuery("UserDao.checkLoginByPhone");
@@ -137,7 +137,7 @@ public class UserDaoImpl extends AbstractDaoImpl<NguoiDung, Integer> implements 
     query.setString("phoneNumber", phoneNumber);
     query.setString("password", password);
 
-    NguoiDung nguoiDung = (NguoiDung) query.uniqueResult();
+    User nguoiDung = (User) query.uniqueResult();
 
     if (nguoiDung != null) {
       return nguoiDung;
@@ -153,8 +153,8 @@ public class UserDaoImpl extends AbstractDaoImpl<NguoiDung, Integer> implements 
    * @return nguoidung
    */
   @Override
-  public NguoiDung getUserByID(Integer idNguoiDung) {
+  public User getUserByID(Integer idNguoiDung) {
     Session session = getSession();
-    return (NguoiDung) session.get(NguoiDung.class, idNguoiDung);
+    return (User) session.get(User.class, idNguoiDung);
   }
 }

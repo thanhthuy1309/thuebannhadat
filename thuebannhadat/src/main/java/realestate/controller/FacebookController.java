@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import realestate.constants.ValueConstants;
-import realestate.entity.NguoiDung;
+import realestate.entity.User;
 import realestate.service.UserService;
 import realestate.utils.StringUtils;
 
@@ -84,7 +84,7 @@ public class FacebookController {
       String email = obj.getString("email");
 
       request.getSession().setAttribute("FACEBOOK_ACCESS_TOKEN", accessToken);
-      NguoiDung nguoiDung = userService.getUserByEmail(email);
+      User nguoiDung = userService.getUserByEmail(email);
 
       if (nguoiDung == null) {
     	session.setAttribute("name", name);

@@ -24,7 +24,7 @@ import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 import com.github.scribejava.core.oauth.OAuthService;
 
-import realestate.entity.NguoiDung;
+import realestate.entity.User;
 import realestate.service.UserService;
 
 @Controller
@@ -79,7 +79,7 @@ public class GoogleController {
       String name = obj.getString("name");
       String email = obj.getString("email");
 
-      NguoiDung nguoiDung = userService.getUserByEmail(email);
+      User nguoiDung = userService.getUserByEmail(email);
 
       if (nguoiDung == null) {
         session.setAttribute("name", name);
