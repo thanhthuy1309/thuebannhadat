@@ -22,27 +22,27 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Where;
 
-import realestate.entity.PK.Duong_PK;
+import realestate.entity.PK.Street_PK;
 
 /**
  * @author : DungPT
- * @PG_ID : (Address)Duong
+ * @PG_ID : (Street)Duong
  * @createDate : 16.08.2016
  */
 @Entity
 @Table(name = "tbl_address")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@IdClass(Duong_PK.class)
+@IdClass(Street_PK.class)
 @Where(clause = "status = 1")
-public class Address extends AbstractEntity {
+public class Street extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
 
   /** Init idDuong **/
   @Id
-  @Column(name = "address_id", nullable = false, length = 250)
-  private String addressId;
+  @Column(name = "street_id", nullable = false, length = 250)
+  private String streetId;
 
   /** Init idQuanHuyen **/
   @Id
@@ -51,16 +51,72 @@ public class Address extends AbstractEntity {
 
   @Id
   @Column(name = "city_id", nullable = false, length = 250)
-  private String city_Id;
+  private String cityId;
 
   /** Init tenDuong **/
-  @Column(name = "address_name", length = 250, nullable = false)
-  private String addressName;
+  @Column(name = "street_name", length = 250, nullable = false)
+  private String streetName;
+
+  /** Init trangThai **/
+  @Column(name = "status", length = 1, nullable = false, columnDefinition = "TINYINT(1) UNSIGNED DEFAULT 0")
+  private Integer status;
 
   /** Init quanHuyen **/
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumns({
       @JoinColumn(name = "city_id", referencedColumnName = "city_id", insertable = false, updatable = false),
       @JoinColumn(name = "district_id", referencedColumnName = "district_id", insertable = false, updatable = false) })
-  private QuanHuyen district;
+  private District district;
+
+  public String getStreetId() {
+    return streetId;
+  }
+
+  public void setStreetId(String streetId) {
+    this.streetId = streetId;
+  }
+
+  public String getDistrictId() {
+    return districtId;
+  }
+
+  public void setDistrictId(String districtId) {
+    this.districtId = districtId;
+  }
+
+  public String getCityId() {
+    return cityId;
+  }
+
+  public void setCityId(String cityId) {
+    this.cityId = cityId;
+  }
+
+  public String getStreetName() {
+    return streetName;
+  }
+
+  public void setStreetName(String streetName) {
+    this.streetName = streetName;
+  }
+
+  public Integer getStatus() {
+    return status;
+  }
+
+  public void setStatus(Integer status) {
+    this.status = status;
+  }
+
+  public District getDistrict() {
+    return district;
+  }
+
+  public void setDistrict(District district) {
+    this.district = district;
+  }
+
+  public static long getSerialversionuid() {
+    return serialVersionUID;
+  }
 }

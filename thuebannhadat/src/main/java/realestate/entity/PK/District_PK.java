@@ -12,26 +12,26 @@ import java.io.Serializable;
 
 /**
  * @author : DUNGPT
- * @PG_ID : QuanHuyen_PK
+ * @PG_ID : District_PK
  * @createDate : 04.08.2016
  */
-public class QuanHuyen_PK implements Serializable {
+public class District_PK implements Serializable {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
 
-  /** Init idQuanHuyen **/
-  private String idQuanHuyen;
+  /** Init districtId **/
+  private String districtId;
 
-  /** Init idThanhPho **/
-  private String idThanhPho;
+  /** Init cityId **/
+  private String cityId;
 
   @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((idQuanHuyen == null) ? 0 : idQuanHuyen.hashCode());
-    result = prime * result + ((idThanhPho == null) ? 0 : idThanhPho.hashCode());
+    result = prime * result + ((districtId == null) ? 0 : districtId.hashCode());
+    result = prime * result + ((cityId == null) ? 0 : cityId.hashCode());
     return result;
   }
 
@@ -49,39 +49,43 @@ public class QuanHuyen_PK implements Serializable {
       return false;
     }
 
-    QuanHuyen_PK other = (QuanHuyen_PK) obj;
+    District_PK other = (District_PK) obj;
 
-    if (idQuanHuyen == null) {
-      if (other.idQuanHuyen != null) {
+    if (districtId == null) {
+      if (other.districtId != null) {
         return false;
       }
-    } else if (!idQuanHuyen.equals(other.idQuanHuyen)) {
+    } else if (!districtId.equals(other.districtId)) {
       return false;
     }
 
-    if (idThanhPho == null) {
-      if (other.idThanhPho != null) {
+    if (cityId == null) {
+      if (other.cityId != null) {
         return false;
       }
-    } else if (!idThanhPho.equals(other.idThanhPho)) {
+    } else if (!cityId.equals(other.cityId)) {
       return false;
     }
     return true;
   }
 
-  public String getIdQuanHuyen() {
-    return idQuanHuyen;
+  public String getDistrictId() {
+    return districtId;
   }
 
-  public void setIdQuanHuyen(String idQuanHuyen) {
-    this.idQuanHuyen = idQuanHuyen;
+  public void setDistrictId(String districtId) {
+    this.districtId = districtId;
   }
 
-  public String getIdThanhPho() {
-    return idThanhPho;
+  public String getCityId() {
+    return cityId;
   }
 
-  public void setIdThanhPho(String idThanhPho) {
-    this.idThanhPho = idThanhPho;
+  public void setCityId(String cityId) {
+    this.cityId = cityId;
+  }
+
+  public static long getSerialversionuid() {
+    return serialVersionUID;
   }
 }
