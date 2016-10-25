@@ -21,7 +21,7 @@ import org.hibernate.annotations.Where;
 
 /**
  * @author : DungPT
- * @PG_ID : FooterLinkBan
+ * @PG_ID : FooterSellLink
  * @createDate : 09.09.2016
  */
 @Entity

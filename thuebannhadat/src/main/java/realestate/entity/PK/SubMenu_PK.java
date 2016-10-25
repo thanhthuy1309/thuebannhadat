@@ -12,26 +12,26 @@ import java.io.Serializable;
 
 /**
  * @author : DUNGPT
- * @PG_ID : MenuCon_PK
+ * @PG_ID : SubMenu_PK
  * @createDate : 04.08.2016
  */
-public class MenuCon_PK implements Serializable {
+public class SubMenu_PK implements Serializable {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
 
-  /** Init idMenuCon **/
-  private String idMenuCon;
+  /** Init subMenuId **/
+  private String subMenuId;
 
-  /** Init idMenuChinh **/
-  private String idMenuChinh;
+  /** Init mainMenuId **/
+  private String mainMenuId;
 
   @Override
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((idMenuCon == null) ? 0 : idMenuCon.hashCode());
-    result = prime * result + ((idMenuChinh == null) ? 0 : idMenuChinh.hashCode());
+    result = prime * result + ((subMenuId == null) ? 0 : subMenuId.hashCode());
+    result = prime * result + ((mainMenuId == null) ? 0 : mainMenuId.hashCode());
     return result;
   }
 
@@ -49,23 +49,43 @@ public class MenuCon_PK implements Serializable {
       return false;
     }
 
-    MenuCon_PK other = (MenuCon_PK) obj;
+    SubMenu_PK other = (SubMenu_PK) obj;
 
-    if (idMenuCon == null) {
-      if (other.idMenuCon != null) {
+    if (subMenuId == null) {
+      if (other.subMenuId != null) {
         return false;
       }
-    } else if (!idMenuCon.equals(other.idMenuCon)) {
+    } else if (!subMenuId.equals(other.subMenuId)) {
       return false;
     }
 
-    if (idMenuChinh == null) {
-      if (other.idMenuChinh != null) {
+    if (mainMenuId == null) {
+      if (other.mainMenuId != null) {
         return false;
       }
-    } else if (!idMenuChinh.equals(other.idMenuChinh)) {
+    } else if (!mainMenuId.equals(other.mainMenuId)) {
       return false;
     }
     return true;
+  }
+
+  public String getSubMenuId() {
+    return subMenuId;
+  }
+
+  public void setSubMenuId(String subMenuId) {
+    this.subMenuId = subMenuId;
+  }
+
+  public String getMainMenuId() {
+    return mainMenuId;
+  }
+
+  public void setMainMenuId(String mainMenuId) {
+    this.mainMenuId = mainMenuId;
+  }
+
+  public static long getSerialversionuid() {
+    return serialVersionUID;
   }
 }

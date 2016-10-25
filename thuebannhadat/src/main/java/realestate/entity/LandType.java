@@ -24,53 +24,56 @@ import org.hibernate.annotations.Where;
 
 /**
  * @author : DungPT
- * @PG_ID : LoaiHinhDat
+ * @PG_ID : LandType
  * @createDate : 16.08.2016
  */
 @Entity
-@Table(name = "tbl_loaihinhdat")
+@Table(name = "tbl_land_type")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Where(clause = "status = 1")
-public class LoaiHinhDat extends AbstractEntity {
+public class LandType extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
 
   /** Init idLoaiHinhDat **/
   @Id
-  @Column(name = "id_loaihinhdat", nullable = false, length = 250)
-  private String idLoaiHinhDat;
+  @Column(name = "land_type_id", nullable = false, length = 250)
+  private String landTypeId;
 
   /** Init tenLoaiHinhDat **/
-  @Column(name = "ten_loaihinhdat", length = 250, nullable = false)
-  private String tenLoaiHinhDat;
+  @Column(name = "land_type_name", length = 250, nullable = false)
+  private String landTypeName;
 
   /** Init listLoaiNhaDat **/
-  @OneToMany(mappedBy = "loaiHinhDat", cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = LoaiNhaDat.class)
-  private List<LoaiNhaDat> listLoaiNhaDat;
+  @OneToMany(mappedBy = "landType", cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = HousingType.class)
+  private List<HousingType> housingTypeList;
 
-  public String getTenLoaiHinhDat() {
-    return tenLoaiHinhDat;
+  public String getLandTypeId() {
+    return landTypeId;
   }
 
-  public void setTenLoaiHinhDat(String tenLoaiHinhDat) {
-    this.tenLoaiHinhDat = tenLoaiHinhDat;
+  public void setLandTypeId(String landTypeId) {
+    this.landTypeId = landTypeId;
   }
 
-  public List<LoaiNhaDat> getListLoaiNhaDat() {
-    return listLoaiNhaDat;
+  public String getLandTypeName() {
+    return landTypeName;
   }
 
-  public void setListLoaiNhaDat(List<LoaiNhaDat> listLoaiNhaDat) {
-    this.listLoaiNhaDat = listLoaiNhaDat;
+  public void setLandTypeName(String landTypeName) {
+    this.landTypeName = landTypeName;
   }
 
-  public String getIdLoaiHinhDat() {
-    return idLoaiHinhDat;
+  public List<HousingType> getHousingTypeList() {
+    return housingTypeList;
   }
 
-  public void setIdLoaiHinhDat(String idLoaiHinhDat) {
-    this.idLoaiHinhDat = idLoaiHinhDat;
+  public void setHousingTypeList(List<HousingType> housingTypeList) {
+    this.housingTypeList = housingTypeList;
   }
 
+  public static long getSerialversionuid() {
+    return serialVersionUID;
+  }
 }

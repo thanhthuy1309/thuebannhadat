@@ -60,4 +60,48 @@ public class City implements Serializable {
   @Column(name = "city_order", nullable = false)
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer cityOrder;
+
+  public String getCityId() {
+    return cityId;
+  }
+
+  public void setCityId(String cityId) {
+    this.cityId = cityId;
+  }
+
+  public String getCityName() {
+    return cityName;
+  }
+
+  public void setCityName(String cityName) {
+    this.cityName = cityName;
+  }
+
+  public Integer getStatus() {
+    return status;
+  }
+
+  public void setStatus(Integer status) {
+    this.status = status;
+  }
+
+  public List<District> getDistrictList() {
+    return districtList;
+  }
+
+  public void setDistrictList(List<District> districtList) {
+    this.districtList = districtList;
+  }
+
+  public Integer getCityOrder() {
+    return cityOrder;
+  }
+
+  public void setCityOrder(Integer cityOrder) {
+    this.cityOrder = cityOrder;
+  }
+
+  public static long getSerialversionuid() {
+    return serialVersionUID;
+  }
 }

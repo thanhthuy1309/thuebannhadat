@@ -21,58 +21,57 @@ import org.hibernate.annotations.Where;
 
 /**
  * @author : DungPT
- * @PG_ID : FooterLinkThue
+ * @PG_ID : FooterRentLink
  * @createDate : 09.09.2016
  */
 @Entity
-@Table(name = "tbl_footerlinkthue")
+@Table(name = "tbl_footer_rent_link")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Where(clause = "status = 1")
-public class FooterLinkThue extends AbstractEntity {
+public class FooterRentLink extends AbstractEntity {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
 
   /** Init idFooterLinkThue **/
   @Id
-  @Column(name = "id_footerlinkthue", nullable = false, columnDefinition = "INT(11) UNSIGNED")
+  @Column(name = "footer_rent_link_id", nullable = false, columnDefinition = "INT(11) UNSIGNED")
   @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer idFooterLinkThue;
+  private Integer footerRentLinkId;
 
   /** Init urlFooterLinkThue **/
-  @Column(name = "url_footerlinkthue", nullable = false, length = 250)
-  private String urlFooterLinkThue;
+  @Column(name = "footer_rent_link_url", nullable = false, length = 250)
+  private String footerRentLinkUrl;
 
   /** Init tenFooterLinkThue **/
-  @Column(name = "ten_footerlinkthue", length = 250, nullable = false)
-  private String tenFooterLinkThue;
+  @Column(name = "footer_rent_link_name", length = 250, nullable = false)
+  private String footerRentLinkName;
 
-  public Integer getIdFooterLinkThue() {
-    return idFooterLinkThue;
+  public Integer getFooterRentLinkId() {
+    return footerRentLinkId;
   }
 
-  public void setIdFooterLinkThue(Integer idFooterLinkThue) {
-    this.idFooterLinkThue = idFooterLinkThue;
+  public void setFooterRentLinkId(Integer footerRentLinkId) {
+    this.footerRentLinkId = footerRentLinkId;
   }
 
-  public String getUrlFooterLinkThue() {
-    return urlFooterLinkThue;
+  public String getFooterRentLinkUrl() {
+    return footerRentLinkUrl;
   }
 
-  public void setUrlFooterLinkThue(String urlFooterLinkThue) {
-    this.urlFooterLinkThue = urlFooterLinkThue;
+  public void setFooterRentLinkUrl(String footerRentLinkUrl) {
+    this.footerRentLinkUrl = footerRentLinkUrl;
   }
 
-  public String getTenFooterLinkThue() {
-    return tenFooterLinkThue;
+  public String getFooterRentLinkName() {
+    return footerRentLinkName;
   }
 
-  public void setTenFooterLinkThue(String tenFooterLinkThue) {
-    this.tenFooterLinkThue = tenFooterLinkThue;
+  public void setFooterRentLinkName(String footerRentLinkName) {
+    this.footerRentLinkName = footerRentLinkName;
   }
 
   public static long getSerialversionuid() {
     return serialVersionUID;
   }
-
 }
