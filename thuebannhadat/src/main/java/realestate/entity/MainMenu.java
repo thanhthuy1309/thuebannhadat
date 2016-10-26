@@ -46,12 +46,12 @@ public class MainMenu extends AbstractEntity {
   private String mainMenuName;
 
   /** Init thuTu **/
-  @Column(name = "order", length = 2, nullable = false, columnDefinition = "TINYINT(2) UNSIGNED")
-  private Short order;
+  @Column(name = "main_menu_order", nullable = false, columnDefinition = "TINYINT(2) UNSIGNED")
+  private Integer mainMenuOrder;
 
   /** Init url **/
-  @Column(name = "url", length = 250, nullable = false)
-  private String url;
+  @Column(name = "main_menu_url", length = 250, nullable = false)
+  private String mainMenuUrl;
 
   /** Init listMenuCon **/
   @OneToMany(mappedBy = "mainMenu", cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = SubMenu.class)
@@ -73,20 +73,20 @@ public class MainMenu extends AbstractEntity {
     this.mainMenuName = mainMenuName;
   }
 
-  public Short getOrder() {
-    return order;
+  public Integer getMainMenuOrder() {
+    return mainMenuOrder;
   }
 
-  public void setOrder(Short order) {
-    this.order = order;
+  public void setMainMenuOrder(Integer mainMenuOrder) {
+    this.mainMenuOrder = mainMenuOrder;
   }
 
-  public String getUrl() {
-    return url;
+  public String getMainMenuUrl() {
+    return mainMenuUrl;
   }
 
-  public void setUrl(String url) {
-    this.url = url;
+  public void setMainMenuUrl(String mainMenuUrl) {
+    this.mainMenuUrl = mainMenuUrl;
   }
 
   public List<SubMenu> getSubMenuList() {

@@ -6,26 +6,26 @@
 	<query name="UserDao.getUserByPhone">
 	<![CDATA[
         SELECT n
-        FROM NguoiDung n
-        WHERE n.dienThoai = :dienThoai
+        FROM User n
+        WHERE n.userPhone = :userPhone
         ]]>
 	</query>
 
 	<query name="UserDao.getUserByEmail">
 	<![CDATA[
         SELECT n
-        FROM NguoiDung n
-        WHERE n.email = :email
-        	AND n.trangThai = :trangThai
+        FROM User n
+        WHERE n.userEmail = :userEmail
+        	AND n.status = :status
         ]]>
 	</query>
 
 	<query name="UserDao.checkLoginByPhone">
 	<![CDATA[
         SELECT n
-        FROM NguoiDung n
-        WHERE n.dienThoai = :dienThoai
-             AND n.matKhau = :matKhau
+        FROM User n
+        WHERE n.userPhone = :userPhone
+             AND n.userPassword = :userPassword
         ]]>
 	</query>
 

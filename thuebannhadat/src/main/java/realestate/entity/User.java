@@ -79,7 +79,7 @@ public class User extends AbstractEntity {
 
   /** Init phanQuyen **/
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "role_id", insertable = false, updatable = false)
+  @JoinColumn(name = "role_id", referencedColumnName = "role_id", insertable = false, updatable = false)
   private Role role;
 
   /** Init diaChi **/

@@ -59,7 +59,7 @@ public class UserDaoImpl extends AbstractDaoImpl<User, Integer> implements UserD
     Query query = session.getNamedQuery("UserDao.getUserByPhone");
 
     // Set parameter
-    query.setString("phoneNumber", phoneNumber);
+    query.setString("userPhone", phoneNumber);
 
     User nguoiDung = (User) query.uniqueResult();
 
@@ -108,8 +108,8 @@ public class UserDaoImpl extends AbstractDaoImpl<User, Integer> implements UserD
     Query query = session.getNamedQuery("UserDao.getUserByEmail");
 
     // Set parameter
-    query.setString("email", email);
-    query.setInteger("trangThai", 1);
+    query.setString("userEmail", email);
+    query.setInteger("status", 1);
 
     User nguoiDung = (User) query.uniqueResult();
 
@@ -134,8 +134,8 @@ public class UserDaoImpl extends AbstractDaoImpl<User, Integer> implements UserD
     Query query = session.getNamedQuery("UserDao.checkLoginByPhone");
 
     // Set parameter
-    query.setString("phoneNumber", phoneNumber);
-    query.setString("password", password);
+    query.setString("userPhone", phoneNumber);
+    query.setString("userPassword", password);
 
     User nguoiDung = (User) query.uniqueResult();
 

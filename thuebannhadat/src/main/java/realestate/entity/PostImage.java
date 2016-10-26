@@ -45,12 +45,12 @@ public class PostImage extends AbstractEntity {
   private String postImageName;
 
   /** Init order **/
-  @Column(name = "type_image", nullable = false, length = 250)
+  @Column(name = "type_image", nullable = false, length = 250, columnDefinition = "CHAR(1)")
   private String typeImage;
 
   /** Init order **/
-  @Column(name = "order", length = 2, nullable = false, columnDefinition = "TINYINT(2) UNSIGNED")
-  private Integer order;
+  @Column(name = "post_specification_order", nullable = false, columnDefinition = "TINYINT(2) UNSIGNED")
+  private Integer postSpecificationOrder;
 
   public String getPostImageId() {
     return postImageId;
@@ -76,18 +76,6 @@ public class PostImage extends AbstractEntity {
     this.postImageName = postImageName;
   }
 
-  public Integer getOrder() {
-    return order;
-  }
-
-  public void setOrder(Integer order) {
-    this.order = order;
-  }
-
-  public static long getSerialversionuid() {
-    return serialVersionUID;
-  }
-
   public String getTypeImage() {
     return typeImage;
   }
@@ -96,4 +84,11 @@ public class PostImage extends AbstractEntity {
     this.typeImage = typeImage;
   }
 
+  public Integer getPostSpecificationOrder() {
+    return postSpecificationOrder;
+  }
+
+  public void setPostSpecificationOrder(Integer postSpecificationOrder) {
+    this.postSpecificationOrder = postSpecificationOrder;
+  }
 }

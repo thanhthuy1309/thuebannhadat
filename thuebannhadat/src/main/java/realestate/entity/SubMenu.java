@@ -53,12 +53,12 @@ public class SubMenu extends AbstractEntity {
   private String subMenuName;
 
   /** Init thuTu **/
-  @Column(name = "order", length = 2, nullable = false, columnDefinition = "TINYINT(2) UNSIGNED")
-  private Short order;
+  @Column(name = "sub_menu_order", nullable = false, columnDefinition = "TINYINT(2) UNSIGNED")
+  private Integer subMenuOrder;
 
   /** Init url **/
-  @Column(name = "url", length = 250, nullable = false)
-  private String url;
+  @Column(name = "sub_menu_url", length = 250, nullable = false)
+  private String subMenuUrl;
 
   /** Init menuChinh **/
   @ManyToOne(fetch = FetchType.LAZY)
@@ -89,20 +89,20 @@ public class SubMenu extends AbstractEntity {
     this.subMenuName = subMenuName;
   }
 
-  public Short getOrder() {
-    return order;
+  public Integer getSubMenuOrder() {
+    return subMenuOrder;
   }
 
-  public void setOrder(Short order) {
-    this.order = order;
+  public void setSubMenuOrder(Integer subMenuOrder) {
+    this.subMenuOrder = subMenuOrder;
   }
 
-  public String getUrl() {
-    return url;
+  public String getSubMenuUrl() {
+    return subMenuUrl;
   }
 
-  public void setUrl(String url) {
-    this.url = url;
+  public void setSubMenuUrl(String subMenuUrl) {
+    this.subMenuUrl = subMenuUrl;
   }
 
   public MainMenu getMainMenu() {

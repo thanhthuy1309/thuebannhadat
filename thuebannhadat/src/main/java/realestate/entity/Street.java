@@ -8,6 +8,8 @@
  */
 package realestate.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -30,11 +32,11 @@ import realestate.entity.PK.Street_PK;
  * @createDate : 16.08.2016
  */
 @Entity
-@Table(name = "tbl_address")
+@Table(name = "tbl_street")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @IdClass(Street_PK.class)
 @Where(clause = "status = 1")
-public class Street extends AbstractEntity {
+public class Street implements Serializable {
 
   /** Init serialVersionUID is 1L **/
   private static final long serialVersionUID = 1L;
