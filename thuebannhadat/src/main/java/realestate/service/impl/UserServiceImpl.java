@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import realestate.common.ValidStatusEnum;
 import realestate.constants.ValueConstants;
 import realestate.dao.AbstractDao;
 import realestate.dao.UserDao;
@@ -24,6 +23,7 @@ import realestate.dto.PasswordDto;
 import realestate.dto.RegisterDto;
 import realestate.dto.RegisterSocialDto;
 import realestate.entity.User;
+import realestate.enumerator.ValidStatusEnum;
 import realestate.service.UserService;
 import realestate.utils.DateUtils;
 import realestate.utils.MD5Utils;

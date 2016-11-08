@@ -14,7 +14,7 @@ import realestate.utils.FileUtils;
 
 /**
  * @author : DungPT
- * @PG_ID : ValidStatusEnum
+ * @PG_ID : ValueConstants
  * @createDate : 16.08.2016
  */
 public class ValueConstants {
@@ -22,10 +22,10 @@ public class ValueConstants {
   public static final Properties CONFIG_PROPS = FileUtils.getProperties();
 
   /** The Constant CONST_DATE_FORMAT. */
-  public static final String CONST_DATE_FORMAT = "dd/mm/yyyy";
+  public static final String CONST_DATE_FORMAT = "dd/MM/yyyy";
 
   /** The Constant CONST_TIME_FORMAT. */
-  public static final String CONST_TIME_FORMAT = "hh:mm";
+  public static final String CONST_TIME_FORMAT = "HH:mm";
 
   /** The Constant CONST_PRIVATE_KEY. */
   public static final String CONST_PRIVATE_KEY = "/keys/private.key";

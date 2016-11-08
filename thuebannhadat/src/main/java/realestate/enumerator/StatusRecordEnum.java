@@ -6,26 +6,25 @@
  * and shall use it only in accordance with the terms of the license
  * agreement you entered into with thuebannhadat.com.vn.
  */
-package realestate.common;
+package realestate.enumerator;
 
 /**
  * @author : DungPT
- * @PG_ID : ValidStatusEnum
+ * @PG_ID : StatusRecordEnum
  * @createDate : 16.08.2016
  */
-public enum ValidStatusEnum {
+public enum StatusRecordEnum {
 
-  FAILED(0), SUCCESSFUL(1), NOACTICEPHONE(2);
+  INACTIVE(0), ACTIVE(1), DELETE(9);
 
   /** Init value. */
   private int value;
 
   /**
-   * Instantiates a new valid status enum.
-   *
-   * @param value the value
+   * @param value
+   *          the value
    */
-  private ValidStatusEnum(int value) {
+  private StatusRecordEnum(int value) {
     this.value = value;
   }
 
@@ -34,12 +33,5 @@ public enum ValidStatusEnum {
    */
   public int getValue() {
     return this.value;
-  }
-
-  /**
-   * @return the status
-   */
-  public String getStatus() {
-    return name().toUpperCase();
   }
 }

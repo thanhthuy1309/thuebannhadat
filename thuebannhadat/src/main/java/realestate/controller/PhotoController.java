@@ -21,49 +21,46 @@ import realestate.dto.FileUploadForm;
 @Controller
 public class PhotoController extends BaseController {
 
-	public static final String PARAM_LATESTPHOTO = "LATEST_PHOTO_PARAM";
+  public static final String PARAM_LATESTPHOTO = "LATEST_PHOTO_PARAM";
 
-	@RequestMapping(value = "/uploadPhoto", method = RequestMethod.GET)
-	public String uploadPhotoForm(ModelMap model, HttpServletRequest request) {
-		model.addAttribute(PARAM_BASE_URL, getBaseURL(request));
-		model.addAttribute("fileUploadForm", new FileUploadForm());
-		return "uploadPhoto";
-	}
+  @RequestMapping(value = "/uploadPhoto", method = RequestMethod.GET)
+  public String uploadPhotoForm(ModelMap model, HttpServletRequest request) {
+    model.addAttribute(PARAM_BASE_URL, getBaseURL(request));
+    model.addAttribute("fileUploadForm", new FileUploadForm());
+    return "uploadPhoto";
+  }
 
-	@RequestMapping(value = "/uploadPhoto", method = RequestMethod.POST)
-	public String uploadImageCtlr(ModelMap model, HttpServletRequest request,
-			@ModelAttribute("fileUploadForm") FileUploadForm fileUploadForm) {
+  @RequestMapping(value = "/uploadPhoto", method = RequestMethod.POST)
+  public String uploadImageCtlr(ModelMap model, HttpServletRequest request, @ModelAttribute("fileUploadForm")
+  FileUploadForm fileUploadForm) {
 
-		List<MultipartFile> files = fileUploadForm.getFiles();
-		String rootPath = request.getSession().getServletContext()
-				.getRealPath("/");
-		File dir = new File(rootPath + File.separator + "img");
-		if (!dir.exists()) {
-			dir.mkdirs();
-		}
+    List<MultipartFile> files = fileUploadForm.getFiles();
+    String rootPath = request.getSession().getServletContext().getRealPath("/");
+    File dir = new File(rootPath + File.separator + "img");
+    if (!dir.exists()) {
+      dir.mkdirs();
+    }
 
-		for (MultipartFile file : files) {
-			File serverFile = new File(dir.getAbsolutePath() + File.separator
-					+ file.getOriginalFilename());
+    for (MultipartFile file : files) {
+      File serverFile = new File(dir.getAbsolutePath() + File.separator + file.getOriginalFilename());
 
-			// write uploaded image to disk
-			try {
-				InputStream is = file.getInputStream();
-				BufferedOutputStream stream = new BufferedOutputStream(
-						new FileOutputStream(serverFile));
-				int i;
-				while ((i = is.read()) != -1) {
-					stream.write(i);
-				}
-				stream.flush();
-				stream.close();
-			} catch (IOException e) {
-				System.out.println("error : " + e.getMessage());
-			}
-		}
+      // write uploaded image to disk
+      try {
+        InputStream is = file.getInputStream();
+        BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+        int i;
+        while ((i = is.read()) != -1) {
+          stream.write(i);
+        }
+        stream.flush();
+        stream.close();
+      } catch (IOException e) {
+        System.out.println("error : " + e.getMessage());
+      }
+    }
 
-		// send baseURL to jsp
-		model.addAttribute(PARAM_BASE_URL, getBaseURL(request));
-		return "uploadPhoto";
-	}
+    // send baseURL to jsp
+    model.addAttribute(PARAM_BASE_URL, getBaseURL(request));
+    return "uploadPhoto";
+  }
 }

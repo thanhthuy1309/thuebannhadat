@@ -13,9 +13,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
-import realestate.common.ValidStatusEnum;
 import realestate.dao.UserDao;
 import realestate.entity.User;
+import realestate.enumerator.ValidStatusEnum;
 
 /**
  * @author : DUNGPT

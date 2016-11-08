@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import realestate.common.ValidStatusEnum;
 import realestate.dto.RegisterSocialDto;
 import realestate.entity.User;
+import realestate.enumerator.ValidStatusEnum;
 import realestate.service.SmsService;
 import realestate.service.UserService;
 import realestate.utils.StringUtils;
@@ -120,14 +120,14 @@ public class RegisterController {
   @RequestMapping(value = "/lay-lai-ma", method = RequestMethod.POST)
   public String getCodeAgain(@ModelAttribute("registerSocialDto")
   RegisterSocialDto registerSocialDto, HttpSession session, Model model) {
-	  String email = (String) session.getAttribute("email");
+    String email = (String) session.getAttribute("email");
     String name = (String) session.getAttribute("name");
 
     if (!email.equals("") && !name.equals("")) {
       model.addAttribute("registerSocialDto", new RegisterSocialDto(email, name));
       return "dang-ky-xa-hoi-buoc-1";
     }
-    return "redirect:/trang-chu";    
+    return "redirect:/trang-chu";
   }
 
   /**
@@ -148,7 +148,7 @@ public class RegisterController {
       Integer ActivationCodeTimes = nguoiDung.getActivationCodeTimes();
       nguoiDung.setActivationCodeTimes(ActivationCodeTimes + 1);
       nguoiDung.setStatus(ValidStatusEnum.SUCCESSFUL.getValue());
-      
+
       userService.activateUser(nguoiDung);
 
       session.setAttribute("nguoiDung", nguoiDung);
