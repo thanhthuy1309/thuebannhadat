@@ -4,24 +4,22 @@
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
 	<!-- Appenders -->
-	<appender name="realestatelog" class="org.apache.log4j.rolling.RollingFileAppender">
+	<appender name="realestatelog" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="append" value="true" />
 		<param name="encoding" value="UTF-8" />
-		<rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
-			<param name="FileNamePattern" value="/logs/realestate.%d{dd-MM-yyyy}.log" />
-		</rollingPolicy>
+		<param name="File" value="/logs/realestate.log" />
+		<param name="DatePattern" value="'.'dd-MM-yyyy" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
 				value="[%-5p] : [%d{dd-MM-yyyy HH:mm:ss}]: [%-5l] : %msg%n" />
 		</layout>
 	</appender>
 
-	<appender name="systemlog" class="org.apache.log4j.rolling.RollingFileAppender">
+	<appender name="systemlog" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="append" value="true" />
 		<param name="encoding" value="UTF-8" />
-		<rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
-			<param name="FileNamePattern" value="/logs/systemlog.%d{dd-MM-yyyy}.log" />
-		</rollingPolicy>
+		<param name="File" value="/logs/systemlog.log" />
+		<param name="DatePattern" value="'.'dd-MM-yyyy" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
 				value="[%-5p] : [%d{dd-MM-yyyy HH:mm:ss}]: [%-5l] : %msg%n" />
