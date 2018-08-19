@@ -35,7 +35,7 @@ public class AccountController {
    * @param model
    * @return
    */
-  @RequestMapping(value = "/taikhoan", method = RequestMethod.GET)
+  @RequestMapping(value = "/tai-khoan", method = RequestMethod.GET)
   public String trangtaikhoan(HttpSession session, Model model) {
     User nguoiDung = (User) session.getAttribute("nguoiDung");
 
@@ -43,6 +43,6 @@ public class AccountController {
       model.addAttribute("nguoiDung", nguoiDung);
       return "account";
     }
-    return "redirect:/trangchu";
+    return "redirect:/trang-chu";
   }
 }
