@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/animate.css" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css?t=1">
+	href="${pageContext.request.contextPath}/resources/css/font-awesome.minb73c.css?t=1">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/lib/select/select.min.css" />
 <link rel="stylesheet" type="text/css"
