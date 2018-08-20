@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,7 +64,8 @@
 
 		<div class="home-slider">
 			<div id="owl-slider" class="owl-carousel owl-slider">
-				<div class="item cover" style="background-image: url(${pageContext.request.contextPath}/resources/images/13.jpg)">
+				<div class="item cover"
+					style="background-image: url(${pageContext.request.contextPath}/resources/images/13.jpg)">
 					<div class="">
 						<div class="">
 							<div class="slider-content transition">
@@ -92,7 +95,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="item cover" style="background-image: url(${pageContext.request.contextPath}/resources/images/14.jpg)">
+				<div class="item cover"
+					style="background-image: url(${pageContext.request.contextPath}/resources/images/14.jpg)">
 					<div class="">
 						<div class="">
 							<div class="slider-content transition">
@@ -252,21 +256,27 @@
 											</select>
 										</div>
 									</div>
-									<div class="s-item">
-										<div>
-											<select class="form-control selectpicker validate[required]"
-												data-live-search="true" data-size="6">
-												<option>Chọn Tỉnh/Thành Phố</option>
-												<option>Hồ Chí Minh</option>
-												<option>Hà Nội</option>
-												<option>Đà Nẵng</option>
-												<option>Cần Thơ</option>
-												<option>Đà Lạt</option>
-												<option>Bình Dương</option>
-												<option>Đất Nền Dự án</option>
-											</select>
+									<c:if test="${lstCity != null}">
+										<div class="s-item">
+											<div>
+												<select class="form-control selectpicker validate[required]"
+													data-live-search="true" data-size="6"
+													onchange="changeSearch(event);">
+													<option>Chọn Tỉnh/Thành Phố</option>
+													<c:forEach items="${lstCity }" var="cities">
+														<c:choose>
+															<c:when test="${selectCity == cities.cityId}">
+																<option value="${cities.cityId}" selected>${cities.cityName }</option>
+															</c:when>
+															<c:otherwise>
+																<option value="${cities.cityId }">${cities.cityName }</option>
+															</c:otherwise>
+														</c:choose>
+													</c:forEach>
+												</select>
+											</div>
 										</div>
-									</div>
+									</c:if>
 									<div class="s-item">
 										<div>
 											<select class="form-control selectpicker validate[required]"
@@ -556,7 +566,8 @@
 								<div class="nailthumb">
 									<div class="nailthumb-figure-75">
 										<a href="ban.html" class="nailthumb-container"> <img
-											class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
+											class="lazy"
+											src="${pageContext.request.contextPath}/resources/images/1.jpg">
 										</a> <a href="ban.html" class="info">
 											<div>
 												<div class="labels">
@@ -578,7 +589,8 @@
 								<div class="">
 									<div class="nailthumb">
 										<a href="ban.html" class="nailthumb-container"> <img
-											class="lazy" src="${pageContext.request.contextPath}/resources/images/2.jpg">
+											class="lazy"
+											src="${pageContext.request.contextPath}/resources/images/2.jpg">
 										</a> <a href="ban.html" class="info">
 											<div>
 												<div class="labels">
@@ -602,7 +614,8 @@
 								<div class="">
 									<div class="nailthumb">
 										<a href="ban.html" class="nailthumb-container"> <img
-											class="lazy" src="${pageContext.request.contextPath}/resources/images/3.jpg">
+											class="lazy"
+											src="${pageContext.request.contextPath}/resources/images/3.jpg">
 										</a> <a href="ban.html" class="info">
 											<div>
 												<div class="labels">
@@ -624,7 +637,8 @@
 								<div class="nailthumb">
 									<div class="nailthumb-figure-75">
 										<a href="ban.html" class="nailthumb-container"> <img
-											class="lazy" src="${pageContext.request.contextPath}/resources/images/4.jpg">
+											class="lazy"
+											src="${pageContext.request.contextPath}/resources/images/4.jpg">
 										</a> <a href="ban.html" class="info">
 											<div>
 												<div class="labels">
@@ -652,7 +666,8 @@
 								<div class="nailthumb">
 									<div class="nailthumb-figure-75">
 										<a href="chitiet.html" class="nailthumb-container"> <img
-											class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
+											class="lazy"
+											src="${pageContext.request.contextPath}/resources/images/1.jpg">
 										</a> <a href="chitiet.html" class="info">
 											<div>
 												<div class="labels">
@@ -673,7 +688,8 @@
 								<div class="">
 									<div class="nailthumb">
 										<a href="chitiet.html" class="nailthumb-container"> <img
-											class="lazy" src="${pageContext.request.contextPath}/resources/images/2.jpg">
+											class="lazy"
+											src="${pageContext.request.contextPath}/resources/images/2.jpg">
 										</a> <a href="chitiet.html" class="info">
 											<div>
 												<div class="labels">
@@ -697,7 +713,8 @@
 								<div class="">
 									<div class="nailthumb">
 										<a href="chitiet.html" class="nailthumb-container"> <img
-											class="lazy" src="${pageContext.request.contextPath}/resources/images/3.jpg">
+											class="lazy"
+											src="${pageContext.request.contextPath}/resources/images/3.jpg">
 										</a> <a href="chitiet.html" class="info">
 											<div>
 												<div class="labels">
@@ -719,7 +736,8 @@
 								<div class="nailthumb">
 									<div class="nailthumb-figure-75">
 										<a href="chitiet.html" class="nailthumb-container"> <img
-											class="lazy" src="${pageContext.request.contextPath}/resources/images/4.jpg">
+											class="lazy"
+											src="${pageContext.request.contextPath}/resources/images/4.jpg">
 										</a> <a href="chitiet.html" class="info">
 											<div>
 												<div class="labels">
@@ -761,7 +779,8 @@
 						<div class="nailthumb">
 							<div class="nailthumb-figure-64">
 								<a href="ban.html" class="nailthumb-container"> <img
-									class="lazy" src="${pageContext.request.contextPath}/resources/images/5.jpg">
+									class="lazy"
+									src="${pageContext.request.contextPath}/resources/images/5.jpg">
 								</a>
 								<div class="price">
 									<div>10 TỶ</div>
@@ -815,7 +834,8 @@
 						<div class="nailthumb">
 							<div class="nailthumb-figure-64">
 								<a href="ban.html" class="nailthumb-container"> <img
-									class="lazy" src="${pageContext.request.contextPath}/resources/images/6.jpg">
+									class="lazy"
+									src="${pageContext.request.contextPath}/resources/images/6.jpg">
 								</a>
 								<div class="price">
 									<div>10 TỶ</div>
@@ -869,7 +889,8 @@
 						<div class="nailthumb">
 							<div class="nailthumb-figure-64">
 								<a href="ban.html" class="nailthumb-container"> <img
-									class="lazy" src="${pageContext.request.contextPath}/resources/images/7.jpg">
+									class="lazy"
+									src="${pageContext.request.contextPath}/resources/images/7.jpg">
 								</a>
 								<div class="price">
 									<div>10 TỶ</div>
@@ -923,7 +944,8 @@
 						<div class="nailthumb">
 							<div class="nailthumb-figure-64">
 								<a href="ban.html" class="nailthumb-container"> <img
-									class="lazy" src="${pageContext.request.contextPath}/resources/images/8.jpg">
+									class="lazy"
+									src="${pageContext.request.contextPath}/resources/images/8.jpg">
 								</a>
 								<div class="price">
 									<div>10 TỶ</div>
@@ -988,7 +1010,8 @@
 						<div class="nailthumb">
 							<div class="nailthumb-figure-64">
 								<a href="thue.html" class="nailthumb-container"> <img
-									class="lazy" src="${pageContext.request.contextPath}/resources/images/9.jpg">
+									class="lazy"
+									src="${pageContext.request.contextPath}/resources/images/9.jpg">
 								</a>
 								<div class="price">
 									<div>10 TỶ</div>
@@ -1042,7 +1065,8 @@
 						<div class="nailthumb">
 							<div class="nailthumb-figure-64">
 								<a href="thue.html" class="nailthumb-container"> <img
-									class="lazy" src="${pageContext.request.contextPath}/resources/images/10.jpg">
+									class="lazy"
+									src="${pageContext.request.contextPath}/resources/images/10.jpg">
 								</a>
 								<div class="price">
 									<div>10 TỶ</div>
@@ -1096,7 +1120,8 @@
 						<div class="nailthumb">
 							<div class="nailthumb-figure-64">
 								<a href="thue.html" class="nailthumb-container"> <img
-									class="lazy" src="${pageContext.request.contextPath}/resources/images/11.jpg">
+									class="lazy"
+									src="${pageContext.request.contextPath}/resources/images/11.jpg">
 								</a>
 								<div class="price">
 									<div>10 TỶ</div>
@@ -1150,7 +1175,8 @@
 						<div class="nailthumb">
 							<div class="nailthumb-figure-64">
 								<a href="thue.html" class="nailthumb-container"> <img
-									class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
+									class="lazy"
+									src="${pageContext.request.contextPath}/resources/images/1.jpg">
 								</a>
 								<div class="price">
 									<div>10 TỶ</div>
@@ -1240,7 +1266,8 @@
 						<div class="nailthumb">
 							<div class="nailthumb-figure-square">
 								<a href="tintuc-detail.html" class="nailthumb-container"> <img
-									class="lazy" src="${pageContext.request.contextPath}/resources/images/2.jpg">
+									class="lazy"
+									src="${pageContext.request.contextPath}/resources/images/2.jpg">
 								</a>
 							</div>
 						</div>
@@ -1256,7 +1283,8 @@
 						<div class="nailthumb">
 							<div class="nailthumb-figure-square">
 								<a href="tintuc-detail.html" class="nailthumb-container"> <img
-									class="lazy" src="${pageContext.request.contextPath}/resources/images/3.jpg">
+									class="lazy"
+									src="${pageContext.request.contextPath}/resources/images/3.jpg">
 								</a>
 							</div>
 						</div>
@@ -1272,7 +1300,8 @@
 						<div class="nailthumb">
 							<div class="nailthumb-figure-square">
 								<a href="tintuc-detail.html" class="nailthumb-container"> <img
-									class="lazy" src="${pageContext.request.contextPath}/resources/images/4.jpg">
+									class="lazy"
+									src="${pageContext.request.contextPath}/resources/images/4.jpg">
 								</a>
 							</div>
 						</div>
@@ -1288,7 +1317,8 @@
 						<div class="nailthumb">
 							<div class="nailthumb-figure-square">
 								<a href="tintuc-detail.html" class="nailthumb-container"> <img
-									class="lazy" src="${pageContext.request.contextPath}/resources/images/5.jpg">
+									class="lazy"
+									src="${pageContext.request.contextPath}/resources/images/5.jpg">
 								</a>
 							</div>
 						</div>
@@ -1311,7 +1341,8 @@
 				<!-- FOOTER LEFT BEGIN -->
 				<div>
 					<div class="pdb">
-						<a href="trangchu.html"><img src="${pageContext.request.contextPath}/resources/images/logo.png"></a>
+						<a href="trangchu.html"><img
+							src="${pageContext.request.contextPath}/resources/images/logo.png"></a>
 					</div>
 					<div class="pdt pdb">Kết nối với cộng đồng Thuê-Bán Nhà Đất</div>
 					<ul class="social-icons cls-after pdb">

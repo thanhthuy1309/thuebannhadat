@@ -212,11 +212,6 @@ public class DemoController {
     return "tintuc-list";
   }
 
-  @RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
-  public String trangtrangchu() {
-    return "trang-chu";
-  }
-
   @RequestMapping(value = "/index", method = RequestMethod.GET)
   public String trangindex() {
     return "index";
