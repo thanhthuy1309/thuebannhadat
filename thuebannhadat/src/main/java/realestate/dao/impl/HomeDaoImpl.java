@@ -1,5 +1,6 @@
 package realestate.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -25,7 +26,7 @@ public class HomeDaoImpl extends AbstractDaoImpl<User, Integer> implements HomeD
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<City> getAllCity() {
-		List<City> result = null;
+		List<City> result = new ArrayList<>();
 		Session session = getSession();
 
 		// Query get all city
