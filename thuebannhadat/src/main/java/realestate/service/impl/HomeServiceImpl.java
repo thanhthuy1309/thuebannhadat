@@ -8,9 +8,11 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import realestate.dao.HomeDao;
+import realestate.dto.SelectAddress;
 import realestate.entity.City;
 import realestate.entity.District;
 import realestate.entity.Street;
+import realestate.entity.Ward;
 import realestate.service.HomeService;
 
 /**
@@ -30,28 +32,22 @@ public class HomeServiceImpl implements HomeService {
 		return homedao.getAllCity();
 	}
 
+	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 	@Override
-	public List<District> getDistrictByCityId() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<District> getDistrictByCondition(SelectAddress selectAddress) {
+		return homedao.getDistrictByCondition(selectAddress);
 	}
 
+	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 	@Override
-	public List<Street> getStreetByDistrictId() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Ward> getWardByCondition(SelectAddress selectAddress) {
+		return homedao.getWardByCondition(selectAddress);
 	}
 
+	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 	@Override
-	public List<District> getAllDistrict() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Street> getAllStreet() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Street> getStreetByCondition(SelectAddress selectAddress) {
+		return homedao.getStreetByCondition(selectAddress);
 	}
 
 }

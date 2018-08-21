@@ -7,8 +7,36 @@
 	<![CDATA[
         SELECT c
         FROM City c
-        WHERE c.status = :status
+        WHERE c.status     = :status
         ]]>
 	</query>
 
+	<query name="HomeDao.getDistrictByCondition">
+	<![CDATA[
+        SELECT d
+        FROM District d
+        WHERE d.status     = :status
+          AND d.cityId     = :cityId
+        ]]>
+	</query>
+
+	<query name="HomeDao.getWardByCondition">
+	<![CDATA[
+        SELECT w
+        FROM Ward w
+        WHERE w.status     = :status
+          AND w.districtId = :districtId
+          AND w.cityId     = :cityId
+        ]]>
+	</query>
+
+	<query name="HomeDao.getStreetByCondition">
+	<![CDATA[
+        SELECT s
+        FROM Street s
+        WHERE s.status     = :status
+          AND s.districtId = :districtId
+          AND s.cityId     = :cityId
+        ]]>
+	</query>
 </hibernate-mapping>

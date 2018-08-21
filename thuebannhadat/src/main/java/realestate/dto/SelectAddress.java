@@ -9,6 +9,7 @@ public class SelectAddress {
 
 	private String cityId;
 	private String districtId;
+	private String ward;
 	private String streetId;
 
 	/**
@@ -54,6 +55,20 @@ public class SelectAddress {
 	 */
 	public void setStreetId(String streetId) {
 		this.streetId = streetId;
+	}
+
+	/**
+	 * @return the ward
+	 */
+	public String getWard() {
+		return ward;
+	}
+
+	/**
+	 * @param ward the ward to set
+	 */
+	public void setWard(String ward) {
+		this.ward = ward;
 	}
 
 }

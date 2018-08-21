@@ -2,9 +2,11 @@ package realestate.service;
 
 import java.util.List;
 
+import realestate.dto.SelectAddress;
 import realestate.entity.City;
 import realestate.entity.District;
 import realestate.entity.Street;
+import realestate.entity.Ward;
 
 /**
  * @author : ThuyTran
@@ -15,11 +17,9 @@ public interface HomeService {
 
 	List<City> getAllCity();
 
-	List<District> getAllDistrict();
+	List<District> getDistrictByCondition(SelectAddress selectAddress);
 
-	List<Street> getAllStreet();
+	List<Ward> getWardByCondition(SelectAddress selectAddress);
 
-	List<District> getDistrictByCityId();
-
-	List<Street> getStreetByDistrictId();
+	List<Street> getStreetByCondition(SelectAddress selectAddress);
 }
