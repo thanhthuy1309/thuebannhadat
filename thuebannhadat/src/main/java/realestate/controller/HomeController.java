@@ -16,6 +16,7 @@ import realestate.dto.SelectAddress;
 import realestate.entity.City;
 import realestate.entity.District;
 import realestate.entity.Street;
+import realestate.entity.Ward;
 import realestate.service.HomeService;
 
 /**
@@ -37,10 +38,12 @@ public class HomeController {
 		// initialization search
 		List<City> lstCity = homeService.getAllCity();
 		List<District> lstDistrict = lstCity.stream().findFirst().get().getDistrictList();
+		List<Ward> lstWard = lstDistrict.stream().findFirst().get().getWardList();
 		List<Street> listStreet = lstDistrict.stream().findFirst().get().getStreetList();
 
 		model.addAttribute("lstCity", lstCity);
 		model.addAttribute("lstDistrict", lstDistrict);
+		model.addAttribute("lstWard", lstWard);
 		model.addAttribute("listStreet", listStreet);
 		return "trang-chu";
 	}

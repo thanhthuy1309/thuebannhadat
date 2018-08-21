@@ -277,51 +277,67 @@
 											</div>
 										</div>
 									</c:if>
-									<div class="s-item">
-										<div>
-											<select class="form-control selectpicker validate[required]"
-												data-live-search="true" data-size="6">
-												<option>Chọn Quận/Huyện</option>
-												<option>Quận 1</option>
-												<option>Quận 2</option>
-												<option>Quận 3</option>
-												<option>Quận 4</option>
-												<option>Quận 5</option>
-												<option>Quận 6</option>
-												<option>Quận 7</option>
-												<option>Quận 8</option>
-											</select>
+									<c:if test="${lstDistrict != null}">
+										<div class="s-item">
+											<div>
+												<select class="form-control selectpicker validate[required]"
+													data-live-search="true" data-size="6"
+													onchange="changeSearch(event);">
+													<option>Chọn Quận/Huyện</option>
+													<c:forEach items="${lstDistrict }" var="districts">
+														<c:choose>
+															<c:when test="${selectDistrict == districts.districtId}">
+																<option value="${districts.districtId}" selected>${districts.districtName }</option>
+															</c:when>
+															<c:otherwise>
+																<option value="${districts.districtId }">${districts.districtName }</option>
+															</c:otherwise>
+														</c:choose>
+													</c:forEach>
+												</select>
+											</div>
 										</div>
-									</div>
-									<div class="s-item">
-										<div>
-											<select class="form-control selectpicker validate[required]"
-												data-live-search="true" data-size="6">
-												<option>Chọn Phường/Xã</option>
-												<option>Phương 1</option>
-												<option>Phương 2</option>
-												<option>Phương 3</option>
-												<option>Phương 4</option>
-												<option>Phương 5</option>
-												<option>Phương 6</option>
-												<option>Phương 7</option>
-											</select>
+									</c:if>
+									<c:if test="${lstWard != null}">
+										<div class="s-item">
+											<div>
+												<select class="form-control selectpicker validate[required]"
+													data-live-search="true" data-size="6">
+													<option>Chọn Phường/Xã</option>
+													<c:forEach items="${lstWard }" var="wards">
+														<c:choose>
+															<c:when test="${selectWard == wards.wardId}">
+																<option value="${wards.wardId}" selected>${wards.wardName }</option>
+															</c:when>
+															<c:otherwise>
+																<option value="${wards.wardId }">${wards.wardName }</option>
+															</c:otherwise>
+														</c:choose>
+													</c:forEach>
+												</select>
+											</div>
 										</div>
-									</div>
-									<div class="s-item">
-										<div>
-											<select class="form-control selectpicker validate[required]"
-												data-live-search="true" data-size="6">
-												<option>Chọn Đường</option>
-												<option>Đường Hồng Lạc</option>
-												<option>Đường Âu Cơ</option>
-												<option>Đường Trần Quang Khải</option>
-												<option>Đường Lý Thường Kiệt</option>
-												<option>Đường Cách Mạng Tháng 8</option>
-												<option>Đường Trường Trính</option>
-											</select>
+									</c:if>
+									<c:if test="${listStreet != null}">
+										<div class="s-item">
+											<div>
+												<select class="form-control selectpicker validate[required]"
+													data-live-search="true" data-size="6">
+													<option>Chọn Đường</option>
+													<c:forEach items="${listStreet }" var="streets">
+														<c:choose>
+															<c:when test="${selectStreet == streets.streetId}">
+																<option value="${streets.streetId}" selected>${streets.streetName }</option>
+															</c:when>
+															<c:otherwise>
+																<option value="${streets.streetId }">${streets.streetName }</option>
+															</c:otherwise>
+														</c:choose>
+													</c:forEach>
+												</select>
+											</div>
 										</div>
-									</div>
+									</c:if>
 									<div class="s-item">
 										<div class="search-btn">
 											<a href="timkiem.html"
