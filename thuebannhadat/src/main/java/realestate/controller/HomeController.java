@@ -1,6 +1,7 @@
 package realestate.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import realestate.dto.SelectAddress;
 import realestate.entity.City;
 import realestate.entity.District;
+import realestate.entity.MainMenu;
 import realestate.entity.Street;
+import realestate.entity.SubMenu;
 import realestate.entity.Ward;
 import realestate.service.HomeService;
 
@@ -35,6 +38,9 @@ public class HomeController {
 
 	@RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
 	public String trangchu(Model model, HttpSession session) {
+
+		// initialization menu
+		initMenu(model);
 
 		// initialization search
 		initSearch(model);
@@ -74,5 +80,22 @@ public class HomeController {
 		model.addAttribute("lstDistrict", lstDistrict);
 		model.addAttribute("lstWard", lstWard);
 		model.addAttribute("listStreet", listStreet);
+	}
+
+	private void initMenu(Model model) {
+
+		// get all menu status = 1
+		List<MainMenu> lstMainMenu = homeService.getAllMainMenu();
+
+		List<SubMenu> lstSubMenu = homeService.getAllSubMenu();
+
+		// Comparator<MainMenu> byMainMenuOrder = (e1, e2) ->
+		// Integer.compare(e1.getMainMenuOrder(),
+		// e2.getMainMenuOrder());
+
+		lstMainMenu.stream().forEach(e -> e.setSubMenuList(lstSubMenu.stream()
+				.filter(subMenu -> subMenu.getMainMenuId().equals(e.getMainMenuId())).collect(Collectors.toList())));
+
+		model.addAttribute("lstMainMenu", lstMainMenu);
 	}
 }

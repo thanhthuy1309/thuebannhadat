@@ -5,7 +5,9 @@ import java.util.List;
 import realestate.dto.SelectAddress;
 import realestate.entity.City;
 import realestate.entity.District;
+import realestate.entity.MainMenu;
 import realestate.entity.Street;
+import realestate.entity.SubMenu;
 import realestate.entity.Ward;
 
 /**
@@ -22,4 +24,8 @@ public interface HomeService {
 	List<Ward> getWardByCondition(SelectAddress selectAddress);
 
 	List<Street> getStreetByCondition(SelectAddress selectAddress);
+
+	List<MainMenu> getAllMainMenu();
+
+	List<SubMenu> getAllSubMenu();
 }

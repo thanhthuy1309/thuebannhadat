@@ -102,89 +102,23 @@
 				<div class="nav">
 					<ul>
 						<li><a href="trangchu.html">Trang Chủ</a></li>
-						<li class="sub-menu "><a href="JavaScript:">Mua</a>
-							<div>
-								<ul>
-									<li><a href="mua.html">Nhà Phố</a></li>
-									<li><a href="mua.html">Nhà Nát</a></li>
-									<li><a href="mua.html">Nhà Trong Hẻm</a></li>
-									<li><a href="mua.html">Nhà Mới Xây</a></li>
-									<li><a href="mua.html">Chung Cư</a></li>
-									<li class="divider"></li>
-									<li><a href="mua.html">Người Có Thu Nhập Thấp</a></li>
-									<li class="divider"></li>
-									<li><a href="mua.html">Tất cả</a></li>
-								</ul>
-							</div></li>
-						<li class="sub-menu "><a href="JavaScript:">Bán</a>
-							<div>
-								<ul>
-									<li><a href="ban.html">Nhà Phố</a></li>
-									<li><a href="ban.html">Nhà Nát</a></li>
-									<li><a href="ban.html">Nhà Trong Hẻm</a></li>
-									<li><a href="ban.html">Nhà Mới Xây</a></li>
-									<li><a href="ban.html">Chung Cư</a></li>
-									<li class="divider"></li>
-									<li><a href="ban.html">Người Có Thu Nhập Thấp</a></li>
-									<li class="divider"></li>
-									<li><a href="ban.html">Tất cả</a></li>
-								</ul>
-							</div></li>
-						<li class="sub-menu"><a href="JavaScript:">Cho Thuê</a>
-							<div>
-								<ul>
-									<li><a href="thue.html">Nhà Phố</a></li>
-									<li><a href="thue.html">Nhà Nát</a></li>
-									<li><a href="thue.html">Nhà Trong Hẻm</a></li>
-									<li><a href="thue.html">Nhà Mới Xây</a></li>
-									<li><a href="thue.html">Chung Cư</a></li>
-									<li class="divider"></li>
-									<li><a href="thue.html">Người Có Thu Nhập Thấp</a></li>
-									<li class="divider"></li>
-									<li><a href="thue.html">Tất cả</a></li>
-								</ul>
-							</div></li>
-						<li class="sub-menu"><a href="JavaScript:">Thế Chấp</a>
-							<div>
-								<ul>
-									<li><a href="thechap.html">Nhà Phố</a></li>
-									<li><a href="thechap.html">Nhà Nát</a></li>
-									<li><a href="thechap.html">Nhà Trong Hẻm</a></li>
-									<li><a href="thechap.html">Nhà Mới Xây</a></li>
-									<li><a href="thechap.html">Chung Cư</a></li>
-									<li class="divider"></li>
-									<li><a href="thechap.html">Người Có Thu Nhập Thấp</a></li>
-									<li class="divider"></li>
-									<li><a href="thechap.html">Tất cả</a></li>
-								</ul>
-							</div></li>
-						<li class="sub-menu"><a href="JavaScript:">Dự Án</a>
-							<div>
-								<ul>
-									<li><a href="duan.html">Nhà Phố</a></li>
-									<li><a href="duan.html">Nhà Nát</a></li>
-									<li><a href="duan.html">Nhà Trong Hẻm</a></li>
-									<li><a href="duan.html">Nhà Mới Xây</a></li>
-									<li><a href="duan.html">Chung Cư</a></li>
-									<li class="divider"></li>
-									<li><a href="duan.html">Người Có Thu Nhập Thấp</a></li>
-									<li class="divider"></li>
-									<li><a href="duan.html">Tất cả</a></li>
-								</ul>
-							</div></li>
-						<li class="sub-menu"><a href="JavaScript:">Dịch Vụ Môi
-								Giới</a>
-							<div>
-								<ul>
-									<li><a href="dichvu.htm">Doanh Nghiệp</a></li>
-									<li><a href="moigioi.html">Người Môi Giới</a></li>
-								</ul>
-							</div></li>
-						<li class=""><a href="tintuc.html">Tin Tức</a></li>
-						<li class=""><a href="lienhe.html">Liên Hệ</a></li>
+						<c:if test="${lstMainMenu != null}">
+							<c:forEach items="${lstMainMenu }" var="menus">
+								<li class="${empty menus.subMenuList ? '' : 'sub-menu' }"><a href="JavaScript:">${menus.mainMenuName}</a>
+									<c:if test="${!empty menus.subMenuList}">
+										<div>
+											<ul>
+												<c:forEach items="${menus.subMenuList }" var="subMenus">
+													<li><a href="${subMenus.subMenuUrl }">${subMenus.subMenuName }</a></li>
+												</c:forEach>
+											</ul>
+										</div>
+									</c:if></li>
+							</c:forEach>
+							<li class=""><a href="tintuc.html">Tin Tức</a></li>
+						</c:if>
 					</ul>
 				</div>
-
 			</div>
 		</div>
 	</header>

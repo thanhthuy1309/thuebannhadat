@@ -11,7 +11,9 @@ import realestate.dao.HomeDao;
 import realestate.dto.SelectAddress;
 import realestate.entity.City;
 import realestate.entity.District;
+import realestate.entity.MainMenu;
 import realestate.entity.Street;
+import realestate.entity.SubMenu;
 import realestate.entity.Ward;
 import realestate.service.HomeService;
 
@@ -48,6 +50,18 @@ public class HomeServiceImpl implements HomeService {
 	@Override
 	public List<Street> getStreetByCondition(SelectAddress selectAddress) {
 		return homedao.getStreetByCondition(selectAddress);
+	}
+
+	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+	@Override
+	public List<MainMenu> getAllMainMenu() {
+		return homedao.getAllMainMenu();
+	}
+
+	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+	@Override
+	public List<SubMenu> getAllSubMenu() {
+		return homedao.getAllSubMenu();
 	}
 
 }

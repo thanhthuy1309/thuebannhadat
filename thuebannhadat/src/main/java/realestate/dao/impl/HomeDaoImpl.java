@@ -12,7 +12,9 @@ import realestate.dao.HomeDao;
 import realestate.dto.SelectAddress;
 import realestate.entity.City;
 import realestate.entity.District;
+import realestate.entity.MainMenu;
 import realestate.entity.Street;
+import realestate.entity.SubMenu;
 import realestate.entity.User;
 import realestate.entity.Ward;
 import realestate.utils.SQLUtils;
@@ -113,6 +115,48 @@ public class HomeDaoImpl extends AbstractDaoImpl<User, Integer> implements HomeD
 			LOGGER.info("#getStreetByCondition: successfull");
 		} catch (Exception e) {
 			LOGGER.error("#getStreetByCondition_Error: " + e.getMessage());
+		}
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MainMenu> getAllMainMenu() {
+		List<MainMenu> result = new ArrayList<>();
+		Session session = getSession();
+
+		// Query get all city
+		Query query = session.getNamedQuery("HomeDao.getAllMainMenu");
+
+		// Set parameter
+		query.setInteger(SQLUtils.STATUS, SQLUtils.STATUS_ON);
+
+		try {
+			result = query.list();
+			LOGGER.info("#getAllMainMenu: successfull");
+		} catch (Exception e) {
+			LOGGER.error("#getAllMainMenu_Error: " + e.getMessage());
+		}
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<SubMenu> getAllSubMenu() {
+		List<SubMenu> result = new ArrayList<>();
+		Session session = getSession();
+
+		// Query get all city
+		Query query = session.getNamedQuery("HomeDao.getAllSubMenu");
+
+		// Set parameter
+		query.setInteger(SQLUtils.STATUS, SQLUtils.STATUS_ON);
+
+		try {
+			result = query.list();
+			LOGGER.info("#getAllMainMenu: successfull");
+		} catch (Exception e) {
+			LOGGER.error("#getAllMainMenu_Error: " + e.getMessage());
 		}
 		return result;
 	}
