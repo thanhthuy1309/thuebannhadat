@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-08-24 00:10:57
+Date: 2018-08-24 00:13:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,5 +36,5 @@ CREATE TABLE `tbl_notification` (
 -- Records of tbl_notification
 -- ----------------------------
 INSERT INTO `tbl_notification` VALUES ('1', '[Lorem Ipsum1] is simply dummy text of the printing and typesetting industry', '[Lorem Ipsum1] is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s', '1', '2018-08-23 22:56:11', '', '1', '2018-08-23 22:56:15', '');
-INSERT INTO `tbl_notification` VALUES ('2', '[Lorem Ipsum2] is simply dummy text of the printing and typesetting industry', '[Lorem Ipsum2] is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s', '1', '0000-00-00 00:00:00', '', '1', '2018-08-23 22:57:44', '');
+INSERT INTO `tbl_notification` VALUES ('2', '[Lorem Ipsum2] is simply dummy text of the printing and typesetting industry', '[Lorem Ipsum2] is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s', '1', '2018-08-24 00:12:51', '', '1', '2018-08-23 22:57:44', '');
 INSERT INTO `tbl_notification` VALUES ('3', '[Lorem Ipsum3] is simply dummy text of the printing and typesetting industry', '[Lorem Ipsum3] is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s', '1', '2018-08-23 22:57:33', '', '1', '2018-08-23 22:57:47', '');
