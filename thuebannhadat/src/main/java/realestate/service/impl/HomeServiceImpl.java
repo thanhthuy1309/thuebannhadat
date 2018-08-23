@@ -11,7 +11,10 @@ import realestate.dao.HomeDao;
 import realestate.dto.SelectAddress;
 import realestate.entity.City;
 import realestate.entity.District;
+import realestate.entity.HousingType;
+import realestate.entity.LandType;
 import realestate.entity.MainMenu;
+import realestate.entity.Notification;
 import realestate.entity.Street;
 import realestate.entity.SubMenu;
 import realestate.entity.Ward;
@@ -62,6 +65,24 @@ public class HomeServiceImpl implements HomeService {
 	@Override
 	public List<SubMenu> getAllSubMenu() {
 		return homedao.getAllSubMenu();
+	}
+
+	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+	@Override
+	public List<LandType> getAllLandType() {
+		return homedao.getAllLandType();
+	}
+
+	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+	@Override
+	public List<HousingType> getAllHousingType() {
+		return homedao.getAllHousingType();
+	}
+
+	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+	@Override
+	public List<Notification> getAllNotificationByUserName(String userName) {
+		return homedao.getAllNotificationByUserName(userName);
 	}
 
 }

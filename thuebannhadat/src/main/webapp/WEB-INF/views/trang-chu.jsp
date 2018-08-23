@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -232,30 +233,40 @@
 		<div class="search-setting">
 			<div class="con">
 				<div class="tabs pda">
-					<ul>
-						<li class="active"><a href="JavaScript:void(0)"><span>BÁN</span></a></li>
-						<li><a href="JavaScript:void(0)"><span>CHO THUÊ</span></a></li>
-					</ul>
+					<c:if test="${lstLandType != null}">
+						<ul>
+							<c:forEach items="${lstLandType }" var="landTypes">
+								<li
+									class="${landTypes.landTypeId==selectAddress.landTypeId ? 'active' : '' }"><a
+									href="JavaScript:void(0)"><span>${fn:toUpperCase(landTypes.landTypeName) }</span></a></li>
+							</c:forEach>
+						</ul>
+					</c:if>
 					<div>
 						<div>
 							<div class="cls-after umgl umgr half pdt pdb">
 								<div class="cls-after">
-									<div class="s-item">
-										<div>
-											<select class="form-control selectpicker validate[required]"
-												data-live-search="true" data-size="6">
-												<option>Chọn Loại Nhà Đất</option>
-												<option>Bán</option>
-												<option>Cho thuê</option>
-												<option>Căn Hộ Cho Thuê</option>
-												<option>Biệt Thự</option>
-												<option>Nhà Phố</option>
-												<option>Nhà Riêng</option>
-												<option>Đất</option>
-												<option>Đất Nền Dự án</option>
-											</select>
+									<c:if test="${lstHousingType != null}">
+										<div class="s-item">
+											<div>
+												<select class="form-control selectpicker validate[required]"
+													data-live-search="true" data-size="6">
+													<c:forEach items="${lstHousingType }" var="housingTypes">
+														<option>Chọn Loại Nhà Đất</option>
+														<c:choose>
+															<c:when
+																test="${selectAddress.housingTypeId == housingTypes.housingTypeId}">
+																<option value="${housingTypes.housingTypeId}" selected>${housingTypes.housingTypeName }</option>
+															</c:when>
+															<c:otherwise>
+																<option value="${housingTypes.housingTypeId }">${housingTypes.housingTypeName }</option>
+															</c:otherwise>
+														</c:choose>
+													</c:forEach>
+												</select>
+											</div>
 										</div>
-									</div>
+									</c:if>
 									<c:if test="${lstCity != null}">
 										<div class="s-item">
 											<div>
@@ -265,7 +276,7 @@
 													<option>Chọn Tỉnh/Thành Phố</option>
 													<c:forEach items="${lstCity }" var="cities">
 														<c:choose>
-															<c:when test="${selectCity == cities.cityId}">
+															<c:when test="${selectAddress.cityId == cities.cityId}">
 																<option value="${cities.cityId}" selected>${cities.cityName }</option>
 															</c:when>
 															<c:otherwise>
@@ -286,7 +297,8 @@
 													<option>Chọn Quận/Huyện</option>
 													<c:forEach items="${lstDistrict }" var="districts">
 														<c:choose>
-															<c:when test="${selectDistrict == districts.districtId}">
+															<c:when
+																test="${selectAddress.districtId == districts.districtId}">
 																<option value="${districts.districtId}" selected>${districts.districtName }</option>
 															</c:when>
 															<c:otherwise>
@@ -306,7 +318,7 @@
 													<option>Chọn Phường/Xã</option>
 													<c:forEach items="${lstWard }" var="wards">
 														<c:choose>
-															<c:when test="${selectWard == wards.wardId}">
+															<c:when test="${selectAddress.wardId == wards.wardId}">
 																<option value="${wards.wardId}" selected>${wards.wardName }</option>
 															</c:when>
 															<c:otherwise>
@@ -326,7 +338,8 @@
 													<option>Chọn Đường</option>
 													<c:forEach items="${listStreet }" var="streets">
 														<c:choose>
-															<c:when test="${selectStreet == streets.streetId}">
+															<c:when
+																test="${selectAddress.streetId == streets.streetId}">
 																<option value="${streets.streetId}" selected>${streets.streetName }</option>
 															</c:when>
 															<c:otherwise>

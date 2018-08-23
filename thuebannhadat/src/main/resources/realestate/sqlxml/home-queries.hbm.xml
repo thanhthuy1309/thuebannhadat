@@ -57,4 +57,29 @@
         ORDER BY s.subMenuOrder
         ]]>
 	</query>
+
+	<query name="HomeDao.getAllLandType">
+	<![CDATA[
+        SELECT l
+        FROM LandType l
+        WHERE l.status     = :status
+        ]]>
+	</query>
+
+	<query name="HomeDao.getAllHousingType">
+	<![CDATA[
+        SELECT h
+        FROM HousingType h
+        WHERE h.status     = :status
+        ]]>
+	</query>
+
+	<query name="HomeDao.getAllNotificationByUserName">
+	<![CDATA[
+        SELECT n
+		FROM Notification n
+		WHERE
+			n.status    = :status
+        ]]>
+	</query>
 </hibernate-mapping>

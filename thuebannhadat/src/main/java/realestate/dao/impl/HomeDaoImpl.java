@@ -12,7 +12,10 @@ import realestate.dao.HomeDao;
 import realestate.dto.SelectAddress;
 import realestate.entity.City;
 import realestate.entity.District;
+import realestate.entity.HousingType;
+import realestate.entity.LandType;
 import realestate.entity.MainMenu;
+import realestate.entity.Notification;
 import realestate.entity.Street;
 import realestate.entity.SubMenu;
 import realestate.entity.User;
@@ -154,9 +157,73 @@ public class HomeDaoImpl extends AbstractDaoImpl<User, Integer> implements HomeD
 
 		try {
 			result = query.list();
-			LOGGER.info("#getAllMainMenu: successfull");
+			LOGGER.info("#getAllSubMenu: successfull");
 		} catch (Exception e) {
-			LOGGER.error("#getAllMainMenu_Error: " + e.getMessage());
+			LOGGER.error("#getAllSubMenu_Error: " + e.getMessage());
+		}
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<LandType> getAllLandType() {
+		List<LandType> result = new ArrayList<>();
+		Session session = getSession();
+
+		// Query get all LandType
+		Query query = session.getNamedQuery("HomeDao.getAllLandType");
+
+		// Set parameter
+		query.setInteger(SQLUtils.STATUS, SQLUtils.STATUS_ON);
+
+		try {
+			result = query.list();
+			LOGGER.info("#getAllLandType: successfull");
+		} catch (Exception e) {
+			LOGGER.error("#getAllLandType_Error: " + e.getMessage());
+		}
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<HousingType> getAllHousingType() {
+		List<HousingType> result = new ArrayList<>();
+		Session session = getSession();
+
+		// Query get all HousingType
+		Query query = session.getNamedQuery("HomeDao.getAllHousingType");
+
+		// Set parameter
+		query.setInteger(SQLUtils.STATUS, SQLUtils.STATUS_ON);
+
+		try {
+			result = query.list();
+			LOGGER.info("#getAllHousingType: successfull");
+		} catch (Exception e) {
+			LOGGER.error("#getAllHousingType_Error: " + e.getMessage());
+		}
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Notification> getAllNotificationByUserName(String userName) {
+		List<Notification> result = new ArrayList<>();
+		Session session = getSession();
+
+		// Query get all HousingType
+		Query query = session.getNamedQuery("HomeDao.getAllNotificationByUserName");
+
+		// Set parameter
+		query.setInteger(SQLUtils.STATUS, SQLUtils.STATUS_ON);
+//		query.setString(SQLUtils.USER_NAME, userName);
+
+		try {
+			result = query.list();
+			LOGGER.info("#getAllNotificationByUserName: successfull");
+		} catch (Exception e) {
+			LOGGER.error("#getAllNotificationByUserName_Error: " + e.getMessage());
 		}
 		return result;
 	}

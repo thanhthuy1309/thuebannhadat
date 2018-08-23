@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html lang="en">
 <body>
@@ -10,56 +11,23 @@
 		<div>
 			<a href="trangchu.html" class="logo"></a>
 			<div class="header-action">
-				<div class="cbx notification">
-					<a href="JavaScript:void(0)" class="btn" data-toggle="dropdown"><span
-						class="fa fa-bell-o"></span><i>3</i></a>
-					<div class="cbx-menu center">
-						<ul>
-							<li>
-								<div>
-									<a href="thongbao.html">[Lorem Ipsum] is simply dummy text
-										of the printing and typesetting industry. Lorem Ipsum has been
-										the industry's standard dummy text ever since the 1500s</a>
-								</div>
-							</li>
-							<li>
-								<div>
-									<a href="thongbao.html">[Lorem Ipsum] is simply dummy text
-										of the printing and typesetting industry. Lorem Ipsum has been
-										the industry's standard dummy text ever since the 1500s</a>
-								</div>
-							</li>
-							<li>
-								<div>
-									<a href="thongbao.html">[Lorem Ipsum] is simply dummy text
-										of the printing and typesetting industry. Lorem Ipsum has been
-										the industry's standard dummy text ever since the 1500s</a>
-								</div>
-							</li>
-							<li>
-								<div>
-									<a href="thongbao.html">[Lorem Ipsum] is simply dummy text
-										of the printing and typesetting industry. Lorem Ipsum has been
-										the industry's standard dummy text ever since the 1500s</a>
-								</div>
-							</li>
-							<li>
-								<div>
-									<a href="thongbao.html">[Lorem Ipsum] is simply dummy text
-										of the printing and typesetting industry. Lorem Ipsum has been
-										the industry's standard dummy text ever since the 1500s</a>
-								</div>
-							</li>
-							<li>
-								<div>
-									<a href="thongbao.html">[Lorem Ipsum] is simply dummy text
-										of the printing and typesetting industry. Lorem Ipsum has been
-										the industry's standard dummy text ever since the 1500s</a>
-								</div>
-							</li>
-						</ul>
+				<c:if test="${lstNotification != null}">
+					<div class="cbx notification">
+						<a href="JavaScript:void(0)" class="btn" data-toggle="dropdown"><span
+							class="fa fa-bell-o"></span><i>${fn:length(lstNotification)}</i></a>
+						<div class="cbx-menu center">
+							<ul>
+								<c:forEach items="${lstNotification }" var="notifications">
+									<li>
+										<div>
+											<a href="thongbao.html">${notifications.notificationTitle }</a>
+										</div>
+									</li>
+								</c:forEach>
+							</ul>
+						</div>
 					</div>
-				</div>
+				</c:if>
 				<div>
 					<a href="JavaScript:dialog('login-dialog')" class="btn"><span
 						class="fa fa-file-text-o"></span><span class="hi"> Đăng Tin
@@ -104,8 +72,9 @@
 						<li><a href="trangchu.html">Trang Chủ</a></li>
 						<c:if test="${lstMainMenu != null}">
 							<c:forEach items="${lstMainMenu }" var="menus">
-								<li class="${empty menus.subMenuList ? '' : 'sub-menu' }"><a href="JavaScript:">${menus.mainMenuName}</a>
-									<c:if test="${!empty menus.subMenuList}">
+								<li class="${empty menus.subMenuList ? '' : 'sub-menu' }"><a
+									href="JavaScript:">${menus.mainMenuName}</a> <c:if
+										test="${!empty menus.subMenuList}">
 										<div>
 											<ul>
 												<c:forEach items="${menus.subMenuList }" var="subMenus">

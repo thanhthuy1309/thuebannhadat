@@ -9,8 +9,10 @@ public class SelectAddress {
 
 	private String cityId;
 	private String districtId;
-	private String ward;
+	private String wardId;
 	private String streetId;
+	private String landTypeId;
+	private String housingTypeId;
 
 	/**
 	 * @return the cityId
@@ -58,17 +60,47 @@ public class SelectAddress {
 	}
 
 	/**
-	 * @return the ward
+	 * @return the wardId
 	 */
-	public String getWard() {
-		return ward;
+	public String getWardId() {
+		return wardId;
 	}
 
 	/**
-	 * @param ward the ward to set
+	 * @param wardId the wardId to set
 	 */
-	public void setWard(String ward) {
-		this.ward = ward;
+	public void setWardId(String wardId) {
+		this.wardId = wardId;
+	}
+
+	/**
+	 * @return the landTypeId
+	 */
+	public String getLandTypeId() {
+		return landTypeId;
+	}
+
+	/**
+	 * @param landTypeId
+	 *            the landTypeId to set
+	 */
+	public void setLandTypeId(String landTypeId) {
+		this.landTypeId = landTypeId;
+	}
+
+	/**
+	 * @return the housingTypeId
+	 */
+	public String getHousingTypeId() {
+		return housingTypeId;
+	}
+
+	/**
+	 * @param housingTypeId
+	 *            the housingTypeId to set
+	 */
+	public void setHousingTypeId(String housingTypeId) {
+		this.housingTypeId = housingTypeId;
 	}
 
 }

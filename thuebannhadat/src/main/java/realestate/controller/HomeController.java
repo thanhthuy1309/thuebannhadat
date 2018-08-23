@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,11 +17,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import realestate.dto.SelectAddress;
 import realestate.entity.City;
 import realestate.entity.District;
+import realestate.entity.HousingType;
+import realestate.entity.LandType;
 import realestate.entity.MainMenu;
+import realestate.entity.Notification;
 import realestate.entity.Street;
 import realestate.entity.SubMenu;
 import realestate.entity.Ward;
 import realestate.service.HomeService;
+import realestate.utils.Utils;
 
 /**
  * @author : ThuyTran
@@ -39,11 +44,13 @@ public class HomeController {
 	@RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
 	public String trangchu(Model model, HttpSession session) {
 
+		SelectAddress selectAddress = new SelectAddress();
+
 		// initialization menu
-		initMenu(model);
+		initMenu(model, session);
 
 		// initialization search
-		initSearch(model);
+		initSearch(model, selectAddress);
 
 		return "trang-chu";
 	}
@@ -55,13 +62,12 @@ public class HomeController {
 		return "trang-chu";
 	}
 
-	private void initSearch(Model model) {
+	private void initSearch(Model model, SelectAddress selectAddress) {
 
 		// get all City with status = 1
 		List<City> lstCity = homeService.getAllCity();
 
 		// initialization condition
-		SelectAddress selectAddress = new SelectAddress();
 		selectAddress.setCityId(lstCity.stream().findFirst().get().getCityId());
 
 		// get all District by city_id
@@ -70,19 +76,34 @@ public class HomeController {
 
 		// get all Ward by city_id and district_id
 		List<Ward> lstWard = homeService.getWardByCondition(selectAddress);
-		selectAddress.setWard(lstWard.stream().findFirst().get().getWardId());
+		selectAddress.setWardId(lstWard.stream().findFirst().get().getWardId());
 
 		// get all Street by city_id and district_id
 		List<Street> listStreet = homeService.getStreetByCondition(selectAddress);
 
+		// get all LandType
+		List<LandType> lstLandType = homeService.getAllLandType();
+		selectAddress.setLandTypeId(lstLandType.stream().findFirst().get().getLandTypeId());
+
+		// get all HousingType
+		List<HousingType> lstHousingType = homeService.getAllHousingType();
+
+		// Filter by first landTypeId
+		lstHousingType = lstHousingType.stream()
+				.filter(housingType -> housingType.getLandTypeId().equals(selectAddress.getLandTypeId()))
+				.collect(Collectors.toList());
+
 		// Add model attribute
+		model.addAttribute("selectAddress", selectAddress);
 		model.addAttribute("lstCity", lstCity);
 		model.addAttribute("lstDistrict", lstDistrict);
 		model.addAttribute("lstWard", lstWard);
 		model.addAttribute("listStreet", listStreet);
+		model.addAttribute("lstLandType", lstLandType);
+		model.addAttribute("lstHousingType", lstHousingType);
 	}
 
-	private void initMenu(Model model) {
+	private void initMenu(Model model, HttpSession session) {
 
 		// get all menu status = 1
 		List<MainMenu> lstMainMenu = homeService.getAllMainMenu();
@@ -97,5 +118,13 @@ public class HomeController {
 				.filter(subMenu -> subMenu.getMainMenuId().equals(e.getMainMenuId())).collect(Collectors.toList())));
 
 		model.addAttribute("lstMainMenu", lstMainMenu);
+
+		// String userName = Utils.getUserName(model, session);
+		// TODO: hardcode userName
+		String userName = "admin";
+		if (StringUtils.isNotBlank(userName)) {
+			List<Notification> lstNotification = homeService.getAllNotificationByUserName(userName);
+			model.addAttribute("lstNotification", lstNotification);
+		}
 	}
 }
