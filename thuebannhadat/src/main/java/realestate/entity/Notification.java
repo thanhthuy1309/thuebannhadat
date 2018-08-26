@@ -10,9 +10,12 @@ package realestate.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -44,6 +47,14 @@ public class Notification extends AbstractEntity {
 	/** Init notificationContent **/
 	@Column(name = "notification_content", length = 500, columnDefinition = "VARCHAR(500) DEFAULT ''")
 	private String notificationContent;
+
+	@Column(name = "user_id", nullable = false, columnDefinition = "INT(11) UNSIGNED")
+	private Integer userId;
+
+	  /** Init user **/
+	  @ManyToOne(fetch = FetchType.LAZY)
+	  @JoinColumn(name = "user_id", referencedColumnName = "user_id" , insertable = false, updatable = false)
+	  private User user;
 
 	/**
 	 * @return the notificationId
@@ -91,6 +102,36 @@ public class Notification extends AbstractEntity {
 	}
 
 	public static long getSerialversionuid() {
-	    return serialVersionUID;
-	  }
+		return serialVersionUID;
+	}
+
+	/**
+	 * @return the userId
+	 */
+	public Integer getUserId() {
+		return userId;
+	}
+
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
+	}
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	
 }

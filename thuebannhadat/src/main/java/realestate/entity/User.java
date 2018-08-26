@@ -101,9 +101,9 @@ public class User extends AbstractEntity {
 	@Column(name = "password_code", length = 5, columnDefinition = "VARCHAR(5) DEFAULT ''")
 	private String passwordCode;
 
-//	/** Init list thong bao **/
-//	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Notification.class)
-//	private List<Notification> notificationList;
+	/** Init list thong bao **/
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Notification.class)
+	private List<Notification> notificationList;
 
 	public Integer getUserId() {
 		return userId;
@@ -225,20 +225,20 @@ public class User extends AbstractEntity {
 		this.passwordCode = passwordCode;
 	}
 
-//	/**
-//	 * @return the notificationList
-//	 */
-//	public List<Notification> getNotificationList() {
-//		return notificationList;
-//	}
-//
-//	/**
-//	 * @param notificationList
-//	 *            the notificationList to set
-//	 */
-//	public void setNotificationList(List<Notification> notificationList) {
-//		this.notificationList = notificationList;
-//	}
+	/**
+	 * @return the notificationList
+	 */
+	public List<Notification> getNotificationList() {
+		return notificationList;
+	}
+
+	/**
+	 * @param notificationList
+	 *            the notificationList to set
+	 */
+	public void setNotificationList(List<Notification> notificationList) {
+		this.notificationList = notificationList;
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

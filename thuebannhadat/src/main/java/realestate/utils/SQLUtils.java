@@ -12,6 +12,5 @@ public class SQLUtils {
 	public static final String DISTRICT_ID = "districtId";
 	public static final String STREET_ID = "streetId";
 	public static final String WARD_ID = "wardId";
-	public static final int STATUS_ON = 1;
 	public static final String USER_NAME = "userName";
 }

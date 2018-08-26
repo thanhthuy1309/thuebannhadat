@@ -20,6 +20,7 @@ import realestate.entity.Street;
 import realestate.entity.SubMenu;
 import realestate.entity.User;
 import realestate.entity.Ward;
+import realestate.enumerator.StatusRecordEnum;
 import realestate.utils.SQLUtils;
 
 /**
@@ -43,7 +44,7 @@ public class HomeDaoImpl extends AbstractDaoImpl<User, Integer> implements HomeD
 		Query query = session.getNamedQuery("HomeDao.getAllCity");
 
 		// Set parameter
-		query.setInteger("status", 1);
+		query.setInteger(SQLUtils.STATUS, StatusRecordEnum.ACTIVE.getValue());
 
 		try {
 			result = query.list();
@@ -64,7 +65,7 @@ public class HomeDaoImpl extends AbstractDaoImpl<User, Integer> implements HomeD
 		Query query = session.getNamedQuery("HomeDao.getDistrictByCondition");
 
 		// Set parameter
-		query.setInteger(SQLUtils.STATUS, SQLUtils.STATUS_ON);
+		query.setInteger(SQLUtils.STATUS, StatusRecordEnum.ACTIVE.getValue());
 		query.setString(SQLUtils.CITY_ID, selectAddress.getCityId());
 
 		try {
@@ -86,7 +87,7 @@ public class HomeDaoImpl extends AbstractDaoImpl<User, Integer> implements HomeD
 		Query query = session.getNamedQuery("HomeDao.getWardByCondition");
 
 		// Set parameter
-		query.setInteger(SQLUtils.STATUS, SQLUtils.STATUS_ON);
+		query.setInteger(SQLUtils.STATUS, StatusRecordEnum.ACTIVE.getValue());
 		query.setString(SQLUtils.CITY_ID, selectAddress.getCityId());
 		query.setString(SQLUtils.DISTRICT_ID, selectAddress.getDistrictId());
 
@@ -109,7 +110,7 @@ public class HomeDaoImpl extends AbstractDaoImpl<User, Integer> implements HomeD
 		Query query = session.getNamedQuery("HomeDao.getStreetByCondition");
 
 		// Set parameter
-		query.setInteger(SQLUtils.STATUS, SQLUtils.STATUS_ON);
+		query.setInteger(SQLUtils.STATUS, StatusRecordEnum.ACTIVE.getValue());
 		query.setString(SQLUtils.CITY_ID, selectAddress.getCityId());
 		query.setString(SQLUtils.DISTRICT_ID, selectAddress.getDistrictId());
 
@@ -132,7 +133,7 @@ public class HomeDaoImpl extends AbstractDaoImpl<User, Integer> implements HomeD
 		Query query = session.getNamedQuery("HomeDao.getAllMainMenu");
 
 		// Set parameter
-		query.setInteger(SQLUtils.STATUS, SQLUtils.STATUS_ON);
+		query.setInteger(SQLUtils.STATUS, StatusRecordEnum.ACTIVE.getValue());
 
 		try {
 			result = query.list();
@@ -153,7 +154,7 @@ public class HomeDaoImpl extends AbstractDaoImpl<User, Integer> implements HomeD
 		Query query = session.getNamedQuery("HomeDao.getAllSubMenu");
 
 		// Set parameter
-		query.setInteger(SQLUtils.STATUS, SQLUtils.STATUS_ON);
+		query.setInteger(SQLUtils.STATUS, StatusRecordEnum.ACTIVE.getValue());
 
 		try {
 			result = query.list();
@@ -174,7 +175,7 @@ public class HomeDaoImpl extends AbstractDaoImpl<User, Integer> implements HomeD
 		Query query = session.getNamedQuery("HomeDao.getAllLandType");
 
 		// Set parameter
-		query.setInteger(SQLUtils.STATUS, SQLUtils.STATUS_ON);
+		query.setInteger(SQLUtils.STATUS, StatusRecordEnum.ACTIVE.getValue());
 
 		try {
 			result = query.list();
@@ -195,7 +196,7 @@ public class HomeDaoImpl extends AbstractDaoImpl<User, Integer> implements HomeD
 		Query query = session.getNamedQuery("HomeDao.getAllHousingType");
 
 		// Set parameter
-		query.setInteger(SQLUtils.STATUS, SQLUtils.STATUS_ON);
+		query.setInteger(SQLUtils.STATUS, StatusRecordEnum.ACTIVE.getValue());
 
 		try {
 			result = query.list();
@@ -216,8 +217,8 @@ public class HomeDaoImpl extends AbstractDaoImpl<User, Integer> implements HomeD
 		Query query = session.getNamedQuery("HomeDao.getAllNotificationByUserName");
 
 		// Set parameter
-		query.setInteger(SQLUtils.STATUS, SQLUtils.STATUS_ON);
-//		query.setString(SQLUtils.USER_NAME, userName);
+		query.setInteger(SQLUtils.STATUS, StatusRecordEnum.ACTIVE.getValue());
+		query.setString(SQLUtils.USER_NAME, userName);
 
 		try {
 			result = query.list();

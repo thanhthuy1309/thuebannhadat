@@ -78,8 +78,10 @@
 	<![CDATA[
         SELECT n
 		FROM Notification n
+		LEFT JOIN n.user
 		WHERE
 			n.status    = :status
+		AND n.user.userName	= :userName 
         ]]>
 	</query>
 </hibernate-mapping>
