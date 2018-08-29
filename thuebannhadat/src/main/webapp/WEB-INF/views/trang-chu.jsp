@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -251,8 +251,8 @@
 											<div>
 												<select class="form-control selectpicker validate[required]"
 													data-live-search="true" data-size="6">
+													<option>Chọn Loại Nhà Đất</option>
 													<c:forEach items="${lstHousingType }" var="housingTypes">
-														<option>Chọn Loại Nhà Đất</option>
 														<c:choose>
 															<c:when
 																test="${selectAddress.housingTypeId == housingTypes.housingTypeId}">
@@ -365,123 +365,83 @@
 								</div>
 								<div id="advance-setting" class="advance-setting">
 									<div class="s-item">
-										<label>dự án</label>
+										<label>Chọn giá</label>
 										<div>
 											<select class="form-control selectpicker validate[required]"
 												data-live-search="true" data-size="6">
-												<option>Tất cả</option>
-												<option>Lorrem 1</option>
-												<option>Lorrem 2</option>
-												<option>Lorrem 3</option>
-												<option>Lorrem 4</option>
+												<option>Chọn mức giá</option>
+												<option>Thỏa thuận</option>
+												<option>< 500 triệu</option>
+												<option>500 - 800 triệu</option>
+												<option>800 triệu - 1 tỷ</option>
+												<option>1 - 2 tỷ</option>
+												<option>2 - 3 tỷ</option>
+												<option>3 - 5 tỷ</option>
+												<option>5 - 7 tỷ</option>
+												<option>7 - 10 tỷ</option>
+												<option>10 - 20 tỷ</option>
+												<option>20 - 30 tỷ</option>
+												<option>> 30 tỷ</option>
 											</select>
 										</div>
 									</div>
-									<div class="s-item-2">
-										<label>Chọn giá</label>
-										<div>
-											<div>
-												<input class="txt" placeholder="Nhập Giá Thấp Nhất">
-											</div>
-											<div>
-												<input class="txt" placeholder="Nhập Giá Cao Nhất">
-											</div>
-										</div>
-									</div>
-									<div class="s-item-2">
+									<div class="s-item">
 										<label>Chọn diện tích</label>
 										<div>
-											<div>
-												<input class="txt" placeholder="Nhập Diện Tích Thấp Nhất">
-											</div>
-											<div>
-												<input class="txt" placeholder="Nhập Diện Tích Cao Nhất">
-											</div>
+											<select class="form-control selectpicker validate[required]"
+												data-live-search="true" data-size="6">
+												<option>Chọn diện tích</option>
+												<option>Chưa xác định</option>
+												<option>< 30 m2</option>
+												<option>30 - 50 m2</option>
+												<option>50 - 80 m2</option>
+												<option>80 - 100 m2</option>
+												<option>100 - 150 m2</option>
+												<option>150 - 200 m2</option>
+												<option>200 - 250 m2</option>
+												<option>250 - 300 m2</option>
+												<option>300 - 500 m2</option>
+												<option>>= 500 m2</option>
+											</select>
 										</div>
 									</div>
+									<c:if test="${lstBalconyDirection != null}">
+									<div class="s-item">
+										<label>Chọn Hướng Nhà</label>
+										<div>
+											<select class="form-control selectpicker validate[required]"
+												data-live-search="true" data-size="6">
+												<option>Chọn hướng nhà</option>
+												<c:forEach items="${lstBalconyDirection }" var="directions">
+													<c:choose>
+														<c:when test="${selectAddress.direction == directions.balconyDirectionId}">
+															<option value="${directions.balconyDirectionId}" selected>${directions.balconyDirectionName }</option>
+														</c:when>
+														<c:otherwise>
+															<option value="${directions.balconyDirectionId }">${directions.balconyDirectionName }</option>
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
+											</select>
+										</div>
+									</div>
+									</c:if>
 									<div class="s-item">
 										<label>Số tầng</label>
 										<div>
 											<input class="txt" placeholder="Số Tầng" type="number">
 										</div>
 									</div>
-
-									<div class="s-item">
-										<label>Chọn Hướng Nhà</label>
-										<div>
-											<select class="form-control selectpicker validate[required]"
-												data-live-search="true" data-size="6">
-												<option>Tất cả</option>
-												<option>Lorrem 1</option>
-												<option>Lorrem 2</option>
-												<option>Lorrem 3</option>
-												<option>Lorrem 4</option>
-											</select>
-										</div>
-									</div>
 									<div class="s-item">
 										<label>số phòng ngủ</label>
 										<div>
-											<select class="form-control selectpicker validate[required]"
-												data-live-search="true" data-size="6">
-												<option>Tất cả</option>
-												<option>Lorrem 1</option>
-												<option>Lorrem 2</option>
-												<option>Lorrem 3</option>
-												<option>Lorrem 4</option>
-											</select>
+											<input class="txt" placeholder="Số phòng ngủ" type="number">
 										</div>
 									</div>
 									<div class="s-item">
 										<label>số phòng tắm</label>
 										<div>
-											<select class="form-control selectpicker validate[required]"
-												data-live-search="true" data-size="6">
-												<option>Tất cả</option>
-												<option>Lorrem 1</option>
-												<option>Lorrem 2</option>
-												<option>Lorrem 3</option>
-												<option>Lorrem 4</option>
-											</select>
-										</div>
-									</div>
-									<div class="s-item">
-										<label>gara</label>
-										<div>
-											<select class="form-control selectpicker validate[required]"
-												data-live-search="true" data-size="6">
-												<option>Tất cả</option>
-												<option>Lorrem 1</option>
-												<option>Lorrem 2</option>
-												<option>Lorrem 3</option>
-												<option>Lorrem 4</option>
-											</select>
-										</div>
-									</div>
-									<div class="s-item">
-										<label>bancol</label>
-										<div>
-											<select class="form-control selectpicker validate[required]"
-												data-live-search="true" data-size="6">
-												<option>Tất cả</option>
-												<option>Lorrem 1</option>
-												<option>Lorrem 2</option>
-												<option>Lorrem 3</option>
-												<option>Lorrem 4</option>
-											</select>
-										</div>
-									</div>
-									<div class="s-item">
-										<label>hình thức</label>
-										<div>
-											<select class="form-control selectpicker validate[required]"
-												data-live-search="true" data-size="6">
-												<option>Tất cả</option>
-												<option>Lorrem 1</option>
-												<option>Lorrem 2</option>
-												<option>Lorrem 3</option>
-												<option>Lorrem 4</option>
-											</select>
+											<input class="txt" placeholder="Số phòng tắm" type="number">
 										</div>
 									</div>
 									<div class="cls-after"></div>
@@ -489,23 +449,13 @@
 										<label class="white-lbl">Chọn Tiện ích kèm theo</label>
 										<div class="rdbs">
 											<button class="yellow-btn f-right">Reset</button>
-											<label class="rdb"><input type="checkbox"> <span>Lorrem
-													1</span></label> <label class="rdb"><input type="checkbox">
-												<span>Lorrem 2</span></label> <label class="rdb"><input
-												type="checkbox"> <span>Lorrem 3</span></label> <label
-												class="rdb"><input type="checkbox"> <span>Lorrem
-													4</span></label> <label class="rdb"><input type="checkbox">
-												<span>Lorrem 5</span></label> <label class="rdb"><input
-												type="checkbox"> <span>Lorrem 6</span></label> <label
-												class="rdb"><input type="checkbox"> <span>Lorrem
-													7</span></label>
+											<label class="rdb"><input type="checkbox"> <span>Gara</span></label>
+											<label class="rdb"><input type="checkbox"> <span>Bancol</span></label>
+											<label class="rdb"><input type="checkbox"> <span>Bệnh viện</span></label>
+											<label class="rdb"><input type="checkbox"> <span>Trường học</span></label>
+											<label class="rdb"><input type="checkbox"> <span>Siêu thị</span></label>
 										</div>
 									</div>
-									<!-- <div class="s-item-a text-right">
-                                            <button class="yellow-btn">Tìm Kiếm</button>
-                                            <button class="yellow-btn">Reset</button>
-
-                                        </div> -->
 								</div>
 							</div>
 						</div>

@@ -3,6 +3,7 @@ package realestate.dao;
 import java.util.List;
 
 import realestate.dto.SelectAddress;
+import realestate.entity.BalconyDirection;
 import realestate.entity.City;
 import realestate.entity.District;
 import realestate.entity.HousingType;
@@ -37,4 +38,6 @@ public interface HomeDao {
 	List<HousingType> getAllHousingType();
 
 	List<Notification> getAllNotificationByUserName(String userName);
+
+	List<BalconyDirection> getBalconyDirection();
 }

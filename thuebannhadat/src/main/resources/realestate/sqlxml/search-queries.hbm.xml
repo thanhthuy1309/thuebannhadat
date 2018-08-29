@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<query name="HomeDao.getAllCity">
+	<![CDATA[
+        SELECT c
+        FROM City c
+        WHERE c.status     = :status
+        ]]>
+	</query>
+
+	<query name="HomeDao.getDistrictByCondition">
+	<![CDATA[
+        SELECT d
+        FROM District d
+        WHERE d.status     = :status
+          AND d.cityId     = :cityId
+        ]]>
+	</query>
+
+	<query name="HomeDao.getWardByCondition">
+	<![CDATA[
+        SELECT w
+        FROM Ward w
+        WHERE w.status     = :status
+          AND w.districtId = :districtId
+          AND w.cityId     = :cityId
+        ]]>
+	</query>
+
+	<query name="HomeDao.getStreetByCondition">
+	<![CDATA[
+        SELECT s
+        FROM Street s
+        WHERE s.status     = :status
+          AND s.districtId = :districtId
+          AND s.cityId     = :cityId
+        ]]>
+	</query>
+
+	<query name="HomeDao.getAllLandType">
+	<![CDATA[
+        SELECT l
+        FROM LandType l
+        WHERE l.status     = :status
+        ]]>
+	</query>
+
+	<query name="HomeDao.getAllHousingType">
+	<![CDATA[
+        SELECT h
+        FROM HousingType h
+        WHERE h.status     = :status
+        ORDER BY h.order
+        ]]>
+	</query>
+
+	<query name="HomeDao.getBalconyDirection">
+	<![CDATA[
+        SELECT h
+        FROM BalconyDirection h
+        WHERE h.status     = :status
+        ]]>
+	</query>
+</hibernate-mapping>

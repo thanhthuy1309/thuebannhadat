@@ -35,60 +35,73 @@ import realestate.entity.PK.HousingType_PK;
 @Where(clause = "status = 1")
 public class HousingType extends AbstractEntity {
 
-  /** Init serialVersionUID is 1L **/
-  private static final long serialVersionUID = 1L;
+	/** Init serialVersionUID is 1L **/
+	private static final long serialVersionUID = 1L;
 
-  /** Init idLoaiNhaDat **/
-  @Id
-  @Column(name = "housing_type_id", nullable = false, length = 250)
-  private String housingTypeId;
+	/** Init idLoaiNhaDat **/
+	@Id
+	@Column(name = "housing_type_id", nullable = false, length = 250)
+	private String housingTypeId;
 
-  @Id
-  @Column(name = "land_type_id", nullable = false, length = 250)
-  private String landTypeId;
+	@Id
+	@Column(name = "land_type_id", nullable = false, length = 250)
+	private String landTypeId;
 
-  /** Init tenLoaiNhaDat **/
-  @Column(name = "housing_type_name", length = 250, nullable = false)
-  private String housingTypeName;
+	/** Init tenLoaiNhaDat **/
+	@Column(name = "housing_type_name", length = 250, nullable = false)
+	private String housingTypeName;
 
-  /** Init loaiHinhDat **/
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "land_type_id", insertable = false, updatable = false)
-  private LandType landType;
+	/** Init order **/
+	@Column(name = "order", length = 11, nullable = false)
+	private Integer order;
 
-  public String getHousingTypeId() {
-    return housingTypeId;
-  }
+	/** Init loaiHinhDat **/
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "land_type_id", insertable = false, updatable = false)
+	private LandType landType;
 
-  public void setHousingTypeId(String housingTypeId) {
-    this.housingTypeId = housingTypeId;
-  }
+	public String getHousingTypeId() {
+		return housingTypeId;
+	}
 
-  public String getLandTypeId() {
-    return landTypeId;
-  }
+	public void setHousingTypeId(String housingTypeId) {
+		this.housingTypeId = housingTypeId;
+	}
 
-  public void setLandTypeId(String landTypeId) {
-    this.landTypeId = landTypeId;
-  }
+	public String getLandTypeId() {
+		return landTypeId;
+	}
 
-  public String getHousingTypeName() {
-    return housingTypeName;
-  }
+	public void setLandTypeId(String landTypeId) {
+		this.landTypeId = landTypeId;
+	}
 
-  public void setHousingTypeName(String housingTypeName) {
-    this.housingTypeName = housingTypeName;
-  }
+	public String getHousingTypeName() {
+		return housingTypeName;
+	}
 
-  public LandType getLandType() {
-    return landType;
-  }
+	public void setHousingTypeName(String housingTypeName) {
+		this.housingTypeName = housingTypeName;
+	}
 
-  public void setLandType(LandType landType) {
-    this.landType = landType;
-  }
+	public LandType getLandType() {
+		return landType;
+	}
 
-  public static long getSerialversionuid() {
-    return serialVersionUID;
-  }
+	public void setLandType(LandType landType) {
+		this.landType = landType;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public Integer getOrder() {
+		return order;
+	}
+
+	public void setOrder(Integer order) {
+		this.order = order;
+	}
+
 }

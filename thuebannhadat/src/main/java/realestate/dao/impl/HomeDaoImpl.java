@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import realestate.dao.HomeDao;
 import realestate.dto.SelectAddress;
+import realestate.entity.BalconyDirection;
 import realestate.entity.City;
 import realestate.entity.District;
 import realestate.entity.HousingType;
@@ -225,6 +226,26 @@ public class HomeDaoImpl extends AbstractDaoImpl<User, Integer> implements HomeD
 			LOGGER.info("#getAllNotificationByUserName: successfull");
 		} catch (Exception e) {
 			LOGGER.error("#getAllNotificationByUserName_Error: " + e.getMessage());
+		}
+		return result;
+	}
+
+	@Override
+	public List<BalconyDirection> getBalconyDirection() {
+		List<BalconyDirection> result = new ArrayList<>();
+		Session session = getSession();
+
+		// Query get all HousingType
+		Query query = session.getNamedQuery("HomeDao.getAllNotificationByUserName");
+
+		// Set parameter
+		query.setInteger(SQLUtils.STATUS, StatusRecordEnum.ACTIVE.getValue());
+
+		try {
+			result = query.list();
+			LOGGER.info("#getBalconyDirection: successfull");
+		} catch (Exception e) {
+			LOGGER.error("#getBalconyDirection_Error: " + e.getMessage());
 		}
 		return result;
 	}

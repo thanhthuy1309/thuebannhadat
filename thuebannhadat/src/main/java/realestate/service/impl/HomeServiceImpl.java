@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import realestate.dao.HomeDao;
 import realestate.dto.SelectAddress;
+import realestate.entity.BalconyDirection;
 import realestate.entity.City;
 import realestate.entity.District;
 import realestate.entity.HousingType;
@@ -83,6 +84,11 @@ public class HomeServiceImpl implements HomeService {
 	@Override
 	public List<Notification> getAllNotificationByUserName(String userName) {
 		return homedao.getAllNotificationByUserName(userName);
+	}
+
+	@Override
+	public List<BalconyDirection> getBalconyDirection() {
+		return homedao.getBalconyDirection();
 	}
 
 }

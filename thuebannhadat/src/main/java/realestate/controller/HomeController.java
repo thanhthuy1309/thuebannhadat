@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import realestate.dto.SelectAddress;
+import realestate.entity.BalconyDirection;
 import realestate.entity.City;
 import realestate.entity.District;
 import realestate.entity.HousingType;
@@ -25,7 +26,6 @@ import realestate.entity.Street;
 import realestate.entity.SubMenu;
 import realestate.entity.Ward;
 import realestate.service.HomeService;
-import realestate.utils.Utils;
 
 /**
  * @author : ThuyTran
@@ -83,24 +83,34 @@ public class HomeController {
 
 		// get all LandType
 		List<LandType> lstLandType = homeService.getAllLandType();
-		selectAddress.setLandTypeId(lstLandType.stream().findFirst().get().getLandTypeId());
+
+		SelectAddress selectLandType = new SelectAddress();
+		selectLandType.setLandTypeId(lstLandType.stream().findFirst().get().getLandTypeId());
 
 		// get all HousingType
 		List<HousingType> lstHousingType = homeService.getAllHousingType();
 
 		// Filter by first landTypeId
 		lstHousingType = lstHousingType.stream()
-				.filter(housingType -> housingType.getLandTypeId().equals(selectAddress.getLandTypeId()))
+				.filter(housingType -> housingType.getLandTypeId().equals(selectLandType.getLandTypeId()))
 				.collect(Collectors.toList());
 
+		List<BalconyDirection> lstBalconyDirection = homeService.getBalconyDirection();
+
+		// sort base on order
+//		Comparator<HousingType> byHousingOrder = (e1, e2) ->
+//		Integer.compare(e1.getOrder(), e2.getOrder());
+//		lstHousingType.sort(byHousingOrder);
+
 		// Add model attribute
-		model.addAttribute("selectAddress", selectAddress);
+		model.addAttribute("selectAddress", selectLandType);
 		model.addAttribute("lstCity", lstCity);
 		model.addAttribute("lstDistrict", lstDistrict);
 		model.addAttribute("lstWard", lstWard);
 		model.addAttribute("listStreet", listStreet);
 		model.addAttribute("lstLandType", lstLandType);
 		model.addAttribute("lstHousingType", lstHousingType);
+		model.addAttribute("lstBalconyDirection", lstBalconyDirection);
 	}
 
 	private void initMenu(Model model, HttpSession session) {
@@ -109,10 +119,6 @@ public class HomeController {
 		List<MainMenu> lstMainMenu = homeService.getAllMainMenu();
 
 		List<SubMenu> lstSubMenu = homeService.getAllSubMenu();
-
-		// Comparator<MainMenu> byMainMenuOrder = (e1, e2) ->
-		// Integer.compare(e1.getMainMenuOrder(),
-		// e2.getMainMenuOrder());
 
 		lstMainMenu.stream().forEach(e -> e.setSubMenuList(lstSubMenu.stream()
 				.filter(subMenu -> subMenu.getMainMenuId().equals(e.getMainMenuId())).collect(Collectors.toList())));

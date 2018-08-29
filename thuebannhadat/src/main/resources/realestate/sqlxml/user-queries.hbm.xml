@@ -3,30 +3,40 @@
     "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<query name="UserDao.getUserByPhone">
-	<![CDATA[
+    <query name="UserDao.getUserByPhone">
+    <![CDATA[
         SELECT n
         FROM User n
         WHERE n.userPhone = :userPhone
         ]]>
-	</query>
+    </query>
 
-	<query name="UserDao.getUserByEmail">
-	<![CDATA[
+    <query name="UserDao.getUserByEmail">
+    <![CDATA[
         SELECT n
         FROM User n
         WHERE n.userEmail = :userEmail
-        	AND n.status = :status
+            AND n.status = :status
         ]]>
-	</query>
+    </query>
 
-	<query name="UserDao.checkLoginByPhone">
-	<![CDATA[
+    <query name="UserDao.checkLoginByPhone">
+    <![CDATA[
         SELECT n
         FROM User n
         WHERE n.userPhone = :userPhone
              AND n.userPassword = :userPassword
         ]]>
-	</query>
+    </query>
 
+    <query name="HomeDao.getAllNotificationByUserName">
+    <![CDATA[
+        SELECT n
+        FROM Notification n
+        LEFT JOIN n.user
+        WHERE
+            n.status    = :status
+        AND n.user.userName    = :userName 
+        ]]>
+    </query>
 </hibernate-mapping>
