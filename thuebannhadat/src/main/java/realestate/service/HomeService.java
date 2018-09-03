@@ -3,9 +3,9 @@ package realestate.service;
 import java.util.List;
 
 import realestate.dto.SelectAddress;
-import realestate.entity.BalconyDirection;
 import realestate.entity.City;
 import realestate.entity.District;
+import realestate.entity.HouseDirection;
 import realestate.entity.HousingType;
 import realestate.entity.LandType;
 import realestate.entity.MainMenu;
@@ -38,6 +38,6 @@ public interface HomeService {
 	List<HousingType> getAllHousingType();
 
 	List<Notification> getAllNotificationByUserName(String userName);
-
-	List<BalconyDirection> getBalconyDirection();
+ 
+	List<HouseDirection> getHouseDirection();
 }

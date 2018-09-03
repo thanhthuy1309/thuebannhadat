@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import realestate.dto.SelectAddress;
-import realestate.entity.BalconyDirection;
 import realestate.entity.City;
 import realestate.entity.District;
+import realestate.entity.HouseDirection;
 import realestate.entity.HousingType;
 import realestate.entity.LandType;
 import realestate.entity.MainMenu;
@@ -95,12 +95,12 @@ public class HomeController {
 				.filter(housingType -> housingType.getLandTypeId().equals(selectLandType.getLandTypeId()))
 				.collect(Collectors.toList());
 
-		List<BalconyDirection> lstBalconyDirection = homeService.getBalconyDirection();
+		List<HouseDirection> lstHouseDirection = homeService.getHouseDirection();
 
 		// sort base on order
-//		Comparator<HousingType> byHousingOrder = (e1, e2) ->
-//		Integer.compare(e1.getOrder(), e2.getOrder());
-//		lstHousingType.sort(byHousingOrder);
+		// Comparator<HousingType> byHousingOrder = (e1, e2) ->
+		// Integer.compare(e1.getOrder(), e2.getOrder());
+		// lstHousingType.sort(byHousingOrder);
 
 		// Add model attribute
 		model.addAttribute("selectAddress", selectLandType);
@@ -110,7 +110,7 @@ public class HomeController {
 		model.addAttribute("listStreet", listStreet);
 		model.addAttribute("lstLandType", lstLandType);
 		model.addAttribute("lstHousingType", lstHousingType);
-		model.addAttribute("lstBalconyDirection", lstBalconyDirection);
+		model.addAttribute("lstHouseDirection", lstHouseDirection);
 	}
 
 	private void initMenu(Model model, HttpSession session) {

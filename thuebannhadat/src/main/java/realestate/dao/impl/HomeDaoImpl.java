@@ -10,15 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import realestate.dao.HomeDao;
 import realestate.dto.SelectAddress;
-import realestate.entity.BalconyDirection;
-import realestate.entity.City;
 import realestate.entity.District;
-import realestate.entity.HousingType;
-import realestate.entity.LandType;
-import realestate.entity.MainMenu;
 import realestate.entity.Notification;
 import realestate.entity.Street;
-import realestate.entity.SubMenu;
 import realestate.entity.User;
 import realestate.entity.Ward;
 import realestate.enumerator.StatusRecordEnum;
@@ -34,27 +28,6 @@ public class HomeDaoImpl extends AbstractDaoImpl<User, Integer> implements HomeD
 
 	/** Init logger. */
 	private Logger LOGGER = Logger.getLogger(HomeDaoImpl.class);
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<City> getAllCity() {
-		List<City> result = new ArrayList<>();
-		Session session = getSession();
-
-		// Query get all city
-		Query query = session.getNamedQuery("HomeDao.getAllCity");
-
-		// Set parameter
-		query.setInteger(SQLUtils.STATUS, StatusRecordEnum.ACTIVE.getValue());
-
-		try {
-			result = query.list();
-			LOGGER.info("#getAllCity: successfull");
-		} catch (Exception e) {
-			LOGGER.error("#getAllCity_Error: " + e.getMessage());
-		}
-		return result;
-	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -126,90 +99,6 @@ public class HomeDaoImpl extends AbstractDaoImpl<User, Integer> implements HomeD
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<MainMenu> getAllMainMenu() {
-		List<MainMenu> result = new ArrayList<>();
-		Session session = getSession();
-
-		// Query get all city
-		Query query = session.getNamedQuery("HomeDao.getAllMainMenu");
-
-		// Set parameter
-		query.setInteger(SQLUtils.STATUS, StatusRecordEnum.ACTIVE.getValue());
-
-		try {
-			result = query.list();
-			LOGGER.info("#getAllMainMenu: successfull");
-		} catch (Exception e) {
-			LOGGER.error("#getAllMainMenu_Error: " + e.getMessage());
-		}
-		return result;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<SubMenu> getAllSubMenu() {
-		List<SubMenu> result = new ArrayList<>();
-		Session session = getSession();
-
-		// Query get all city
-		Query query = session.getNamedQuery("HomeDao.getAllSubMenu");
-
-		// Set parameter
-		query.setInteger(SQLUtils.STATUS, StatusRecordEnum.ACTIVE.getValue());
-
-		try {
-			result = query.list();
-			LOGGER.info("#getAllSubMenu: successfull");
-		} catch (Exception e) {
-			LOGGER.error("#getAllSubMenu_Error: " + e.getMessage());
-		}
-		return result;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<LandType> getAllLandType() {
-		List<LandType> result = new ArrayList<>();
-		Session session = getSession();
-
-		// Query get all LandType
-		Query query = session.getNamedQuery("HomeDao.getAllLandType");
-
-		// Set parameter
-		query.setInteger(SQLUtils.STATUS, StatusRecordEnum.ACTIVE.getValue());
-
-		try {
-			result = query.list();
-			LOGGER.info("#getAllLandType: successfull");
-		} catch (Exception e) {
-			LOGGER.error("#getAllLandType_Error: " + e.getMessage());
-		}
-		return result;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<HousingType> getAllHousingType() {
-		List<HousingType> result = new ArrayList<>();
-		Session session = getSession();
-
-		// Query get all HousingType
-		Query query = session.getNamedQuery("HomeDao.getAllHousingType");
-
-		// Set parameter
-		query.setInteger(SQLUtils.STATUS, StatusRecordEnum.ACTIVE.getValue());
-
-		try {
-			result = query.list();
-			LOGGER.info("#getAllHousingType: successfull");
-		} catch (Exception e) {
-			LOGGER.error("#getAllHousingType_Error: " + e.getMessage());
-		}
-		return result;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
 	public List<Notification> getAllNotificationByUserName(String userName) {
 		List<Notification> result = new ArrayList<>();
 		Session session = getSession();
@@ -226,26 +115,6 @@ public class HomeDaoImpl extends AbstractDaoImpl<User, Integer> implements HomeD
 			LOGGER.info("#getAllNotificationByUserName: successfull");
 		} catch (Exception e) {
 			LOGGER.error("#getAllNotificationByUserName_Error: " + e.getMessage());
-		}
-		return result;
-	}
-
-	@Override
-	public List<BalconyDirection> getBalconyDirection() {
-		List<BalconyDirection> result = new ArrayList<>();
-		Session session = getSession();
-
-		// Query get all HousingType
-		Query query = session.getNamedQuery("HomeDao.getAllNotificationByUserName");
-
-		// Set parameter
-		query.setInteger(SQLUtils.STATUS, StatusRecordEnum.ACTIVE.getValue());
-
-		try {
-			result = query.list();
-			LOGGER.info("#getBalconyDirection: successfull");
-		} catch (Exception e) {
-			LOGGER.error("#getBalconyDirection_Error: " + e.getMessage());
 		}
 		return result;
 	}

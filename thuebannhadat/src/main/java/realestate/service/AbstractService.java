@@ -15,7 +15,7 @@ public interface AbstractService<T, PK extends Serializable> {
 
   public List<T> findAll();
 
-  public List<T> findAllByStatusOff();
+  public List<T> findAllByStatus(Integer status);
 
   public T saveOrUpdate(T entity);
 

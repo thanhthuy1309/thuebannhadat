@@ -49,8 +49,8 @@ public class AbstractServiceImpl<T, PK extends Serializable> implements Abstract
 
   @Override
   @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-  public List<T> findAllByStatusOff() {
-    return abstractDao.findAllByStatus(0);
+  public List<T> findAllByStatus(Integer status) {
+    return abstractDao.findAllByStatus(status);
   }
 
   @Override

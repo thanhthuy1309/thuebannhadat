@@ -405,20 +405,20 @@
 											</select>
 										</div>
 									</div>
-									<c:if test="${lstBalconyDirection != null}">
+									<c:if test="${lstHouseDirection != null}">
 									<div class="s-item">
 										<label>Chọn Hướng Nhà</label>
 										<div>
 											<select class="form-control selectpicker validate[required]"
 												data-live-search="true" data-size="6">
 												<option>Chọn hướng nhà</option>
-												<c:forEach items="${lstBalconyDirection }" var="directions">
+												<c:forEach items="${lstHouseDirection }" var="directions">
 													<c:choose>
-														<c:when test="${selectAddress.direction == directions.balconyDirectionId}">
-															<option value="${directions.balconyDirectionId}" selected>${directions.balconyDirectionName }</option>
+														<c:when test="${selectAddress.direction == directions.houseDirectionId}">
+															<option value="${directions.houseDirectionId}" selected>${directions.houseDirectionName }</option>
 														</c:when>
 														<c:otherwise>
-															<option value="${directions.balconyDirectionId }">${directions.balconyDirectionName }</option>
+															<option value="${directions.houseDirectionId }">${directions.houseDirectionName }</option>
 														</c:otherwise>
 													</c:choose>
 												</c:forEach>
