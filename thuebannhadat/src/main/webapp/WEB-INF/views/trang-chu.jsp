@@ -364,67 +364,71 @@
 									</div>
 								</div>
 								<div id="advance-setting" class="advance-setting">
-									<div class="s-item">
-										<label>Chọn giá</label>
-										<div>
-											<select class="form-control selectpicker validate[required]"
-												data-live-search="true" data-size="6">
-												<option>Chọn mức giá</option>
-												<option>Thỏa thuận</option>
-												<option>< 500 triệu</option>
-												<option>500 - 800 triệu</option>
-												<option>800 triệu - 1 tỷ</option>
-												<option>1 - 2 tỷ</option>
-												<option>2 - 3 tỷ</option>
-												<option>3 - 5 tỷ</option>
-												<option>5 - 7 tỷ</option>
-												<option>7 - 10 tỷ</option>
-												<option>10 - 20 tỷ</option>
-												<option>20 - 30 tỷ</option>
-												<option>> 30 tỷ</option>
-											</select>
+									<c:if test="${lstSearchLandPrice != null}">
+										<div class="s-item">
+											<label>Chọn giá</label>
+											<div>
+												<select class="form-control selectpicker validate[required]"
+													data-live-search="true" data-size="6">
+													<option>Chọn mức giá</option>
+													<c:forEach items="${lstSearchLandPrice }" var="prices">
+														<c:choose>
+															<c:when
+																test="${selectAddress.price == prices.searchLandPriceValue}">
+																<option value="${prices.searchLandPriceValue}" selected>${prices.searchLandPriceName }</option>
+															</c:when>
+															<c:otherwise>
+																<option value="${prices.searchLandPriceValue }">${prices.searchLandPriceName }</option>
+															</c:otherwise>
+														</c:choose>
+													</c:forEach>
+												</select>
+											</div>
 										</div>
-									</div>
-									<div class="s-item">
-										<label>Chọn diện tích</label>
-										<div>
-											<select class="form-control selectpicker validate[required]"
-												data-live-search="true" data-size="6">
-												<option>Chọn diện tích</option>
-												<option>Chưa xác định</option>
-												<option>< 30 m2</option>
-												<option>30 - 50 m2</option>
-												<option>50 - 80 m2</option>
-												<option>80 - 100 m2</option>
-												<option>100 - 150 m2</option>
-												<option>150 - 200 m2</option>
-												<option>200 - 250 m2</option>
-												<option>250 - 300 m2</option>
-												<option>300 - 500 m2</option>
-												<option>>= 500 m2</option>
-											</select>
+									</c:if>
+									<c:if test="${lstSearchLandArea != null}">
+										<div class="s-item">
+											<label>Chọn diện tích</label>
+											<div>
+												<select class="form-control selectpicker validate[required]"
+													data-live-search="true" data-size="6">
+													<option>Chọn diện tích</option>
+													<c:forEach items="${lstSearchLandArea }" var="areas">
+														<c:choose>
+															<c:when
+																test="${selectAddress.area == areas.searchLandAreaValue}">
+																<option value="${areas.searchLandAreaValue}" selected>${areas.searchLandAreaName }</option>
+															</c:when>
+															<c:otherwise>
+																<option value="${areas.searchLandAreaValue }">${areas.searchLandAreaName }</option>
+															</c:otherwise>
+														</c:choose>
+													</c:forEach>
+												</select>
+											</div>
 										</div>
-									</div>
+									</c:if>
 									<c:if test="${lstHouseDirection != null}">
-									<div class="s-item">
-										<label>Chọn Hướng Nhà</label>
-										<div>
-											<select class="form-control selectpicker validate[required]"
-												data-live-search="true" data-size="6">
-												<option>Chọn hướng nhà</option>
-												<c:forEach items="${lstHouseDirection }" var="directions">
-													<c:choose>
-														<c:when test="${selectAddress.direction == directions.houseDirectionId}">
-															<option value="${directions.houseDirectionId}" selected>${directions.houseDirectionName }</option>
-														</c:when>
-														<c:otherwise>
-															<option value="${directions.houseDirectionId }">${directions.houseDirectionName }</option>
-														</c:otherwise>
-													</c:choose>
-												</c:forEach>
-											</select>
+										<div class="s-item">
+											<label>Chọn Hướng Nhà</label>
+											<div>
+												<select class="form-control selectpicker validate[required]"
+													data-live-search="true" data-size="6">
+													<option>Chọn hướng nhà</option>
+													<c:forEach items="${lstHouseDirection }" var="directions">
+														<c:choose>
+															<c:when
+																test="${selectAddress.direction == directions.houseDirectionId}">
+																<option value="${directions.houseDirectionId}" selected>${directions.houseDirectionName }</option>
+															</c:when>
+															<c:otherwise>
+																<option value="${directions.houseDirectionId }">${directions.houseDirectionName }</option>
+															</c:otherwise>
+														</c:choose>
+													</c:forEach>
+												</select>
+											</div>
 										</div>
-									</div>
 									</c:if>
 									<div class="s-item">
 										<label>Số tầng</label>
@@ -445,17 +449,18 @@
 										</div>
 									</div>
 									<div class="cls-after"></div>
-									<div class="s-item-a">
-										<label class="white-lbl">Chọn Tiện ích kèm theo</label>
-										<div class="rdbs">
-											<button class="yellow-btn f-right">Reset</button>
-											<label class="rdb"><input type="checkbox"> <span>Gara</span></label>
-											<label class="rdb"><input type="checkbox"> <span>Bancol</span></label>
-											<label class="rdb"><input type="checkbox"> <span>Bệnh viện</span></label>
-											<label class="rdb"><input type="checkbox"> <span>Trường học</span></label>
-											<label class="rdb"><input type="checkbox"> <span>Siêu thị</span></label>
+									<c:if test="${lstAddOns != null}">
+										<div class="s-item-a">
+											<label class="white-lbl">Chọn Tiện ích kèm theo</label>
+											<div class="rdbs">
+												<button class="yellow-btn f-right">Reset</button>
+												<c:forEach items="${lstAddOns }" var="addOn">
+													<label class="rdb"><input type="checkbox"
+														value="${addOn.addOnId }"><span>${addOn.addOnName }</span></label>
+												</c:forEach>
+											</div>
 										</div>
-									</div>
+									</c:if>
 								</div>
 							</div>
 						</div>

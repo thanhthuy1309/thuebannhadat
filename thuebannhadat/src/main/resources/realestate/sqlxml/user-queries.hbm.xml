@@ -39,4 +39,12 @@
         AND n.user.userName    = :userName 
         ]]>
     </query>
+
+    <query name="UserDao.getUserByUserId">
+    <![CDATA[
+        SELECT n
+        FROM User n
+        WHERE n.userId = :userId
+        ]]>
+    </query>
 </hibernate-mapping>

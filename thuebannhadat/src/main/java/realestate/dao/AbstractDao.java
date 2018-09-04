@@ -1,7 +1,7 @@
 package realestate.dao;
 
-import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author : DUNGPT
@@ -9,26 +9,26 @@ import java.util.List;
  * @createDate : 20.10.2016
  */
 
-public interface AbstractDao<T, PK extends Serializable> {
+public interface AbstractDao {
 
-  public T findByPK(PK id);
+	<T> List<T> findAll(Class<T> clazz);
 
-  public List<T> findAll();
+	<T> List<T> findAllByStatus(Integer status, Class<T> clazz);
 
-  public List<T> findAllByStatus(Integer status);
+	<T> List<T> findAllByParameter(Class<T> clazz, Map<String, Object> parameters, String queryName);
 
-  public T saveOrUpdate(T entity);
+	<T> T saveOrUpdate(T entity);
 
-  public boolean persist(T entity);
+	<T> boolean persist(T entity);
 
-  public T merge(T entity);
+	<T> T merge(T entity);
 
-  public Integer save(T entity);
+	<T> Integer save(T entity);
 
-  public boolean update(T entity);
+	<T> boolean update(T entity);
 
-  public boolean deleteAll();
+	<T> boolean deleteAll(Class<T> clazz);
 
-  public boolean delete(T entity);
+	<T> boolean delete(T entity);
 
 }

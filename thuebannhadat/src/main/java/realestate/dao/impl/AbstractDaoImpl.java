@@ -1,22 +1,27 @@
 package realestate.dao.impl;
 
-import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import java.sql.Blob;
+import java.sql.Clob;
+import java.sql.Date;
+import java.sql.NClob;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.proxy.HibernateProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import realestate.dao.AbstractDao;
-import realestate.utils.SQLUtils;
+import realestate.utils.SqlConstants;
 
 /**
  * @author : DUNGPT
@@ -25,59 +30,54 @@ import realestate.utils.SQLUtils;
  */
 
 @Repository
-@SuppressWarnings({ "unchecked", "rawtypes" })
-public abstract class AbstractDaoImpl<T, PK extends Serializable> implements AbstractDao<T, PK> {
+public abstract class AbstractDaoImpl implements AbstractDao {
 
 	/** Init logger. */
 	private Logger LOGGER = Logger.getLogger(UserDaoImpl.class);
 
-	protected Class<? extends T> clazz;
-
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public AbstractDaoImpl() {
-		Type t = getClass().getGenericSuperclass();
-		ParameterizedType pt = (ParameterizedType) t;
-		clazz = (Class) pt.getActualTypeArguments()[0];
-	}
+	private Query query;
 
 	protected Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
 
-	/**
-	 * Lay thong tin table T dua vao key
-	 * 
-	 * @param PK
-	 *            : key
-	 * 
-	 * @return T
-	 */
-	public T findByPK(PK id) {
-		try {
-			T value = (T) getSession().get(clazz, id);
-			if (value == null) {
-				return null;
-			}
-
-			if (value instanceof HibernateProxy) {
-				Hibernate.initialize(value);
-				value = (T) ((HibernateProxy) value).getHibernateLazyInitializer().getImplementation();
-			}
-			return value;
-		} catch (HibernateException ex) {
-			LOGGER.error("#findByPK_ error: " + ex.getMessage());
-		}
-		return null;
-	}
+	// /**
+	// * Lay thong tin table T dua vao key
+	// *
+	// * @param PK
+	// * : key
+	// *
+	// * @return T
+	// */
+	// public T findByPK(PK id) {
+	// try {
+	// T value = (T) getSession().get(clazz, id);
+	// if (value == null) {
+	// return null;
+	// }
+	//
+	// if (value instanceof HibernateProxy) {
+	// Hibernate.initialize(value);
+	// value = (T) ((HibernateProxy)
+	// value).getHibernateLazyInitializer().getImplementation();
+	// }
+	// return value;
+	// } catch (HibernateException ex) {
+	// LOGGER.error("#findByPK_ error: " + ex.getMessage());
+	// }
+	// return null;
+	// }
 
 	/**
 	 * Lay tat ca thong tin table T
 	 * 
 	 * @return List<T>
 	 */
-	public List<T> findAll() {
+	@SuppressWarnings("unchecked")
+	public <T> List<T> findAll(Class<T> clazz) {
 		try {
 			return getSession().createQuery("from " + clazz.getName()).list();
 		} catch (HibernateException ex) {
@@ -93,7 +93,8 @@ public abstract class AbstractDaoImpl<T, PK extends Serializable> implements Abs
 	 * 
 	 * @return NguoiDung
 	 */
-	public List<T> findAllByStatus(Integer status) {
+	@SuppressWarnings("unchecked")
+	public <T> List<T> findAllByStatus(Integer status, Class<T> clazz) {
 		try {
 			StringBuilder sql = new StringBuilder();
 			sql.append(" from ");
@@ -101,12 +102,227 @@ public abstract class AbstractDaoImpl<T, PK extends Serializable> implements Abs
 			sql.append(" where status =:status");
 
 			Query query = getSession().createQuery(sql.toString());
-			query.setParameter(SQLUtils.STATUS, status);
+			query.setParameter(SqlConstants.STATUS, status);
 			return query.list();
 		} catch (HibernateException ex) {
 			LOGGER.error("#findAllByStatus_error: " + ex.getMessage());
 		}
 		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	public <T> List<T> findAllByParameter(Class<T> clazz, Map<String, Object> parameters, String queryName) {
+		try {
+			query = getSession().getNamedQuery(queryName);
+
+			// Set parameter
+			populateParameter(parameters);
+			return query.list();
+		} catch (HibernateException ex) {
+			LOGGER.error("#findAllByParameter_error: " + ex.getMessage());
+		} catch (SQLException e) {
+			LOGGER.error("#findAllByParameter_error: " + e.getMessage());
+		}
+		return null;
+	}
+
+	/**
+	 * Populates value of parameters into query.
+	 * 
+	 * @param parameters
+	 *            a {@link Map} of parameter and its value.
+	 * 
+	 * @throws SQLException
+	 */
+	private void populateParameter(Map<String, Object> parameters) throws SQLException {
+
+		if (Objects.isNull(parameters) || parameters.isEmpty()) {
+			return;
+		}
+
+		for (Map.Entry<String, Object> entry : parameters.entrySet()) {
+			int type = getTypeOfValue(entry.getValue());
+			switch (type) {
+			case SqlConstants.TYPES_STRING:
+				setString(entry.getKey(), (String) entry.getValue());
+				break;
+			case SqlConstants.TYPES_INT:
+				setInt(entry.getKey(), (Integer) entry.getValue());
+				break;
+			case SqlConstants.TYPES_LONG:
+				setLong(entry.getKey(), (Long) entry.getValue());
+				break;
+			case SqlConstants.TYPES_FLOAT:
+				setFloat(entry.getKey(), (Float) entry.getValue());
+				break;
+			case SqlConstants.TYPES_DOUBLE:
+				setDouble(entry.getKey(), (Double) entry.getValue());
+				break;
+			case SqlConstants.TYPES_BOOLEAN:
+				setBoolean(entry.getKey(), (Boolean) entry.getValue());
+				break;
+			case SqlConstants.TYPES_DATE:
+				setDate(entry.getKey(), (Date) entry.getValue());
+				break;
+			case SqlConstants.TYPES_TIMESTAMP:
+				setTimestamp(entry.getKey(), (Timestamp) entry.getValue());
+				break;
+			default:
+				break;
+			}
+		}
+	}
+
+	/**
+	 * Detects type of object.
+	 * 
+	 * @param object
+	 *            the object get type of value
+	 * @return type the type of an object.
+	 */
+	private final int getTypeOfValue(Object object) {
+		if (Objects.isNull(object)) {
+			return SqlConstants.TYPES_NULL;
+		}
+
+		if (object.getClass().equals(Integer.class)) {
+			return SqlConstants.TYPES_INT;
+		} else if (object.getClass().equals(String.class)) {
+			return SqlConstants.TYPES_STRING;
+		} else if (object.getClass().equals(Long.class)) {
+			return SqlConstants.TYPES_LONG;
+		} else if (object.getClass().equals(Double.class)) {
+			return SqlConstants.TYPES_DOUBLE;
+		} else if (object.getClass().equals(Date.class)) {
+			return SqlConstants.TYPES_DATE;
+		} else if (object.getClass().equals(Time.class)) {
+			return SqlConstants.TYPES_TIME;
+		} else if (object.getClass().equals(Float.class)) {
+			return SqlConstants.TYPES_FLOAT;
+		} else if (object.getClass().equals(Boolean.class)) {
+			return SqlConstants.TYPES_BOOLEAN;
+		} else if (object.getClass().equals(Byte.class)) {
+			return SqlConstants.TYPES_BYTE;
+		} else if (object.getClass().equals(Short.class)) {
+			return SqlConstants.TYPES_SHORT;
+		} else if (object.getClass().equals(Timestamp.class)) {
+			return SqlConstants.TYPES_TIMESTAMP;
+		} else if (object.getClass().equals(Clob.class)) {
+			return SqlConstants.TYPES_CLOB;
+		} else if (object.getClass().equals(NClob.class)) {
+			return SqlConstants.TYPES_CLOB;
+		} else if (object.getClass().equals(Blob.class)) {
+			return SqlConstants.TYPES_BLOB;
+		}
+		return SqlConstants.TYPES_NULL;
+	}
+
+	/**
+	 * Sets a parameter.
+	 * 
+	 * @param name
+	 * @param value
+	 * @throws SQLException
+	 *             if an error occurred
+	 * @see PreparedStatement#setString(int, java.lang.String)
+	 */
+	private void setString(String name, String value) throws SQLException {
+		query.setString(name, value);
+	}
+
+	/**
+	 * Sets a parameter.
+	 * 
+	 * @param name
+	 * @param value
+	 * @throws SQLException
+	 *             if an error occurred
+	 * @see PreparedStatement#setInt(int, int)
+	 */
+	private void setInt(String name, Integer value) throws SQLException {
+		query.setInteger(name, value.intValue());
+	}
+
+	/**
+	 * Sets a parameter.
+	 * 
+	 * @param name
+	 * @param value
+	 * @throws SQLException
+	 *             if an error occurred
+	 * @see PreparedStatement#setInt(int, long)
+	 */
+	private void setLong(String name, Long value) throws SQLException {
+		query.setLong(name, value.longValue());
+	}
+
+	/**
+	 * Sets a parameter.
+	 * 
+	 * @param name
+	 * @param value
+	 * @throws SQLException
+	 *             if an error occurred
+	 * @see PreparedStatement#setInt(int, double)
+	 */
+	private void setFloat(String name, Float value) throws SQLException {
+		query.setFloat(name, value.floatValue());
+	}
+
+	/**
+	 * Sets a parameter.
+	 * 
+	 * @param name
+	 * @param value
+	 * @throws SQLException
+	 *             if an error occurred
+	 * @see PreparedStatement#setInt(int, double)
+	 */
+	private void setDouble(String name, Double value) throws SQLException {
+		query.setDouble(name, value.doubleValue());
+	}
+
+	/**
+	 * Sets a parameter.
+	 * 
+	 * @param name
+	 * @param value
+	 * @throws SQLException
+	 *             if an error occurred
+	 * @see PreparedStatement#setInt(int, double)
+	 */
+	private void setBoolean(String name, Boolean value) throws SQLException {
+		query.setBoolean(name, value.booleanValue());
+	}
+
+	/**
+	 * Sets a parameter.
+	 * 
+	 * @param name
+	 * @param value
+	 * @throws SQLException
+	 *             if an error occurred
+	 * @throws IllegalArgumentException
+	 *             if the parameter does not exist
+	 * @see PreparedStatement#setTimestamp(int, java.sql.Timestamp)
+	 */
+	private void setDate(String name, Date value) throws SQLException {
+		query.setDate(name, value);
+	}
+
+	/**
+	 * Sets a parameter.
+	 * 
+	 * @param name
+	 * @param value
+	 * @throws SQLException
+	 *             if an error occurred
+	 * @throws IllegalArgumentException
+	 *             if the parameter does not exist
+	 * @see PreparedStatement#setTimestamp(int, java.sql.Timestamp)
+	 */
+	private void setTimestamp(String name, Timestamp value) throws SQLException {
+		query.setTimestamp(name, value);
 	}
 
 	/**
@@ -116,7 +332,7 @@ public abstract class AbstractDaoImpl<T, PK extends Serializable> implements Abs
 	 * 
 	 * @return T
 	 */
-	public T saveOrUpdate(T entity) {
+	public <T> T saveOrUpdate(T entity) {
 		try {
 			getSession().saveOrUpdate(entity);
 			return entity;
@@ -134,7 +350,7 @@ public abstract class AbstractDaoImpl<T, PK extends Serializable> implements Abs
 	 * 
 	 * @return true : thanh cong. false : that bai
 	 */
-	public boolean persist(T entity) {
+	public <T> boolean persist(T entity) {
 		try {
 			getSession().persist(entity);
 			return true;
@@ -152,7 +368,8 @@ public abstract class AbstractDaoImpl<T, PK extends Serializable> implements Abs
 	 * 
 	 * @return T
 	 */
-	public T merge(T entity) {
+	@SuppressWarnings("unchecked")
+	public <T> T merge(T entity) {
 		try {
 			return (T) getSession().merge(entity);
 		} catch (HibernateException ex) {
@@ -167,7 +384,7 @@ public abstract class AbstractDaoImpl<T, PK extends Serializable> implements Abs
 	 * 
 	 * @return true : thanh cong. false : that bai
 	 */
-	public boolean deleteAll() {
+	public <T> boolean deleteAll(Class<T> clazz) {
 		try {
 			String hql = "DELETE FROM " + clazz.getName();
 			Query query = getSession().createQuery(hql);
@@ -183,7 +400,7 @@ public abstract class AbstractDaoImpl<T, PK extends Serializable> implements Abs
 	 * 
 	 * @return true : thanh cong. false : that bai
 	 */
-	public boolean delete(T entity) {
+	public <T> boolean delete(T entity) {
 		try {
 			getSession().delete(entity);
 			return true;
@@ -198,7 +415,7 @@ public abstract class AbstractDaoImpl<T, PK extends Serializable> implements Abs
 	 * 
 	 * @return Integer
 	 */
-	public Integer save(T entity) {
+	public <T> Integer save(T entity) {
 
 		try {
 			return (Integer) getSession().save(entity);
@@ -213,7 +430,7 @@ public abstract class AbstractDaoImpl<T, PK extends Serializable> implements Abs
 	 * 
 	 * @return true : thanh cong. false : that bai
 	 */
-	public boolean update(T entity) {
+	public <T> boolean update(T entity) {
 
 		try {
 			getSession().update(entity);

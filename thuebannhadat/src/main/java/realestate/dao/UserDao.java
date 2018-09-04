@@ -15,7 +15,7 @@ import realestate.entity.User;
  * @PG_ID  : UserDao
  * @createDate : 09.01.2016
  */
-public interface UserDao extends AbstractDao<User, Integer> {
+public interface UserDao extends AbstractDao {
 
   /**
    * Them nguoi dung

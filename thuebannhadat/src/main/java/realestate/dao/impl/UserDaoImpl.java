@@ -23,7 +23,7 @@ import realestate.enumerator.ValidStatusEnum;
  * @createDate : 09.01.2016
  */
 @Repository
-public class UserDaoImpl extends AbstractDaoImpl<User, Integer> implements UserDao {
+public class UserDaoImpl extends AbstractDaoImpl implements UserDao {
 
   /** Init logger. */
   private Logger LOGGER = Logger.getLogger(UserDaoImpl.class);

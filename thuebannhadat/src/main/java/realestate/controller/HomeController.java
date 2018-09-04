@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import realestate.dto.SelectAddress;
+import realestate.entity.AddOns;
 import realestate.entity.City;
 import realestate.entity.District;
 import realestate.entity.HouseDirection;
@@ -22,6 +23,8 @@ import realestate.entity.HousingType;
 import realestate.entity.LandType;
 import realestate.entity.MainMenu;
 import realestate.entity.Notification;
+import realestate.entity.SearchLandArea;
+import realestate.entity.SearchLandPrice;
 import realestate.entity.Street;
 import realestate.entity.SubMenu;
 import realestate.entity.Ward;
@@ -62,6 +65,14 @@ public class HomeController {
 		return "trang-chu";
 	}
 
+	/**
+	 * Inits the search.
+	 *
+	 * @param model
+	 *            the model
+	 * @param selectAddress
+	 *            the select address
+	 */
 	private void initSearch(Model model, SelectAddress selectAddress) {
 
 		// get all City with status = 1
@@ -96,6 +107,9 @@ public class HomeController {
 				.collect(Collectors.toList());
 
 		List<HouseDirection> lstHouseDirection = homeService.getHouseDirection();
+		List<SearchLandArea> lstSearchLandArea = homeService.getSearchLandArea();
+		List<SearchLandPrice> lstSearchLandPrice = homeService.getSearchLandPrice();
+		List<AddOns> lstAddOns = homeService.getAddOns();
 
 		// sort base on order
 		// Comparator<HousingType> byHousingOrder = (e1, e2) ->
@@ -111,6 +125,9 @@ public class HomeController {
 		model.addAttribute("lstLandType", lstLandType);
 		model.addAttribute("lstHousingType", lstHousingType);
 		model.addAttribute("lstHouseDirection", lstHouseDirection);
+		model.addAttribute("lstSearchLandArea", lstSearchLandArea);
+		model.addAttribute("lstSearchLandPrice", lstSearchLandPrice);
+		model.addAttribute("lstAddOns", lstAddOns);
 	}
 
 	private void initMenu(Model model, HttpSession session) {

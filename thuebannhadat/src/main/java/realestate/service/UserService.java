@@ -19,7 +19,7 @@ import realestate.entity.User;
  * @PG_ID : UserService.
  * @createDate : 09.01.2016
  */
-public interface UserService extends AbstractService<User, Integer> {
+public interface UserService {
 
   /**
    * Lay thong tin nguoi dung dua vao key dienThoai
@@ -107,6 +107,14 @@ public interface UserService extends AbstractService<User, Integer> {
    * @param registerSocialDto
    * @return nguoidung
    */
-  public User registerSocial(RegisterSocialDto registerSocialDto);
+	public User registerSocial(RegisterSocialDto registerSocialDto);
+
+	/**
+	 * Find by PK.
+	 *
+	 * @param userId the user id
+	 * @return the user
+	 */
+	public User findByPK(Integer userId);
 
 }
