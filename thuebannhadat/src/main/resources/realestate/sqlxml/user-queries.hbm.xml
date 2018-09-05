@@ -29,17 +29,6 @@
         ]]>
     </query>
 
-    <query name="HomeDao.getAllNotificationByUserName">
-    <![CDATA[
-        SELECT n
-        FROM Notification n
-        LEFT JOIN n.user
-        WHERE
-            n.status    = :status
-        AND n.user.userName    = :userName 
-        ]]>
-    </query>
-
     <query name="UserDao.getUserByUserId">
     <![CDATA[
         SELECT n

@@ -38,116 +38,119 @@ import realestate.service.HomeService;
 @Controller
 public class HomeController {
 
-	@Autowired
-	private HomeService homeService;
+    @Autowired
+    private HomeService homeService;
 
-	/** Init LOGGER. */
-	private static final Logger LOGGER = Logger.getLogger(HomeController.class);
+    @Autowired
+    private SearchService searchService;
 
-	@RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
-	public String trangchu(Model model, HttpSession session) {
+    /** Init LOGGER. */
+    private static final Logger LOGGER = Logger.getLogger(HomeController.class);
 
-		SelectAddress selectAddress = new SelectAddress();
+    @RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
+    public String trangchu(Model model, HttpSession session) {
 
-		// initialization menu
-		initMenu(model, session);
+        SelectAddress selectAddress = new SelectAddress();
 
-		// initialization search
-		initSearch(model, selectAddress);
+        // initialization menu
+        initMenu(model, session);
 
-		return "trang-chu";
-	}
+        // initialization search
+        initSearch(model, selectAddress);
 
-	@RequestMapping(value = "/selectAddress", method = RequestMethod.POST)
-	public String selectAddress(Model model, @ModelAttribute("selectAddress") SelectAddress selectAddress,
-			HttpSession session) {
+        return "trang-chu";
+    }
 
-		return "trang-chu";
-	}
+    @RequestMapping(value = "/selectAddress", method = RequestMethod.POST)
+    public String selectAddress(Model model, @ModelAttribute("selectAddress") SelectAddress selectAddress,
+            HttpSession session) {
 
-	/**
-	 * Inits the search.
-	 *
-	 * @param model
-	 *            the model
-	 * @param selectAddress
-	 *            the select address
-	 */
-	private void initSearch(Model model, SelectAddress selectAddress) {
+        return "trang-chu";
+    }
 
-		// get all City with status = 1
-		List<City> lstCity = homeService.getAllCity();
+    /**
+     * Inits the search.
+     *
+     * @param model the model
+     * @param selectAddress the select address
+     */
+    private void initSearch(Model model, SelectAddress selectAddress) {
 
-		// initialization condition
-		selectAddress.setCityId(lstCity.stream().findFirst().get().getCityId());
+        // get all City with status = 1
+        List<City> lstCity = homeService.getAllCity();
 
-		// get all District by city_id
-		List<District> lstDistrict = homeService.getDistrictByCondition(selectAddress);
-		selectAddress.setDistrictId(lstDistrict.stream().findFirst().get().getDistrictId());
+        // initialization condition
+        selectAddress.setCityId(lstCity.stream().findFirst().get().getCityId());
 
-		// get all Ward by city_id and district_id
-		List<Ward> lstWard = homeService.getWardByCondition(selectAddress);
-		selectAddress.setWardId(lstWard.stream().findFirst().get().getWardId());
+        // get all District by city_id
+        List<District> lstDistrict = homeService.getDistrictByCondition(selectAddress);
+        selectAddress.setDistrictId(lstDistrict.stream().findFirst().get().getDistrictId());
 
-		// get all Street by city_id and district_id
-		List<Street> listStreet = homeService.getStreetByCondition(selectAddress);
+        // get all Ward by city_id and district_id
+        List<Ward> lstWard = homeService.getWardByCondition(selectAddress);
+        selectAddress.setWardId(lstWard.stream().findFirst().get().getWardId());
 
-		// get all LandType
-		List<LandType> lstLandType = homeService.getAllLandType();
+        // get all Street by city_id and district_id
+        List<Street> listStreet = homeService.getStreetByCondition(selectAddress);
 
-		SelectAddress selectLandType = new SelectAddress();
-		selectLandType.setLandTypeId(lstLandType.stream().findFirst().get().getLandTypeId());
+        // get all LandType
+        List<LandType> lstLandType = homeService.getAllLandType();
 
-		// get all HousingType
-		List<HousingType> lstHousingType = homeService.getAllHousingType();
+        SelectAddress selectLandType = new SelectAddress();
+        selectLandType.setLandTypeId(lstLandType.stream().findFirst().get().getLandTypeId());
 
-		// Filter by first landTypeId
-		lstHousingType = lstHousingType.stream()
-				.filter(housingType -> housingType.getLandTypeId().equals(selectLandType.getLandTypeId()))
-				.collect(Collectors.toList());
+        // get all HousingType
+        List<HousingType> lstHousingType = homeService.getAllHousingType();
 
-		List<HouseDirection> lstHouseDirection = homeService.getHouseDirection();
-		List<SearchLandArea> lstSearchLandArea = homeService.getSearchLandArea();
-		List<SearchLandPrice> lstSearchLandPrice = homeService.getSearchLandPrice();
-		List<AddOns> lstAddOns = homeService.getAddOns();
+        // Filter by first landTypeId
+        lstHousingType = lstHousingType.stream()
+                .filter(housingType -> housingType.getLandTypeId().equals(selectLandType.getLandTypeId()))
+                .collect(Collectors.toList());
 
-		// sort base on order
-		// Comparator<HousingType> byHousingOrder = (e1, e2) ->
-		// Integer.compare(e1.getOrder(), e2.getOrder());
-		// lstHousingType.sort(byHousingOrder);
+        List<HouseDirection> lstHouseDirection = homeService.getHouseDirection();
+        List<SearchLandArea> lstSearchLandArea = homeService.getSearchLandArea();
+        List<SearchLandPrice> lstSearchLandPrice = homeService.getSearchLandPrice();
+        List<AddOns> lstAddOns = homeService.getAddOns();
 
-		// Add model attribute
-		model.addAttribute("selectAddress", selectLandType);
-		model.addAttribute("lstCity", lstCity);
-		model.addAttribute("lstDistrict", lstDistrict);
-		model.addAttribute("lstWard", lstWard);
-		model.addAttribute("listStreet", listStreet);
-		model.addAttribute("lstLandType", lstLandType);
-		model.addAttribute("lstHousingType", lstHousingType);
-		model.addAttribute("lstHouseDirection", lstHouseDirection);
-		model.addAttribute("lstSearchLandArea", lstSearchLandArea);
-		model.addAttribute("lstSearchLandPrice", lstSearchLandPrice);
-		model.addAttribute("lstAddOns", lstAddOns);
-	}
+        // sort base on order
+        // Comparator<HousingType> byHousingOrder = (e1, e2) ->
+        // Integer.compare(e1.getOrder(), e2.getOrder());
+        // lstHousingType.sort(byHousingOrder);
 
-	private void initMenu(Model model, HttpSession session) {
+        // Add model attribute
+        model.addAttribute("selectAddress", selectLandType);
+        model.addAttribute("lstCity", lstCity);
+        model.addAttribute("lstDistrict", lstDistrict);
+        model.addAttribute("lstWard", lstWard);
+        model.addAttribute("listStreet", listStreet);
+        model.addAttribute("lstLandType", lstLandType);
+        model.addAttribute("lstHousingType", lstHousingType);
+        model.addAttribute("lstHouseDirection", lstHouseDirection);
+        model.addAttribute("lstSearchLandArea", lstSearchLandArea);
+        model.addAttribute("lstSearchLandPrice", lstSearchLandPrice);
+        model.addAttribute("lstAddOns", lstAddOns);
+    }
 
-		// get all menu status = 1
-		List<MainMenu> lstMainMenu = homeService.getAllMainMenu();
+    private void initMenu(Model model, HttpSession session) {
 
-		List<SubMenu> lstSubMenu = homeService.getAllSubMenu();
+        // get all menu status = 1
+        List<MainMenu> lstMainMenu = homeService.getAllMainMenu();
 
-		lstMainMenu.stream().forEach(e -> e.setSubMenuList(lstSubMenu.stream()
-				.filter(subMenu -> subMenu.getMainMenuId().equals(e.getMainMenuId())).collect(Collectors.toList())));
+        List<SubMenu> lstSubMenu = homeService.getAllSubMenu();
 
-		model.addAttribute("lstMainMenu", lstMainMenu);
+        lstMainMenu.stream().forEach(
+                e -> e.setSubMenuList(lstSubMenu.stream()
+                        .filter(subMenu -> subMenu.getMainMenuId().equals(e.getMainMenuId()))
+                        .collect(Collectors.toList())));
 
-		// String userName = Utils.getUserName(model, session);
-		// TODO: hardcode userName
-		String userName = "admin";
-		if (StringUtils.isNotBlank(userName)) {
-			List<Notification> lstNotification = homeService.getAllNotificationByUserName(userName);
-			model.addAttribute("lstNotification", lstNotification);
-		}
-	}
+        model.addAttribute("lstMainMenu", lstMainMenu);
+
+        // String userName = Utils.getUserName(model, session);
+        // TODO: hardcode userName
+        String userName = "admin";
+        if (StringUtils.isNotBlank(userName)) {
+            List<Notification> lstNotification = homeService.getAllNotificationByUserName(userName);
+            model.addAttribute("lstNotification", lstNotification);
+        }
+    }
 }

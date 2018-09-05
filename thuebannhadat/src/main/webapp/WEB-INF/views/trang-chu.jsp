@@ -71,7 +71,8 @@
 						<div class="">
 							<div class="slider-content transition">
 								<div class="labels">
-									<span class="label b">Cho Thuê</span> <span class="label">Bán</span>
+									<span class="label b">Cho Thuê</span>
+									<span class="label">Bán</span>
 								</div>
 								<h3>BIỆT THỰ PHỐ SABESTIAN</h3>
 								<div>
@@ -437,13 +438,13 @@
 										</div>
 									</div>
 									<div class="s-item">
-										<label>số phòng ngủ</label>
+										<label>Số phòng ngủ</label>
 										<div>
 											<input class="txt" placeholder="Số phòng ngủ" type="number">
 										</div>
 									</div>
 									<div class="s-item">
-										<label>số phòng tắm</label>
+										<label>Số phòng tắm</label>
 										<div>
 											<input class="txt" placeholder="Số phòng tắm" type="number">
 										</div>

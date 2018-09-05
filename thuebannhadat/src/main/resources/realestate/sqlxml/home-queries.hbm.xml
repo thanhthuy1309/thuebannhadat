@@ -3,21 +3,14 @@
     "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<query name="HomeDao.getAllMainMenu">
-	<![CDATA[
-        SELECT m
-        FROM MainMenu m
-        WHERE m.status     = :status
-        ORDER BY m.mainMenuOrder
-        ]]>
-	</query>
-
-	<query name="HomeDao.getAllSubMenu">
-	<![CDATA[
-        SELECT s
-        FROM SubMenu s
-        WHERE s.status     = :status
-        ORDER BY s.subMenuOrder
+	<query name="HomeDao.getAllNotificationByUserName">
+    <![CDATA[
+        SELECT n
+        FROM Notification n
+        LEFT JOIN n.user
+        WHERE
+            n.status        = :status
+        AND n.user.userName = :userName 
         ]]>
 	</query>
 
