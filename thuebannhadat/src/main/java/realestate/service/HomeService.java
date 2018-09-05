@@ -2,6 +2,7 @@ package realestate.service;
 
 import java.util.List;
 
+import realestate.entity.Advertisement;
 import realestate.entity.MainMenu;
 import realestate.entity.Notification;
 import realestate.entity.SubMenu;
@@ -18,5 +19,7 @@ public interface HomeService {
     List<SubMenu> getAllSubMenu();
 
     List<Notification> getAllNotificationByUserName(String userName);
+
+	List<Advertisement> getAllAdvertisement();
 
 }

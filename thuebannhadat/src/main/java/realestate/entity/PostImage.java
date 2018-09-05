@@ -28,67 +28,94 @@ import org.hibernate.annotations.Where;
 @Where(clause = "status = 1")
 public class PostImage extends AbstractEntity {
 
-  /** Init serialVersionUID is 1L **/
-  private static final long serialVersionUID = 1L;
+	/** Init serialVersionUID is 1L **/
+	private static final long serialVersionUID = 1L;
 
-  /** Init idHinhAnhTin **/
-  @Id
-  @Column(name = "post_image_id", length = 250, nullable = false)
-  private String postImageId;
+	/** Init idHinhAnhTin **/
+	@Id
+	@Column(name = "post_image_id", length = 250, nullable = false)
+	private String postImageId;
 
-  /** Init idMauTin **/
-  @Column(name = "post_specification_id", nullable = false, length = 250)
-  private String postSpecificationId;
+	/** Init idMauTin **/
+	@Column(name = "post_specification_id", nullable = false, length = 250)
+	private String postSpecificationId;
 
-  /** Init tenHinhAnh **/
-  @Column(name = "post_specification_name", nullable = false, length = 250)
-  private String postImageName;
+	/** Init tenHinhAnh **/
+	@Column(name = "post_image_name", nullable = false, length = 250)
+	private String postImageName;
 
-  /** Init order **/
-  @Column(name = "type_image", nullable = false, length = 250, columnDefinition = "CHAR(1)")
-  private String typeImage;
+	/** Init urlHinhAnh **/
+	@Column(name = "post_image_url", nullable = false, length = 500)
+	private String postImageUrl;
 
-  /** Init order **/
-  @Column(name = "post_specification_order", nullable = false, columnDefinition = "TINYINT(2) UNSIGNED")
-  private Integer postSpecificationOrder;
+	/** Init order **/
+	@Column(name = "type_image", nullable = false, length = 250, columnDefinition = "CHAR(1)")
+	private String typeImage;
 
-  public String getPostImageId() {
-    return postImageId;
-  }
+	/** Init order **/
+	@Column(name = "post_image_order", nullable = false, columnDefinition = "TINYINT(2) UNSIGNED")
+	private Integer postImageOrder;
 
-  public void setPostImageId(String postImageId) {
-    this.postImageId = postImageId;
-  }
+	public String getPostImageId() {
+		return postImageId;
+	}
 
-  public String getPostSpecificationId() {
-    return postSpecificationId;
-  }
+	public void setPostImageId(String postImageId) {
+		this.postImageId = postImageId;
+	}
 
-  public void setPostSpecificationId(String postSpecificationId) {
-    this.postSpecificationId = postSpecificationId;
-  }
+	public String getPostSpecificationId() {
+		return postSpecificationId;
+	}
 
-  public String getPostImageName() {
-    return postImageName;
-  }
+	public void setPostSpecificationId(String postSpecificationId) {
+		this.postSpecificationId = postSpecificationId;
+	}
 
-  public void setPostImageName(String postImageName) {
-    this.postImageName = postImageName;
-  }
+	public String getPostImageName() {
+		return postImageName;
+	}
 
-  public String getTypeImage() {
-    return typeImage;
-  }
+	public void setPostImageName(String postImageName) {
+		this.postImageName = postImageName;
+	}
 
-  public void setTypeImage(String typeImage) {
-    this.typeImage = typeImage;
-  }
+	public String getTypeImage() {
+		return typeImage;
+	}
 
-  public Integer getPostSpecificationOrder() {
-    return postSpecificationOrder;
-  }
+	public void setTypeImage(String typeImage) {
+		this.typeImage = typeImage;
+	}
 
-  public void setPostSpecificationOrder(Integer postSpecificationOrder) {
-    this.postSpecificationOrder = postSpecificationOrder;
-  }
+	/**
+	 * @return the postImageOrder
+	 */
+	public Integer getPostImageOrder() {
+		return postImageOrder;
+	}
+
+	/**
+	 * @param postImageOrder
+	 *            the postImageOrder to set
+	 */
+	public void setPostImageOrder(Integer postImageOrder) {
+		this.postImageOrder = postImageOrder;
+	}
+
+	/**
+	 * @return the postImageUrl
+	 */
+	public String getPostImageUrl() {
+		return postImageUrl;
+	}
+
+	/**
+	 * @param postImageUrl
+	 *            the postImageUrl to set
+	 */
+	public void setPostImageUrl(String postImageUrl) {
+		this.postImageUrl = postImageUrl;
+	}
+
 }

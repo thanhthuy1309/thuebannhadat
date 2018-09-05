@@ -10,12 +10,12 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import realestate.dto.SelectAddress;
 import realestate.entity.AddOns;
+import realestate.entity.Advertisement;
 import realestate.entity.City;
 import realestate.entity.District;
 import realestate.entity.HouseDirection;
@@ -29,6 +29,7 @@ import realestate.entity.Street;
 import realestate.entity.SubMenu;
 import realestate.entity.Ward;
 import realestate.service.HomeService;
+import realestate.service.SearchService;
 
 /**
  * @author : ThuyTran
@@ -38,119 +39,120 @@ import realestate.service.HomeService;
 @Controller
 public class HomeController {
 
-    @Autowired
-    private HomeService homeService;
+	@Autowired
+	private HomeService homeService;
 
-    @Autowired
-    private SearchService searchService;
+	@Autowired
+	private SearchService searchService;
 
-    /** Init LOGGER. */
-    private static final Logger LOGGER = Logger.getLogger(HomeController.class);
+	/** Init LOGGER. */
+	private static final Logger LOGGER = Logger.getLogger(HomeController.class);
 
-    @RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
-    public String trangchu(Model model, HttpSession session) {
+	@RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
+	public String trangchu(Model model, HttpSession session) {
 
-        SelectAddress selectAddress = new SelectAddress();
+		SelectAddress selectAddress = new SelectAddress();
 
-        // initialization menu
-        initMenu(model, session);
+		// initialization menu
+		initMenu(model, session);
 
-        // initialization search
-        initSearch(model, selectAddress);
+		// initialization search
+		initSearch(model, selectAddress);
 
-        return "trang-chu";
-    }
+		// initialization advertisement
+		initAd(model);
 
-    @RequestMapping(value = "/selectAddress", method = RequestMethod.POST)
-    public String selectAddress(Model model, @ModelAttribute("selectAddress") SelectAddress selectAddress,
-            HttpSession session) {
+		return "trang-chu";
+	}
 
-        return "trang-chu";
-    }
+	private void initAd(Model model) {
+		List<Advertisement> lstAds = homeService.getAllAdvertisement();
+		model.addAttribute("lstAds", lstAds);
+	}
 
-    /**
-     * Inits the search.
-     *
-     * @param model the model
-     * @param selectAddress the select address
-     */
-    private void initSearch(Model model, SelectAddress selectAddress) {
+	/**
+	 * Inits the search.
+	 *
+	 * @param model
+	 *            the model
+	 * @param selectAddress
+	 *            the select address
+	 */
+	private void initSearch(Model model, SelectAddress selectAddress) {
 
-        // get all City with status = 1
-        List<City> lstCity = homeService.getAllCity();
+		// get all City with status = 1
+		List<City> lstCity = searchService.getAllCity();
 
-        // initialization condition
-        selectAddress.setCityId(lstCity.stream().findFirst().get().getCityId());
+		// initialization condition
+		selectAddress.setCityId(lstCity.stream().findFirst().get().getCityId());
 
-        // get all District by city_id
-        List<District> lstDistrict = homeService.getDistrictByCondition(selectAddress);
-        selectAddress.setDistrictId(lstDistrict.stream().findFirst().get().getDistrictId());
+		// get all District by city_id
+		List<District> lstDistrict = searchService.getDistrictByCondition(selectAddress);
+		selectAddress.setDistrictId(lstDistrict.stream().findFirst().get().getDistrictId());
 
-        // get all Ward by city_id and district_id
-        List<Ward> lstWard = homeService.getWardByCondition(selectAddress);
-        selectAddress.setWardId(lstWard.stream().findFirst().get().getWardId());
+		// get all Ward by city_id and district_id
+		List<Ward> lstWard = searchService.getWardByCondition(selectAddress);
+		selectAddress.setWardId(lstWard.stream().findFirst().get().getWardId());
 
-        // get all Street by city_id and district_id
-        List<Street> listStreet = homeService.getStreetByCondition(selectAddress);
+		// get all Street by city_id and district_id
+		List<Street> listStreet = searchService.getStreetByCondition(selectAddress);
 
-        // get all LandType
-        List<LandType> lstLandType = homeService.getAllLandType();
+		// get all LandType
+		List<LandType> lstLandType = searchService.getAllLandType();
 
-        SelectAddress selectLandType = new SelectAddress();
-        selectLandType.setLandTypeId(lstLandType.stream().findFirst().get().getLandTypeId());
+		SelectAddress selectLandType = new SelectAddress();
+		selectLandType.setLandTypeId(lstLandType.stream().findFirst().get().getLandTypeId());
 
-        // get all HousingType
-        List<HousingType> lstHousingType = homeService.getAllHousingType();
+		// get all HousingType
+		List<HousingType> lstHousingType = searchService.getAllHousingType();
 
-        // Filter by first landTypeId
-        lstHousingType = lstHousingType.stream()
-                .filter(housingType -> housingType.getLandTypeId().equals(selectLandType.getLandTypeId()))
-                .collect(Collectors.toList());
+		// Filter by first landTypeId
+		lstHousingType = lstHousingType.stream()
+				.filter(housingType -> housingType.getLandTypeId().equals(selectLandType.getLandTypeId()))
+				.collect(Collectors.toList());
 
-        List<HouseDirection> lstHouseDirection = homeService.getHouseDirection();
-        List<SearchLandArea> lstSearchLandArea = homeService.getSearchLandArea();
-        List<SearchLandPrice> lstSearchLandPrice = homeService.getSearchLandPrice();
-        List<AddOns> lstAddOns = homeService.getAddOns();
+		List<HouseDirection> lstHouseDirection = searchService.getHouseDirection();
+		List<SearchLandArea> lstSearchLandArea = searchService.getSearchLandArea();
+		List<SearchLandPrice> lstSearchLandPrice = searchService.getSearchLandPrice();
+		List<AddOns> lstAddOns = searchService.getAddOns();
 
-        // sort base on order
-        // Comparator<HousingType> byHousingOrder = (e1, e2) ->
-        // Integer.compare(e1.getOrder(), e2.getOrder());
-        // lstHousingType.sort(byHousingOrder);
+		// sort base on order
+		// Comparator<HousingType> byHousingOrder = (e1, e2) ->
+		// Integer.compare(e1.getOrder(), e2.getOrder());
+		// lstHousingType.sort(byHousingOrder);
 
-        // Add model attribute
-        model.addAttribute("selectAddress", selectLandType);
-        model.addAttribute("lstCity", lstCity);
-        model.addAttribute("lstDistrict", lstDistrict);
-        model.addAttribute("lstWard", lstWard);
-        model.addAttribute("listStreet", listStreet);
-        model.addAttribute("lstLandType", lstLandType);
-        model.addAttribute("lstHousingType", lstHousingType);
-        model.addAttribute("lstHouseDirection", lstHouseDirection);
-        model.addAttribute("lstSearchLandArea", lstSearchLandArea);
-        model.addAttribute("lstSearchLandPrice", lstSearchLandPrice);
-        model.addAttribute("lstAddOns", lstAddOns);
-    }
+		// Add model attribute
+		model.addAttribute("selectAddress", selectLandType);
+		model.addAttribute("lstCity", lstCity);
+		model.addAttribute("lstDistrict", lstDistrict);
+		model.addAttribute("lstWard", lstWard);
+		model.addAttribute("listStreet", listStreet);
+		model.addAttribute("lstLandType", lstLandType);
+		model.addAttribute("lstHousingType", lstHousingType);
+		model.addAttribute("lstHouseDirection", lstHouseDirection);
+		model.addAttribute("lstSearchLandArea", lstSearchLandArea);
+		model.addAttribute("lstSearchLandPrice", lstSearchLandPrice);
+		model.addAttribute("lstAddOns", lstAddOns);
+	}
 
-    private void initMenu(Model model, HttpSession session) {
+	private void initMenu(Model model, HttpSession session) {
 
-        // get all menu status = 1
-        List<MainMenu> lstMainMenu = homeService.getAllMainMenu();
+		// get all menu status = 1
+		List<MainMenu> lstMainMenu = homeService.getAllMainMenu();
 
-        List<SubMenu> lstSubMenu = homeService.getAllSubMenu();
+		List<SubMenu> lstSubMenu = homeService.getAllSubMenu();
 
-        lstMainMenu.stream().forEach(
-                e -> e.setSubMenuList(lstSubMenu.stream()
-                        .filter(subMenu -> subMenu.getMainMenuId().equals(e.getMainMenuId()))
-                        .collect(Collectors.toList())));
+		lstMainMenu.stream().forEach(e -> e.setSubMenuList(lstSubMenu.stream()
+				.filter(subMenu -> subMenu.getMainMenuId().equals(e.getMainMenuId())).collect(Collectors.toList())));
 
-        model.addAttribute("lstMainMenu", lstMainMenu);
+		model.addAttribute("lstMainMenu", lstMainMenu);
 
-        // String userName = Utils.getUserName(model, session);
-        // TODO: hardcode userName
-        String userName = "admin";
-        if (StringUtils.isNotBlank(userName)) {
-            List<Notification> lstNotification = homeService.getAllNotificationByUserName(userName);
-            model.addAttribute("lstNotification", lstNotification);
-        }
-    }
+		// String userName = Utils.getUserName(model, session);
+		// TODO: hardcode userName
+		String userName = "admin";
+		if (StringUtils.isNotBlank(userName)) {
+			List<Notification> lstNotification = homeService.getAllNotificationByUserName(userName);
+			model.addAttribute("lstNotification", lstNotification);
+		}
+	}
 }

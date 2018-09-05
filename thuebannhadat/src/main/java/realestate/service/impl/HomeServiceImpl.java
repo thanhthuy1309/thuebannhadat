@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import realestate.dao.AbstractDao;
+import realestate.entity.Advertisement;
 import realestate.entity.MainMenu;
 import realestate.entity.Notification;
 import realestate.entity.SubMenu;
@@ -51,5 +52,11 @@ public class HomeServiceImpl implements HomeService {
 
         return abstractDao.findAllByParameter(Notification.class, parameters, "HomeDao.getAllNotificationByUserName");
     }
+
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+	@Override
+	public List<Advertisement> getAllAdvertisement() {
+		return abstractDao.findAllByStatus(StatusRecordEnum.ACTIVE.getValue(), Advertisement.class);
+	}
 
 }
