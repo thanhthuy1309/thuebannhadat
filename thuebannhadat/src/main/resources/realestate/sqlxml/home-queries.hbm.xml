@@ -14,4 +14,35 @@
         ]]>
 	</query>
 
+	<query name="HomeDao.getHighlight">
+    <![CDATA[
+        SELECT
+			sp.*,
+			st.streetName,
+			w.wardName,
+			d.districtId,
+			c.city_name,
+			hd.houseDirectionName,
+			ht.housingTypeName,
+			lt.landTypeName,
+			pt.postTypeName,
+			u.userAddress,
+			u.userEmail,
+			u.userBirthday,
+			u.userGender,
+			u.userName,
+			u.userPhone
+		FROM
+			PostSpecification sp
+		LEFT JOIN tblStreet st
+		LEFT JOIN Ward w
+		LEFT JOIN District d
+		LEFT JOIN City c
+		LEFT JOIN HouseDirection hd
+		LEFT JOIN HousingType ht
+		LEFT JOIN LandType lt
+		LEFT JOIN PostType pt
+		LEFT JOIN User u 
+        ]]>
+	</query>
 </hibernate-mapping>

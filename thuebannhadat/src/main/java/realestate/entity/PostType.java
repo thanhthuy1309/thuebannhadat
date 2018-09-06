@@ -30,48 +30,57 @@ import org.hibernate.annotations.Where;
 @Where(clause = "status = 1")
 public class PostType extends AbstractEntity {
 
-  /** Init serialVersionUID is 1L **/
-  private static final long serialVersionUID = 1L;
+	/** Init serialVersionUID is 1L **/
+	private static final long serialVersionUID = 1L;
 
-  /** Init idLoaiTin **/
-  @Id
-  @Column(name = "post_type_id", nullable = false, columnDefinition = "INT(11) UNSIGNED")
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer postTypeId;
+	/** Init idLoaiTin **/
+	@Id
+	@Column(name = "post_type_id", nullable = false, columnDefinition = "INT(11) UNSIGNED")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer postTypeId;
 
-  /** Init tenLoaiTin **/
-  @Column(name = "post_type_name", length = 250, nullable = false, unique = true)
-  private String postTypeName;
+	/** Init tenLoaiTin **/
+	@Column(name = "post_type_name", length = 250, nullable = false, unique = true)
+	private String postTypeName;
 
-  /** Init giaTin **/
-  @Column(name = "price", nullable = false, columnDefinition = "INT(11) UNSIGNED")
-  private Integer price;
+	/** Init giaTin **/
+	@Column(name = "price", nullable = false, columnDefinition = "INT(11) UNSIGNED")
+	private Integer price;
 
-  public Integer getPostTypeId() {
-    return postTypeId;
-  }
+	/** Init soNgayHetHan **/
+	@Column(name = "expiration_time", nullable = false, columnDefinition = "INT(11) UNSIGNED")
+	private Integer expirationTime;
 
-  public void setPostTypeId(Integer postTypeId) {
-    this.postTypeId = postTypeId;
-  }
+	public Integer getPostTypeId() {
+		return postTypeId;
+	}
 
-  public String getPostTypeName() {
-    return postTypeName;
-  }
+	public void setPostTypeId(Integer postTypeId) {
+		this.postTypeId = postTypeId;
+	}
 
-  public void setPostTypeName(String postTypeName) {
-    this.postTypeName = postTypeName;
-  }
+	public String getPostTypeName() {
+		return postTypeName;
+	}
 
-  public Integer getPrice() {
-    return price;
-  }
+	public void setPostTypeName(String postTypeName) {
+		this.postTypeName = postTypeName;
+	}
 
-  public void setPrice(Integer price) {
-    this.price = price;
-  }
+	public Integer getPrice() {
+		return price;
+	}
 
-  public static long getSerialversionuid() {
-    return serialVersionUID;
-  }
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
+	public Integer getExpirationTime() {
+		return expirationTime;
+	}
+
+	public void setExpirationTime(Integer expirationTime) {
+		this.expirationTime = expirationTime;
+	}
+
 }

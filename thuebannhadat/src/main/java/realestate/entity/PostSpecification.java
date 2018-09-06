@@ -125,21 +125,6 @@ public class PostSpecification extends AbstractEntity {
 	@Column(name = "post_cost_total", nullable = false)
 	private Long postCostTotal;
 
-	/** Init hemxehoi **/
-	@Column(name = "is_car_access", columnDefinition = "TINYINT(1) UNSIGNED DEFAULT 0")
-	@Type(type = "org.hibernate.type.NumericBooleanType")
-	private Boolean isCarAccess;
-
-	/** Init chinhchu **/
-	@Column(name = "is_private_property", columnDefinition = "TINYINT(1) UNSIGNED DEFAULT 0")
-	@Type(type = "org.hibernate.type.NumericBooleanType")
-	private Boolean isPrivateProperty;
-
-	/** Init khuAnNinh **/
-	@Column(name = "is_secure", columnDefinition = "TINYINT(1) UNSIGNED DEFAULT 0")
-	@Type(type = "org.hibernate.type.NumericBooleanType")
-	private Boolean isSecure;
-
 	/** Init moTaTin **/
 	@Column(name = "post_spec_description", nullable = false, columnDefinition = "TEXT")
 	private String postSpecDescription;
@@ -334,30 +319,6 @@ public class PostSpecification extends AbstractEntity {
 
 	public void setPostCostTotal(Long postCostTotal) {
 		this.postCostTotal = postCostTotal;
-	}
-
-	public Boolean getIsCarAccess() {
-		return isCarAccess;
-	}
-
-	public void setIsCarAccess(Boolean isCarAccess) {
-		this.isCarAccess = isCarAccess;
-	}
-
-	public Boolean getIsPrivateProperty() {
-		return isPrivateProperty;
-	}
-
-	public void setIsPrivateProperty(Boolean isPrivateProperty) {
-		this.isPrivateProperty = isPrivateProperty;
-	}
-
-	public Boolean getIsSecure() {
-		return isSecure;
-	}
-
-	public void setIsSecure(Boolean isSecure) {
-		this.isSecure = isSecure;
 	}
 
 	public String getPostSpecDescription() {

@@ -10,6 +10,8 @@ package realestate.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -33,8 +35,9 @@ public class PostImage extends AbstractEntity {
 
 	/** Init idHinhAnhTin **/
 	@Id
-	@Column(name = "post_image_id", length = 250, nullable = false)
-	private String postImageId;
+	@Column(name = "post_image_id", nullable = false, columnDefinition = "INT(11) UNSIGNED")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer postImageId;
 
 	/** Init idMauTin **/
 	@Column(name = "post_specification_id", nullable = false, length = 250)
@@ -56,11 +59,11 @@ public class PostImage extends AbstractEntity {
 	@Column(name = "post_image_order", nullable = false, columnDefinition = "TINYINT(2) UNSIGNED")
 	private Integer postImageOrder;
 
-	public String getPostImageId() {
+	public Integer getPostImageId() {
 		return postImageId;
 	}
 
-	public void setPostImageId(String postImageId) {
+	public void setPostImageId(Integer postImageId) {
 		this.postImageId = postImageId;
 	}
 
