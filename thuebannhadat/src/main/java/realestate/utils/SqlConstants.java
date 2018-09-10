@@ -107,4 +107,12 @@ public class SqlConstants {
 
 	/** The Constant USER_ID. */
 	public static final String USER_ID = "userId";
+
+	public static final String POST_TYPE_VIP = "Vip";
+
+	public static final String POST_TYPE_ID = "postTypeId";
+
+	public static final String END_DATE = "endDate";
+
+	public static final String LIMIT = "limit";
 }

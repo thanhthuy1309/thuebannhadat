@@ -1,5 +1,6 @@
 package realestate.service.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,8 @@ import realestate.dao.AbstractDao;
 import realestate.entity.Advertisement;
 import realestate.entity.MainMenu;
 import realestate.entity.Notification;
+import realestate.entity.PostSpecification;
+import realestate.entity.PostType;
 import realestate.entity.SubMenu;
 import realestate.enumerator.StatusRecordEnum;
 import realestate.service.HomeService;
@@ -26,37 +29,56 @@ import realestate.utils.SqlConstants;
 @Service
 public class HomeServiceImpl implements HomeService {
 
-    @Autowired
-    private AbstractDao abstractDao;
+	@Autowired
+	private AbstractDao abstractDao;
 
-    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-    @Override
-    public List<MainMenu> getAllMainMenu() {
-        return abstractDao.findAllByStatus(StatusRecordEnum.ACTIVE.getValue(), MainMenu.class);
-    }
+	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+	@Override
+	public List<MainMenu> getAllMainMenu() {
+		return abstractDao.findAllByStatus(StatusRecordEnum.ACTIVE.getValue(), MainMenu.class);
+	}
 
-    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-    @Override
-    public List<SubMenu> getAllSubMenu() {
-        return abstractDao.findAllByStatus(StatusRecordEnum.ACTIVE.getValue(), SubMenu.class);
-    }
+	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+	@Override
+	public List<SubMenu> getAllSubMenu() {
+		return abstractDao.findAllByStatus(StatusRecordEnum.ACTIVE.getValue(), SubMenu.class);
+	}
 
-    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-    @Override
-    public List<Notification> getAllNotificationByUserName(String userName) {
+	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+	@Override
+	public List<Notification> getAllNotificationByUserName(String userName) {
 
-        // Set parameters
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put(SqlConstants.STATUS, StatusRecordEnum.ACTIVE.getValue());
-        parameters.put(SqlConstants.USER_NAME, userName);
+		// Set parameters
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put(SqlConstants.STATUS, StatusRecordEnum.ACTIVE.getValue());
+		parameters.put(SqlConstants.USER_NAME, userName);
 
-        return abstractDao.findAllByParameter(Notification.class, parameters, "HomeDao.getAllNotificationByUserName");
-    }
+		return abstractDao.findAllByParameter(Notification.class, parameters, "HomeDao.getAllNotificationByUserName");
+	}
 
-    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
 	@Override
 	public List<Advertisement> getAllAdvertisement() {
 		return abstractDao.findAllByStatus(StatusRecordEnum.ACTIVE.getValue(), Advertisement.class);
+	}
+
+	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+	@Override
+	public List<PostType> getPostType() {
+		return abstractDao.findAllByStatus(StatusRecordEnum.ACTIVE.getValue(), PostType.class);
+	}
+
+	@Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+	@Override
+	public List<PostSpecification> getPostSpecification(Integer postTypeId, Date endDate, int limit) {
+		// Set parameters
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put(SqlConstants.STATUS, StatusRecordEnum.ACTIVE.getValue());
+		parameters.put(SqlConstants.POST_TYPE_ID, postTypeId);
+		parameters.put(SqlConstants.END_DATE, endDate);
+		parameters.put(SqlConstants.LIMIT, limit);
+
+		return abstractDao.findAllByParameter(PostSpecification.class, parameters, "HomeDao.getHighlight");
 	}
 
 }

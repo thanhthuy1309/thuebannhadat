@@ -1,10 +1,13 @@
 package realestate.service;
 
+import java.util.Date;
 import java.util.List;
 
 import realestate.entity.Advertisement;
 import realestate.entity.MainMenu;
 import realestate.entity.Notification;
+import realestate.entity.PostSpecification;
+import realestate.entity.PostType;
 import realestate.entity.SubMenu;
 
 /**
@@ -14,12 +17,16 @@ import realestate.entity.SubMenu;
  */
 public interface HomeService {
 
-    List<MainMenu> getAllMainMenu();
+	List<MainMenu> getAllMainMenu();
 
-    List<SubMenu> getAllSubMenu();
+	List<SubMenu> getAllSubMenu();
 
-    List<Notification> getAllNotificationByUserName(String userName);
+	List<Notification> getAllNotificationByUserName(String userName);
 
 	List<Advertisement> getAllAdvertisement();
+
+	List<PostType> getPostType();
+
+	List<PostSpecification> getPostSpecification(Integer postTypeId, Date endDate, int limit);
 
 }

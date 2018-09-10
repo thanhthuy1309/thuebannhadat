@@ -8,6 +8,8 @@
  */
 package realestate.entity;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,60 +32,85 @@ import org.hibernate.annotations.Where;
 @Where(clause = "status = 1")
 public class PostExpiration extends AbstractEntity {
 
-  /** Init serialVersionUID is 1L **/
-  private static final long serialVersionUID = 1L;
+	/** Init serialVersionUID is 1L **/
+	private static final long serialVersionUID = 1L;
 
-  /** Init idThoiHanTin **/
-  @Id
-  @Column(name = "post_expiration_id", nullable = false, columnDefinition = "INT(11) UNSIGNED")
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Integer postExpirationId;
+	/** Init idThoiHanTin **/
+	@Id
+	@Column(name = "post_expiration_id", nullable = false, columnDefinition = "INT(11) UNSIGNED")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer postExpirationId;
 
-  /** Init thoiHan **/
-  @Column(name = "post_expiration_time", length = 2, columnDefinition = "TINYINT(2) UNSIGNED")
-  private Integer postExpirationTime;
+	/** Init postSpecificationId **/
+	@Column(name = "post_specification_id", nullable = false, length = 250)
+	private String postSpecificationId;
 
-  /** Init postExpirationName **/
-  @Column(name = "post_expiration_name", length = 10, columnDefinition = "VARCHAR(10) DEFAULT ''")
-  private String postExpirationName;
+	/** Init startDate **/
+	@Column(name = "start_date", columnDefinition = "TIMESTAMP DEFAULT 0")
+	private Date startDate;
 
-  /** Init discount **/
-  @Column(name = "discount", nullable = false)
-  private Float discount;
+	/** Init endDate **/
+	@Column(name = "end_date", columnDefinition = "TIMESTAMP DEFAULT 0")
+	private Date endDate;
 
-  public Integer getPostExpirationId() {
-    return postExpirationId;
-  }
+	/**
+	 * @return the postExpirationId
+	 */
+	public Integer getPostExpirationId() {
+		return postExpirationId;
+	}
 
-  public void setPostExpirationId(Integer postExpirationId) {
-    this.postExpirationId = postExpirationId;
-  }
+	/**
+	 * @param postExpirationId
+	 *            the postExpirationId to set
+	 */
+	public void setPostExpirationId(Integer postExpirationId) {
+		this.postExpirationId = postExpirationId;
+	}
 
-  public Integer getPostExpirationTime() {
-    return postExpirationTime;
-  }
+	/**
+	 * @return the postSpecificationId
+	 */
+	public String getPostSpecificationId() {
+		return postSpecificationId;
+	}
 
-  public void setPostExpirationTime(Integer postExpirationTime) {
-    this.postExpirationTime = postExpirationTime;
-  }
+	/**
+	 * @param postSpecificationId
+	 *            the postSpecificationId to set
+	 */
+	public void setPostSpecificationId(String postSpecificationId) {
+		this.postSpecificationId = postSpecificationId;
+	}
 
-  public String getPostExpirationName() {
-    return postExpirationName;
-  }
+	/**
+	 * @return the startDate
+	 */
+	public Date getStartDate() {
+		return startDate;
+	}
 
-  public void setPostExpirationName(String postExpirationName) {
-    this.postExpirationName = postExpirationName;
-  }
+	/**
+	 * @param startDate
+	 *            the startDate to set
+	 */
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
 
-  public Float getDiscount() {
-    return discount;
-  }
+	/**
+	 * @return the endDate
+	 */
+	public Date getEndDate() {
+		return endDate;
+	}
 
-  public void setDiscount(Float discount) {
-    this.discount = discount;
-  }
+	/**
+	 * @param endDate
+	 *            the endDate to set
+	 */
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
 
-  public static long getSerialversionuid() {
-    return serialVersionUID;
-  }
 }

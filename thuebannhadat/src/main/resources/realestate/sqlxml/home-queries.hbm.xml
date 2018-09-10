@@ -3,7 +3,7 @@
     "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<query name="HomeDao.getAllNotificationByUserName">
+    <query name="HomeDao.getAllNotificationByUserName">
     <![CDATA[
         SELECT n
         FROM Notification n
@@ -12,37 +12,43 @@
             n.status        = :status
         AND n.user.userName = :userName 
         ]]>
-	</query>
+    </query>
 
-	<query name="HomeDao.getHighlight">
+    <query name="HomeDao.getPostSpecification">
     <![CDATA[
         SELECT
-			sp.*,
-			st.streetName,
-			w.wardName,
-			d.districtId,
-			c.city_name,
-			hd.houseDirectionName,
-			ht.housingTypeName,
-			lt.landTypeName,
-			pt.postTypeName,
-			u.userAddress,
-			u.userEmail,
-			u.userBirthday,
-			u.userGender,
-			u.userName,
-			u.userPhone
-		FROM
-			PostSpecification sp
-		LEFT JOIN tblStreet st
-		LEFT JOIN Ward w
-		LEFT JOIN District d
-		LEFT JOIN City c
-		LEFT JOIN HouseDirection hd
-		LEFT JOIN HousingType ht
-		LEFT JOIN LandType lt
-		LEFT JOIN PostType pt
-		LEFT JOIN User u 
+            sp.*,
+            st.streetName,
+            w.wardName,
+            d.districtId,
+            c.city_name,
+            hd.houseDirectionName,
+            ht.housingTypeName,
+            lt.landTypeName,
+            pt.postTypeName,
+            u.userAddress,
+            u.userEmail,
+            u.userBirthday,
+            u.userGender,
+            u.userName,
+            u.userPhone
+        FROM
+            PostSpecification sp
+        LEFT JOIN tblStreet st
+        LEFT JOIN Ward w
+        LEFT JOIN District d
+        LEFT JOIN City c
+        LEFT JOIN HouseDirection hd
+        LEFT JOIN HousingType ht
+        LEFT JOIN LandType lt
+        LEFT JOIN PostType pt
+        LEFT JOIN User u
+        LEFT JOIN PostExpiration px
+        WHERE
+            sp.status        = :status
+            AND pt.postTypeId = :postTypeId
+            AND px.endDate = :endDate
+        LIMIT :limit
         ]]>
-	</query>
+    </query>
 </hibernate-mapping>

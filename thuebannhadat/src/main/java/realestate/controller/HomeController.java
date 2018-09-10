@@ -1,5 +1,6 @@
 package realestate.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+import org.apache.tomcat.util.bcel.classfile.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,8 @@ import realestate.entity.HousingType;
 import realestate.entity.LandType;
 import realestate.entity.MainMenu;
 import realestate.entity.Notification;
+import realestate.entity.PostSpecification;
+import realestate.entity.PostType;
 import realestate.entity.SearchLandArea;
 import realestate.entity.SearchLandPrice;
 import realestate.entity.Street;
@@ -30,6 +34,8 @@ import realestate.entity.SubMenu;
 import realestate.entity.Ward;
 import realestate.service.HomeService;
 import realestate.service.SearchService;
+import realestate.utils.DateUtils;
+import realestate.utils.SqlConstants;
 
 /**
  * @author : ThuyTran
@@ -62,12 +68,32 @@ public class HomeController {
 		// initialization advertisement
 		initAd(model);
 
+		// initialization content
+		initContent(model);
+
 		return "trang-chu";
 	}
 
+	private void initContent(Model model) {
+
+		List<PostType> lsPostTypes = homeService.getPostType();
+
+		// Highlight
+		PostType postTypeVip =	lsPostTypes.stream().filter(x -> x.getPostTypeName()
+													.equals(SqlConstants.POST_TYPE_VIP))
+													.findFirst().orElse(null);
+		getPostSpecificationsByCondition(model, postTypeVip, 14);
+	}
+
+	private void getPostSpecificationsByCondition(Model model, PostType postType, int limit) {
+		// get expiration
+		int expirationTime = postType.getExpirationTime();
+		Date endDate = DateUtils.getEndDate(expirationTime);
+		model.addAttribute("lstlstHighlight", homeService.getPostSpecification(postType.getPostTypeId(), endDate, limit));
+	}
+
 	private void initAd(Model model) {
-		List<Advertisement> lstAds = homeService.getAllAdvertisement();
-		model.addAttribute("lstAds", lstAds);
+		model.addAttribute("lstAds", homeService.getAllAdvertisement());
 	}
 
 	/**
