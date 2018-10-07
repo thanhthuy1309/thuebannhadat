@@ -3,6 +3,8 @@ package realestate.dao;
 import java.util.List;
 import java.util.Map;
 
+import realestate.entity.Notification;
+
 /**
  * @author : DUNGPT
  * @PG_ID : AbstractDao
@@ -15,7 +17,7 @@ public interface AbstractDao {
 
 	<T> List<T> findAllByStatus(Integer status, Class<T> clazz);
 
-	<T> List<T> findAllByParameter(Class<T> clazz, Map<String, Object> parameters, String queryName);
+	<T> List<T> findAllByParameter(Class<T> clazz, Map<String, Object> parameters, String queryName, Integer limit, Integer offset);
 
 	<T> T saveOrUpdate(T entity);
 
@@ -31,4 +33,6 @@ public interface AbstractDao {
 
 	<T> boolean delete(T entity);
 
+	List<Notification> findAllByParameterNotification(Map<String, Object> parameters, String queryName,
+			Integer limit, Integer offset);
 }

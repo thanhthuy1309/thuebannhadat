@@ -17,38 +17,23 @@
     <query name="HomeDao.getPostSpecification">
     <![CDATA[
         SELECT
-            sp.*,
-            st.streetName,
-            w.wardName,
-            d.districtId,
-            c.city_name,
-            hd.houseDirectionName,
-            ht.housingTypeName,
-            lt.landTypeName,
-            pt.postTypeName,
-            u.userAddress,
-            u.userEmail,
-            u.userBirthday,
-            u.userGender,
-            u.userName,
-            u.userPhone
+            sp
         FROM
             PostSpecification sp
-        LEFT JOIN tblStreet st
-        LEFT JOIN Ward w
-        LEFT JOIN District d
-        LEFT JOIN City c
-        LEFT JOIN HouseDirection hd
-        LEFT JOIN HousingType ht
-        LEFT JOIN LandType lt
-        LEFT JOIN PostType pt
-        LEFT JOIN User u
-        LEFT JOIN PostExpiration px
+        LEFT JOIN sp.street
+        LEFT JOIN sp.ward
+        LEFT JOIN sp.district
+        LEFT JOIN sp.city
+        LEFT JOIN sp.houseDirection
+        LEFT JOIN sp.housingType
+        LEFT JOIN sp.landType
+        LEFT JOIN sp.postType
+        LEFT JOIN sp.user
+        LEFT JOIN sp.postExpiration
         WHERE
             sp.status        = :status
-            AND pt.postTypeId = :postTypeId
-            AND px.endDate = :endDate
-        LIMIT :limit
+            AND sp.postType.postTypeId = :postTypeId
+            AND sp.postExpiration.endDate >= :endDate
         ]]>
     </query>
 </hibernate-mapping>

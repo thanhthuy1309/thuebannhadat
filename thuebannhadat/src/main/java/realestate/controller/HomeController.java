@@ -1,5 +1,7 @@
 package realestate.controller;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,7 +10,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-import org.apache.tomcat.util.bcel.classfile.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import realestate.dto.SelectAddress;
 import realestate.entity.AddOns;
-import realestate.entity.Advertisement;
 import realestate.entity.City;
 import realestate.entity.District;
 import realestate.entity.HouseDirection;
@@ -57,19 +57,19 @@ public class HomeController {
 	@RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
 	public String trangchu(Model model, HttpSession session) {
 
-		SelectAddress selectAddress = new SelectAddress();
-
-		// initialization menu
+//		SelectAddress selectAddress = new SelectAddress();
+//
+//		// initialization menu
 		initMenu(model, session);
-
-		// initialization search
-		initSearch(model, selectAddress);
-
-		// initialization advertisement
-		initAd(model);
+//
+//		// initialization search
+//		initSearch(model, selectAddress);
+//
+//		// initialization advertisement
+//		initAd(model);
 
 		// initialization content
-		initContent(model);
+		//initContent(model);
 
 		return "trang-chu";
 	}
@@ -79,19 +79,43 @@ public class HomeController {
 		List<PostType> lsPostTypes = homeService.getPostType();
 
 		// Highlight
-		PostType postTypeVip =	lsPostTypes.stream().filter(x -> x.getPostTypeName()
-													.equals(SqlConstants.POST_TYPE_VIP))
-													.findFirst().orElse(null);
-		getPostSpecificationsByCondition(model, postTypeVip, 14);
+		PostType postTypeVip = lsPostTypes.stream().filter(x -> x.getPostTypeName().equals(SqlConstants.POST_TYPE_VIP))
+				.findFirst().orElse(null);
+		getPostSpecificationsByCondition(model, postTypeVip, 8, 0);
 	}
 
-	private void getPostSpecificationsByCondition(Model model, PostType postType, int limit) {
+	/**
+	 * Gets the post specifications by condition.
+	 *
+	 * @param model
+	 *            the model
+	 * @param postType
+	 *            the post type
+	 * @param limit
+	 *            the limit
+	 * @return the post specifications by condition
+	 */
+	private void getPostSpecificationsByCondition(Model model, PostType postType, int limit, int offset) {
 		// get expiration
-		int expirationTime = postType.getExpirationTime();
-		Date endDate = DateUtils.getEndDate(expirationTime);
-		model.addAttribute("lstlstHighlight", homeService.getPostSpecification(postType.getPostTypeId(), endDate, limit));
+		List<PostSpecification> lstPostSpecification = homeService.getPostSpecification(postType.getPostTypeId(),
+				Timestamp.valueOf(LocalDateTime.now()), limit, offset);
+		
+		//List<PostSpecification> post1 = lstPostSpecification.stream().limit(2).skip(0).collect(Collectors.toList());
+		for (PostSpecification postSpecification : lstPostSpecification) {
+			System.out.println(postSpecification.getCity().getCityName());
+		}
+		//model.addAttribute("lstHighlight1", post1);
+		model.addAttribute("lstHighlight2", lstPostSpecification.stream().limit(2).skip(2).collect(Collectors.toList()));
+		model.addAttribute("lstHighlight3", lstPostSpecification.stream().limit(2).skip(4).collect(Collectors.toList()));
+		model.addAttribute("lstHighlight4", lstPostSpecification.stream().limit(2).skip(6).collect(Collectors.toList()));
 	}
 
+	/**
+	 * Inits the ad.
+	 *
+	 * @param model
+	 *            the model
+	 */
 	private void initAd(Model model) {
 		model.addAttribute("lstAds", homeService.getAllAdvertisement());
 	}
@@ -162,16 +186,16 @@ public class HomeController {
 	}
 
 	private void initMenu(Model model, HttpSession session) {
-
-		// get all menu status = 1
-		List<MainMenu> lstMainMenu = homeService.getAllMainMenu();
-
-		List<SubMenu> lstSubMenu = homeService.getAllSubMenu();
-
-		lstMainMenu.stream().forEach(e -> e.setSubMenuList(lstSubMenu.stream()
-				.filter(subMenu -> subMenu.getMainMenuId().equals(e.getMainMenuId())).collect(Collectors.toList())));
-
-		model.addAttribute("lstMainMenu", lstMainMenu);
+//
+//		// get all menu status = 1
+//		List<MainMenu> lstMainMenu = homeService.getAllMainMenu();
+//
+//		List<SubMenu> lstSubMenu = homeService.getAllSubMenu();
+//
+//		lstMainMenu.stream().forEach(e -> e.setSubMenuList(lstSubMenu.stream()
+//				.filter(subMenu -> subMenu.getMainMenuId().equals(e.getMainMenuId())).collect(Collectors.toList())));
+//
+//		model.addAttribute("lstMainMenu", lstMainMenu);
 
 		// String userName = Utils.getUserName(model, session);
 		// TODO: hardcode userName
@@ -179,6 +203,7 @@ public class HomeController {
 		if (StringUtils.isNotBlank(userName)) {
 			List<Notification> lstNotification = homeService.getAllNotificationByUserName(userName);
 			model.addAttribute("lstNotification", lstNotification);
+			System.out.println("AAAAAAAAAAA: "+ lstNotification.get(0).getUser().getUserName());
 		}
 	}
 }

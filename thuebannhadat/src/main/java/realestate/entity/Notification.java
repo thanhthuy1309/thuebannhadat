@@ -51,10 +51,10 @@ public class Notification extends AbstractEntity {
 	@Column(name = "user_id", nullable = false, columnDefinition = "INT(11) UNSIGNED")
 	private Integer userId;
 
-	  /** Init user **/
-	  @ManyToOne(fetch = FetchType.LAZY)
-	  @JoinColumn(name = "user_id", referencedColumnName = "user_id" , insertable = false, updatable = false)
-	  private User user;
+	/** Init user **/
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+	private User user;
 
 	/**
 	 * @return the notificationId
@@ -113,7 +113,8 @@ public class Notification extends AbstractEntity {
 	}
 
 	/**
-	 * @param userId the userId to set
+	 * @param userId
+	 *            the userId to set
 	 */
 	public void setUserId(Integer userId) {
 		this.userId = userId;
@@ -127,11 +128,11 @@ public class Notification extends AbstractEntity {
 	}
 
 	/**
-	 * @param user the user to set
+	 * @param user
+	 *            the user to set
 	 */
 	public void setUser(User user) {
 		this.user = user;
 	}
 
-	
 }

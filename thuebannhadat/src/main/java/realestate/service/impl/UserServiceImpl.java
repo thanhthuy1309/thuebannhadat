@@ -291,6 +291,6 @@ public class UserServiceImpl implements UserService {
 	public User findByPK(Integer userId) {
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put(SqlConstants.USER_ID, userId);
-		return userDao.findAllByParameter(User.class, parameters, "UserDao.getUserByUserId").stream().findFirst().get();
+		return userDao.findAllByParameter(User.class, parameters, "UserDao.getUserByUserId", null, null).stream().findFirst().get();
 	}
 }

@@ -27,6 +27,6 @@ public interface HomeService {
 
 	List<PostType> getPostType();
 
-	List<PostSpecification> getPostSpecification(Integer postTypeId, Date endDate, int limit);
+	List<PostSpecification> getPostSpecification(Integer postTypeId, Date endDate, int limit, int offset);
 
 }

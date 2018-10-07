@@ -43,6 +43,7 @@
 				<prop key="hibernate.connection.CharSet">utf8</prop>
 				<prop key="hibernate.connection.characterEncoding">utf8</prop>
 				<prop key="hibernate.connection.useUnicode">true</prop>
+				<!-- <prop key="hibernate.current_session_context_class">thread</prop>  -->
 			</props>
 		</property>
 	</bean>

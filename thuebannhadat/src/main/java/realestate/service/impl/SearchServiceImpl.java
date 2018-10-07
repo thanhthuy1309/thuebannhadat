@@ -51,7 +51,7 @@ public class SearchServiceImpl implements SearchService {
         parameters.put(SqlConstants.CITY_ID, selectAddress.getCityId());
         parameters.put(SqlConstants.STATUS, StatusRecordEnum.ACTIVE.getValue());
 
-        return abstractDao.findAllByParameter(District.class, parameters, "HomeDao.getDistrictByCondition");
+        return abstractDao.findAllByParameter(District.class, parameters, "HomeDao.getDistrictByCondition", null, null);
     }
 
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
@@ -64,7 +64,7 @@ public class SearchServiceImpl implements SearchService {
         parameters.put(SqlConstants.STATUS, StatusRecordEnum.ACTIVE.getValue());
         parameters.put(SqlConstants.DISTRICT_ID, selectAddress.getDistrictId());
 
-        return abstractDao.findAllByParameter(Ward.class, parameters, "HomeDao.getWardByCondition");
+        return abstractDao.findAllByParameter(Ward.class, parameters, "HomeDao.getWardByCondition", null, null);
     }
 
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
@@ -77,7 +77,7 @@ public class SearchServiceImpl implements SearchService {
         parameters.put(SqlConstants.CITY_ID, selectAddress.getCityId());
         parameters.put(SqlConstants.DISTRICT_ID, selectAddress.getDistrictId());
 
-        return abstractDao.findAllByParameter(Street.class, parameters, "HomeDao.getStreetByCondition");
+        return abstractDao.findAllByParameter(Street.class, parameters, "HomeDao.getStreetByCondition", null, null);
     }
 
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)

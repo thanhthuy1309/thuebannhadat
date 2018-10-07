@@ -30,19 +30,19 @@ public class AbstractEntity implements Serializable {
   @Column(name = "status", length = 1, nullable = false, columnDefinition = "TINYINT(1) UNSIGNED DEFAULT 0")
   private Integer status;
 
-  /** Init ngayTao **/
-  @Column(name = "create_date", columnDefinition = "TIMESTAMP DEFAULT 0")
-  private Date createDate;
-
-  /** Init ngaycapnhat **/
-  @Column(name = "update_date", columnDefinition = "TIMESTAMP DEFAULT 0")
-  private Date updateDate;
-
-  @Column(name = "create_user", length = 250, columnDefinition = "VARCHAR(250) DEFAULT ''")
-  private String createUser;
-
-  @Column(name = "update_user", length = 250, columnDefinition = "VARCHAR(250) DEFAULT ''")
-  private String updateUser;
+//  /** Init ngayTao **/
+//  @Column(name = "create_date", columnDefinition = "TIMESTAMP DEFAULT 0")
+//  private Date createDate;
+//
+//  /** Init ngaycapnhat **/
+//  @Column(name = "update_date", columnDefinition = "TIMESTAMP DEFAULT 0")
+//  private Date updateDate;
+//
+//  @Column(name = "create_user", length = 250, columnDefinition = "VARCHAR(250) DEFAULT ''")
+//  private String createUser;
+//
+//  @Column(name = "update_user", length = 250, columnDefinition = "VARCHAR(250) DEFAULT ''")
+//  private String updateUser;
 
   public Integer getStatus() {
     return status;
@@ -52,39 +52,35 @@ public class AbstractEntity implements Serializable {
     this.status = status;
   }
 
-  public String getCreateUser() {
-    return createUser;
-  }
+//  public String getCreateUser() {
+//    return createUser;
+//  }
+//
+//  public void setCreateUser(String createUser) {
+//    this.createUser = createUser;
+//  }
+//
+//  public String getUpdateUser() {
+//    return updateUser;
+//  }
+//
+//  public void setUpdateUser(String updateUser) {
+//    this.updateUser = updateUser;
+//  }
 
-  public void setCreateUser(String createUser) {
-    this.createUser = createUser;
-  }
-
-  public String getUpdateUser() {
-    return updateUser;
-  }
-
-  public void setUpdateUser(String updateUser) {
-    this.updateUser = updateUser;
-  }
-
-  public static long getSerialversionuid() {
-    return serialVersionUID;
-  }
-
-  public Date getCreateDate() {
-    return createDate;
-  }
-
-  public void setCreateDate(Date createDate) {
-    this.createDate = createDate;
-  }
-
-  public Date getUpdateDate() {
-    return updateDate;
-  }
-
-  public void setUpdateDate(Date updateDate) {
-    this.updateDate = updateDate;
-  }
+//  public Date getCreateDate() {
+//    return createDate;
+//  }
+//
+//  public void setCreateDate(Date createDate) {
+//    this.createDate = createDate;
+//  }
+//
+//  public Date getUpdateDate() {
+//    return updateDate;
+//  }
+//
+//  public void setUpdateDate(Date updateDate) {
+//    this.updateDate = updateDate;
+//  }
 }

@@ -2,17 +2,18 @@ package realestate.dao.impl;
 
 import java.sql.Blob;
 import java.sql.Clob;
-import java.sql.Date;
 import java.sql.NClob;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -21,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import realestate.dao.AbstractDao;
+import realestate.entity.Notification;
 import realestate.utils.SqlConstants;
 
 /**
@@ -111,12 +113,17 @@ public abstract class AbstractDaoImpl implements AbstractDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T> List<T> findAllByParameter(Class<T> clazz, Map<String, Object> parameters, String queryName) {
+	public <T> List<T> findAllByParameter(Class<T> clazz, Map<String, Object> parameters, String queryName,
+			Integer limit, Integer offset) {
 		try {
 			query = getSession().getNamedQuery(queryName);
 
 			// Set parameter
 			populateParameter(parameters);
+
+			// set limit, offset
+			setLimitParameter(limit, offset);
+
 			return query.list();
 		} catch (HibernateException ex) {
 			LOGGER.error("#findAllByParameter_error: " + ex.getMessage());
@@ -124,6 +131,45 @@ public abstract class AbstractDaoImpl implements AbstractDao {
 			LOGGER.error("#findAllByParameter_error: " + e.getMessage());
 		}
 		return null;
+	}
+
+	public List<Notification> findAllByParameterNotification(Map<String, Object> parameters, String queryName,
+			Integer limit, Integer offset) {
+		try {
+			query = getSession().getNamedQuery(queryName);
+
+			// Set parameter
+			populateParameter(parameters);
+
+			// set limit, offset
+			setLimitParameter(limit, offset);
+
+			List<Notification> lstNotification = query.list();
+			for (Notification notification : lstNotification) {
+				Hibernate.initialize(notification.getUser());
+			}
+			return lstNotification;
+		} catch (HibernateException ex) {
+			LOGGER.error("#findAllByParameter_error: " + ex.getMessage());
+		} catch (SQLException e) {
+			LOGGER.error("#findAllByParameter_error: " + e.getMessage());
+		}
+		return null;
+	}
+	/**
+	 * Sets the limit parameter.
+	 *
+	 * @param limit the limit
+	 * @param offset the offset
+	 */
+	private void setLimitParameter(Integer limit, Integer offset) {
+		if (Objects.nonNull(limit) && limit > 0) {
+			query.setMaxResults(limit);
+		}
+
+		if (Objects.nonNull(offset)) {
+			query.setFirstResult(offset);
+		}
 	}
 
 	/**
