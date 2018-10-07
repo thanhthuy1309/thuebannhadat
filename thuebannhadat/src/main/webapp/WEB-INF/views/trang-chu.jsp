@@ -47,12 +47,12 @@
 	src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 
 <!--[if IE]>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
-        <![endif]-->
+			<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
+		<![endif]-->
 <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
 
 </head>
 <body class="">
@@ -133,99 +133,99 @@
 
 		<!-- BANNER BEGIN -->
 		<!--
-            <div class=" pda cover" style="-background: #27ae61;margin-bottom:50px">
-                <div id="owl-hot-item" class="owl-carousel">
-                    <div class="item">
-                        <div class="nailthumb">
-                            <div class="nailthumb-figure-75">
-                                <a href="ban.html" class="nailthumb-container">
-                                    <img class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
-                                </a>
-                                <a href="chitiet.html" class="info">
-                                    <div>
-                                        <div class="labels">
-                                            <span class="label g">Mua</span>
-                                            <span class="label g">Thương Lượng</span>
-                                        </div>
-                                        <h2>NHÀ MẶT TIỀN PHỐ</h2>
-                                        <p>
-                                            <span class="fa fa-map-marker"></span> Địa chỉ 108 Tôn Đức Thắng, P. Bến Thành, Q.1, TP.HCM
-                                        </p>
-                                        <div class="price">6 400 TỶ</div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="nailthumb">
-                            <div class="nailthumb-figure-75">
-                                <a href="ban.html" class="nailthumb-container">
-                                    <img class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
-                                </a>
-                                <a href="chitiet.html" class="info">
-                                    <div>
-                                        <div class="labels">
-                                            <span class="label g">Mua</span>
-                                            <span class="label g">Thương Lượng</span>
-                                        </div>
-                                        <h2>NHÀ MẶT TIỀN PHỐ</h2>
-                                        <p>
-                                            <span class="fa fa-map-marker"></span> Địa chỉ 108 Tôn Đức Thắng, P. Bến Thành, Q.1, TP.HCM
-                                        </p>
-                                        <div class="price">6 400 TỶ</div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="nailthumb">
-                            <div class="nailthumb-figure-75">
-                                <a href="ban.html" class="nailthumb-container">
-                                    <img class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
-                                </a>
-                                <a href="chitiet.html" class="info">
-                                    <div>
-                                        <div class="labels">
-                                            <span class="label g">Mua</span>
-                                            <span class="label g">Thương Lượng</span>
-                                        </div>
-                                        <h2>NHÀ MẶT TIỀN PHỐ</h2>
-                                        <p>
-                                            <span class="fa fa-map-marker"></span> Địa chỉ 108 Tôn Đức Thắng, P. Bến Thành, Q.1, TP.HCM
-                                        </p>
-                                        <div class="price">6 400 TỶ</div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="nailthumb">
-                            <div class="nailthumb-figure-75">
-                                <a href="ban.html" class="nailthumb-container">
-                                    <img class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
-                                </a>
-                                <a href="chitiet.html" class="info">
-                                    <div>
-                                        <div class="labels">
-                                            <span class="label g">Mua</span>
-                                            <span class="label g">Thương Lượng</span>
-                                        </div>
-                                        <h2>NHÀ MẶT TIỀN PHỐ</h2>
-                                        <p>
-                                            <span class="fa fa-map-marker"></span> Địa chỉ 108 Tôn Đức Thắng, P. Bến Thành, Q.1, TP.HCM
-                                        </p>
-                                        <div class="price">6 400 TỶ</div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            -->
+			<div class=" pda cover" style="-background: #27ae61;margin-bottom:50px">
+				<div id="owl-hot-item" class="owl-carousel">
+					<div class="item">
+						<div class="nailthumb">
+							<div class="nailthumb-figure-75">
+								<a href="ban.html" class="nailthumb-container">
+									<img class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
+								</a>
+								<a href="chitiet.html" class="info">
+									<div>
+										<div class="labels">
+											<span class="label g">Mua</span>
+											<span class="label g">Thương Lượng</span>
+										</div>
+										<h2>NHÀ MẶT TIỀN PHỐ</h2>
+										<p>
+											<span class="fa fa-map-marker"></span> Địa chỉ 108 Tôn Đức Thắng, P. Bến Thành, Q.1, TP.HCM
+										</p>
+										<div class="price">6 400 TỶ</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="nailthumb">
+							<div class="nailthumb-figure-75">
+								<a href="ban.html" class="nailthumb-container">
+									<img class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
+								</a>
+								<a href="chitiet.html" class="info">
+									<div>
+										<div class="labels">
+											<span class="label g">Mua</span>
+											<span class="label g">Thương Lượng</span>
+										</div>
+										<h2>NHÀ MẶT TIỀN PHỐ</h2>
+										<p>
+											<span class="fa fa-map-marker"></span> Địa chỉ 108 Tôn Đức Thắng, P. Bến Thành, Q.1, TP.HCM
+										</p>
+										<div class="price">6 400 TỶ</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="nailthumb">
+							<div class="nailthumb-figure-75">
+								<a href="ban.html" class="nailthumb-container">
+									<img class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
+								</a>
+								<a href="chitiet.html" class="info">
+									<div>
+										<div class="labels">
+											<span class="label g">Mua</span>
+											<span class="label g">Thương Lượng</span>
+										</div>
+										<h2>NHÀ MẶT TIỀN PHỐ</h2>
+										<p>
+											<span class="fa fa-map-marker"></span> Địa chỉ 108 Tôn Đức Thắng, P. Bến Thành, Q.1, TP.HCM
+										</p>
+										<div class="price">6 400 TỶ</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="nailthumb">
+							<div class="nailthumb-figure-75">
+								<a href="ban.html" class="nailthumb-container">
+									<img class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
+								</a>
+								<a href="chitiet.html" class="info">
+									<div>
+										<div class="labels">
+											<span class="label g">Mua</span>
+											<span class="label g">Thương Lượng</span>
+										</div>
+										<h2>NHÀ MẶT TIỀN PHỐ</h2>
+										<p>
+											<span class="fa fa-map-marker"></span> Địa chỉ 108 Tôn Đức Thắng, P. Bến Thành, Q.1, TP.HCM
+										</p>
+										<div class="price">6 400 TỶ</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			-->
 		<!-- BANNER END -->
 		<!-- SLIDER END -->
 
@@ -474,52 +474,52 @@
 		<div class="con pda" style="z-index: 10">
 			<div class="sort-setting">
 				<!--
-                        <span>Sắp xếp theo </span>
-                        <div class="control">
-                            <div class="cbx cbx-se cbx-sort">
-                                <a href="JavaScript:void(0)" class="btn" data-toggle="dropdown"><span>Thông Thường <i class="fa fa-angle-down"></i></span></a>
-                                <div class="cbx-menu">
-                                    <ul>
-                                        <li><a href="JavaScript:void(0)">Tin mới nhất</a></li>
-                                        <li><a href="JavaScript:void(0)">Tin cũ nhất</a></li>
-                                        <li><a href="JavaScript:void(0)">Giá tăng dần</a></li>
-                                        <li><a href="JavaScript:void(0)">Giá giảm dần</a></li>
-                                        <li><a href="JavaScript:void(0)">Diện tích giảm dần</a></li>
-                                        <li><a href="JavaScript:void(0)">Diện tích tăng dần</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="control">
-                            <div class="cbx cbx-se cbx-sort">
-                                <a href="JavaScript:void(0)" class="btn" data-toggle="dropdown"><span>Mức giá<i class="fa fa-angle-down"></i></span></a>
-                                <div class="cbx-menu">
-                                    <ul>
-                                        <li><a href="JavaScript:void(0)">Lorrem 1</a></li>
-                                        <li><a href="JavaScript:void(0)">Lorrem 1</a></li>
-                                        <li><a href="JavaScript:void(0)">Lorrem 1</a></li>
-                                        <li><a href="JavaScript:void(0)">Lorrem 1</a></li>
-                                        <li><a href="JavaScript:void(0)">Lorrem 1</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="control">
-                            <div class="cbx cbx-se cbx-sort">
-                                <a href="JavaScript:void(0)" class="btn" data-toggle="dropdown"><span>Tỉnh/Thành phố <i class="fa fa-angle-down"></i></span></a>
-                                <div class="cbx-menu">
-                                    <ul>
-                                        <li><a href="JavaScript:void(0)">Lorrem 1</a></li>
-                                        <li><a href="JavaScript:void(0)">Lorrem 1</a></li>
-                                        <li><a href="JavaScript:void(0)">Lorrem 1</a></li>
-                                        <li><a href="JavaScript:void(0)">Lorrem 1</a></li>
-                                        <li><a href="JavaScript:void(0)">Lorrem 1</a></li>
-                                        <li><a href="JavaScript:void(0)">Lorrem 1</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        -->
+						<span>Sắp xếp theo </span>
+						<div class="control">
+							<div class="cbx cbx-se cbx-sort">
+								<a href="JavaScript:void(0)" class="btn" data-toggle="dropdown"><span>Thông Thường <i class="fa fa-angle-down"></i></span></a>
+								<div class="cbx-menu">
+									<ul>
+										<li><a href="JavaScript:void(0)">Tin mới nhất</a></li>
+										<li><a href="JavaScript:void(0)">Tin cũ nhất</a></li>
+										<li><a href="JavaScript:void(0)">Giá tăng dần</a></li>
+										<li><a href="JavaScript:void(0)">Giá giảm dần</a></li>
+										<li><a href="JavaScript:void(0)">Diện tích giảm dần</a></li>
+										<li><a href="JavaScript:void(0)">Diện tích tăng dần</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="control">
+							<div class="cbx cbx-se cbx-sort">
+								<a href="JavaScript:void(0)" class="btn" data-toggle="dropdown"><span>Mức giá<i class="fa fa-angle-down"></i></span></a>
+								<div class="cbx-menu">
+									<ul>
+										<li><a href="JavaScript:void(0)">Lorrem 1</a></li>
+										<li><a href="JavaScript:void(0)">Lorrem 1</a></li>
+										<li><a href="JavaScript:void(0)">Lorrem 1</a></li>
+										<li><a href="JavaScript:void(0)">Lorrem 1</a></li>
+										<li><a href="JavaScript:void(0)">Lorrem 1</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="control">
+							<div class="cbx cbx-se cbx-sort">
+								<a href="JavaScript:void(0)" class="btn" data-toggle="dropdown"><span>Tỉnh/Thành phố <i class="fa fa-angle-down"></i></span></a>
+								<div class="cbx-menu">
+									<ul>
+										<li><a href="JavaScript:void(0)">Lorrem 1</a></li>
+										<li><a href="JavaScript:void(0)">Lorrem 1</a></li>
+										<li><a href="JavaScript:void(0)">Lorrem 1</a></li>
+										<li><a href="JavaScript:void(0)">Lorrem 1</a></li>
+										<li><a href="JavaScript:void(0)">Lorrem 1</a></li>
+										<li><a href="JavaScript:void(0)">Lorrem 1</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						-->
 				<div class="view-type">
 					Xem theo <span class="fa fa-th active" data-view="grid"></span> <span
 						class="fa fa-th-list " data-view="list"></span>
@@ -547,27 +547,26 @@
 					<div class="hot-items">
 						<c:if test="${lstHighlight1 != null}">
 							<div>
-								<c:forEach items="${lstHighlight1}" var="post">
+								<c:forEach items="${lstHighlight1}" var="post" varStatus="myIndex">
 									<div class="item">
-										<div class="${(loop.index / 2) == 0 ? '' : 'nailthumb'}">
-											<div
-												class="${(loop.index / 2) == 0 ? 'nailthumb' : 'nailthumb-figure-75'}">
-												<a href="ban.html" class="nailthumb-container">
+										<div class="${(myIndex.index % 2) == 0 ? 'nailthumb' : ''}">
+											<div class="${(myIndex.index % 2) == 0 ? 'nailthumb-figure-75' : 'nailthumb'}">
+												<a href="/${post.postSpecificationId }" class="nailthumb-container">
 													<img class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
 												</a>
 												<a href="/${post.postSpecificationId }" class="info">
 													<div>
 														<div class="labels">
 															<span class="label">${post.postType.postTypeName}</span>
-															<span class="label g"></span>
+															<span class="label g">Thương Lượng</span>
 														</div>
 														<h2>${post.postSpecificationName}</h2>
 														<p>
 															<span class="fa fa-map-marker"></span> ${post.address}
 															${post.street.streetName}, P.${post.ward.wardName},
-															${post.district.districtName}, ${post.city}
+															${post.district.districtName}, ${post.city.cityName}
 														</p>
-														<div class="price">${post.postCostTotal != null ? 'post.postCostTotal' : 'Thương Lượng'}</div>
+														<div class="price">${post.postCostTotal}</div>
 													</div>
 												</a>
 											</div>
@@ -576,54 +575,36 @@
 								</c:forEach>
 							</div>
 						</c:if>
-						<div>
-							<div class="item">
-								<div class="">
-									<div class="nailthumb">
-										<a href="ban.html" class="nailthumb-container"> <img
-											class="lazy"
-											src="${pageContext.request.contextPath}/resources/images/3.jpg">
-										</a> <a href="ban.html" class="info">
-											<div>
-												<div class="labels">
-													<span class="label">Bán</span> <span class="label g">Thương
-														Lượng</span>
-												</div>
-												<h2>NHÀ MẶT TIỀN PHỐ</h2>
-												<p>
-													<span class="fa fa-map-marker"></span> Địa chỉ 108 Tôn Đức
-													Thắng, P. Bến Thành, Q.1, TP.HCM
-												</p>
-												<div class="price">6 400 TỶ</div>
+						<c:if test="${lstHighlight2 != null}">
+							<div>
+								<c:forEach items="${lstHighlight2}" var="post" varStatus="myIndex">
+									<div class="item">
+										<div class="${(myIndex.index % 2) == 0 ? 'nailthumb' : ''}">
+											<div class="${(myIndex.index % 2) == 0 ? 'nailthumb-figure-75' : 'nailthumb'}">
+												<a href="/${post.postSpecificationId }" class="nailthumb-container">
+													<img class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
+												</a>
+												<a href="/${post.postSpecificationId }" class="info">
+													<div>
+														<div class="labels">
+															<span class="label">${post.postType.postTypeName}</span>
+															<span class="label g">Thương Lượng</span>
+														</div>
+														<h2>${post.postSpecificationName}</h2>
+														<p>
+															<span class="fa fa-map-marker"></span> ${post.address}
+															${post.street.streetName}, P.${post.ward.wardName},
+															${post.district.districtName}, ${post.city.cityName}
+														</p>
+														<div class="price">${post.postCostTotal}</div>
+													</div>
+												</a>
 											</div>
-										</a>
+										</div>
 									</div>
-								</div>
+								</c:forEach>
 							</div>
-							<div class="item">
-								<div class="nailthumb">
-									<div class="nailthumb-figure-75">
-										<a href="ban.html" class="nailthumb-container"> <img
-											class="lazy"
-											src="${pageContext.request.contextPath}/resources/images/4.jpg">
-										</a> <a href="ban.html" class="info">
-											<div>
-												<div class="labels">
-													<span class="label">Bán</span> <span class="label g">Thương
-														Lượng</span>
-												</div>
-												<h2>NHÀ MẶT TIỀN PHỐ</h2>
-												<p>
-													<span class="fa fa-map-marker"></span> Địa chỉ 108 Tôn Đức
-													Thắng, P. Bến Thành, Q.1, TP.HCM
-												</p>
-												<div class="price">6 400 TỶ</div>
-											</div>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
+						</c:if>
 					</div>
 				</div>
 				<div class="item">

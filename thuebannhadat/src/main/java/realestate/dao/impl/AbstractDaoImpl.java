@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -22,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import realestate.dao.AbstractDao;
-import realestate.entity.Notification;
 import realestate.utils.SqlConstants;
 
 /**
@@ -133,29 +131,6 @@ public abstract class AbstractDaoImpl implements AbstractDao {
 		return null;
 	}
 
-	public List<Notification> findAllByParameterNotification(Map<String, Object> parameters, String queryName,
-			Integer limit, Integer offset) {
-		try {
-			query = getSession().getNamedQuery(queryName);
-
-			// Set parameter
-			populateParameter(parameters);
-
-			// set limit, offset
-			setLimitParameter(limit, offset);
-
-			List<Notification> lstNotification = query.list();
-			for (Notification notification : lstNotification) {
-				Hibernate.initialize(notification.getUser());
-			}
-			return lstNotification;
-		} catch (HibernateException ex) {
-			LOGGER.error("#findAllByParameter_error: " + ex.getMessage());
-		} catch (SQLException e) {
-			LOGGER.error("#findAllByParameter_error: " + e.getMessage());
-		}
-		return null;
-	}
 	/**
 	 * Sets the limit parameter.
 	 *
