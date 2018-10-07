@@ -131,102 +131,6 @@
 			</div>
 		</div>
 
-		<!-- BANNER BEGIN -->
-		<!--
-			<div class=" pda cover" style="-background: #27ae61;margin-bottom:50px">
-				<div id="owl-hot-item" class="owl-carousel">
-					<div class="item">
-						<div class="nailthumb">
-							<div class="nailthumb-figure-75">
-								<a href="ban.html" class="nailthumb-container">
-									<img class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
-								</a>
-								<a href="chitiet.html" class="info">
-									<div>
-										<div class="labels">
-											<span class="label g">Mua</span>
-											<span class="label g">Thương Lượng</span>
-										</div>
-										<h2>NHÀ MẶT TIỀN PHỐ</h2>
-										<p>
-											<span class="fa fa-map-marker"></span> Địa chỉ 108 Tôn Đức Thắng, P. Bến Thành, Q.1, TP.HCM
-										</p>
-										<div class="price">6 400 TỶ</div>
-									</div>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="nailthumb">
-							<div class="nailthumb-figure-75">
-								<a href="ban.html" class="nailthumb-container">
-									<img class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
-								</a>
-								<a href="chitiet.html" class="info">
-									<div>
-										<div class="labels">
-											<span class="label g">Mua</span>
-											<span class="label g">Thương Lượng</span>
-										</div>
-										<h2>NHÀ MẶT TIỀN PHỐ</h2>
-										<p>
-											<span class="fa fa-map-marker"></span> Địa chỉ 108 Tôn Đức Thắng, P. Bến Thành, Q.1, TP.HCM
-										</p>
-										<div class="price">6 400 TỶ</div>
-									</div>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="nailthumb">
-							<div class="nailthumb-figure-75">
-								<a href="ban.html" class="nailthumb-container">
-									<img class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
-								</a>
-								<a href="chitiet.html" class="info">
-									<div>
-										<div class="labels">
-											<span class="label g">Mua</span>
-											<span class="label g">Thương Lượng</span>
-										</div>
-										<h2>NHÀ MẶT TIỀN PHỐ</h2>
-										<p>
-											<span class="fa fa-map-marker"></span> Địa chỉ 108 Tôn Đức Thắng, P. Bến Thành, Q.1, TP.HCM
-										</p>
-										<div class="price">6 400 TỶ</div>
-									</div>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="nailthumb">
-							<div class="nailthumb-figure-75">
-								<a href="ban.html" class="nailthumb-container">
-									<img class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
-								</a>
-								<a href="chitiet.html" class="info">
-									<div>
-										<div class="labels">
-											<span class="label g">Mua</span>
-											<span class="label g">Thương Lượng</span>
-										</div>
-										<h2>NHÀ MẶT TIỀN PHỐ</h2>
-										<p>
-											<span class="fa fa-map-marker"></span> Địa chỉ 108 Tôn Đức Thắng, P. Bến Thành, Q.1, TP.HCM
-										</p>
-										<div class="price">6 400 TỶ</div>
-									</div>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			-->
-		<!-- BANNER END -->
 		<!-- SLIDER END -->
 
 		<!-- SEARCH BEGIN -->
@@ -542,171 +446,141 @@
 					<a href="ban-list.html" class="more a read-more"></a>
 				</div>
 			</div>
-			<div id="hot-owl-slider" class="owl-carousel">
-				<div class="item">
-					<div class="hot-items">
-						<c:if test="${lstHighlight1 != null}">
-							<div>
-								<c:forEach items="${lstHighlight1}" var="post" varStatus="myIndex">
+			<c:if test="${lstHighlight != null}">
+				<div id="hot-owl-slider" class="owl-carousel">
+					<c:forEach varStatus="myIndex" begin="0"
+						end="${lstHighlight.size() }" step="4">
+						<div class="item">
+							<div class="hot-items">
+								<div>
 									<div class="item">
-										<div class="${(myIndex.index % 2) == 0 ? 'nailthumb' : ''}">
-											<div class="${(myIndex.index % 2) == 0 ? 'nailthumb-figure-75' : 'nailthumb'}">
-												<a href="/${post.postSpecificationId }" class="nailthumb-container">
-													<img class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
-												</a>
-												<a href="/${post.postSpecificationId }" class="info">
+										<div class="nailthumb">
+											<div class="nailthumb-figure-75">
+												<a
+													href="${pageContext.request.contextPath}/${lstHighlight[myIndex.index].postSpecificationId}"
+													class="nailthumb-container"> <img class="lazy"
+													src="${pageContext.request.contextPath}/${lstHighlight[myIndex.index].postImageList[0].postImageName}">
+												</a> <a
+													href="${pageContext.request.contextPath}/${lstHighlight[myIndex.index].postSpecificationId}"
+													class="info">
 													<div>
 														<div class="labels">
-															<span class="label">${post.postType.postTypeName}</span>
+															<span class="label">${lstHighlight[myIndex.index].postType.postTypeName}</span>
 															<span class="label g">Thương Lượng</span>
 														</div>
-														<h2>${post.postSpecificationName}</h2>
+														<h2>${lstHighlight[myIndex.index].postSpecificationName}</h2>
 														<p>
-															<span class="fa fa-map-marker"></span> ${post.address}
-															${post.street.streetName}, P.${post.ward.wardName},
-															${post.district.districtName}, ${post.city.cityName}
+															<span class="fa fa-map-marker"></span>${lstHighlight[myIndex.index].address}
+															${lstHighlight[myIndex.index].street.streetName},
+															P.${lstHighlight[myIndex.index].ward.wardName},
+															${lstHighlight[myIndex.index].district.districtName},
+															${lstHighlight[myIndex.index].city.cityName}
 														</p>
-														<div class="price">${post.postCostTotal}</div>
+														<div class="price">${lstHighlight[myIndex.index].postCostTotal}
+															TỶ</div>
 													</div>
 												</a>
 											</div>
 										</div>
 									</div>
-								</c:forEach>
-							</div>
-						</c:if>
-						<c:if test="${lstHighlight2 != null}">
-							<div>
-								<c:forEach items="${lstHighlight2}" var="post" varStatus="myIndex">
 									<div class="item">
-										<div class="${(myIndex.index % 2) == 0 ? 'nailthumb' : ''}">
-											<div class="${(myIndex.index % 2) == 0 ? 'nailthumb-figure-75' : 'nailthumb'}">
-												<a href="/${post.postSpecificationId }" class="nailthumb-container">
-													<img class="lazy" src="${pageContext.request.contextPath}/resources/images/1.jpg">
-												</a>
-												<a href="/${post.postSpecificationId }" class="info">
+										<div class="">
+											<div class="nailthumb">
+												<a
+													href="${pageContext.request.contextPath}/${lstHighlight[myIndex.index + 1].postSpecificationId}"
+													class="nailthumb-container"> <img class="lazy"
+													src="${pageContext.request.contextPath}/${lstHighlight[myIndex.index + 1].postImageList[0].postImageName}">
+												</a> <a
+													href="${pageContext.request.contextPath}/${lstHighlight[myIndex.index + 1].postSpecificationId}"
+													class="info">
 													<div>
 														<div class="labels">
-															<span class="label">${post.postType.postTypeName}</span>
+															<span class="label">${lstHighlight[myIndex.index + 1].postType.postTypeName}</span>
 															<span class="label g">Thương Lượng</span>
 														</div>
-														<h2>${post.postSpecificationName}</h2>
+														<h2>${lstHighlight[myIndex.index + 1].postSpecificationName}</h2>
 														<p>
-															<span class="fa fa-map-marker"></span> ${post.address}
-															${post.street.streetName}, P.${post.ward.wardName},
-															${post.district.districtName}, ${post.city.cityName}
+															<span class="fa fa-map-marker"></span>${lstHighlight[myIndex.index + 1].address}
+															${lstHighlight[myIndex.index + 1].street.streetName},
+															P.${lstHighlight[myIndex.index + 1].ward.wardName},
+															${lstHighlight[myIndex.index + 1].district.districtName},
+															${lstHighlight[myIndex.index + 1].city.cityName}
 														</p>
-														<div class="price">${post.postCostTotal}</div>
+														<div class="price">${lstHighlight[myIndex.index + 1].postCostTotal}
+															TỶ</div>
 													</div>
 												</a>
 											</div>
 										</div>
 									</div>
-								</c:forEach>
-							</div>
-						</c:if>
-					</div>
-				</div>
-				<div class="item">
-					<div class="hot-items">
-						<div>
-							<div class="item">
-								<div class="nailthumb">
-									<div class="nailthumb-figure-75">
-										<a href="chitiet.html" class="nailthumb-container"> <img
-											class="lazy"
-											src="${pageContext.request.contextPath}/resources/images/1.jpg">
-										</a> <a href="chitiet.html" class="info">
-											<div>
-												<div class="labels">
-													<span class="label b">Cho Thuê</span>
-												</div>
-												<h2>NHÀ MẶT TIỀN PHỐ 1</h2>
-												<p>
-													<span class="fa fa-map-marker"></span> Địa chỉ 108 Tôn Đức
-													Thắng, P. Bến Thành, Q.1, TP.HCM
-												</p>
-												<div class="price">6 400 TỶ</div>
-											</div>
-										</a>
-									</div>
 								</div>
-							</div>
-							<div class="item">
-								<div class="">
-									<div class="nailthumb">
-										<a href="chitiet.html" class="nailthumb-container"> <img
-											class="lazy"
-											src="${pageContext.request.contextPath}/resources/images/2.jpg">
-										</a> <a href="chitiet.html" class="info">
-											<div>
-												<div class="labels">
-													<span class="label b">Cho Thuê</span> <span class="label g">Thương
-														Lượng</span>
-												</div>
-												<h2>NHÀ MẶT TIỀN PHỐ 1</h2>
-												<p>
-													<span class="fa fa-map-marker"></span> Địa chỉ 108 Tôn Đức
-													Thắng, P. Bến Thành, Q.1, TP.HCM
-												</p>
-												<div class="price">6 400 TỶ</div>
+								<div>
+									<div class="item">
+										<div class="">
+											<div class="nailthumb">
+												<a
+													href="${pageContext.request.contextPath}/${lstHighlight[myIndex.index + 2].postSpecificationId}"
+													class="nailthumb-container"> <img class="lazy"
+													src="${pageContext.request.contextPath}/${lstHighlight[myIndex.index + 2].postImageList[0].postImageName}">
+												</a> <a
+													href="${pageContext.request.contextPath}/${lstHighlight[myIndex.index + 2].postSpecificationId}"
+													class="info">
+													<div>
+														<div class="labels">
+															<span class="label">${lstHighlight[myIndex.index + 2].postType.postTypeName}</span>
+															<span class="label g">Thương Lượng</span>
+														</div>
+														<h2>${lstHighlight[myIndex.index + 2].postSpecificationName}</h2>
+														<p>
+															<span class="fa fa-map-marker"></span>${lstHighlight[myIndex.index + 2].address}
+															${lstHighlight[myIndex.index + 2].street.streetName},
+															P.${lstHighlight[myIndex.index + 2].ward.wardName},
+															${lstHighlight[myIndex.index + 2].district.districtName},
+															${lstHighlight[myIndex.index + 2].city.cityName}
+														</p>
+														<div class="price">${lstHighlight[myIndex.index + 2].postCostTotal}
+															TỶ</div>
+													</div>
+												</a>
 											</div>
-										</a>
+										</div>
 									</div>
-								</div>
-							</div>
-						</div>
-						<div>
-							<div class="item">
-								<div class="">
-									<div class="nailthumb">
-										<a href="chitiet.html" class="nailthumb-container"> <img
-											class="lazy"
-											src="${pageContext.request.contextPath}/resources/images/3.jpg">
-										</a> <a href="chitiet.html" class="info">
-											<div>
-												<div class="labels">
-													<span class="label">Bán</span> <span class="label g">Thương
-														Lượng</span>
-												</div>
-												<h2>NHÀ MẶT TIỀN PHỐ 1</h2>
-												<p>
-													<span class="fa fa-map-marker"></span> Địa chỉ 108 Tôn Đức
-													Thắng, P. Bến Thành, Q.1, TP.HCM
-												</p>
-												<div class="price">6 400 TỶ</div>
+									<div class="item">
+										<div class="nailthumb">
+											<div class="nailthumb-figure-75">
+												<a
+													href="${pageContext.request.contextPath}/${lstHighlight[myIndex.index + 3].postSpecificationId}"
+													class="nailthumb-container"> <img class="lazy"
+													src="${pageContext.request.contextPath}/${lstHighlight[myIndex.index + 3].postImageList[0].postImageName}">
+												</a> <a
+													href="${pageContext.request.contextPath}/${lstHighlight[myIndex.index + 3].postSpecificationId}"
+													class="info">
+													<div>
+														<div class="labels">
+															<span class="label">${lstHighlight[myIndex.index + 3].postType.postTypeName}</span>
+															<span class="label g">Thương Lượng</span>
+														</div>
+														<h2>${lstHighlight[myIndex.index + 3].postSpecificationName}</h2>
+														<p>
+															<span class="fa fa-map-marker"></span>${lstHighlight[myIndex.index + 3].address}
+															${lstHighlight[myIndex.index + 3].street.streetName},
+															P.${lstHighlight[myIndex.index + 3].ward.wardName},
+															${lstHighlight[myIndex.index + 3].district.districtName},
+															${lstHighlight[myIndex.index + 3].city.cityName}
+														</p>
+														<div class="price">${lstHighlight[myIndex.index + 3].postCostTotal}
+															TỶ</div>
+													</div>
+												</a>
 											</div>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="item">
-								<div class="nailthumb">
-									<div class="nailthumb-figure-75">
-										<a href="chitiet.html" class="nailthumb-container"> <img
-											class="lazy"
-											src="${pageContext.request.contextPath}/resources/images/4.jpg">
-										</a> <a href="chitiet.html" class="info">
-											<div>
-												<div class="labels">
-													<span class="label">Bán</span> <span class="label g">Thương
-														Lượng</span>
-												</div>
-												<h2>NHÀ MẶT TIỀN PHỐ</h2>
-												<p>
-													<span class="fa fa-map-marker"></span> Địa chỉ 108 Tôn Đức
-													Thắng, P. Bến Thành, Q.1, TP.HCM
-												</p>
-												<div class="price">6 400 TỶ</div>
-											</div>
-										</a>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					</c:forEach>
 				</div>
-			</div>
+			</c:if>
 		</div>
 		<!-- HOT END -->
 

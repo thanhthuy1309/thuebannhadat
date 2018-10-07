@@ -52,10 +52,6 @@ public class PostImage extends AbstractEntity {
 	@Column(name = "post_image_name", nullable = false, length = 250)
 	private String postImageName;
 
-	/**  Init urlHinhAnh *. */
-	@Column(name = "post_image_url", nullable = false, length = 500)
-	private String postImageUrl;
-
 	/**  Init order *. */
 	@Column(name = "type_image", nullable = false, length = 250, columnDefinition = "CHAR(1)")
 	private String typeImage;
@@ -157,24 +153,6 @@ public class PostImage extends AbstractEntity {
 	 */
 	public void setPostImageOrder(Integer postImageOrder) {
 		this.postImageOrder = postImageOrder;
-	}
-
-	/**
-	 * Gets the post image url.
-	 *
-	 * @return the postImageUrl
-	 */
-	public String getPostImageUrl() {
-		return postImageUrl;
-	}
-
-	/**
-	 * Sets the post image url.
-	 *
-	 * @param postImageUrl            the postImageUrl to set
-	 */
-	public void setPostImageUrl(String postImageUrl) {
-		this.postImageUrl = postImageUrl;
 	}
 
 	/**
